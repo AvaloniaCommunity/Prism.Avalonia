@@ -8,6 +8,7 @@
     <PackageReference Include="Avalonia" Version="0.5.2-build4248-alpha" />
     <PackageReference Include="CommonServiceLocator" Version="2.0.1" />
     <PackageReference Include="Prism.Core" Version="7.0.0.269-pre" />
+    <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
