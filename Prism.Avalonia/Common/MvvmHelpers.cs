@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
+using Avalonia.Controls;
 
 namespace Prism.Common
 {
@@ -12,7 +12,7 @@ namespace Prism.Common
             T viewAsT = view as T;
             if (viewAsT != null)
                 action(viewAsT);
-            var element = view as Avalonia.Controls.Control;
+            var element = view as Control;
             if (element != null)
             {
                 var viewModelAsT = element.DataContext as T;
@@ -31,7 +31,7 @@ namespace Prism.Common
                 return viewAsT;
             }
 
-            var element = view as Avalonia.Controls.Control;
+            var element = view as Control;
             if (element != null)
             {
                 var vmAsT = element.DataContext as T;

@@ -1,8 +1,8 @@
 using System.ComponentModel;
 using System.Threading;
-using System.Windows;
 using System;
 using Avalonia;
+using Avalonia.Controls;
 
 #if NETFX_CORE
 using Windows.UI.Xaml;
@@ -17,20 +17,20 @@ namespace Prism.Mvvm
         /// <summary>
         /// The AutoWireViewModel attached property.
         /// </summary>
-        public static Avalonia.AvaloniaProperty AutoWireViewModelProperty = 
-            AvaloniaProperty.RegisterAttached<Avalonia.Controls.Control, bool>("AutoWireViewModel", typeof(ViewModelLocator), false);
-        public static bool GetAutoWireViewModel(Avalonia.AvaloniaObject obj)
+        public static AvaloniaProperty AutoWireViewModelProperty = 
+            AvaloniaProperty.RegisterAttached<Control, bool>(name: "AutoWireViewModel", ownerType: typeof(ViewModelLocator), defaultValue: false);
+        public static bool GetAutoWireViewModel(AvaloniaObject obj)
         {
             return (bool)obj.GetValue(AutoWireViewModelProperty);
         }
 
-        public static void SetAutoWireViewModel(Avalonia.AvaloniaObject obj, bool value)
+        public static void SetAutoWireViewModel(AvaloniaObject obj, bool value)
         {
             obj.SetValue(AutoWireViewModelProperty, value);
         }
 
-        private static void AutoWireViewModelChanged(Avalonia.AvaloniaObject d,
-            Avalonia.AvaloniaPropertyChangedEventArgs e)
+        private static void AutoWireViewModelChanged(AvaloniaObject d,
+            AvaloniaPropertyChangedEventArgs e)
         {
             if ((bool) e.NewValue)
             {
@@ -45,7 +45,7 @@ namespace Prism.Mvvm
         /// <param name="viewModel">The object to use as the DataContext for the View</param>
         static void Bind(object view, object viewModel)
         {
-            Avalonia.Controls.Control element = view as Avalonia.Controls.Control;
+            Control element = view as Control;
             if (element != null)
                 element.DataContext = viewModel;
         }

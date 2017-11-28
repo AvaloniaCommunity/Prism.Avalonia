@@ -2,6 +2,7 @@ using Prism.Properties;
 using System;
 using System.Globalization;
 using System.IO;
+using Prism.Avalonia.Properties;
 
 namespace Prism.Logging
 {

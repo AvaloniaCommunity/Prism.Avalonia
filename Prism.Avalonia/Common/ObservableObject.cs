@@ -1,5 +1,5 @@
+using System;
 using System.ComponentModel;
-using System.Windows;
 using Avalonia;
 using Avalonia.Controls;
 
@@ -13,14 +13,14 @@ namespace Prism.Common
     /// This class is required, because in Silverlight, it's not possible to receive Change notifications for Dependency properties that you do not own. 
     /// </remarks>
     /// <typeparam name="T">The type of the property that's wrapped in the Observable object</typeparam>
-    public class ObservableObject<T> : Avalonia.Controls.Control, INotifyPropertyChanged
+    public class ObservableObject<T> : Control, INotifyPropertyChanged
     {
         /// <summary>
         /// Identifies the Value property of the ObservableObject
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "This is the pattern for WPF dependency properties")]
-        public static readonly Avalonia.AvaloniaProperty ValueProperty =
-                AvaloniaProperty.Register<Control, T>("Value");
+        public static readonly StyledProperty<T> ValueProperty =
+                AvaloniaProperty.Register<Control, T>(name: nameof(Value));
 
         /// <summary>
         /// Event that gets invoked when the Value property changes. 
@@ -37,14 +37,19 @@ namespace Prism.Common
             set { this.SetValue(ValueProperty, value); }
         }
 
-        private static void ValueChangedCallback(Avalonia.AvaloniaObject d, Avalonia.AvaloniaPropertyChangedEventArgs e)
+        private static void ValueChangedCallback(AvaloniaObject d, AvaloniaPropertyChangedEventArgs e)
         {
             ObservableObject<T> thisInstance = ((ObservableObject<T>)d);
             PropertyChangedEventHandler eventHandler = thisInstance.PropertyChanged;
             if (eventHandler != null)
             {
-                eventHandler(thisInstance, new PropertyChangedEventArgs("Value"));
+                eventHandler(thisInstance, new PropertyChangedEventArgs(nameof(Value)));
             }
+        }
+
+        static ObservableObject()
+        {
+            ValueProperty.Changed.Subscribe(args => ValueChangedCallback(args?.Sender, args));
         }
     }
 }
