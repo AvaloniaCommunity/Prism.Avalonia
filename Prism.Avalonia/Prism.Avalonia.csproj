@@ -10,4 +10,10 @@
     <PackageReference Include="Prism.Core" Version="7.0.0.269-pre" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System.Configuration">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.2\System.Configuration.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
