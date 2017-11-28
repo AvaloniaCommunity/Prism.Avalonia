@@ -2,6 +2,7 @@ using CommonServiceLocator;
 using Prism.Logging;
 using System;
 using System.Globalization;
+using Prism.Avalonia.Properties;
 
 namespace Prism.Modularity
 {
@@ -119,7 +120,7 @@ namespace Prism.Modularity
             Type moduleType = Type.GetType(typeName);
             if (moduleType == null)
             {
-                throw new ModuleInitializeException(string.Format(CultureInfo.CurrentCulture, Properties.Resources.FailedToGetType, typeName));
+                throw new ModuleInitializeException(string.Format(CultureInfo.CurrentCulture, Resources.FailedToGetType, typeName));
             }
 
             return (IModule)this.serviceLocator.GetInstance(moduleType);
