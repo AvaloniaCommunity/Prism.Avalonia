@@ -1,4 +1,5 @@
 using System;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Styling;
 using Avalonia.VisualTree;
@@ -36,7 +37,7 @@ namespace Prism
         /// Gets the shell user interface
         /// </summary>
         /// <value>The shell user interface.</value>
-        protected IVisual Shell { get; set; }
+        protected IAvaloniaObject Shell { get; set; }
 
         /// <summary>
         /// Create the <see cref="ILoggerFacade" /> used by the bootstrapper.
@@ -164,7 +165,7 @@ namespace Prism
         /// in order to be able to add regions by using the <see cref="RegionManager.RegionNameProperty"/>
         /// attached property from XAML.
         /// </remarks>
-        protected virtual IVisual CreateShell()
+        protected virtual IAvaloniaObject CreateShell()
         {
             return null;
         }

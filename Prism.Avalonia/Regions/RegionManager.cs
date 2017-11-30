@@ -150,7 +150,7 @@ namespace Prism.Regions
         /// </summary>
         /// <param name="target">The target element.</param>
         /// <param name="value">The value.</param>
-        public static void SetRegionManager(AvaloniaObject target, IRegionManager value)
+        public static void SetRegionManager(IAvaloniaObject target, IRegionManager value)
         {
             if (target == null)
                 throw new ArgumentNullException(nameof(target));
