@@ -137,7 +137,7 @@ namespace Prism.Regions
         /// </summary>
         /// <param name="target">The target element.</param>
         /// <returns>The <see cref="IRegionManager"/> attached to the <paramref name="target"/> element.</returns>
-        public static IRegionManager GetRegionManager(AvaloniaObject target)
+        public static IRegionManager GetRegionManager(IAvaloniaObject target)
         {
             if (target == null)
                 throw new ArgumentNullException(nameof(target));

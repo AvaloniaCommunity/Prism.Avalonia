@@ -1,6 +1,6 @@
 ﻿using Prism.Mvvm;
 
-namespace Prism.IocContainer.Wpf.Tests.Support.Mocks.ViewModels
+namespace Prism.IocContainer.Avalonia.Tests.Support.Mocks.ViewModels
 {
     public class MockViewModel : BindableBase
     {

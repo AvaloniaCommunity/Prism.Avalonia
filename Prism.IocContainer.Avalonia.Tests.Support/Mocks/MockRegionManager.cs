@@ -1,7 +1,7 @@
 using System;
 using Prism.Regions;
 
-namespace Prism.IocContainer.Wpf.Tests.Support.Mocks
+namespace Prism.IocContainer.Avalonia.Tests.Support.Mocks
 {
     public class MockRegionManager : IRegionManager
     {

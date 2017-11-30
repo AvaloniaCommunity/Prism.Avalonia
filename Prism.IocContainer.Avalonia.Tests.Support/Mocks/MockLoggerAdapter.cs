@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Prism.Logging;
 
-namespace Prism.IocContainer.Wpf.Tests.Support.Mocks
+namespace Prism.IocContainer.Avalonia.Tests.Support.Mocks
 {
     public class MockLoggerAdapter : ILoggerFacade
     {
