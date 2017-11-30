@@ -17,7 +17,7 @@ namespace Prism.Regions
     public static class RegionContext
     {
         private static readonly AvaloniaProperty ObservableRegionContextProperty =
-            AvaloniaProperty.RegisterAttached<Control, ObservableObject<object>>("ObservableRegionContext", typeof(RegionContext));
+            AvaloniaProperty.RegisterAttached<Visual, ObservableObject<object>>("ObservableRegionContext", typeof(RegionContext));
 
         /// <summary>
         /// Returns an <see cref="ObservableObject{T}"/> wrapper around the RegionContext value. The RegionContext
@@ -30,7 +30,7 @@ namespace Prism.Regions
         /// </summary>
         /// <param name="view">Any view that hold the RegionContext value. </param>
         /// <returns>Wrapper around the Regioncontext value. </returns>
-        public static ObservableObject<object> GetObservableContext(AvaloniaObject view)
+        public static ObservableObject<object> GetObservableContext(Visual view)
         {
             if (view == null)
                 throw new ArgumentNullException(nameof(view));

@@ -2,6 +2,7 @@ using Prism.Properties;
 using System;
 using System.Collections.Specialized;
 using System.Linq;
+using Avalonia;
 using Avalonia.Controls;
 using Prism.Avalonia.Properties;
 
@@ -35,9 +36,9 @@ namespace Prism.Regions
             bool contentIsSet = regionTarget.Content != null;
             contentIsSet = contentIsSet /* || (BindingOperations.GetBinding(regionTarget, ContentControl.ContentProperty) != null) no analogs found for avalonia.
                 Can this break something?*/;
-
-            if (contentIsSet)
-                throw new InvalidOperationException(Resources.ContentControlHasContentException);
+            
+            //if (contentIsSet)
+            //    throw new InvalidOperationException(Resources.ContentControlHasContentException);
 
             region.ActiveViews.CollectionChanged += delegate
             {

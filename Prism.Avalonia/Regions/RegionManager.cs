@@ -42,7 +42,7 @@ namespace Prism.Regions
         /// will create and adapt a new region for that control, and register it
         /// in the <see cref="IRegionManager"/> with the specified region name.
         /// </remarks>
-        public static readonly AvaloniaProperty RegionNameProperty = AvaloniaProperty.RegisterAttached<Control, string>(
+        public static readonly AvaloniaProperty RegionNameProperty = AvaloniaProperty.RegisterAttached<AvaloniaObject, string>(
             "RegionName",
             typeof(RegionManager));
 
@@ -74,7 +74,7 @@ namespace Prism.Regions
         }
 
         private static readonly AvaloniaProperty ObservableRegionProperty =
-            AvaloniaProperty.RegisterAttached<Control, ObservableObject<IRegion>>("ObservableRegion", typeof(RegionManager));
+            AvaloniaProperty.RegisterAttached<AvaloniaObject, ObservableObject<IRegion>>("ObservableRegion", typeof(RegionManager));
 
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Prism.Regions
         /// in the <see cref="IRegionManager"/> with the specified region name.
         /// </remarks>
         public static readonly AvaloniaProperty RegionManagerProperty =
-            AvaloniaProperty.RegisterAttached<Control, IRegionManager>("RegionManager", typeof(RegionManager));
+            AvaloniaProperty.RegisterAttached<AvaloniaObject, IRegionManager>("RegionManager", typeof(RegionManager));
 
         /// <summary>
         /// Gets the value of the <see cref="RegionNameProperty"/> attached property.
@@ -162,13 +162,13 @@ namespace Prism.Regions
         /// Identifies the RegionContext attached property.
         /// </summary>
         public static readonly AvaloniaProperty RegionContextProperty =
-            AvaloniaProperty.RegisterAttached<Control, object>("RegionContext", typeof(RegionManager));
+            AvaloniaProperty.RegisterAttached<AvaloniaObject, object>("RegionContext", typeof(RegionManager));
 
         private static void OnRegionContextChanged(AvaloniaObject depObj, AvaloniaPropertyChangedEventArgs e)
         {
-            if (RegionContext.GetObservableContext(depObj).Value != e.NewValue)
+            if (RegionContext.GetObservableContext(depObj as Visual).Value != e.NewValue)
             {
-                RegionContext.GetObservableContext(depObj).Value = e.NewValue;
+                RegionContext.GetObservableContext(depObj as Visual).Value = e.NewValue;
             }
         }
 

@@ -37,7 +37,7 @@ namespace Prism.Regions.Behaviors
         {
             foreach (var view in views)
             {
-                AvaloniaObject dependencyObjectView = view as AvaloniaObject;
+                Visual dependencyObjectView = view as Visual;
                 if (dependencyObjectView != null)
                 {
                     ObservableObject<object> contextWrapper = RegionContext.GetObservableContext(dependencyObjectView);
@@ -50,7 +50,7 @@ namespace Prism.Regions.Behaviors
         {
             foreach (var view in views)
             {
-                var dependencyObject = view as AvaloniaObject;
+                var dependencyObject = view as Visual;
                 if (dependencyObject != null)
                 {
                     ObservableObject<object> viewRegionContext = RegionContext.GetObservableContext(dependencyObject);
@@ -63,7 +63,7 @@ namespace Prism.Regions.Behaviors
         {
             foreach (var view in views)
             {
-                var dependencyObject = view as AvaloniaObject;
+                var dependencyObject = view as Visual;
                 if (dependencyObject != null)
                 {
                     ObservableObject<object> viewRegionContext = RegionContext.GetObservableContext(dependencyObject);

@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,10 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Prism.Avalonia.Tests.Modularity;
 using Prism.Modularity;
 
-namespace Prism.Wpf.Tests.Modularity
+namespace Prism.Avalonia.Tests.Modularity
 {
     [TestClass]
     public class ModuleCatalogFixture

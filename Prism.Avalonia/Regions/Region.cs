@@ -124,17 +124,11 @@ namespace Prism.Regions
         {
             get
             {
-                if (this.views == null)
-                {
-                    this.views = new ViewsCollection(ItemMetadataCollection, x => true);
-                    this.views.SortComparison = this.sort;
-                }
+                this.views = new ViewsCollection(ItemMetadataCollection, x => true);
+                this.views.SortComparison = this.sort;
 
-                if (this.activeViews == null)
-                {
-                    this.activeViews = new ViewsCollection(ItemMetadataCollection, x => x.IsActive);
-                    this.activeViews.SortComparison = this.sort;
-                }
+                this.activeViews = new ViewsCollection(ItemMetadataCollection, x => x.IsActive);
+                this.activeViews.SortComparison = this.sort;
 
                 return this.activeViews;
             }

@@ -1,12 +1,10 @@
-
-
 using System;
 using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Prism.Modularity;
 
-namespace Prism.Wpf.Tests.Modularity
+namespace Prism.Avalonia.Tests.Modularity
 {
     [TestClass]
     public class FileModuleTypeLoaderFixture
