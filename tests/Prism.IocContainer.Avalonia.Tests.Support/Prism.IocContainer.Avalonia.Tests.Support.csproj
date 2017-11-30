@@ -13,9 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Prism.Autofac.Avalonia\Prism.Autofac.Avalonia.csproj" />
-    <ProjectReference Include="..\Prism.Avalonia\Prism.Avalonia.csproj" />
-    <ProjectReference Include="..\Prism.IocContainer.Avalonia.Tests.Support\Prism.IocContainer.Avalonia.Tests.Support.csproj" />
+    <ProjectReference Include="..\..\src\Prism.Avalonia\Prism.Avalonia.csproj" />
   </ItemGroup>
 
 </Project>

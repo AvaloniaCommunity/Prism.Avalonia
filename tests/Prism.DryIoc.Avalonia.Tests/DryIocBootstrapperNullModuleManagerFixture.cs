@@ -1,6 +1,8 @@
-﻿using Avalonia;
+﻿using System.ComponentModel;
+using Avalonia;
 using DryIoc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting.Logging;
 using Prism.Logging;
 using Prism.Regions;
 
