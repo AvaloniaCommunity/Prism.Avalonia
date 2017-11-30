@@ -6,7 +6,6 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
-using Prism.Wpf.Tests;
 
 namespace Prism.Avalonia.Tests.Regions
 {

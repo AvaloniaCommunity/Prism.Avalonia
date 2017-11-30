@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Prism.Wpf.Tests
+namespace Prism.Avalonia.Tests
 {
     public static class ExceptionAssert
     {

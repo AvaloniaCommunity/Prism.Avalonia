@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Prism.Regions;
-using Prism.Wpf.Tests;
 
 namespace Prism.Avalonia.Tests.Regions
 {

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Prism.Wpf.Tests
+namespace Prism.Avalonia.Tests
 {
     public class CollectionChangedTracker
     {
