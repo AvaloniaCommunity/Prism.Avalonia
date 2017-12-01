@@ -1,0 +1,5 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui">
+    <Grid>
+        <TextBlock Text="View A" FontSize="38" />
+    </Grid>
+</UserControl>

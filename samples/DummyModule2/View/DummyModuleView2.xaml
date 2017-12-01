@@ -1,0 +1,8 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="clr-namespace:Prism.Regions.Behaviors;assembly=Prism.Avalonia"
+        >
+  <Grid>
+    <TextBox Name="RegionViewTextBox" Text="DummyModule2 Region View" IsReadOnly="True" />
+  </Grid>
+</UserControl>
