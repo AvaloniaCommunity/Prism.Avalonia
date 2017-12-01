@@ -93,17 +93,26 @@ namespace Prism.DryIoc
                 Logger.Log(Resources.UpdatingRegions, Category.Debug, Priority.Low);
                 RegionManager.UpdateRegions();
 
+                if (Container.IsRegistered<IModuleManager>())
+                {
+                    Logger.Log(Resources.InitializingModules, Category.Debug, Priority.Low);
+                    InitializeModules();
+                }
+
                 Logger.Log(Resources.InitializingShell, Category.Debug, Priority.Low);
+                Logger.Log(Resources.BootstrapperSequenceCompleted, Category.Debug, Priority.Low);
                 InitializeShell();
             }
-
-            if (Container.IsRegistered<IModuleManager>())
+            else
             {
-                Logger.Log(Resources.InitializingModules, Category.Debug, Priority.Low);
-                InitializeModules();
-            }
+                if (Container.IsRegistered<IModuleManager>())
+                {
+                    Logger.Log(Resources.InitializingModules, Category.Debug, Priority.Low);
+                    InitializeModules();
+                }
 
-            Logger.Log(Resources.BootstrapperSequenceCompleted, Category.Debug, Priority.Low);
+                Logger.Log(Resources.BootstrapperSequenceCompleted, Category.Debug, Priority.Low);
+            }
         }
 
         /// <summary>
