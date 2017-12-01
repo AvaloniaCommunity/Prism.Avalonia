@@ -3,8 +3,8 @@
         xmlns:prismRegions="clr-namespace:Prism.Regions;assembly=Prism.Avalonia"
         MinWidth="500" MinHeight="300">
   <StackPanel Orientation="Vertical">
-    <!--<TextBox Text="Hello World by Prism.Avalonia!" HorizontalAlignment="Center"
-                            VerticalAlignment="Center" FontSize="17" FontWeight="Heavy" />-->
+    <TextBox Text="Hello World by Prism.Avalonia!" HorizontalAlignment="Center"
+                            VerticalAlignment="Center" FontSize="17" FontWeight="Heavy" />
     <TextBox Name="LogTextBox" IsReadOnly="True" MinHeight="150" />
     <ContentControl prismRegions:RegionManager.RegionName="Region1" MinHeight="150" MinWidth="150" />
     <ContentControl prismRegions:RegionManager.RegionName="Region2" MinHeight="150" MinWidth="150" />
