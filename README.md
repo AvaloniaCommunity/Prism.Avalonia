@@ -17,3 +17,7 @@ Not ported/supported features and other problems:
 - ViewInjection for regions will not work
 - DirectoryCatalog implementation of ModuleCatalog
 - Not all tests are reproducible because of runtime or avalonia capabilities
+
+| ModulesSample on Ubuntu 16.04 | ModulesSample on Windows 10 |
+|---|---|
+| <img width='300' src='https://i.imgur.com/DkwcIkR.png'></a> | <img width='300' src='https://i.imgur.com/IKI87pv.png'></a> |
