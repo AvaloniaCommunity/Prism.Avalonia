@@ -13,6 +13,7 @@ I will use this port in my internalwork projects, so by developing applications 
 or invalid behaviours which occur on my path, but issues and pull requests are welcome too!
 
 Not ported/supported features and other problems:
--Prism.Avalonia not supports ability to bind Region to ItemsSource/Selector element
--DirectoryCatalog implementation of ModuleCatalog
--Not all tests are reproducible because of runtime or avalonia capabilities
+- Prism.Avalonia not supports ability to bind Region to ItemsSource/Selector element
+- ViewInjection for regions will not work
+- DirectoryCatalog implementation of ModuleCatalog
+- Not all tests are reproducible because of runtime or avalonia capabilities
