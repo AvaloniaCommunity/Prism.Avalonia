@@ -6,6 +6,7 @@
     <PackageReference Include="Avalonia" Version="0.5.2-build4248-alpha" />
     <PackageReference Include="CommonServiceLocator" Version="2.0.1" />
     <PackageReference Include="Prism.Core" Version="7.0.0.269-pre" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.0" />
     <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
@@ -23,10 +24,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Regions\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Configuration">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.2\System.Configuration.dll</HintPath>
-    </Reference>
   </ItemGroup>
 </Project>
