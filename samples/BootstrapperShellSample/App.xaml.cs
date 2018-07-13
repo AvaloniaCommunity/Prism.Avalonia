@@ -13,8 +13,7 @@ namespace BootstrapperShellSample
 {
     class App : Application
     {
-        public static AppBuilder BuildAvaloniaApp() => AppBuilder.Configure<App>().UsePlatformDetect()
-            .SetupWithoutStarting();
+        public static AppBuilder BuildAvaloniaApp() => AppBuilder.Configure<App>().UsePlatformDetect().SetupWithoutStarting();
 
         public override void Initialize()
         {

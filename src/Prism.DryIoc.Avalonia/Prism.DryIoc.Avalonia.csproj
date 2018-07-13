@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DryIoc" Version="2.12.5" />
+    <PackageReference Include="DryIoc" Version="3.0.2" />
   </ItemGroup>
 
   <ItemGroup>
