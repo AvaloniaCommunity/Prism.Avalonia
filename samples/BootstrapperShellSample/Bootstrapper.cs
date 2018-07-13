@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System.Threading;
+using Avalonia;
 using Avalonia.Controls;
 using BootstrapperShellSample.Views;
 using DryIoc;
@@ -19,7 +20,9 @@ namespace BootstrapperShellSample
 
         protected override void InitializeShell()
         {
-            AppBuilderInstance.Start(base.Shell as Window);
+            var mainWindow = base.Shell as MainWindow;
+            mainWindow.Show();
+            Application.Current.Run(mainWindow);
         }
     }
 }

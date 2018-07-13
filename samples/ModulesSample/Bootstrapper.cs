@@ -46,7 +46,10 @@ namespace ModulesSample
         /// </remarks>
         protected override void InitializeShell()
         {
-            AppBuilderInstance.Start(base.Shell as Window);
+            var mainWindow = base.Shell as Window;
+            mainWindow.Show();
+
+            Application.Current.Run(mainWindow);
         }
 
         protected override ILoggerFacade CreateLogger()
