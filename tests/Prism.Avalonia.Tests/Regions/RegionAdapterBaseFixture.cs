@@ -84,7 +84,7 @@ namespace Prism.Avalonia.Tests.Regions
                 adaptArgumentRegionTarget = regionTarget;
             }
 
-            protected override IRegion CreateRegion()
+            protected override IRegion CreateRegion(string name)
             {
                 return CreateRegionReturnValue;
             }

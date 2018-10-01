@@ -178,6 +178,7 @@ namespace Prism.Regions
                 if (this.regionManager != value)
                 {
                     this.regionManager = value;
+                    this.regionManager?.Regions.Add(this);
                     this.OnPropertyChanged("RegionManager");
                 }
             }

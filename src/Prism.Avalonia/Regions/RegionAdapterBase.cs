@@ -16,13 +16,15 @@ namespace Prism.Regions
     /// <typeparam name="T">Type of object to adapt.</typeparam>
     public abstract class RegionAdapterBase<T> : IRegionAdapter where T : class
     {
+
         /// <summary>
         /// Initializes a new instance of <see cref="RegionAdapterBase{T}"/>.
         /// </summary>
         /// <param name="regionBehaviorFactory">The factory used to create the region behaviors to attach to the created regions.</param>
-        protected RegionAdapterBase(IRegionBehaviorFactory regionBehaviorFactory)
+        protected RegionAdapterBase(IRegionBehaviorFactory regionBehaviorFactory, IRegionManager regionManager)
         {
             this.RegionBehaviorFactory = regionBehaviorFactory;
+            this.RegionManager = regionManager;
         }
 
         /// <summary>
@@ -30,6 +32,11 @@ namespace Prism.Regions
         /// </summary>
         protected IRegionBehaviorFactory RegionBehaviorFactory { get; set; }
 
+        /// <summary>
+        /// Gets region manager 
+        /// </summary>
+        protected IRegionManager RegionManager { get; }
+        
         /// <summary>
         /// Adapts an object and binds it to a new <see cref="IRegion"/>.
         /// </summary>
@@ -41,8 +48,7 @@ namespace Prism.Regions
             if (regionName == null)
                 throw new ArgumentNullException(nameof(regionName));
 
-            IRegion region = this.CreateRegion();
-            region.Name = regionName;
+            IRegion region = this.CreateRegion(regionName);
 
             SetObservableRegionOnHostingControl(region, regionTarget);
 
@@ -127,7 +133,7 @@ namespace Prism.Regions
         /// that will be used to adapt the object.
         /// </summary>
         /// <returns>A new instance of <see cref="IRegion"/>.</returns>
-        protected abstract IRegion CreateRegion();
+        protected abstract IRegion CreateRegion(string name);
 
         private static T GetCastedObject(object regionTarget)
         {
@@ -151,7 +157,7 @@ namespace Prism.Regions
                 // Set the region as a dependency property on the control hosting the region
                 // Because we are using an observable region, the hosting control can detect that the
                 // region has actually been created. This is an ideal moment to hook up custom behaviors
-                RegionManager.GetObservableRegion(targetElement).Value = region;
+                Prism.Regions.RegionManager.GetObservableRegion(targetElement).Value = region;
             }
         }
     }
