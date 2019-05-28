@@ -1,5 +1,5 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
-        xmlns:prism="http://prismlibrary.com/"
+        xmlns:prism="clr-namespace:Prism.Regions;assembly=Prism.Avalonia"
         Title="Shell" Height="350" Width="525">
     <ContentControl prism:RegionManager.RegionName="ContentRegion" />
 </Window>

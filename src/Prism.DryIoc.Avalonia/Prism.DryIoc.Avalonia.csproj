@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>7.0.0.396</Version>
+    <Version>7.0.0.3962</Version>
     <Copyright>Copyright (c) 2017 Stratocast3r</Copyright>
     <PackageLicenseUrl>https://github.com/PurpleGray/Prism.Avalonia/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/PurpleGray/Prism.Avalonia</PackageProjectUrl>

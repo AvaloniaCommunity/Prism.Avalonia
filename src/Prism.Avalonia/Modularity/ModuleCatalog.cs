@@ -125,7 +125,7 @@ namespace Prism.Modularity
                 throw new ArgumentNullException(nameof(xamlStream));
             }
 
-            return new AvaloniaXamlLoader().Load(xamlStream) as ModuleCatalog;
+            return new AvaloniaXamlLoader().Load(xamlStream, null) as ModuleCatalog;
         }
 
         /// <summary>

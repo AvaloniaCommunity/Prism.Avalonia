@@ -1,0 +1,6 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui">
+    <Grid RowDefinitions="50,*">
+      <TextBlock Text="View B, subview:" FontSize="38" />
+      <ContentControl Name="Test" Grid.Row="1"></ContentControl>
+    </Grid>
+</UserControl>

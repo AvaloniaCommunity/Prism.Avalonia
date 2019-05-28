@@ -3,7 +3,9 @@ using System;
 using System.Collections.Specialized;
 using System.Linq;
 using Avalonia;
+using Avalonia.Collections;
 using Avalonia.Controls;
+using Avalonia.VisualTree;
 using Prism.Avalonia.Properties;
 
 namespace Prism.Regions
@@ -42,6 +44,15 @@ namespace Prism.Regions
 
             region.ActiveViews.CollectionChanged += delegate
             {
+                var firstActive = region.ActiveViews.FirstOrDefault();
+                if (firstActive is IVisual uc)
+                {
+                    if (regionTarget is IVisual visual && visual.VisualChildren is IAvaloniaList<IVisual> list)
+                    {
+                        list.Remove(uc);
+                    }
+                }
+
                 regionTarget.Content = region.ActiveViews.FirstOrDefault();
             };
 
