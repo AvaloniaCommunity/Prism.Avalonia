@@ -4,7 +4,7 @@ using Avalonia.Interactivity;
 
 namespace Prism.Avalonia.Tests.Mocks
 {
-    public class MockFrameworkElement : Control
+    public class MockControl : Control
     {
         public void RaiseLoaded()
         {

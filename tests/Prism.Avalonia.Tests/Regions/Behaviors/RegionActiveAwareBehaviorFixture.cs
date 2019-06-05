@@ -20,7 +20,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             behavior.Attach();
             var collection = region.MockActiveViews.Items;
 
-            ActiveAwareFrameworkElement activeAwareObject = new ActiveAwareFrameworkElement();
+            ActiveAwareControl activeAwareObject = new ActiveAwareControl();
 
             Assert.IsFalse(activeAwareObject.IsActive);
             collection.Add(activeAwareObject);
@@ -39,18 +39,18 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             behavior.Attach();
             var collection = region.MockActiveViews.Items;
 
-            ActiveAwareFrameworkElement activeAwareObject = new ActiveAwareFrameworkElement();
+            ActiveAwareControl activeAwareObject = new ActiveAwareControl();
 
-            var frameworkElementMock = new Mock<Control>();
-            var frameworkElement = frameworkElementMock.Object;
-            frameworkElement.DataContext = activeAwareObject;
+            var ControlMock = new Mock<Control>();
+            var Control = ControlMock.Object;
+            Control.DataContext = activeAwareObject;
 
             Assert.IsFalse(activeAwareObject.IsActive);
-            collection.Add(frameworkElement);
+            collection.Add(Control);
 
             Assert.IsTrue(activeAwareObject.IsActive);
 
-            collection.Remove(frameworkElement);
+            collection.Remove(Control);
             Assert.IsFalse(activeAwareObject.IsActive);
         }
 
@@ -66,20 +66,20 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             activeAwareMock.SetupProperty(o => o.IsActive);
             var activeAwareObject = activeAwareMock.Object;
 
-            var frameworkElementMock = new Mock<Control>();
-            frameworkElementMock.As<IActiveAware>().SetupProperty(o => o.IsActive);
-            var frameworkElement = frameworkElementMock.Object;
-            frameworkElement.DataContext = activeAwareObject;
+            var ControlMock = new Mock<Control>();
+            ControlMock.As<IActiveAware>().SetupProperty(o => o.IsActive);
+            var Control = ControlMock.Object;
+            Control.DataContext = activeAwareObject;
 
-            Assert.IsFalse(((IActiveAware)frameworkElement).IsActive);
+            Assert.IsFalse(((IActiveAware)Control).IsActive);
             Assert.IsFalse(activeAwareObject.IsActive);
-            collection.Add(frameworkElement);
+            collection.Add(Control);
 
-            Assert.IsTrue(((IActiveAware)frameworkElement).IsActive);
+            Assert.IsTrue(((IActiveAware)Control).IsActive);
             Assert.IsTrue(activeAwareObject.IsActive);
 
-            collection.Remove(frameworkElement);
-            Assert.IsFalse(((IActiveAware)frameworkElement).IsActive);
+            collection.Remove(Control);
+            Assert.IsFalse(((IActiveAware)Control).IsActive);
             Assert.IsFalse(activeAwareObject.IsActive);
         }
 
@@ -91,7 +91,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             var collection = region.MockActiveViews.Items;
             behavior.Attach();
             behavior.Detach();
-            ActiveAwareFrameworkElement activeAwareObject = new ActiveAwareFrameworkElement();
+            ActiveAwareControl activeAwareObject = new ActiveAwareControl();
 
             collection.Add(activeAwareObject);
 
@@ -117,12 +117,12 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             behavior.Attach();
             var collection = region.MockActiveViews.Items;
 
-            var frameworkElementMock = new Mock<Control>();
-            var frameworkElement = frameworkElementMock.Object;
-            frameworkElement.DataContext = new object();
+            var ControlMock = new Mock<Control>();
+            var Control = ControlMock.Object;
+            Control.DataContext = new object();
 
 
-            collection.Add(frameworkElement);
+            collection.Add(Control);
         }
 
         [TestMethod]
@@ -133,13 +133,13 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             scopedRegionManager.Regions.Add(scopedRegion);
             var behaviorForScopedRegion = new RegionActiveAwareBehavior { Region = scopedRegion };
             behaviorForScopedRegion.Attach();
-            var childActiveAwareView = new ActiveAwareFrameworkElement();
+            var childActiveAwareView = new ActiveAwareControl();
 
             var region = new MockPresentationRegion();
             var behavior = new RegionActiveAwareBehavior { Region = region };
             behavior.Attach();
 
-            var view = new MockFrameworkElement();
+            var view = new MockControl();
             region.Add(view);
             RegionManager.SetRegionManager(view, scopedRegionManager);
             region.Activate(view);
@@ -168,7 +168,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             var behavior = new RegionActiveAwareBehavior { Region = region };
             behavior.Attach();
 
-            var view = new MockFrameworkElement();
+            var view = new MockControl();
             region.Add(view);
             RegionManager.SetRegionManager(view, scopedRegionManager);
             region.Activate(view);
@@ -191,14 +191,14 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             scopedRegionManager.Regions.Add(scopedRegion);
             var behaviorForScopedRegion = new RegionActiveAwareBehavior { Region = scopedRegion };
             behaviorForScopedRegion.Attach();
-            var childActiveAwareView = new ActiveAwareFrameworkElement();
+            var childActiveAwareView = new ActiveAwareControl();
             childActiveAwareView.DataContext = new SyncedActiveAwareObjectViewModel();
 
             var region = new MockPresentationRegion();
             var behavior = new RegionActiveAwareBehavior { Region = region };
             behavior.Attach();
 
-            var view = new MockFrameworkElement();
+            var view = new MockControl();
             region.Add(view);
             RegionManager.SetRegionManager(view, scopedRegionManager);
             region.Activate(view);
@@ -214,7 +214,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         }
 
         [TestMethod]
-        public void WhenParentViewGetsActivatedOrDeactivated_ThenSyncedChildViewModelThatIsNotAFrameworkElementIsNotUpdated()
+        public void WhenParentViewGetsActivatedOrDeactivated_ThenSyncedChildViewModelThatIsNotAControlIsNotUpdated()
         {
             var scopedRegionManager = new RegionManager();
             var scopedRegion = new Region { Name = "MyScopedRegion", RegionManager = scopedRegionManager };
@@ -227,7 +227,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             var behavior = new RegionActiveAwareBehavior { Region = region };
             behavior.Attach();
 
-            var view = new MockFrameworkElement();
+            var view = new MockControl();
             region.Add(view);
             RegionManager.SetRegionManager(view, scopedRegionManager);
             region.Activate(view);
@@ -256,7 +256,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             var behavior = new RegionActiveAwareBehavior { Region = region };
             behavior.Attach();
 
-            var view = new MockFrameworkElement();
+            var view = new MockControl();
             region.Add(view);
             RegionManager.SetRegionManager(view, scopedRegionManager);
             region.Activate(view);
@@ -289,7 +289,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             var behavior = new RegionActiveAwareBehavior { Region = region };
             behavior.Attach();
 
-            var view = new MockFrameworkElement();
+            var view = new MockControl();
             region.Add(view);
             RegionManager.SetRegionManager(view, commonRegionManager);
             region.Activate(view);
@@ -310,7 +310,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             public event EventHandler IsActiveChanged;
         }
 
-        class ActiveAwareFrameworkElement : Control, IActiveAware
+        class ActiveAwareControl : Control, IActiveAware
         {
             public bool IsActive { get; set; }
             public event EventHandler IsActiveChanged;

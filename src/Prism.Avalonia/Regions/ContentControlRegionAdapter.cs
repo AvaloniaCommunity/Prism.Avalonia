@@ -1,12 +1,11 @@
+
+
+using Avalonia.Controls;
+using Avalonia.Data;
 using Prism.Properties;
 using System;
 using System.Collections.Specialized;
 using System.Linq;
-using Avalonia;
-using Avalonia.Collections;
-using Avalonia.Controls;
-using Avalonia.VisualTree;
-using Prism.Avalonia.Properties;
 
 namespace Prism.Regions
 {
@@ -20,8 +19,8 @@ namespace Prism.Regions
         /// Initializes a new instance of <see cref="ContentControlRegionAdapter"/>.
         /// </summary>
         /// <param name="regionBehaviorFactory">The factory used to create the region behaviors to attach to the created regions.</param>
-        public ContentControlRegionAdapter(IRegionBehaviorFactory regionBehaviorFactory, IRegionManager regionManager)
-            : base(regionBehaviorFactory, regionManager)
+        public ContentControlRegionAdapter(IRegionBehaviorFactory regionBehaviorFactory)
+            : base(regionBehaviorFactory)
         {
         }
 
@@ -36,23 +35,13 @@ namespace Prism.Regions
                 throw new ArgumentNullException(nameof(regionTarget));
 
             bool contentIsSet = regionTarget.Content != null;
-            contentIsSet = contentIsSet /* || (BindingOperations.GetBinding(regionTarget, ContentControl.ContentProperty) != null) no analogs found for avalonia.
-                Can this break something?*/;
+            contentIsSet = contentIsSet || regionTarget[!ContentControl.ContentProperty] != null;
 
-            //if (contentIsSet)
-            //    throw new InvalidOperationException(Resources.ContentControlHasContentException);
+            if (contentIsSet)
+                throw new InvalidOperationException(Resources.ContentControlHasContentException);
 
             region.ActiveViews.CollectionChanged += delegate
             {
-                var firstActive = region.ActiveViews.FirstOrDefault();
-                if (firstActive is IVisual uc)
-                {
-                    if (regionTarget is IVisual visual && visual.VisualChildren is IAvaloniaList<IVisual> list)
-                    {
-                        list.Remove(uc);
-                    }
-                }
-
                 regionTarget.Content = region.ActiveViews.FirstOrDefault();
             };
 
@@ -70,13 +59,9 @@ namespace Prism.Regions
         /// Creates a new instance of <see cref="SingleActiveRegion"/>.
         /// </summary>
         /// <returns>A new instance of <see cref="SingleActiveRegion"/>.</returns>
-        protected override IRegion CreateRegion(string name)
+        protected override IRegion CreateRegion()
         {
-            return new SingleActiveRegion()
-            {
-                Name = name,
-                RegionManager = RegionManager
-            };
+            return new SingleActiveRegion();
         }
     }
 }

@@ -2,10 +2,9 @@
 
 using System;
 using System.Windows;
-using Avalonia;
-using Prism.Avalonia.Properties;
 using Prism.Properties;
 using Prism.Common;
+using Avalonia;
 
 namespace Prism.Regions.Behaviors
 {
@@ -19,7 +18,7 @@ namespace Prism.Regions.Behaviors
     public class SyncRegionContextWithHostBehavior : RegionBehavior, IHostAwareRegionBehavior
     {
         private const string RegionContextPropertyName = "Context";
-        private Visual hostControl;
+        private AvaloniaObject hostControl;
 
         /// <summary>
         /// Name that identifies the SyncRegionContextWithHostBehavior behavior in a collection of RegionsBehaviors. 
@@ -39,9 +38,9 @@ namespace Prism.Regions.Behaviors
         /// </summary>
         /// <value>
         /// A <see cref="DependencyObject"/> that the <see cref="IRegion"/> is attached to.
-        /// This is usually a <see cref="FrameworkElement"/> that is part of the tree.
+        /// This is usually a <see cref="Control"/> that is part of the tree.
         /// </value>
-        public Visual HostControl
+        public AvaloniaObject HostControl
         {
             get
             {
@@ -102,7 +101,7 @@ namespace Prism.Regions.Behaviors
                 this.Region.Context = this.HostControlRegionContext.Value;
             }
 
-            // Also make sure the region's DependencyProperty was changed (this can occur if the value
+            // Also make sure the region's StyledProperty was changed (this can occur if the value
             // was changed only on the HostControlRegionContext)
             if (RegionManager.GetRegionContext(this.HostControl) != this.HostControlRegionContext.Value)
             {

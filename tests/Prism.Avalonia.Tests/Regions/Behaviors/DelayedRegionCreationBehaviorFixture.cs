@@ -11,7 +11,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
     [TestClass]
     public class DelayedRegionCreationBehaviorFixture
     {
-        private DelayedRegionCreationBehavior GetBehavior(AvaloniaObject control, MockRegionManagerAccessor accessor, MockRegionAdapter adapter)
+        private DelayedRegionCreationBehavior GetBehavior(StyledProperty control, MockRegionManagerAccessor accessor, MockRegionAdapter adapter)
         {
             var mappings = new RegionAdapterMappings();
             mappings.RegisterMapping(control.GetType(), adapter);
@@ -22,7 +22,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         }
 
 
-        private DelayedRegionCreationBehavior GetBehavior(AvaloniaObject control, MockRegionManagerAccessor accessor)
+        private DelayedRegionCreationBehavior GetBehavior(StyledProperty control, MockRegionManagerAccessor accessor)
         {
             return GetBehavior(control, accessor, new MockRegionAdapter());
         }
@@ -30,8 +30,8 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         [TestMethod]
         public void RegionWillNotGetCreatedTwiceWhenThereAreMoreRegions()
         {
-            var control1 = new MockFrameworkElement();
-            var control2 = new MockFrameworkElement();
+            var control1 = new MockControl();
+            var control2 = new MockControl();
 
             var accessor = new MockRegionManagerAccessor
                                {
@@ -59,7 +59,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         [TestMethod]
         public void RegionGetsCreatedWhenAccessingRegions()
         {
-            var control = new MockFrameworkElement();
+            var control = new MockControl();
 
             var accessor = new MockRegionManagerAccessor
                                {
@@ -78,7 +78,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         [TestMethod]
         public void RegionDoesNotGetCreatedTwiceWhenUpdatingRegions()
         {
-            var control = new MockFrameworkElement();
+            var control = new MockControl();
 
             var accessor = new MockRegionManagerAccessor
             {
@@ -98,7 +98,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         [TestMethod]
         public void BehaviorShouldUnhookEventWhenDetaching()
         {
-            var control = new MockFrameworkElement();
+            var control = new MockControl();
 
             var accessor = new MockRegionManagerAccessor
                                {

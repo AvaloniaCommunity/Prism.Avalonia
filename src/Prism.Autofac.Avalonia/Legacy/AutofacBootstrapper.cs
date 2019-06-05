@@ -1,32 +1,36 @@
 ﻿using System;
 using System.Globalization;
-using Avalonia.Controls;
+using Autofac;
+using Autofac.Features.ResolveAnything;
+using AutofacCore = Autofac.Core;
 using CommonServiceLocator;
+using Prism.Autofac.Properties;
 using Prism.Events;
 using Prism.Logging;
 using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
-using Prism;
-using DryIoc;
-using Prism.DryIoc.Avalonia.Properties;
+using Prism.Unity.Regions;
+using Prism.Ioc;
+using Prism.Autofac.Ioc;
 
-namespace Prism.DryIoc
+namespace Prism.Autofac
 {
     /// <summary>
     /// Base class that provides a basic bootstrapping sequence that
     /// registers most of the Prism Library assets
-    /// in an DryIoc <see cref="IContainer"/>.
+    /// in an Autofac <see cref="IContainer"/>.
     /// </summary>
     /// <remarks>
     /// This class must be overridden to provide application specific configuration.
     /// </remarks>
-    public abstract class DryIocBootstrapper : Bootstrapper
+    [Obsolete("It is recommended to use the new PrismApplication as the app's base class. This will require updating the App.xaml and App.xaml.cs files.", false)]
+    public abstract class AutofacBootstrapper : Bootstrapper
     {
         private bool _useDefaultConfiguration = true;
 
         /// <summary>
-        /// Gets the default DryIoc <see cref="IContainer"/> for the application.
+        /// Gets the default Autofac <see cref="IContainer"/> for the application.
         /// </summary>
         /// <value>The default <see cref="IContainer"/> instance.</value>
         public IContainer Container { get; protected set; }
@@ -57,16 +61,26 @@ namespace Prism.DryIoc
             Logger.Log(Resources.ConfiguringModuleCatalog, Category.Debug, Priority.Low);
             ConfigureModuleCatalog();
 
-            Logger.Log(Resources.CreatingDryIocContainer, Category.Debug, Priority.Low);
-            Container = CreateContainer();
-            if (Container == null)
+            Logger.Log(Resources.CreatingAutofacContainerBuilder, Category.Debug, Priority.Low);
+            ContainerBuilder builder = CreateContainerBuilder();
+            if (builder == null)
             {
-                throw new InvalidOperationException(Resources.NullDryIocContainerException);
+                throw new InvalidOperationException(Resources.NullAutofacContainerBuilderException);
             }
 
-            Logger.Log(Resources.ConfiguringDryIocContainer, Category.Debug, Priority.Low);
-            ConfigureContainer();
+            _containerExtension = CreateContainerExtension();
 
+            Logger.Log(Resources.ConfiguringAutofacContainerBuilder, Category.Debug, Priority.Low);
+            // Make sure any not specifically registered concrete type can resolve.
+            builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
+            ConfigureContainerBuilder(builder);
+
+            Logger.Log(Resources.CreatingAutofacContainer, Category.Debug, Priority.Low);
+            Container = CreateContainer(builder);
+            if (Container == null)
+            {
+                throw new InvalidOperationException(Resources.NullAutofacContainerException);
+            }
 
             Logger.Log(Resources.ConfiguringServiceLocatorSingleton, Category.Debug, Priority.Low);
             ConfigureServiceLocator();
@@ -93,26 +107,17 @@ namespace Prism.DryIoc
                 Logger.Log(Resources.UpdatingRegions, Category.Debug, Priority.Low);
                 RegionManager.UpdateRegions();
 
-                if (Container.IsRegistered<IModuleManager>())
-                {
-                    Logger.Log(Resources.InitializingModules, Category.Debug, Priority.Low);
-                    InitializeModules();
-                }
-
                 Logger.Log(Resources.InitializingShell, Category.Debug, Priority.Low);
-                Logger.Log(Resources.BootstrapperSequenceCompleted, Category.Debug, Priority.Low);
                 InitializeShell();
             }
-            else
-            {
-                if (Container.IsRegistered<IModuleManager>())
-                {
-                    Logger.Log(Resources.InitializingModules, Category.Debug, Priority.Low);
-                    InitializeModules();
-                }
 
-                Logger.Log(Resources.BootstrapperSequenceCompleted, Category.Debug, Priority.Low);
+            if (Container.IsRegistered<IModuleManager>())
+            {
+                Logger.Log(Resources.InitializingModules, Category.Debug, Priority.Low);
+                InitializeModules();
             }
+
+            Logger.Log(Resources.BootstrapperSequenceCompleted, Category.Debug, Priority.Low);
         }
 
         /// <summary>
@@ -120,11 +125,11 @@ namespace Prism.DryIoc
         /// </summary>
         protected override void ConfigureServiceLocator()
         {
-            DryIocServiceLocatorAdapter serviceLocator = new DryIocServiceLocatorAdapter(Container);
+            var serviceLocator = new AutofacServiceLocatorAdapter(Container);
             ServiceLocator.SetLocatorProvider(() => serviceLocator);
 
-            // register the locator in DryIoc as well
-            Container.UseInstance<IServiceLocator>(serviceLocator);
+            // register the locator in Autofac as well
+            RegisterInstance(serviceLocator, typeof(IServiceLocator), registerAsSingleton: true);
         }
 
         /// <summary>
@@ -136,48 +141,71 @@ namespace Prism.DryIoc
         }
 
         /// <summary>
-        /// Registers in the DryIoc <see cref="IContainer"/> the <see cref="Type"/> of the Exceptions
+        /// Registers in the Autofac <see cref="IContainer"/> the <see cref="Type"/> of the Exceptions
         /// that are not considered root exceptions by the <see cref="ExceptionExtensions"/>.
         /// </summary>
         protected override void RegisterFrameworkExceptionTypes()
         {
             base.RegisterFrameworkExceptionTypes();
 
-            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(ContainerException));
+            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(AutofacCore.DependencyResolutionException));
+            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(AutofacCore.Registration.ComponentNotRegisteredException));
         }
 
         /// <summary>
-        /// Configures the <see cref="Container"/>.
+        /// Creates the <see cref="ContainerBuilder"/> that will be used to create the default container.
+        /// </summary>
+        /// <returns>A new instance of <see cref="ContainerBuilder"/>.</returns>
+        protected virtual ContainerBuilder CreateContainerBuilder()
+        {
+            return new ContainerBuilder();
+        }
+
+        protected override IContainerExtension CreateContainerExtension()
+        {
+            return new AutofacContainerExtension(Container);
+        }
+
+        /// <summary>
+        /// Configures the <see cref="ContainerBuilder"/>.
         /// May be overwritten in a derived class to add specific type mappings required by the application.
         /// </summary>
-        protected virtual void ConfigureContainer()
+        protected virtual void ConfigureContainerBuilder(ContainerBuilder builder)
         {
-            Container.UseInstance<ILoggerFacade>(Logger);
-            Container.UseInstance<IModuleCatalog>(ModuleCatalog);
+            builder.RegisterInstance(_containerExtension).As<IContainerExtension>();
+            builder.RegisterInstance(Logger).As<ILoggerFacade>();
+            builder.RegisterInstance(ModuleCatalog);
 
             if (_useDefaultConfiguration)
             {
-                RegisterTypeIfMissing<IModuleInitializer, ModuleInitializer>(true);
-                RegisterTypeIfMissing<IModuleManager, ModuleManager>(true);
-                RegisterTypeIfMissing<RegionAdapterMappings, RegionAdapterMappings>(true);
-                RegisterTypeIfMissing<IRegionManager, RegionManager>(true);
-                RegisterTypeIfMissing<IEventAggregator, EventAggregator>(true);
-                RegisterTypeIfMissing<IRegionViewRegistry, RegionViewRegistry>(true);
-                RegisterTypeIfMissing<IRegionBehaviorFactory, RegionBehaviorFactory>(true);
-                RegisterTypeIfMissing<IRegionNavigationJournalEntry, RegionNavigationJournalEntry>(false);
-                RegisterTypeIfMissing<IRegionNavigationJournal, RegionNavigationJournal>(false);
-                RegisterTypeIfMissing<IRegionNavigationService, RegionNavigationService>(false);
-                RegisterTypeIfMissing<IRegionNavigationContentLoader, RegionNavigationContentLoader>(true);
+                RegisterTypeIfMissing<IModuleInitializer, ModuleInitializer>(builder, true);
+                RegisterTypeIfMissing<IModuleManager, ModuleManager>(builder, true);
+                RegisterTypeIfMissing<RegionAdapterMappings, RegionAdapterMappings>(builder, true);
+                RegisterTypeIfMissing<IRegionManager, RegionManager>(builder, true);
+                RegisterTypeIfMissing<IEventAggregator, EventAggregator>(builder, true);
+                RegisterTypeIfMissing<IRegionViewRegistry, RegionViewRegistry>(builder, true);
+                RegisterTypeIfMissing<IRegionBehaviorFactory, RegionBehaviorFactory>(builder, true);
+                RegisterTypeIfMissing<IRegionNavigationJournalEntry, RegionNavigationJournalEntry>(builder, false);
+                RegisterTypeIfMissing<IRegionNavigationJournal, RegionNavigationJournal>(builder, false);
+                RegisterTypeIfMissing<IRegionNavigationService, RegionNavigationService>(builder, false);
+                RegisterTypeIfMissing<IRegionNavigationContentLoader, AutofacRegionNavigationContentLoader>(builder, true);
             }
         }
 
         /// <summary>
-        /// Creates the DryIoc <see cref="IContainer"/> that will be used as the default container.
+        /// Creates the Autofac <see cref="IContainer"/> that will be used as the default container.
         /// </summary>
         /// <returns>A new instance of <see cref="IContainer"/>.</returns>
-        protected virtual IContainer CreateContainer()
+        protected virtual IContainer CreateContainer(ContainerBuilder containerBuilder)
         {
-            return new Container(Rules.Default.WithAutoConcreteTypeResolution());
+            IContainer container = containerBuilder.Build();
+
+            // Register container instance
+            var updater = new ContainerBuilder();
+            updater.RegisterInstance(container);
+            updater.Update(container);
+
+            return container;
         }
 
         /// <summary>
@@ -191,7 +219,7 @@ namespace Prism.DryIoc
             {
                 manager = Container.Resolve<IModuleManager>();
             }
-            catch (ContainerException ex)
+            catch (AutofacCore.DependencyResolutionException ex)
             {
                 if (ex.Message.Contains("IModuleCatalog"))
                 {
@@ -209,8 +237,9 @@ namespace Prism.DryIoc
         /// </summary>
         /// <typeparam name="TFrom">The interface type to register.</typeparam>
         /// <typeparam name="TTarget">The type implementing the interface.</typeparam>
+        /// <param name="builder">The <see cref="ContainerBuilder"/> instance.</param>
         /// <param name="registerAsSingleton">Registers the type as a singleton.</param>
-        protected void RegisterTypeIfMissing<TFrom, TTarget>(bool registerAsSingleton = false) where TTarget : TFrom
+        protected void RegisterTypeIfMissing<TFrom, TTarget>(ContainerBuilder builder, bool registerAsSingleton = false)
         {
             if(Container!=null && Container.IsRegistered<TFrom>())
             {
@@ -221,11 +250,11 @@ namespace Prism.DryIoc
             {
                 if (registerAsSingleton)
                 {
-                    Container.Register<TFrom, TTarget>(Reuse.Singleton);
+                    builder.RegisterType<TTarget>().As<TFrom>().SingleInstance();
                 }
                 else
                 {
-                    Container.Register<TFrom, TTarget>();
+                    builder.RegisterType<TTarget>().As<TFrom>();
                 }
             }
         }
@@ -253,15 +282,57 @@ namespace Prism.DryIoc
             }
             else
             {
+                ContainerBuilder builder = CreateContainerBuilder();
                 if (registerAsSingleton)
                 {
-                    Container.Register(fromType, toType, Reuse.Singleton);
+                    builder.RegisterType(toType).As(fromType).SingleInstance();
                 }
                 else
                 {
-                    Container.Register(fromType, toType);
+                    builder.RegisterType(toType).As(fromType);
                 }
+                builder.Update(Container);
             }
+        }
+
+        /// <summary>
+        /// Registers an object instance in the container.
+        /// </summary>
+        /// <param name="instance">Object instance.</param>
+        /// <param name="fromType">The interface type to register.</param>
+        /// <param name="key">Optional key for registration.</param>
+        /// <param name="registerAsSingleton">Registers the type as a singleton.</param>
+        protected void RegisterInstance<T>(T instance, Type fromType, string key = "", bool registerAsSingleton = false)
+            where T : class
+        {
+            if (instance == null)
+            {
+                throw new ArgumentNullException(nameof(instance));
+            }
+            if (fromType == null)
+            {
+                throw new ArgumentNullException(nameof(fromType));
+            }
+
+            ContainerBuilder containerUpdater = CreateContainerBuilder();
+
+            var registration = containerUpdater.RegisterInstance(instance);
+            // named instance
+            if (!string.IsNullOrEmpty(key))
+            {
+                registration = registration.Named(key, fromType);
+            }
+            else
+            {
+                registration = registration.As(fromType);
+            }
+            // singleton
+            if (registerAsSingleton)
+            {
+                registration.SingleInstance();
+            }
+
+            containerUpdater.Update(Container);
         }
     }
 }

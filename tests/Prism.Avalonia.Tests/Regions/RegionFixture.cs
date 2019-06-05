@@ -564,7 +564,7 @@ namespace Prism.Avalonia.Tests.Regions
         {
             IRegion region = new Region { RegionManager = new MockRegionManager() };
 
-            var view = new MockFrameworkElement();
+            var view = new MockControl();
 
             var scopedRegionManager = region.Add(view, null, true);
 

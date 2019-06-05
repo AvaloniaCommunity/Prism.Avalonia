@@ -1,10 +1,9 @@
 
 
+using Avalonia;
 using Prism.Common;
 using System;
 using System.Windows;
-using Avalonia;
-using Avalonia.Controls;
 
 namespace Prism.Regions
 {
@@ -19,10 +18,15 @@ namespace Prism.Regions
         private static readonly AvaloniaProperty ObservableRegionContextProperty =
             AvaloniaProperty.RegisterAttached<Visual, ObservableObject<object>>("ObservableRegionContext", typeof(RegionContext));
 
+        static RegionContext()
+        {
+            ObservableRegionContextProperty.Changed.Subscribe(args => GetObservableContext(args?.Sender as Visual));
+        }
+
         /// <summary>
         /// Returns an <see cref="ObservableObject{T}"/> wrapper around the RegionContext value. The RegionContext
         /// will be set on any views (dependency objects) that are inside the <see cref="IRegion.Views"/> collection by
-        /// the <see cref="Behaviors.BindRegionContextToDependencyObjectBehavior"/> Behavior.
+        /// the <see cref="Behaviors.BindRegionContextToAvaloniaObjectBehavior"/> Behavior.
         /// The RegionContext will also be set to the control that hosts the Region, by the <see cref="Behaviors.SyncRegionContextWithHostBehavior"/> Behavior.
         ///
         /// If the <see cref="ObservableObject{T}"/> wrapper does not already exist, an empty one will be created. This way, an observer can
@@ -30,7 +34,7 @@ namespace Prism.Regions
         /// </summary>
         /// <param name="view">Any view that hold the RegionContext value. </param>
         /// <returns>Wrapper around the Regioncontext value. </returns>
-        public static ObservableObject<object> GetObservableContext(Visual view)
+        public static ObservableObject<object> GetObservableContext(AvaloniaObject view)
         {
             if (view == null)
                 throw new ArgumentNullException(nameof(view));

@@ -157,9 +157,9 @@ namespace Prism.DryIoc.Avalonia.Tests
         public bool InitializeShellCalled;
         public bool ConfigureServiceLocatorCalled;
         public bool ConfigureDefaultRegionBehaviorsCalled;
-        public IAvaloniaObject ShellObject = new UserControl();
+        public IStyledProperty ShellObject = new UserControl();
 
-        public IAvaloniaObject BaseShell
+        public IStyledProperty BaseShell
         {
             get { return base.Shell; }
         }
@@ -200,7 +200,7 @@ namespace Prism.DryIoc.Avalonia.Tests
             return new MockLoggerAdapter();
         }
 
-        protected override IAvaloniaObject CreateShell()
+        protected override IStyledProperty CreateShell()
         {
             MethodCalls.Add(MethodBase.GetCurrentMethod().Name);
             CreateShellCalled = true;

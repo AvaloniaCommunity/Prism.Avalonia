@@ -15,7 +15,7 @@ namespace Prism.Avalonia.Tests.Mocks
             CreatedRegions.Add(regionName);
 
             var region = new MockPresentationRegion();
-            RegionManager.GetObservableRegion(regionTarget as AvaloniaObject).Value = region;
+            RegionManager.GetObservableRegion(regionTarget as StyledProperty).Value = region;
 
             // Fire update regions again. This also happens if a region is created and added to the regionmanager
             if (this.Accessor != null)

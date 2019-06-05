@@ -31,7 +31,7 @@ namespace ModulesSample
         /// in order to be able to add regions by using the <seealso cref="Prism.Regions.RegionManager.RegionNameProperty"/>
         /// attached property from XAML
         /// </remarks>
-        protected override IAvaloniaObject CreateShell()
+        protected override IStyledProperty CreateShell()
         {
             AppBuilderInstance = App.BuildAvaloniaApp();
 

@@ -6,9 +6,10 @@ namespace Prism.IocContainer.Avalonia.Tests.Support.Mocks
     {
         public bool LoadCalled;
 
-        public void Initialize(ModuleInfo moduleInfo)
+        public void Initialize(IModuleInfo moduleInfo)
         {
             LoadCalled = true;
         }
+
     }
 }

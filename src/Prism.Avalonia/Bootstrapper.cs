@@ -1,14 +1,16 @@
 using System;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Styling;
-using Avalonia.VisualTree;
+using System.Windows;
 using Prism.Logging;
 using Prism.Modularity;
 using Prism.Regions;
 using Prism.Regions.Behaviors;
 using CommonServiceLocator;
 using Prism.Mvvm;
+using Prism.Ioc;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Styling;
+using Avalonia.VisualTree;
 
 namespace Prism
 {
@@ -19,8 +21,10 @@ namespace Prism
     /// <remarks>
     /// This class must be overridden to provide application specific configuration.
     /// </remarks>
+    [Obsolete("It is recommended to use the new PrismApplication as the app's base class. This will require updating the App.xaml and App.xaml.cs files.")]
     public abstract class Bootstrapper
     {
+        protected IContainerExtension _containerExtension;
         /// <summary>
         /// Gets the <see cref="ILoggerFacade"/> for the application.
         /// </summary>
@@ -38,6 +42,12 @@ namespace Prism
         /// </summary>
         /// <value>The shell user interface.</value>
         protected IAvaloniaObject Shell { get; set; }
+
+        /// <summary>
+        /// Creates the container extension used by Prism.
+        /// </summary>
+        /// <returns>The container extension</returns>
+        protected abstract IContainerExtension CreateContainerExtension();
 
         /// <summary>
         /// Create the <see cref="ILoggerFacade" /> used by the bootstrapper.
@@ -116,6 +126,8 @@ namespace Prism
             RegionAdapterMappings regionAdapterMappings = ServiceLocator.Current.GetInstance<RegionAdapterMappings>();
             if (regionAdapterMappings != null)
             {
+                //regionAdapterMappings.RegisterMapping(typeof(Selector), ServiceLocator.Current.GetInstance<SelectorRegionAdapter>());
+                regionAdapterMappings.RegisterMapping(typeof(ItemsControl), ServiceLocator.Current.GetInstance<ItemsControlRegionAdapter>());
                 regionAdapterMappings.RegisterMapping(typeof(ContentControl), ServiceLocator.Current.GetInstance<ContentControlRegionAdapter>());
             }
 
@@ -132,14 +144,17 @@ namespace Prism
 
             if (defaultRegionBehaviorTypesDictionary != null)
             {
-                defaultRegionBehaviorTypesDictionary.AddIfMissing(BindRegionContextToDependencyObjectBehavior.BehaviorKey,
-                                                                  typeof(BindRegionContextToDependencyObjectBehavior));
+                defaultRegionBehaviorTypesDictionary.AddIfMissing(BindRegionContextToAvaloniaObjectBehavior.BehaviorKey,
+                                                                  typeof(BindRegionContextToAvaloniaObjectBehavior));
 
                 defaultRegionBehaviorTypesDictionary.AddIfMissing(RegionActiveAwareBehavior.BehaviorKey,
                                                                   typeof(RegionActiveAwareBehavior));
 
                 defaultRegionBehaviorTypesDictionary.AddIfMissing(SyncRegionContextWithHostBehavior.BehaviorKey,
                                                                   typeof(SyncRegionContextWithHostBehavior));
+
+                defaultRegionBehaviorTypesDictionary.AddIfMissing(RegionManagerRegistrationBehavior.BehaviorKey,
+                                                                  typeof(RegionManagerRegistrationBehavior));
 
                 defaultRegionBehaviorTypesDictionary.AddIfMissing(RegionMemberLifetimeBehavior.BehaviorKey,
                                                   typeof(RegionMemberLifetimeBehavior));
@@ -185,7 +200,7 @@ namespace Prism
         public abstract void Run(bool runWithDefaultConfiguration);
 
         /// <summary>
-        /// Configures the LocatorProvider for the <see cref="ServiceLocator" />.
+        /// Configures the LocatorProvider for the <see cref="Microsoft.Practices.ServiceLocation.ServiceLocator" />.
         /// </summary>
         protected abstract void ConfigureServiceLocator();
 

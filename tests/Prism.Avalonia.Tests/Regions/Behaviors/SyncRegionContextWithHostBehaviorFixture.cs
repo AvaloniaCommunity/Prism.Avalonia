@@ -89,7 +89,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         }
 
         [TestMethod]
-        public void ChangingRegionContextObservableObjectValueShouldAlsoChangeRegionContextDependencyProperty()
+        public void ChangingRegionContextObservableObjectValueShouldAlsoChangeRegionContextStyledProperty()
         {
             MockPresentationRegion region = new MockPresentationRegion();
 
@@ -107,7 +107,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         }
 
         [TestMethod]
-        public void AttachShouldChangeRegionContextDependencyProperty()
+        public void AttachShouldChangeRegionContextStyledProperty()
         {
             MockPresentationRegion region = new MockPresentationRegion();
 

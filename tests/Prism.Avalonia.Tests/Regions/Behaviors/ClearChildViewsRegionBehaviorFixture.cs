@@ -20,7 +20,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             behavior.Region = region;
             behavior.Attach();
 
-            var childView = new MockFrameworkElement();
+            var childView = new MockControl();
             region.Add(childView);
 
             Assert.AreEqual(regionManager, childView.GetValue(RegionManager.RegionManagerProperty));
@@ -42,7 +42,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             behavior.Region = region;
             behavior.Attach();
 
-            var childView = new MockFrameworkElement();
+            var childView = new MockControl();
             region.Add(childView);
 
             ClearChildViewsRegionBehavior.SetClearChildViews(childView, true);
@@ -66,7 +66,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             behavior.Region = region;
             behavior.Attach();
 
-            var childView = new MockFrameworkElement();
+            var childView = new MockControl();
             region.Add(childView);
 
             childView.SetValue(ClearChildViewsRegionBehavior.ClearChildViewsProperty, true);

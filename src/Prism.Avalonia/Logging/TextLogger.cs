@@ -2,7 +2,6 @@ using Prism.Properties;
 using System;
 using System.Globalization;
 using System.IO;
-using Prism.Avalonia.Properties;
 
 namespace Prism.Logging
 {
@@ -11,28 +10,13 @@ namespace Prism.Logging
     /// </summary>
     public class TextLogger : ILoggerFacade, IDisposable
     {
-        private readonly TextWriter writer;
+        public TextWriter Writer { get; set; } = Console.Out;
 
         /// <summary>
         /// Initializes a new instance of <see cref="TextLogger"/> that writes to
         /// the console output.
         /// </summary>
-        public TextLogger()
-            : this(Console.Out)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="TextLogger"/>.
-        /// </summary>
-        /// <param name="writer">The writer to use for writing log entries.</param>
-        public TextLogger(TextWriter writer)
-        {
-            if (writer == null)
-                throw new ArgumentNullException(nameof(writer));
-
-            this.writer = writer;
-        }
+        public TextLogger() { }
 
         /// <summary>
         /// Write a new log entry with the specified category and priority.
@@ -45,7 +29,7 @@ namespace Prism.Logging
             string messageToLog = String.Format(CultureInfo.InvariantCulture, Resources.DefaultTextLoggerPattern, DateTime.Now,
                                                 category.ToString().ToUpper(CultureInfo.InvariantCulture), message, priority.ToString());
 
-            writer.WriteLine(messageToLog);
+            Writer.WriteLine(messageToLog);
         }
 
         /// <summary>
@@ -56,9 +40,9 @@ namespace Prism.Logging
         {
             if (disposing)
             {
-                if (writer != null)
+                if (Writer != null)
                 {
-                    writer.Dispose();
+                    Writer.Dispose();
                 }
             }
         }

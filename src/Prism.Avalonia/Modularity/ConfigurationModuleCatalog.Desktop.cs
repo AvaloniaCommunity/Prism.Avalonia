@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using Prism.Avalonia.Properties;
 using Prism.Properties;
 
 namespace Prism.Modularity

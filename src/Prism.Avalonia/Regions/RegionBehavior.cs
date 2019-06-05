@@ -1,7 +1,6 @@
 
 
 using System;
-using Prism.Avalonia.Properties;
 using Prism.Properties;
 
 namespace Prism.Regions

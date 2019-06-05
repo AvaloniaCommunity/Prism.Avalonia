@@ -1,3 +1,5 @@
+using Avalonia;
+using Avalonia.Controls;
 using CommonServiceLocator;
 using Prism.Common;
 using Prism.Events;
@@ -13,9 +15,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
-using Avalonia;
-using Avalonia.Controls;
-using Prism.Avalonia.Properties;
 
 namespace Prism.Regions
 {
@@ -253,7 +252,6 @@ namespace Prism.Regions
             RegionNameProperty.Changed.Subscribe(args => OnSetRegionNameCallback(args?.Sender, args));
             RegionContextProperty.Changed.Subscribe(args => OnRegionContextChanged(args?.Sender, args));
         }
-
         /// <summary>
         /// Gets a collection of <see cref="IRegion"/> that identify each region by name. You can use this collection to add or remove regions to the current region manager.
         /// </summary>

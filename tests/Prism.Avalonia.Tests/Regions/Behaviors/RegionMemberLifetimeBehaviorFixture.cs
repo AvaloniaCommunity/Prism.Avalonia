@@ -121,7 +121,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             var regionItemMock = new Mock<IRegionMemberLifetime>();
             regionItemMock.Setup(i => i.KeepAlive).Returns(false);
 
-            var regionItem = new MockFrameworkElement();
+            var regionItem = new MockControl();
             regionItem.DataContext = regionItemMock.Object;
 
             Region.Add(regionItem);
@@ -141,7 +141,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             var retionItemDataContextToKeepAlive = new Mock<IRegionMemberLifetime>();
             retionItemDataContextToKeepAlive.Setup(i => i.KeepAlive).Returns(true);
 
-            var regionItemToKeepAlive = new MockFrameworkElement();
+            var regionItemToKeepAlive = new MockControl();
             regionItemToKeepAlive.DataContext = retionItemDataContextToKeepAlive.Object;
             Region.Add(regionItemToKeepAlive);
             Region.Activate(regionItemToKeepAlive);
@@ -149,7 +149,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             var regionItemMock = new Mock<IRegionMemberLifetime>();
             regionItemMock.Setup(i => i.KeepAlive).Returns(false);
 
-            var regionItem = new MockFrameworkElement();
+            var regionItem = new MockControl();
             regionItem.DataContext = regionItemMock.Object;
 
             Region.Add(regionItem);
@@ -200,7 +200,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         {
             // Arrange
             var regionItemDataContext = new RegionMemberNotKeptAlive();
-            var regionItem = new MockFrameworkElement() { DataContext = regionItemDataContext };
+            var regionItem = new MockControl() { DataContext = regionItemDataContext };
             Region.Add(regionItem);
             Region.Activate(regionItem);
 

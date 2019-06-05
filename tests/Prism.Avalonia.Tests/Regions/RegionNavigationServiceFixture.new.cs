@@ -181,12 +181,12 @@ namespace Prism.Avalonia.Tests.Regions
             // Prepare
             var region = new Region();
 
-            Mock<Control> mockFrameworkElement = new Mock<Control>();
+            Mock<Control> mockControl = new Mock<Control>();
             Mock<INavigationAware> mockINavigationAwareDataContext = new Mock<INavigationAware>();
             mockINavigationAwareDataContext.Setup(ina => ina.IsNavigationTarget(It.IsAny<NavigationContext>())).Returns(true);
-            mockFrameworkElement.Object.DataContext = mockINavigationAwareDataContext.Object;
+            mockControl.Object.DataContext = mockINavigationAwareDataContext.Object;
 
-            var view = mockFrameworkElement.Object;
+            var view = mockControl.Object;
             region.Add(view);
 
             var navigationUri = new Uri(view.GetType().Name, UriKind.Relative);
@@ -214,15 +214,15 @@ namespace Prism.Avalonia.Tests.Regions
             // Prepare
             var region = new Region();
 
-            Mock<Control> mockFrameworkElement = new Mock<Control>();
-            Mock<INavigationAware> mockINavigationAwareView = mockFrameworkElement.As<INavigationAware>();
+            Mock<Control> mockControl = new Mock<Control>();
+            Mock<INavigationAware> mockINavigationAwareView = mockControl.As<INavigationAware>();
             mockINavigationAwareView.Setup(ina => ina.IsNavigationTarget(It.IsAny<NavigationContext>())).Returns(true);
 
             Mock<INavigationAware> mockINavigationAwareDataContext = new Mock<INavigationAware>();
             mockINavigationAwareDataContext.Setup(ina => ina.IsNavigationTarget(It.IsAny<NavigationContext>())).Returns(true);
-            mockFrameworkElement.Object.DataContext = mockINavigationAwareDataContext.Object;
+            mockControl.Object.DataContext = mockINavigationAwareDataContext.Object;
 
-            var view = mockFrameworkElement.Object;
+            var view = mockControl.Object;
             region.Add(view);
 
             var navigationUri = new Uri(view.GetType().Name, UriKind.Relative);

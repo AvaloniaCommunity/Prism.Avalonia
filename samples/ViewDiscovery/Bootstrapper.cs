@@ -11,7 +11,7 @@ namespace ViewDiscovery
     {
         private AppBuilder AppBuilderInstance;
 
-        protected override IAvaloniaObject CreateShell()
+        protected override IStyledProperty CreateShell()
         {
             AppBuilderInstance = App.BuildAvaloniaApp();
 

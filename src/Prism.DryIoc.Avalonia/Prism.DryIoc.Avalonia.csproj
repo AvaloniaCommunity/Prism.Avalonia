@@ -2,14 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>7.0.0.3962</Version>
-    <Copyright>Copyright (c) 2017 Stratocast3r</Copyright>
+    <Version>7.1.0.431</Version>
+    <Copyright>Copyright (c) 2019</Copyright>
     <PackageLicenseUrl>https://github.com/PurpleGray/Prism.Avalonia/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/PurpleGray/Prism.Avalonia</PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DryIoc" Version="3.0.2" />
+    <PackageReference Include="DryIoc" Version="4.0.4" />
   </ItemGroup>
 
   <ItemGroup>

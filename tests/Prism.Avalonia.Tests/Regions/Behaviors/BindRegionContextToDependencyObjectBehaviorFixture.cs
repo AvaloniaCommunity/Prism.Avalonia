@@ -6,12 +6,12 @@ using Prism.Regions.Behaviors;
 namespace Prism.Avalonia.Tests.Regions.Behaviors
 {
     [TestClass]
-    public class BindRegionContextToDependencyObjectBehaviorFixture
+    public class BindRegionContextToAvaloniaObjectBehaviorFixture
     {
         [TestMethod]
         public void ShouldSetRegionContextOnAddedView()
         {
-            var behavior = new BindRegionContextToDependencyObjectBehavior();
+            var behavior = new BindRegionContextToAvaloniaObjectBehavior();
             var region = new MockPresentationRegion();
             behavior.Region = region;
             region.Context = "MyContext";
@@ -28,7 +28,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         [TestMethod]
         public void ShouldSetRegionContextOnAlreadyAddedViews()
         {
-            var behavior = new BindRegionContextToDependencyObjectBehavior();
+            var behavior = new BindRegionContextToAvaloniaObjectBehavior();
             var region = new MockPresentationRegion();
             var view = new MockDependencyObject();
             region.Add(view);
@@ -45,7 +45,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         [TestMethod]
         public void ShouldRemoveContextToViewRemovedFromRegion()
         {
-            var behavior = new BindRegionContextToDependencyObjectBehavior();
+            var behavior = new BindRegionContextToAvaloniaObjectBehavior();
             var region = new MockPresentationRegion();
             var view = new MockDependencyObject();
             region.Add(view);
@@ -62,7 +62,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         [TestMethod]
         public void ShouldSetRegionContextOnContextChange()
         {
-            var behavior = new BindRegionContextToDependencyObjectBehavior();
+            var behavior = new BindRegionContextToAvaloniaObjectBehavior();
             var region = new MockPresentationRegion();
             var view = new MockDependencyObject();
             region.Add(view);
@@ -80,13 +80,13 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         [TestMethod]
         public void WhenAViewIsRemovedFromARegion_ThenRegionContextIsNotClearedInRegion()
         {
-            var behavior = new BindRegionContextToDependencyObjectBehavior();
+            var behavior = new BindRegionContextToAvaloniaObjectBehavior();
             var region = new MockPresentationRegion();
 
             behavior.Region = region;
             behavior.Attach();
 
-            var myView = new MockFrameworkElement();
+            var myView = new MockControl();
             
             region.Add(myView);
             region.Context = "new context";

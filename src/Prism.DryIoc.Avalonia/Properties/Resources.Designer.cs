@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Prism.DryIoc.Avalonia.Properties {
+namespace Prism.DryIoc.Properties {
     using System;
     
     
@@ -19,10 +19,10 @@ namespace Prism.DryIoc.Avalonia.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace Prism.DryIoc.Avalonia.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Prism.DryIoc.Avalonia.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Prism.DryIoc.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Bootstrapper sequence completed..
         /// </summary>
-        public static string BootstrapperSequenceCompleted {
+        internal static string BootstrapperSequenceCompleted {
             get {
                 return ResourceManager.GetString("BootstrapperSequenceCompleted", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Configuring default region behaviors..
         /// </summary>
-        public static string ConfiguringDefaultRegionBehaviors {
+        internal static string ConfiguringDefaultRegionBehaviors {
             get {
                 return ResourceManager.GetString("ConfiguringDefaultRegionBehaviors", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Configuring the DryIoc container..
         /// </summary>
-        public static string ConfiguringDryIocContainer {
+        internal static string ConfiguringDryIocContainer {
             get {
                 return ResourceManager.GetString("ConfiguringDryIocContainer", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Configuring module catalog..
         /// </summary>
-        public static string ConfiguringModuleCatalog {
+        internal static string ConfiguringModuleCatalog {
             get {
                 return ResourceManager.GetString("ConfiguringModuleCatalog", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Configuring region adapters..
         /// </summary>
-        public static string ConfiguringRegionAdapters {
+        internal static string ConfiguringRegionAdapters {
             get {
                 return ResourceManager.GetString("ConfiguringRegionAdapters", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Configuring ServiceLocator singleton..
         /// </summary>
-        public static string ConfiguringServiceLocatorSingleton {
+        internal static string ConfiguringServiceLocatorSingleton {
             get {
                 return ResourceManager.GetString("ConfiguringServiceLocatorSingleton", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Configuring the ViewModelLocator to use DryIoc..
         /// </summary>
-        public static string ConfiguringViewModelLocator {
+        internal static string ConfiguringViewModelLocator {
             get {
                 return ResourceManager.GetString("ConfiguringViewModelLocator", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Creating DryIoc container..
         /// </summary>
-        public static string CreatingDryIocContainer {
+        internal static string CreatingDryIocContainer {
             get {
                 return ResourceManager.GetString("CreatingDryIocContainer", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Creating module catalog..
         /// </summary>
-        public static string CreatingModuleCatalog {
+        internal static string CreatingModuleCatalog {
             get {
                 return ResourceManager.GetString("CreatingModuleCatalog", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Creating the shell..
         /// </summary>
-        public static string CreatingShell {
+        internal static string CreatingShell {
             get {
                 return ResourceManager.GetString("CreatingShell", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Initializing modules..
         /// </summary>
-        public static string InitializingModules {
+        internal static string InitializingModules {
             get {
                 return ResourceManager.GetString("InitializingModules", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Initializing the shell..
         /// </summary>
-        public static string InitializingShell {
+        internal static string InitializingShell {
             get {
                 return ResourceManager.GetString("InitializingShell", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Logger was created successfully..
         /// </summary>
-        public static string LoggerCreatedSuccessfully {
+        internal static string LoggerCreatedSuccessfully {
             get {
                 return ResourceManager.GetString("LoggerCreatedSuccessfully", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The method &apos;GetModuleEnumerator&apos; of the bootstrapper must be overwritten in order to use the default module initialization logic..
         /// </summary>
-        public static string NotOverwrittenGetModuleEnumeratorException {
+        internal static string NotOverwrittenGetModuleEnumeratorException {
             get {
                 return ResourceManager.GetString("NotOverwrittenGetModuleEnumeratorException", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The ContainerBuilder is required and cannot be null..
         /// </summary>
-        public static string NullDryIocContainerBuilderException {
+        internal static string NullDryIocContainerBuilderException {
             get {
                 return ResourceManager.GetString("NullDryIocContainerBuilderException", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The IContainer is required and cannot be null..
         /// </summary>
-        public static string NullDryIocContainerException {
+        internal static string NullDryIocContainerException {
             get {
                 return ResourceManager.GetString("NullDryIocContainerException", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The ILoggerFacade is required and cannot be null..
         /// </summary>
-        public static string NullLoggerFacadeException {
+        internal static string NullLoggerFacadeException {
             get {
                 return ResourceManager.GetString("NullLoggerFacadeException", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The IModuleCatalog is required and cannot be null in order to initialize the modules..
         /// </summary>
-        public static string NullModuleCatalogException {
+        internal static string NullModuleCatalogException {
             get {
                 return ResourceManager.GetString("NullModuleCatalogException", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Registering Framework Exception Types..
         /// </summary>
-        public static string RegisteringFrameworkExceptionTypes {
+        internal static string RegisteringFrameworkExceptionTypes {
             get {
                 return ResourceManager.GetString("RegisteringFrameworkExceptionTypes", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Setting the RegionManager..
         /// </summary>
-        public static string SettingTheRegionManager {
+        internal static string SettingTheRegionManager {
             get {
                 return ResourceManager.GetString("SettingTheRegionManager", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Type &apos;{0}&apos; was already registered by the application. Skipping....
         /// </summary>
-        public static string TypeMappingAlreadyRegistered {
+        internal static string TypeMappingAlreadyRegistered {
             get {
                 return ResourceManager.GetString("TypeMappingAlreadyRegistered", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace Prism.DryIoc.Avalonia.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Updating Regions..
         /// </summary>
-        public static string UpdatingRegions {
+        internal static string UpdatingRegions {
             get {
                 return ResourceManager.GetString("UpdatingRegions", resourceCulture);
             }
