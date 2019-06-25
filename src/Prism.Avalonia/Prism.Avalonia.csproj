@@ -7,6 +7,7 @@
     <PackageProjectUrl>https://github.com/OmidID/Prism.Avalonia</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/OmidID/Prism.Avalonia/blob/master/LICENSE</PackageLicenseUrl>
     <Copyright>Copyright (c) 2017 Stratocast3r</Copyright>
+    <RootNamespace>Prism</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Interactivity\**" />

@@ -35,8 +35,8 @@ namespace Prism.Regions
             if (regionTarget == null)
                 throw new ArgumentNullException(nameof(regionTarget));
 
-            bool itemsSourceIsSet = regionTarget.Items != null;
-            itemsSourceIsSet = itemsSourceIsSet || (regionTarget[!ItemsControl.ItemsProperty] != null);
+            //TODO: In Avalonia Items never be null
+            bool itemsSourceIsSet = regionTarget.ItemCount > 0;
 
             if (itemsSourceIsSet)
             {

@@ -35,7 +35,7 @@ namespace Prism.Regions
                 throw new ArgumentNullException(nameof(regionTarget));
 
             bool contentIsSet = regionTarget.Content != null;
-            contentIsSet = contentIsSet || regionTarget[!ContentControl.ContentProperty] != null;
+            contentIsSet = contentIsSet || regionTarget[ContentControl.ContentProperty] != null;
 
             if (contentIsSet)
                 throw new InvalidOperationException(Resources.ContentControlHasContentException);
