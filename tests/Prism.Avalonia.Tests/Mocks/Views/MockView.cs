@@ -1,8 +1,8 @@
-﻿using Avalonia.Controls;
+﻿using System.Windows;
 
 namespace Prism.Avalonia.Tests.Mocks.Views
 {
-    public class MockView : Control
+    public class MockView : FrameworkElement
     {
     }
 }

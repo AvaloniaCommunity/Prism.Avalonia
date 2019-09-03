@@ -1,9 +1,11 @@
+
+
 using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
 using Prism.Regions.Behaviors;
+using Prism.Avalonia.Tests.Mocks;
 
 namespace Prism.Avalonia.Tests.Regions.Behaviors
 {

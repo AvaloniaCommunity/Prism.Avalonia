@@ -1,3 +1,5 @@
+
+
 using Prism.Logging;
 
 namespace Prism.Avalonia.Tests.Mocks

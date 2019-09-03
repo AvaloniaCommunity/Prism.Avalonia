@@ -1,7 +1,9 @@
+
+
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
+using Prism.Avalonia.Tests.Mocks;
 
 namespace Prism.Avalonia.Tests.Regions
 {
@@ -84,7 +86,7 @@ namespace Prism.Avalonia.Tests.Regions
                 adaptArgumentRegionTarget = regionTarget;
             }
 
-            protected override IRegion CreateRegion(string name)
+            protected override IRegion CreateRegion()
             {
                 return CreateRegionReturnValue;
             }

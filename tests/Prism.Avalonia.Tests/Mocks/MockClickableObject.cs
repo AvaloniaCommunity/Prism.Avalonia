@@ -1,8 +1,10 @@
-using Avalonia.Controls;
+
+
+using System.Windows.Controls.Primitives;
 
 namespace Prism.Avalonia.Tests.Mocks
 {
-    internal class MockClickableObject : Button
+    internal class MockClickableObject : ButtonBase
     {
         public void RaiseClick()
         {

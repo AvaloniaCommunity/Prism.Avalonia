@@ -1,3 +1,5 @@
+
+
 using System;
 using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,6 +11,27 @@ namespace Prism.Avalonia.Tests.Modularity
     [TestClass]
     public class FileModuleTypeLoaderFixture
     {
+        [TestMethod]
+        public void CanRetrieveModule()
+        {
+            var assemblyResolver = new MockAssemblyResolver();
+            var retriever = new FileModuleTypeLoader(assemblyResolver);
+            string assembly = CompilerHelper.GenerateDynamicModule("FileModuleA", null);
+            string assemblyRef = "file://" + assembly;
+            var fileModuleInfo = CreateModuleInfo(assemblyRef, "TestModules.FileModuleAClass", "ModuleA", true, null);
+
+            bool loadCompleted = false;
+            retriever.LoadModuleCompleted += delegate(object sender, LoadModuleCompletedEventArgs e)
+            {
+                loadCompleted = true;
+            };
+
+            retriever.LoadModuleType(fileModuleInfo);
+
+            Assert.IsTrue(loadCompleted);
+            Assert.AreEqual(assemblyRef, assemblyResolver.LoadAssemblyFromArgument);
+        }
+
         [TestMethod]
         public void ShouldReturnErrorToCallback()
         {

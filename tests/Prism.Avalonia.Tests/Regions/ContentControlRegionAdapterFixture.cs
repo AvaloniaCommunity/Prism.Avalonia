@@ -1,11 +1,12 @@
+
+
 using System;
 using System.Linq;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml.Data;
+using System.Windows.Controls;
+using System.Windows.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
+using Prism.Avalonia.Tests.Mocks;
 
 namespace Prism.Avalonia.Tests.Regions
 {
@@ -37,22 +38,40 @@ namespace Prism.Avalonia.Tests.Regions
             Assert.IsNull(control.Content);
         }
 
+
         [TestMethod]
-        public void ControlWithExistingBindingOnContentWithNullValueThrows()
+        public void ControlWithExistingContentThrows()
         {
-            var control = new ContentControl();
-            Binding binding = new Binding("ObjectContents");
-            binding.Source = new SimpleModel() { ObjectContents = null };
-            control.Bind(ContentControl.ContentProperty, binding);
+            var control = new ContentControl() { Content = new object() };
 
             IRegionAdapter adapter = new TestableContentControlRegionAdapter();
 
             try
             {
                 var region = (MockPresentationRegion)adapter.Initialize(control, "Region1");
-                Assert.IsTrue(true); // HACK: in ContentControlRegionAdapter.Adapt there is now way to determine
-                                     // is ContentProperty already bound or not
-               // Assert.Fail();
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
+                StringAssert.Contains(ex.Message, "ContentControl's Content property is not empty.");
+            }
+        }
+
+        [TestMethod]
+        public void ControlWithExistingBindingOnContentWithNullValueThrows()
+        {
+            var control = new ContentControl();
+            Binding binding = new Binding("ObjectContents");
+            binding.Source = new SimpleModel() { ObjectContents = null };
+            control.SetBinding(ContentControl.ContentProperty, binding);
+
+            IRegionAdapter adapter = new TestableContentControlRegionAdapter();
+
+            try
+            {
+                var region = (MockPresentationRegion)adapter.Initialize(control, "Region1");
+                Assert.Fail();
             }
             catch (Exception ex)
             {

@@ -1,6 +1,9 @@
+
+
 using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Prism.Ioc;
 using Prism.Modularity;
 
 namespace Prism.Avalonia.Tests.Modularity
@@ -68,8 +71,14 @@ namespace Prism.Avalonia.Tests.Modularity
 
         public class MockModule : IModule
         {
-            public void Initialize()
+            public void OnInitialized(IContainerProvider containerProvider)
             {
+                
+            }
+
+            public void RegisterTypes(IContainerRegistry containerRegistry)
+            {
+                
             }
         }
     }

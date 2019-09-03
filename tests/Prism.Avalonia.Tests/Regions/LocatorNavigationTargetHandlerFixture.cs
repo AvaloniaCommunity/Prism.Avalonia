@@ -1,5 +1,7 @@
+
+
 using System;
-using Avalonia.Controls;
+using System.Windows;
 using CommonServiceLocator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -145,7 +147,7 @@ namespace Prism.Avalonia.Tests.Regions
                 .Setup(v => v.IsNavigationTarget(It.IsAny<NavigationContext>()))
                 .Returns(true)
                 .Verifiable();
-            var viewMock = new Mock<Control>();
+            var viewMock = new Mock<FrameworkElement>();
             viewMock.Object.DataContext = dataContextMock.Object;
 
             region.Add(viewMock.Object);
@@ -251,7 +253,7 @@ namespace Prism.Avalonia.Tests.Regions
                 .Setup(v => v.IsNavigationTarget(It.IsAny<NavigationContext>()))
                 .Returns(false)
                 .Verifiable();
-            var viewMock = new Mock<Control>();
+            var viewMock = new Mock<FrameworkElement>();
             viewMock.Object.DataContext = dataContextMock.Object;
 
             region.Add(viewMock.Object);

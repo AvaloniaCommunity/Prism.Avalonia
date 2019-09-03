@@ -2,8 +2,8 @@
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Prism.Mvvm;
-using Prism.Avalonia.Tests.Mocks.Views;
 using Prism.Avalonia.Tests.Mocks.ViewModels;
+using Prism.Avalonia.Tests.Mocks.Views;
 
 namespace Prism.Avalonia.Tests.Mvvm
 {

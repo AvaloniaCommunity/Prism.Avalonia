@@ -1,10 +1,10 @@
 
 
-using Avalonia;
+using System.Windows;
 
 namespace Prism.Avalonia.Tests.Mocks
 {
-    public class MockDependencyObject : Visual
+    public class MockDependencyObject : DependencyObject
     {
     }
 }

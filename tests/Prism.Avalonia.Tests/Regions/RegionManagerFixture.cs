@@ -1,11 +1,13 @@
+
+
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using CommonServiceLocator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
+using Prism.Avalonia.Tests.Mocks;
 
 namespace Prism.Avalonia.Tests.Regions
 {
@@ -156,6 +158,21 @@ namespace Prism.Avalonia.Tests.Regions
             RegionManager.SetRegionContext(view, "MyContext");
             Assert.IsTrue(propertyChangedCalled);
             Assert.AreEqual("MyContext", observableObject.Value);
+        }
+
+        [TestMethod]
+        public void ShouldNotPreventSubscribersToStaticEventFromBeingGarbageCollected()
+        {
+            var subscriber = new MySubscriberClass();
+            RegionManager.UpdatingRegions += subscriber.OnUpdatingRegions;
+            RegionManager.UpdateRegions();
+            Assert.IsTrue(subscriber.OnUpdatingRegionsCalled);
+            WeakReference subscriberWeakReference = new WeakReference(subscriber);
+
+            subscriber = null;
+            GC.Collect();
+
+            Assert.IsFalse(subscriberWeakReference.IsAlive);
         }
 
         [TestMethod]

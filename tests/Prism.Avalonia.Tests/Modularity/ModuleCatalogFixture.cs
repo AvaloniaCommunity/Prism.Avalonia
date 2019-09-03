@@ -1,3 +1,5 @@
+
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -37,7 +39,7 @@ namespace Prism.Avalonia.Tests.Modularity
                                                };
             var moduleCatalog = new ModuleCatalog(moduleInfos);
 
-            IEnumerable<ModuleInfo> dependentModules = moduleCatalog.GetDependentModules(moduleInfoB);
+            var dependentModules = moduleCatalog.GetDependentModules(moduleInfoB);
 
             Assert.AreEqual(1, dependentModules.Count());
             Assert.AreEqual(moduleInfoA, dependentModules.ElementAt(0));
@@ -61,7 +63,7 @@ namespace Prism.Avalonia.Tests.Modularity
                                                };
             var moduleCatalog = new ModuleCatalog(moduleInfos);
 
-            IEnumerable<ModuleInfo> dependantModules = moduleCatalog.CompleteListWithDependencies(new[] { moduleInfoC });
+            var dependantModules = moduleCatalog.CompleteListWithDependencies(new[] { moduleInfoC });
 
             Assert.AreEqual(3, dependantModules.Count());
             Assert.IsTrue(dependantModules.Contains(moduleInfoA));

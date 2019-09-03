@@ -1,8 +1,10 @@
+
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
 using Prism.Regions.Behaviors;
+using Prism.Avalonia.Tests.Mocks;
 
 namespace Prism.Avalonia.Tests.Regions.Behaviors
 {
@@ -68,6 +70,32 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         }
 
         [TestMethod]
+        public void WhenIRegionMemberLifetimeItemReturnsKeepAliveFalseCanRemoveFromRegion()
+        {
+            // Arrange
+            var regionItemMock = new Mock<IRegionMemberLifetime>();
+            regionItemMock.Setup(i => i.KeepAlive).Returns(false);
+
+            var view = regionItemMock.Object;
+
+            Region.Add(view);
+            Region.Activate(view);
+
+            // The presence of the following two lines is essential for the test:
+            // we want to access both ActiveView and Views in that order
+            Assert.IsTrue(Region.ActiveViews.Contains(view));
+            Assert.IsTrue(Region.Views.Contains(view));
+
+            // Act
+            // This may throw
+            Region.Remove(view);
+
+            // Assert
+            Assert.IsFalse(Region.Views.Contains(view));
+            Assert.IsFalse(Region.ActiveViews.Contains(view));
+        }
+
+        [TestMethod]
         public void WhenRegionContainsMultipleMembers_OnlyRemovesThoseDeactivated()
         {
             // Arrange
@@ -121,7 +149,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             var regionItemMock = new Mock<IRegionMemberLifetime>();
             regionItemMock.Setup(i => i.KeepAlive).Returns(false);
 
-            var regionItem = new MockControl();
+            var regionItem = new MockFrameworkElement();
             regionItem.DataContext = regionItemMock.Object;
 
             Region.Add(regionItem);
@@ -141,7 +169,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             var retionItemDataContextToKeepAlive = new Mock<IRegionMemberLifetime>();
             retionItemDataContextToKeepAlive.Setup(i => i.KeepAlive).Returns(true);
 
-            var regionItemToKeepAlive = new MockControl();
+            var regionItemToKeepAlive = new MockFrameworkElement();
             regionItemToKeepAlive.DataContext = retionItemDataContextToKeepAlive.Object;
             Region.Add(regionItemToKeepAlive);
             Region.Activate(regionItemToKeepAlive);
@@ -149,7 +177,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             var regionItemMock = new Mock<IRegionMemberLifetime>();
             regionItemMock.Setup(i => i.KeepAlive).Returns(false);
 
-            var regionItem = new MockControl();
+            var regionItem = new MockFrameworkElement();
             regionItem.DataContext = regionItemMock.Object;
 
             Region.Add(regionItem);
@@ -200,7 +228,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         {
             // Arrange
             var regionItemDataContext = new RegionMemberNotKeptAlive();
-            var regionItem = new MockControl() { DataContext = regionItemDataContext };
+            var regionItem = new MockFrameworkElement() { DataContext = regionItemDataContext };
             Region.Add(regionItem);
             Region.Activate(regionItem);
 

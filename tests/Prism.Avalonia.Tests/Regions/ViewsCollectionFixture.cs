@@ -1,11 +1,14 @@
+
+
 using System;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Windows.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
+using Prism.Avalonia.Tests.Mocks;
 
 namespace Prism.Avalonia.Tests.Regions
 {
@@ -266,6 +269,29 @@ namespace Prism.Avalonia.Tests.Regions
             var removeEvent = eventTracker.NotifyEvents.Single(e => e.Action == NotifyCollectionChangedAction.Remove);
             Assert.IsNotNull(removeEvent);
             Assert.AreEqual(1, removeEvent.OldStartingIndex);
+        }
+
+
+        [TestMethod]
+        public void RemovingFromFilteredCollectionDoesNotThrow()
+        {
+            var originalCollection = new ObservableCollection<ItemMetadata>();
+            originalCollection.Add(new ItemMetadata("a"));
+            originalCollection.Add(new ItemMetadata("b"));
+            originalCollection.Add(new ItemMetadata("c"));
+            IViewsCollection viewsCollection = new ViewsCollection(originalCollection, (i) => true);
+
+            CollectionViewSource cvs = new CollectionViewSource {Source = viewsCollection};
+
+            var view = cvs.View;
+            try
+            {
+                originalCollection.RemoveAt(1);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
         }
 
         [TestMethod]
