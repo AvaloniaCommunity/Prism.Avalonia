@@ -3,11 +3,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>7.1.0.431</Version>
+    <Version>7.2.0.1367</Version>
     <PackageProjectUrl>https://github.com/OmidID/Prism.Avalonia</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/OmidID/Prism.Avalonia/blob/master/LICENSE</PackageLicenseUrl>
-    <Copyright>Copyright (c) 2017 Stratocast3r</Copyright>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <Copyright>Copyright (c) 2019 OmidID</Copyright>
     <RootNamespace>Prism</RootNamespace>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl></RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Interactivity\**" />
@@ -15,10 +17,10 @@
     <None Remove="Interactivity\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.8.0" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.8.0" />
+    <PackageReference Include="Avalonia" Version="0.8.2" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.8.2" />
     <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
-    <PackageReference Include="Prism.Core" Version="7.1.0.431" />
+    <PackageReference Include="Prism.Core" Version="7.2.0.1367" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
     <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
   </ItemGroup>

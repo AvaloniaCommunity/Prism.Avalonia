@@ -37,10 +37,12 @@ namespace ModulesSample.Module_System_Logic
         /// <summary>
         /// Gets all the <see cref="ModuleInfo"/> classes that are in the case <see cref="ModuleCatalog"/>
         /// </summary>
-        public IEnumerable<ModuleInfo> Modules
+        public IEnumerable<IModuleInfo> Modules
         {
-            get { return this.Catalogs.SelectMany(x => x.Modules); }
+            get { return Catalogs.SelectMany(x => x.Modules); }
         }
+
+        IEnumerable<IModuleInfo> IModuleCatalog.Modules => Modules;
 
         /// <summary>
         /// Returns the list of <see cref="ModuleInfo"/> that <param name="moduleInfo" /> depends on
@@ -49,7 +51,7 @@ namespace ModulesSample.Module_System_Logic
         /// <returns>
         /// An enumeration of <see cref="ModuleInfo"/> that <paramref name="moduleInfo"/> depends on
         /// </returns>
-        public IEnumerable<ModuleInfo> GetDependentModules(ModuleInfo moduleInfo)
+        public IEnumerable<IModuleInfo> GetDependentModules(IModuleInfo moduleInfo)
         {
             var catalog = this.catalogs.Single(x => x.Modules.Contains(moduleInfo));
             return catalog.GetDependentModules(moduleInfo);
@@ -64,10 +66,10 @@ namespace ModulesSample.Module_System_Logic
         /// A collection of <see cref="ModuleInfo"/> that contains both all <see cref="ModuleInfo"/>s in <paramref name="modules"/>
         /// and also all the <see cref="ModuleInfo"/> they depend on
         /// </returns>
-        public IEnumerable<ModuleInfo> CompleteListWithDependencies(IEnumerable<ModuleInfo> modules)
+        public IEnumerable<IModuleInfo> CompleteListWithDependencies(IEnumerable<IModuleInfo> modules)
         {
-            var modulesGroupedByCatalog = modules.GroupBy<ModuleInfo, IModuleCatalog>(module => this.catalogs.Single(
-                catalog => catalog.Modules.Contains(module)));
+            var modulesGroupedByCatalog = modules.GroupBy<IModuleInfo, IModuleCatalog>(module => this.catalogs.Single(
+               catalog => catalog.Modules.Contains(module)));
             return modulesGroupedByCatalog.SelectMany(x => x.Key.CompleteListWithDependencies(x));
         }
 
@@ -83,9 +85,10 @@ namespace ModulesSample.Module_System_Logic
         /// Adds a <see cref="ModuleInfo"/> to the <see cref="ModuleCatalog"/>
         /// </summary>
         /// <param name="moduleInfo">The <see cref="ModuleInfo"/> to add</param>
-        public void AddModule(ModuleInfo moduleInfo)
+        public IModuleCatalog AddModule(IModuleInfo moduleInfo)
         {
-            this.catalogs[0].AddModule(moduleInfo);
+            return this.catalogs[0].AddModule(moduleInfo);
         }
+
     }
 }

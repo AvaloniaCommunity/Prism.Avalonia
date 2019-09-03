@@ -3,6 +3,7 @@ using DummyModule.View;
 using Prism.Avalonia.Infrastructure;
 using Prism.Avalonia.Infrastructure.Events;
 using Prism.Events;
+using Prism.Ioc;
 using Prism.Logging;
 using Prism.Modularity;
 using Prism.Regions;
@@ -34,7 +35,11 @@ namespace DummyModule
             }
         }
 
-        public void Initialize()
+        public void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+        }
+
+        public void OnInitialized(IContainerProvider containerProvider)
         {
             Thread thread = new Thread(new ThreadStart(DummyEventPublisher));
             thread.Start();

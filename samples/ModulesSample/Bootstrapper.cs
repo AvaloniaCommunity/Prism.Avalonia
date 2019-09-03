@@ -31,7 +31,7 @@ namespace ModulesSample
         /// in order to be able to add regions by using the <seealso cref="Prism.Regions.RegionManager.RegionNameProperty"/>
         /// attached property from XAML
         /// </remarks>
-        protected override IStyledProperty CreateShell()
+        protected override IAvaloniaObject CreateShell()
         {
             AppBuilderInstance = App.BuildAvaloniaApp();
 
@@ -49,7 +49,13 @@ namespace ModulesSample
             var mainWindow = base.Shell as Window;
             mainWindow.Show();
 
-            Application.Current.Run(mainWindow);
+            //Application.Current.Run(mainWindow);
+        }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            Application.Current.Run(base.Shell as Window);
         }
 
         protected override ILoggerFacade CreateLogger()

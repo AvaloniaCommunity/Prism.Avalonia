@@ -3,6 +3,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Prism.Avalonia.Infrastructure.Events;
 using Prism.Events;
+using Prism.Regions;
 
 namespace DummyModule2.View
 {
@@ -12,7 +13,7 @@ namespace DummyModule2.View
 
         private TextBox regionViewTextBox;
 
-        public DummyModuleView2(IEventAggregator eventAggregator)
+        public DummyModuleView2(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             this.eventAggregator = eventAggregator;
 
@@ -23,7 +24,8 @@ namespace DummyModule2.View
             {
                 Dispatcher.UIThread.InvokeAsync(() =>
                 {
-                    regionViewTextBox.Text += "\n EventAggregator DummyEvent triggered for DummyModule2 \r\n";
+                    regionManager.AddToRegion("ListRegion", new TextBlock { Text = "EventAggregator DummyEvent triggered for DummyModule2" });
+                    //regionViewTextBox.Text += "\n EventAggregator DummyEvent triggered for DummyModule2 \r\n";
                 });
             });
         }

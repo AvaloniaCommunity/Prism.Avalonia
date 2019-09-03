@@ -2,16 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>7.1.0.431</Version>
-    <Copyright>Copyright (c) 2019</Copyright>
-    <PackageLicenseUrl>https://github.com/PurpleGray/Prism.Avalonia/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/PurpleGray/Prism.Avalonia</PackageProjectUrl>
+    <Version>7.2.0.1367</Version>
+    <Copyright>Copyright (c) 2019 OmidID</Copyright>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/OmidID/Prism.Avalonia</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>Prism.DryIoc</RootNamespace>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DryIoc" Version="4.0.4" />
+    <PackageReference Include="DryIoc" Version="4.0.6" />
   </ItemGroup>
 
   <ItemGroup>

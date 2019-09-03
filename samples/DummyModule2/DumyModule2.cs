@@ -1,5 +1,6 @@
 ﻿using DummyModule2.View;
 using Prism.Avalonia.Infrastructure;
+using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 
@@ -16,11 +17,14 @@ namespace DummyModule2
             this.regionManager = regionManager;
         }
 
-        public void Initialize()
+        public void OnInitialized(IContainerProvider containerProvider)
         {
             this.moduleTracker.RecordModuleInitialized(KnownModuleNames.ModuleDummy);
-
             regionManager.RegisterViewWithRegion("Region2", typeof(DummyModuleView2));
+        }
+
+        public void RegisterTypes(IContainerRegistry containerRegistry)
+        {
         }
     }
 }
