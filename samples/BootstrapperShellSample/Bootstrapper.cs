@@ -11,7 +11,7 @@ namespace BootstrapperShellSample
     {
         private AppBuilder AppBuilderInstance;
 
-        protected override IStyledProperty CreateShell()
+        protected override IAvaloniaObject CreateShell()
         {
             AppBuilderInstance = App.BuildAvaloniaApp();
 
