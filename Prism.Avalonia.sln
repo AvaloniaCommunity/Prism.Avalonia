@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModulesSample.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Unity.Avalonia", "src\Prism.Unity.Avalonia\Prism.Unity.Avalonia.csproj", "{87550619-24C8-47ED-917E-EB58D325FC9E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Unity.Avalonia.Tests", "tests\Prism.Unity.Avalonia.Tests\Prism.Unity.Avalonia.Tests.csproj", "{5F69A3C1-5020-4A7D-8C94-BE0747E0E5A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,10 @@ Global
 		{87550619-24C8-47ED-917E-EB58D325FC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87550619-24C8-47ED-917E-EB58D325FC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87550619-24C8-47ED-917E-EB58D325FC9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F69A3C1-5020-4A7D-8C94-BE0747E0E5A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F69A3C1-5020-4A7D-8C94-BE0747E0E5A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F69A3C1-5020-4A7D-8C94-BE0747E0E5A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F69A3C1-5020-4A7D-8C94-BE0747E0E5A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +130,7 @@ Global
 		{47BC0E69-AF2D-4C4F-886E-31B61E05C57A} = {5F8D330E-F611-4E17-8217-F2D6CDB8E1F7}
 		{B7112DF9-D7A1-48B8-8821-CF81D52F793E} = {47BC0E69-AF2D-4C4F-886E-31B61E05C57A}
 		{87550619-24C8-47ED-917E-EB58D325FC9E} = {70B9D432-E8BD-4EB9-9CA8-E63E2C804F3F}
+		{5F69A3C1-5020-4A7D-8C94-BE0747E0E5A2} = {39E6F304-1371-4D33-807F-A003D97E74F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D260344D-8648-441D-B85B-9D280005F098}
