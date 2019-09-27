@@ -1,8 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <Version>7.2.0.1367</Version>
+    <Copyright>Copyright (c) 2019 OmidID</Copyright>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/OmidID/Prism.Avalonia</PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>Prism.Unity</RootNamespace>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
