@@ -1,3 +1,4 @@
+#if !NET461
 using System;
 using System.ComponentModel;
 
@@ -56,3 +57,4 @@ namespace Prism.Modularity
         }
     }
 }
+#endif
