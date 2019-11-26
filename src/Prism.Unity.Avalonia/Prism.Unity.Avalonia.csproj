@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
-    <Version>7.2.0.1367</Version>
+    <Version>7.2.0.1422</Version>
     <Copyright>Copyright (c) 2019 OmidID</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/OmidID/Prism.Avalonia</PackageProjectUrl>
@@ -11,7 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Prism.Core" Version="7.2.0.1367" />
     <PackageReference Include="Unity" Version="5.11.1" />
   </ItemGroup>
 
