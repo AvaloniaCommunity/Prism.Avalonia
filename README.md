@@ -10,11 +10,15 @@ Logic and approach for development of your applications remained the same as it 
 Add package from nuget to your project:
 
 ```
-Install-Package Prism.Avalonia -Version 7.1.0.431
+Install-Package Prism.Avalonia -Version 7.2.0.1422
 ```
 
 ```
-Install-Package Prism.DryIoc.Avalonia -Version 7.1.0.431
+Install-Package Prism.DryIoc.Avalonia -Version 7.2.0.1422
+```
+
+```
+Install-Package Prism.Unity.Avalonia -Version 7.2.0.1422
 ```
 
 ```
