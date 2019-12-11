@@ -1,23 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
-    </PropertyGroup>
-    <ItemGroup>
-        <Compile Update="**\*.xaml.cs">
-            <DependentUpon>%(Filename)</DependentUpon>
-        </Compile>
-        <EmbeddedResource Include="**\*.xaml">
-            <SubType>Designer</SubType>
-        </EmbeddedResource>
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="Serilog.Sinks.Trace" Version="2.1.0" />
-    </ItemGroup>
-    <ItemGroup>
-      <ProjectReference Include="..\..\src\Prism.Avalonia\Prism.Avalonia.csproj" />
-      <ProjectReference Include="..\..\src\Prism.DryIoc.Avalonia\Prism.DryIoc.Avalonia.csproj" />
-      <ProjectReference Include="..\DummyModule2\DummyModule2.csproj" />
-      <ProjectReference Include="..\DummyModule\DummyModule.csproj" />
-    </ItemGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <Import Project="../../build/SampleApp.props"/>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DummyModule2\DummyModule2.csproj" />
+    <ProjectReference Include="..\DummyModule\DummyModule.csproj" />
+  </ItemGroup>
+
 </Project>

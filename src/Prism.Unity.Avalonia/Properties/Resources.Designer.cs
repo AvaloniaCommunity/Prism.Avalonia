@@ -22,7 +22,7 @@ namespace Prism.Unity.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Prism.Unity.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Prism.Unity.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Prism.Unity.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Adding UnityBootstrapperExtension to container..
         /// </summary>
-        internal static string AddingUnityBootstrapperExtensionToContainer {
+        public static string AddingUnityBootstrapperExtensionToContainer {
             get {
                 return ResourceManager.GetString("AddingUnityBootstrapperExtensionToContainer", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Bootstrapper sequence completed..
         /// </summary>
-        internal static string BootstrapperSequenceCompleted {
+        public static string BootstrapperSequenceCompleted {
             get {
                 return ResourceManager.GetString("BootstrapperSequenceCompleted", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Configuring default region behaviors..
         /// </summary>
-        internal static string ConfiguringDefaultRegionBehaviors {
+        public static string ConfiguringDefaultRegionBehaviors {
             get {
                 return ResourceManager.GetString("ConfiguringDefaultRegionBehaviors", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Configuring module catalog..
         /// </summary>
-        internal static string ConfiguringModuleCatalog {
+        public static string ConfiguringModuleCatalog {
             get {
                 return ResourceManager.GetString("ConfiguringModuleCatalog", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Configuring region adapters..
         /// </summary>
-        internal static string ConfiguringRegionAdapters {
+        public static string ConfiguringRegionAdapters {
             get {
                 return ResourceManager.GetString("ConfiguringRegionAdapters", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Configuring ServiceLocator singleton..
         /// </summary>
-        internal static string ConfiguringServiceLocatorSingleton {
+        public static string ConfiguringServiceLocatorSingleton {
             get {
                 return ResourceManager.GetString("ConfiguringServiceLocatorSingleton", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Configuring the Unity container..
         /// </summary>
-        internal static string ConfiguringUnityContainer {
+        public static string ConfiguringUnityContainer {
             get {
                 return ResourceManager.GetString("ConfiguringUnityContainer", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Configuring the ViewModelLocator to use Unity..
         /// </summary>
-        internal static string ConfiguringViewModelLocator {
+        public static string ConfiguringViewModelLocator {
             get {
                 return ResourceManager.GetString("ConfiguringViewModelLocator", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Creating module catalog..
         /// </summary>
-        internal static string CreatingModuleCatalog {
+        public static string CreatingModuleCatalog {
             get {
                 return ResourceManager.GetString("CreatingModuleCatalog", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Creating the shell..
         /// </summary>
-        internal static string CreatingShell {
+        public static string CreatingShell {
             get {
                 return ResourceManager.GetString("CreatingShell", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Creating Unity container..
         /// </summary>
-        internal static string CreatingUnityContainer {
+        public static string CreatingUnityContainer {
             get {
                 return ResourceManager.GetString("CreatingUnityContainer", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Initializing modules..
         /// </summary>
-        internal static string InitializingModules {
+        public static string InitializingModules {
             get {
                 return ResourceManager.GetString("InitializingModules", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Initializing the shell..
         /// </summary>
-        internal static string InitializingShell {
+        public static string InitializingShell {
             get {
                 return ResourceManager.GetString("InitializingShell", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Logger was created successfully..
         /// </summary>
-        internal static string LoggerCreatedSuccessfully {
+        public static string LoggerCreatedSuccessfully {
             get {
                 return ResourceManager.GetString("LoggerCreatedSuccessfully", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The method &apos;GetModuleEnumerator&apos; of the bootstrapper must be overwritten in order to use the default module initialization logic..
         /// </summary>
-        internal static string NotOverwrittenGetModuleEnumeratorException {
+        public static string NotOverwrittenGetModuleEnumeratorException {
             get {
                 return ResourceManager.GetString("NotOverwrittenGetModuleEnumeratorException", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The ILoggerFacade is required and cannot be null..
         /// </summary>
-        internal static string NullLoggerFacadeException {
+        public static string NullLoggerFacadeException {
             get {
                 return ResourceManager.GetString("NullLoggerFacadeException", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The IModuleCatalog is required and cannot be null in order to initialize the modules..
         /// </summary>
-        internal static string NullModuleCatalogException {
+        public static string NullModuleCatalogException {
             get {
                 return ResourceManager.GetString("NullModuleCatalogException", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The IUnityContainer is required and cannot be null..
         /// </summary>
-        internal static string NullUnityContainerException {
+        public static string NullUnityContainerException {
             get {
                 return ResourceManager.GetString("NullUnityContainerException", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Registering Framework Exception Types..
         /// </summary>
-        internal static string RegisteringFrameworkExceptionTypes {
+        public static string RegisteringFrameworkExceptionTypes {
             get {
                 return ResourceManager.GetString("RegisteringFrameworkExceptionTypes", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Setting the RegionManager..
         /// </summary>
-        internal static string SettingTheRegionManager {
+        public static string SettingTheRegionManager {
             get {
                 return ResourceManager.GetString("SettingTheRegionManager", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Type &apos;{0}&apos; was already registered by the application. Skipping....
         /// </summary>
-        internal static string TypeMappingAlreadyRegistered {
+        public static string TypeMappingAlreadyRegistered {
             get {
                 return ResourceManager.GetString("TypeMappingAlreadyRegistered", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace Prism.Unity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Updating Regions..
         /// </summary>
-        internal static string UpdatingRegions {
+        public static string UpdatingRegions {
             get {
                 return ResourceManager.GetString("UpdatingRegions", resourceCulture);
             }

@@ -7,15 +7,16 @@ using Serilog;
 
 namespace ModulesSample
 {
-    class App : Application
+    public class App : Application
     {
-        public static AppBuilder BuildAvaloniaApp() => AppBuilder.Configure<App>().UsePlatformDetect()
-            .SetupWithoutStarting();
+        public static AppBuilder BuildAvaloniaApp() => 
+            AppBuilder.Configure<App>()
+                .UsePlatformDetect()
+                .SetupWithoutStarting();
 
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
-            base.Initialize();
         }
 
         static void Main(string[] args)
@@ -27,12 +28,12 @@ namespace ModulesSample
             bs.Run();
         }
 
-        public static void AttachDevTools(Window window)
-        {
-#if DEBUG
-            DevTools.Attach(window);
-#endif
-        }
+//        public static void AttachDevTools(Window window)
+//        {
+//#if DEBUG
+//            DevTools.Attach(window);
+//#endif
+//        }
 
         private static void InitializeLogging()
         {

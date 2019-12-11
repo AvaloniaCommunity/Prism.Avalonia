@@ -18,7 +18,6 @@ namespace BootstrapperShellSample
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
-            base.Initialize();
         }
 
         static void Main(string[] args)
@@ -30,12 +29,12 @@ namespace BootstrapperShellSample
             bs.Run();
         }
 
-        public static void AttachDevTools(Window window)
-        {
-#if DEBUG
-            DevTools.Attach(window);
-#endif
-        }
+//        public static void AttachDevTools(Window window)
+//        {
+//#if DEBUG
+//            DevTools.Attach(window);
+//#endif
+//        }
 
         private static void InitializeLogging()
         {

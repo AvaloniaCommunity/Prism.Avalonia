@@ -1,8 +1,8 @@
 using Avalonia.Markup.Xaml;
-using Portable.Xaml;
-using Portable.Xaml.Markup;
+using Avalonia.Metadata;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 
 namespace Prism.Modularity
@@ -24,7 +24,6 @@ namespace Prism.Modularity
     /// </list>
     /// The <see cref="ModuleCatalog"/> also serves as a baseclass for more specialized Catalogs .
     /// </summary>
-    [ContentProperty("Items")]
     public class ModuleCatalog : ModuleCatalogBase, IModuleGroupsCatalog
     {
         /// <summary>
@@ -32,6 +31,7 @@ namespace Prism.Modularity
         /// </summary>
         public ModuleCatalog() : base()
         {
+         
         }
 
         /// <summary>
@@ -42,6 +42,14 @@ namespace Prism.Modularity
         public ModuleCatalog(IEnumerable<ModuleInfo> modules) : base(modules)
         {
         }
+
+        //
+        // Summary:
+        //     Gets the items in the Prism.Modularity.IModuleCatalog. This property is mainly
+        //     used to add Prism.Modularity.IModuleInfoGroups or Prism.Modularity.IModuleInfos
+        //     through XAML.
+        [Content] 
+        public new Collection<IModuleCatalogItem> Items => base.Items;
 
         /// <summary>
         /// Creates a <see cref="ModuleCatalog"/> from XAML.

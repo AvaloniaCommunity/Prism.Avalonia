@@ -27,6 +27,8 @@ namespace Prism
         IContainerExtension _containerExtension;
         IModuleCatalog _moduleCatalog;
 
+        public Window MainWindow { get; private set; }
+
         /// <summary>
         /// The dependency injection container used to resolve objects
         /// </summary>
