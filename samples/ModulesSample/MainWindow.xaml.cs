@@ -19,6 +19,11 @@ namespace ModulesSample
         private TextBox logTextBox;
         private ListBox itemsControl;
 
+        public MainWindow()
+        {
+
+        }
+
         public MainWindow(CallbackLogger logger, IEventAggregator eventAggregator)
         {
             this.InitializeComponent();

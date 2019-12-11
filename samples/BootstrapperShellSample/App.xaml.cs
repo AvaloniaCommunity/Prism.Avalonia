@@ -8,33 +8,41 @@ using Avalonia.Markup.Xaml;
 using CommonServiceLocator;
 using DryIoc;
 using Serilog;
+using Prism.DryIoc;
+using System.Threading;
+using Prism.Ioc;
+using BootstrapperShellSample.Views;
 
 namespace BootstrapperShellSample
 {
-    class App : Application
+    class App : PrismApplication
     {
-        public static AppBuilder BuildAvaloniaApp() => AppBuilder.Configure<App>().UsePlatformDetect().SetupWithoutStarting();
+        public static AppBuilder BuildAvaloniaApp() =>
+            AppBuilder
+                .Configure<App>()
+                .UsePlatformDetect();
 
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
+            base.Initialize();
         }
 
         static void Main(string[] args)
         {
             InitializeLogging();
-
-            Bootstrapper bs = new Bootstrapper();
-
-            bs.Run();
+            BuildAvaloniaApp().Start(AppMain, args);
         }
 
-//        public static void AttachDevTools(Window window)
-//        {
-//#if DEBUG
-//            DevTools.Attach(window);
-//#endif
-//        }
+        // Application entry point. Avalonia is completely initialized.
+        static void AppMain(Application app, string[] args)
+        {
+            // A cancellation token source that will be used to stop the main loop
+            var cts = new CancellationTokenSource();
+
+            // Start the main loop
+            app.Run(cts.Token);
+        }
 
         private static void InitializeLogging()
         {
@@ -44,6 +52,15 @@ namespace BootstrapperShellSample
                 .WriteTo.Trace(outputTemplate: "{Area}: {Message}")
                 .CreateLogger());
 #endif
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+        }
+
+        protected override Window CreateShell()
+        {
+            return Container.Resolve<MainWindow>();
         }
     }
 }

@@ -1,9 +1,15 @@
-﻿ <Window xmlns="https://github.com/avaloniaui"
+﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Shell" Height="350" Width="525">
-    <Grid>
-        <TextBlock Text="Hello, Prism on Avalonia!" HorizontalAlignment="Center"
-                            VerticalAlignment="Center" FontSize="17" FontWeight="Heavy" />
-    </Grid>
+        Title="Shell"
+        Height="350"
+        Width="525"
+        x:Class="BootstrapperShellSample.Views.MainWindow">
+  <Grid>
+    <TextBlock Text="Hello, Prism on Avalonia!"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="17"
+               FontWeight="Heavy" />
+  </Grid>
 </Window>
 

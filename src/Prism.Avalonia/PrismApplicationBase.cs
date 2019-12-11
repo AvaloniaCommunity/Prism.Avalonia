@@ -50,7 +50,6 @@ namespace Prism
         /// </summary>
         public override void Initialize()
         {
-            AvaloniaXamlLoader.Load(this);
             base.Initialize();
 
             ConfigureViewModelLocator();

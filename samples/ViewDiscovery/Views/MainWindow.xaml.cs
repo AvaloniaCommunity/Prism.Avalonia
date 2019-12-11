@@ -12,6 +12,8 @@ namespace ViewDiscovery.Views
     {
         private readonly IRegionManager _regionManager;
 
+        public MainWindow() { }
+
         public MainWindow(IRegionManager regionManager)
         {
             _regionManager = regionManager;
@@ -25,6 +27,9 @@ namespace ViewDiscovery.Views
 
         private async void Test()
         {
+            await Task.Delay(2000);
+
+
             var region = _regionManager.Regions["ContentRegion"];
             var viewA = region.Views.FirstOrDefault();
             var viewB = region.Views.Skip(1).FirstOrDefault();

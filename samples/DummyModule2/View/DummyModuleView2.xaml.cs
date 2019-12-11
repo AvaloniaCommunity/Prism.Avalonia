@@ -13,6 +13,11 @@ namespace DummyModule2.View
 
         private TextBox regionViewTextBox;
 
+        public DummyModuleView2()
+        {
+
+        }
+
         public DummyModuleView2(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             this.eventAggregator = eventAggregator;
