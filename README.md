@@ -24,13 +24,3 @@ Install-Package Prism.Unity.Avalonia -Version 7.2.0.1424
 ```
 Install-Package Prism.Autofac.Avalonia -Version 7.1.0.431
 ```
-
-Also, I should say that because this port was made in a few days in a rush-mode without deep knowledge
-of Avalonia's internal mechanisms and because of differences in runtime platforms, not everything was 
-ported, in addition of course you can confront with various bugs. 
-I will use this port in my internalwork projects, so by developing applications I'll fix bugs 
-or invalid behaviours which can occur on my path, but issues and pull requests are welcome too!
-
-| ModulesSample on Ubuntu 16.04 | ModulesSample on Windows 10 |
-|---|---|
-| <img width='300' src='https://i.imgur.com/DkwcIkR.png'></a> | <img width='300' src='https://i.imgur.com/IKI87pv.png'></a> |
