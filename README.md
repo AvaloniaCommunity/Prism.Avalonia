@@ -31,12 +31,6 @@ ported, in addition of course you can confront with various bugs.
 I will use this port in my internalwork projects, so by developing applications I'll fix bugs 
 or invalid behaviours which can occur on my path, but issues and pull requests are welcome too!
 
-Not ported/supported features and other problems:
-- Prism.Avalonia not supports ability to bind Region to ItemsSource/Selector element
-- ViewInjection for regions will not work
-- DirectoryCatalog implementation of ModuleCatalog
-- Not all tests are reproducible because of runtime or avalonia capabilities
-
 | ModulesSample on Ubuntu 16.04 | ModulesSample on Windows 10 |
 |---|---|
 | <img width='300' src='https://i.imgur.com/DkwcIkR.png'></a> | <img width='300' src='https://i.imgur.com/IKI87pv.png'></a> |
