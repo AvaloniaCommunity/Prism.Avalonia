@@ -11,7 +11,7 @@
   
   <ItemGroup>
     <PackageReference Include="Serilog.Sinks.Trace" Version="2.1.0" />
-    <PackageReference Include="Avalonia" Version="0.9.0" />
+    <PackageReference Include="Avalonia" Version="0.9.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />

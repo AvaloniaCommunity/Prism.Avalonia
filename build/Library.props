@@ -23,5 +23,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <PropertyGroup>
+    <OutputPath>$(SolutionDir)bin\</OutputPath>
+  </PropertyGroup>
   
 </Project>
