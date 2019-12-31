@@ -1,12 +1,11 @@
 
 
+using Avalonia;
 using Prism.Properties;
 using Prism.Regions.Behaviors;
 using System;
 using System.Globalization;
 using System.Windows;
-using Avalonia;
-using Prism.Avalonia.Properties;
 
 namespace Prism.Regions
 {
@@ -16,15 +15,13 @@ namespace Prism.Regions
     /// <typeparam name="T">Type of object to adapt.</typeparam>
     public abstract class RegionAdapterBase<T> : IRegionAdapter where T : class
     {
-
         /// <summary>
         /// Initializes a new instance of <see cref="RegionAdapterBase{T}"/>.
         /// </summary>
         /// <param name="regionBehaviorFactory">The factory used to create the region behaviors to attach to the created regions.</param>
-        protected RegionAdapterBase(IRegionBehaviorFactory regionBehaviorFactory, IRegionManager regionManager)
+        protected RegionAdapterBase(IRegionBehaviorFactory regionBehaviorFactory)
         {
             this.RegionBehaviorFactory = regionBehaviorFactory;
-            this.RegionManager = regionManager;
         }
 
         /// <summary>
@@ -32,11 +29,6 @@ namespace Prism.Regions
         /// </summary>
         protected IRegionBehaviorFactory RegionBehaviorFactory { get; set; }
 
-        /// <summary>
-        /// Gets region manager 
-        /// </summary>
-        protected IRegionManager RegionManager { get; }
-        
         /// <summary>
         /// Adapts an object and binds it to a new <see cref="IRegion"/>.
         /// </summary>
@@ -48,7 +40,8 @@ namespace Prism.Regions
             if (regionName == null)
                 throw new ArgumentNullException(nameof(regionName));
 
-            IRegion region = this.CreateRegion(regionName);
+            IRegion region = this.CreateRegion();
+            region.Name = regionName;
 
             SetObservableRegionOnHostingControl(region, regionTarget);
 
@@ -89,7 +82,7 @@ namespace Prism.Regions
             IRegionBehaviorFactory behaviorFactory = this.RegionBehaviorFactory;
             if (behaviorFactory != null)
             {
-                Visual dependencyObjectRegionTarget = regionTarget as Visual;
+                AvaloniaObject AvaloniaObjectRegionTarget = regionTarget as AvaloniaObject;
 
                 foreach (string behaviorKey in behaviorFactory)
                 {
@@ -97,12 +90,12 @@ namespace Prism.Regions
                     {
                         IRegionBehavior behavior = behaviorFactory.CreateFromKey(behaviorKey);
 
-                        if (dependencyObjectRegionTarget != null)
+                        if (AvaloniaObjectRegionTarget != null)
                         {
                             IHostAwareRegionBehavior hostAwareRegionBehavior = behavior as IHostAwareRegionBehavior;
                             if (hostAwareRegionBehavior != null)
                             {
-                                hostAwareRegionBehavior.HostControl = dependencyObjectRegionTarget;
+                                hostAwareRegionBehavior.HostControl = AvaloniaObjectRegionTarget;
                             }
                         }
 
@@ -133,7 +126,7 @@ namespace Prism.Regions
         /// that will be used to adapt the object.
         /// </summary>
         /// <returns>A new instance of <see cref="IRegion"/>.</returns>
-        protected abstract IRegion CreateRegion(string name);
+        protected abstract IRegion CreateRegion();
 
         private static T GetCastedObject(object regionTarget)
         {
@@ -157,7 +150,7 @@ namespace Prism.Regions
                 // Set the region as a dependency property on the control hosting the region
                 // Because we are using an observable region, the hosting control can detect that the
                 // region has actually been created. This is an ideal moment to hook up custom behaviors
-                Prism.Regions.RegionManager.GetObservableRegion(targetElement).Value = region;
+                RegionManager.GetObservableRegion(targetElement).Value = region;
             }
         }
     }

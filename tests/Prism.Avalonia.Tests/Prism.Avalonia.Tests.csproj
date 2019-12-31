@@ -4,10 +4,9 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Modularity\ModuleCatalogXaml\SimpleModuleCatalog.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Modularity\ModuleCatalogXaml\SimpleModuleCatalog.xaml" />
+    <Compile Remove="Mocks\MockInteractionRequestAwareElement.cs" />
+    <Compile Remove="Regions\Behaviors\SelectorItemsSourceSyncRegionBehaviorFixture.cs" />
+    <Compile Remove="Regions\SelectorRegionAdapterFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
@@ -18,5 +17,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Prism.Avalonia\Prism.Avalonia.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Modularity\ModuleCatalogXaml\SimpleModuleCatalog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 </Project>

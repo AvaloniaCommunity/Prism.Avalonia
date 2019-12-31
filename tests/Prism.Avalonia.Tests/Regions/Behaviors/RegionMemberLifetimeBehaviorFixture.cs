@@ -1,8 +1,10 @@
+
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
 using Prism.Regions.Behaviors;
+using Prism.Avalonia.Tests.Mocks;
 
 namespace Prism.Avalonia.Tests.Regions.Behaviors
 {
@@ -65,6 +67,32 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             // Assert
             Assert.IsTrue(Region.Views.Contains(regionItemMock.Object));
 
+        }
+
+        [TestMethod]
+        public void WhenIRegionMemberLifetimeItemReturnsKeepAliveFalseCanRemoveFromRegion()
+        {
+            // Arrange
+            var regionItemMock = new Mock<IRegionMemberLifetime>();
+            regionItemMock.Setup(i => i.KeepAlive).Returns(false);
+
+            var view = regionItemMock.Object;
+
+            Region.Add(view);
+            Region.Activate(view);
+
+            // The presence of the following two lines is essential for the test:
+            // we want to access both ActiveView and Views in that order
+            Assert.IsTrue(Region.ActiveViews.Contains(view));
+            Assert.IsTrue(Region.Views.Contains(view));
+
+            // Act
+            // This may throw
+            Region.Remove(view);
+
+            // Assert
+            Assert.IsFalse(Region.Views.Contains(view));
+            Assert.IsFalse(Region.ActiveViews.Contains(view));
         }
 
         [TestMethod]

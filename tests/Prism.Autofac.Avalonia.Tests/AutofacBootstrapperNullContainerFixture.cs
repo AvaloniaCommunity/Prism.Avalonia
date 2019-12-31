@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using Autofac;
 using Avalonia;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -1,4 +1,6 @@
-using Avalonia;
+
+
+using System.Windows;
 using Prism.Regions;
 using Prism.Regions.Behaviors;
 
@@ -13,6 +15,6 @@ namespace Prism.Avalonia.Tests.Mocks
             
         }
 
-        public Visual HostControl { get; set; }
+        public DependencyObject HostControl { get; set; }
     }
 }

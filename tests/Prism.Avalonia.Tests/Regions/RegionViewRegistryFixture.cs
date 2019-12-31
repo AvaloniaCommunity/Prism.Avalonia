@@ -1,8 +1,10 @@
+
+
 using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
+using Prism.Avalonia.Tests.Mocks;
 
 namespace Prism.Avalonia.Tests.Regions
 {
@@ -62,6 +64,21 @@ namespace Prism.Avalonia.Tests.Regions
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count());
             Assert.AreSame(content, result.ElementAt(0));
+        }
+
+        [TestMethod]
+        public void ShouldNotPreventSubscribersFromBeingGarbageCollected()
+        {
+            var registry = new RegionViewRegistry(null);
+            var subscriber = new MySubscriberClass();
+            registry.ContentRegistered += subscriber.OnContentRegistered;
+
+            WeakReference subscriberWeakReference = new WeakReference(subscriber);
+
+            subscriber = null;
+            GC.Collect();
+
+            Assert.IsFalse(subscriberWeakReference.IsAlive);
         }
 
         [TestMethod]

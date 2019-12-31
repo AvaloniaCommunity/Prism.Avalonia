@@ -7,7 +7,6 @@ using System.Reflection;
 using Prism.Events;
 using Prism.Properties;
 using CommonServiceLocator;
-using Prism.Avalonia.Properties;
 using Prism.Common;
 
 namespace Prism.Regions

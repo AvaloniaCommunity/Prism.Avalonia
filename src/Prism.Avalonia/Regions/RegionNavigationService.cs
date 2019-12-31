@@ -7,9 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Windows;
 using Avalonia.Controls;
-using Prism.Avalonia.Properties;
 
 namespace Prism.Regions
 {
@@ -205,11 +203,11 @@ namespace Prism.Regions
             object[] activeViews,
             int currentViewIndex)
         {
-            var frameworkElement = activeViews[currentViewIndex] as Control;
+            var Control = activeViews[currentViewIndex] as Control;
 
-            if (frameworkElement != null)
+            if (Control != null)
             {
-                var vetoingViewModel = frameworkElement.DataContext as IConfirmNavigationRequest;
+                var vetoingViewModel = Control.DataContext as IConfirmNavigationRequest;
 
                 if (vetoingViewModel != null)
                 {

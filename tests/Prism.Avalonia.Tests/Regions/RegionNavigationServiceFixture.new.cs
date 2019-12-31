@@ -1,7 +1,9 @@
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Avalonia.Controls;
+using System.Windows;
 using CommonServiceLocator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -181,7 +183,7 @@ namespace Prism.Avalonia.Tests.Regions
             // Prepare
             var region = new Region();
 
-            Mock<Control> mockFrameworkElement = new Mock<Control>();
+            Mock<FrameworkElement> mockFrameworkElement = new Mock<FrameworkElement>();
             Mock<INavigationAware> mockINavigationAwareDataContext = new Mock<INavigationAware>();
             mockINavigationAwareDataContext.Setup(ina => ina.IsNavigationTarget(It.IsAny<NavigationContext>())).Returns(true);
             mockFrameworkElement.Object.DataContext = mockINavigationAwareDataContext.Object;
@@ -214,7 +216,7 @@ namespace Prism.Avalonia.Tests.Regions
             // Prepare
             var region = new Region();
 
-            Mock<Control> mockFrameworkElement = new Mock<Control>();
+            Mock<FrameworkElement> mockFrameworkElement = new Mock<FrameworkElement>();
             Mock<INavigationAware> mockINavigationAwareView = mockFrameworkElement.As<INavigationAware>();
             mockINavigationAwareView.Setup(ina => ina.IsNavigationTarget(It.IsAny<NavigationContext>())).Returns(true);
 
@@ -476,7 +478,7 @@ namespace Prism.Avalonia.Tests.Regions
                 .Setup(ina => ina.ConfirmNavigationRequest(It.IsAny<NavigationContext>(), It.IsAny<Action<bool>>()))
                 .Verifiable();
 
-            var viewMock = new Mock<Control>();
+            var viewMock = new Mock<FrameworkElement>();
 
             var view = viewMock.Object;
             view.DataContext = viewModelMock.Object;
@@ -515,7 +517,7 @@ namespace Prism.Avalonia.Tests.Regions
                 .Callback<NavigationContext, Action<bool>>((nc, c) => c(true))
                 .Verifiable();
 
-            var view1Mock = new Mock<Control>();
+            var view1Mock = new Mock<FrameworkElement>();
             var view1 = view1Mock.Object;
             view1.DataContext = view1DataContextMock.Object;
 
@@ -560,7 +562,7 @@ namespace Prism.Avalonia.Tests.Regions
                 .Callback<NavigationContext, Action<bool>>((nc, c) => c(false))
                 .Verifiable();
 
-            var view1Mock = new Mock<Control>();
+            var view1Mock = new Mock<FrameworkElement>();
             var view1 = view1Mock.Object;
             view1.DataContext = view1DataContextMock.Object;
 
@@ -650,7 +652,7 @@ namespace Prism.Avalonia.Tests.Regions
 
             var viewModelMock = new Mock<IConfirmNavigationRequest>();
 
-            var viewMock = new Mock<Control>();
+            var viewMock = new Mock<FrameworkElement>();
             var view = viewMock.Object;
             view.DataContext = viewModelMock.Object;
 
@@ -899,7 +901,7 @@ namespace Prism.Avalonia.Tests.Regions
 
             var mockDataContext = new Mock<INavigationAware>();
 
-            var view1Mock = new Mock<Control>();
+            var view1Mock = new Mock<FrameworkElement>();
             var view1 = view1Mock.Object;
             view1.DataContext = mockDataContext.Object;
 
@@ -1098,7 +1100,7 @@ namespace Prism.Avalonia.Tests.Regions
                 .Verifiable();
 
 
-            var view1Mock = new Mock<Control>();
+            var view1Mock = new Mock<FrameworkElement>();
             var view1 = view1Mock.Object;
             view1.DataContext = viewModel1Mock.Object;
 

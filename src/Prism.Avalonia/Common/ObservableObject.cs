@@ -7,7 +7,7 @@ namespace Prism.Common
 {
     /// <summary>
     /// Class that wraps an object, so that other classes can notify for Change events. Typically, this class is set as 
-    /// a Dependency Property on Avalonia.AvaloniaObjects, and allows other classes to observe any changes in the Value. 
+    /// a Dependency Property on DependencyObjects, and allows other classes to observe any changes in the Value. 
     /// </summary>
     /// <remarks>
     /// This class is required, because in Silverlight, it's not possible to receive Change notifications for Dependency properties that you do not own. 
@@ -21,6 +21,7 @@ namespace Prism.Common
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "This is the pattern for WPF dependency properties")]
         public static readonly StyledProperty<T> ValueProperty =
                 AvaloniaProperty.Register<Control, T>(name: nameof(Value));
+        //StyledProperty.Register("Value", typeof(T), typeof(ObservableObject<T>), new PropertyMetadata(ValueChangedCallback));
 
         /// <summary>
         /// Event that gets invoked when the Value property changes. 

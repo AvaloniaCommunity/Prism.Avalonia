@@ -1,40 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../build/Library.props" />
+  <Import Project="../../build/AvaloniaDependency.props" />
+  <Import Project="../../build/PrismDependency.props" />
+  
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>7.0.0.3962</Version>
-    <PackageProjectUrl>https://github.com/PurpleGray/Prism.Avalonia</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/PurpleGray/Prism.Avalonia/blob/master/LICENSE</PackageLicenseUrl>
-    <Copyright>Copyright (c) 2017 Stratocast3r</Copyright>
+    <RootNamespace>Prism</RootNamespace>
   </PropertyGroup>
+  
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.7.0" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.7.0" />
-    <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
-    <PackageReference Include="Prism.Core" Version="7.0.0.396" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
-    <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
+    <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Regions\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Configuration.ConfigurationManager">
-      <HintPath>C:\Users\Sergey\.nuget\packages\system.configuration.configurationmanager\4.4.0\ref\netstandard2.0\System.Configuration.ConfigurationManager.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+
 </Project>

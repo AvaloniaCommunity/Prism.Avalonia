@@ -17,7 +17,7 @@ namespace Prism.Mvvm
         /// <summary>
         /// The AutoWireViewModel attached property.
         /// </summary>
-        public static AvaloniaProperty AutoWireViewModelProperty = 
+        public static AvaloniaProperty AutoWireViewModelProperty =
             AvaloniaProperty.RegisterAttached<Control, bool>(name: "AutoWireViewModel", ownerType: typeof(ViewModelLocator), defaultValue: false);
         public static bool GetAutoWireViewModel(AvaloniaObject obj)
         {
@@ -29,10 +29,9 @@ namespace Prism.Mvvm
             obj.SetValue(AutoWireViewModelProperty, value);
         }
 
-        private static void AutoWireViewModelChanged(AvaloniaObject d,
-            AvaloniaPropertyChangedEventArgs e)
+        private static void AutoWireViewModelChanged(AvaloniaObject d, AvaloniaPropertyChangedEventArgs e)
         {
-            if ((bool) e.NewValue)
+            if ((bool)e.NewValue)
             {
                 ViewModelLocationProvider.AutoWireViewModelChanged(d, Bind);
             }

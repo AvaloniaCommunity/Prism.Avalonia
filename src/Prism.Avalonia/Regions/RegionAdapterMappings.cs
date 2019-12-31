@@ -4,7 +4,6 @@ using Prism.Properties;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Prism.Avalonia.Properties;
 
 namespace Prism.Regions
 {

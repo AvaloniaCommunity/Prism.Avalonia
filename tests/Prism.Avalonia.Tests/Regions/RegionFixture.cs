@@ -1,11 +1,13 @@
+
+
 using System;
 using System.Collections.Specialized;
 using System.Linq;
 using CommonServiceLocator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
+using Prism.Avalonia.Tests.Mocks;
 
 namespace Prism.Avalonia.Tests.Regions
 {

@@ -1,9 +1,11 @@
+
+
 using System;
 using System.Collections.Generic;
-using Avalonia.Controls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
+using Prism.Avalonia.Tests.Mocks;
+using Avalonia.Controls;
 
 namespace Prism.Avalonia.Tests.Regions
 {

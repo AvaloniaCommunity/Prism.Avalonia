@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Text;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+
 using Prism.Regions;
+
+using Moq;
 
 namespace Prism.Avalonia.Tests.Regions
 {

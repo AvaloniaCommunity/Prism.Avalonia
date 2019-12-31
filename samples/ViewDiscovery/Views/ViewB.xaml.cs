@@ -4,20 +4,21 @@ using Avalonia.Markup.Xaml;
 
 namespace ViewDiscovery.Views
 {
-   /// <summary>
-   /// Interaction logic for ViewA.xaml
-   /// </summary>
-   public partial class ViewB : UserControl
-   {
-      public ViewB(ViewA subView)
-      {
-         this.InitializeComponent();
-         this.FindControl<ContentControl>("Test").Content = subView;
-      }
+    /// <summary>
+    /// Interaction logic for ViewA.xaml
+    /// </summary>
+    public partial class ViewB : UserControl
+    {
+        public ViewB() { }
+        public ViewB(ViewA subView)
+        {
+            this.InitializeComponent();
+            this.FindControl<ContentControl>("Test").Content = subView;
+        }
 
-      private void InitializeComponent()
-      {
-         AvaloniaXamlLoader.Load(this);
-      }
-   }
+        private void InitializeComponent()
+        {
+            AvaloniaXamlLoader.Load(this);
+        }
+    }
 }

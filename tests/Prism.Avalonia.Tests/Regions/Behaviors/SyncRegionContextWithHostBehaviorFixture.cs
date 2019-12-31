@@ -1,10 +1,12 @@
+
+
 using System;
-using Avalonia;
+using System.Windows;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Prism.Avalonia.Tests.Mocks;
-using Prism.Common;
 using Prism.Regions;
 using Prism.Regions.Behaviors;
+using Prism.Avalonia.Tests.Mocks;
+using Prism.Common;
 
 namespace Prism.Avalonia.Tests.Regions.Behaviors
 {
@@ -18,7 +20,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
 
             SyncRegionContextWithHostBehavior behavior = new SyncRegionContextWithHostBehavior();
             behavior.Region = region;
-            Visual mockDependencyObject = new MockDependencyObject();
+            DependencyObject mockDependencyObject = new MockDependencyObject();
             behavior.HostControl = mockDependencyObject;
 
             behavior.Attach();
@@ -36,7 +38,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
 
             SyncRegionContextWithHostBehavior behavior = new SyncRegionContextWithHostBehavior();
             behavior.Region = region;
-            Visual mockDependencyObject = new MockDependencyObject();
+            DependencyObject mockDependencyObject = new MockDependencyObject();
             behavior.HostControl = mockDependencyObject;
 
             ObservableObject<object> observableRegionContext = RegionContext.GetObservableContext(mockDependencyObject);
@@ -56,7 +58,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
 
             SyncRegionContextWithHostBehavior behavior = new SyncRegionContextWithHostBehavior();
             behavior.Region = region;
-            Visual mockDependencyObject = new MockDependencyObject();
+            DependencyObject mockDependencyObject = new MockDependencyObject();
             behavior.HostControl = mockDependencyObject;
 
             RegionContext.GetObservableContext(mockDependencyObject).Value = "NewValue";
@@ -95,7 +97,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
 
             SyncRegionContextWithHostBehavior behavior = new SyncRegionContextWithHostBehavior();
             behavior.Region = region;
-            Visual hostControl = new MockDependencyObject();
+            DependencyObject hostControl = new MockDependencyObject();
             behavior.HostControl = hostControl;
 
             behavior.Attach();
@@ -113,7 +115,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
 
             SyncRegionContextWithHostBehavior behavior = new SyncRegionContextWithHostBehavior();
             behavior.Region = region;
-            Visual hostControl = new MockDependencyObject();
+            DependencyObject hostControl = new MockDependencyObject();
             behavior.HostControl = hostControl;
 
             RegionContext.GetObservableContext(hostControl).Value = "NewValue";
@@ -129,11 +131,11 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         {
 
             SyncRegionContextWithHostBehavior behavior = new SyncRegionContextWithHostBehavior();
-            Visual hostControl1 = new MockDependencyObject();
+            DependencyObject hostControl1 = new MockDependencyObject();
             behavior.HostControl = hostControl1;
 
             behavior.Attach();
-            Visual hostControl2 = new MockDependencyObject();
+            DependencyObject hostControl2 = new MockDependencyObject();
             behavior.HostControl = hostControl2;
         }
     }

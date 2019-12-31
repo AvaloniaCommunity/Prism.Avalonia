@@ -1,23 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="View\DummyModuleView2.xaml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ModulesSample.Infrastructure\ModulesSample.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="View\DummyModuleView2.xaml.cs">
-      <DependentUpon>DummyModuleView2.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
+  <Import Project="../../build/SampleApp.props"/>
 
 </Project>

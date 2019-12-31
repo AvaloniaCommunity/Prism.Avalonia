@@ -1,5 +1,7 @@
+
+
 using Avalonia;
-using Avalonia.Controls;
+using System.Windows;
 
 namespace Prism.Regions.Behaviors
 {
@@ -10,10 +12,10 @@ namespace Prism.Regions.Behaviors
     public interface IHostAwareRegionBehavior : IRegionBehavior
     {
         /// <summary>
-        /// Gets or sets the <see cref="AvaloniaObject"/> that the <see cref="IRegion"/> is attached to.
+        /// Gets or sets the <see cref="DependencyObject"/> that the <see cref="IRegion"/> is attached to.
         /// </summary>
-        /// <value>A <see cref="AvaloniaObject"/> that the <see cref="IRegion"/> is attached to.
+        /// <value>A <see cref="DependencyObject"/> that the <see cref="IRegion"/> is attached to.
         /// This is usually a <see cref="Control"/> that is part of the tree.</value>
-        Visual HostControl { get; set; }
+        AvaloniaObject HostControl { get; set; }
     }
 }

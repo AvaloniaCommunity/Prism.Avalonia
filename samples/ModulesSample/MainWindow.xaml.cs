@@ -1,8 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using System.Globalization;
+﻿using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Prism.Avalonia.Infrastructure.Events;
@@ -18,6 +16,11 @@ namespace ModulesSample
 
         private TextBox logTextBox;
         private ListBox itemsControl;
+
+        public MainWindow()
+        {
+            
+        }
 
         public MainWindow(CallbackLogger logger, IEventAggregator eventAggregator)
         {

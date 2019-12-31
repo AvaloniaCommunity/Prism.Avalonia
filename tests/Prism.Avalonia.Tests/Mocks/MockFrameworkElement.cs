@@ -1,6 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
+using System.Windows;
 
 namespace Prism.Avalonia.Tests.Mocks
 {

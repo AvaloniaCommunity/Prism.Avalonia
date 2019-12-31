@@ -1,17 +1,19 @@
+
+
 using System;
 using System.Linq;
-using Avalonia;
+using System.Windows;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
 using Prism.Regions.Behaviors;
+using Prism.Avalonia.Tests.Mocks;
 
 namespace Prism.Avalonia.Tests.Regions.Behaviors
 {
     [TestClass]
     public class DelayedRegionCreationBehaviorFixture
     {
-        private DelayedRegionCreationBehavior GetBehavior(AvaloniaObject control, MockRegionManagerAccessor accessor, MockRegionAdapter adapter)
+        private DelayedRegionCreationBehavior GetBehavior(DependencyObject control, MockRegionManagerAccessor accessor, MockRegionAdapter adapter)
         {
             var mappings = new RegionAdapterMappings();
             mappings.RegisterMapping(control.GetType(), adapter);
@@ -22,7 +24,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         }
 
 
-        private DelayedRegionCreationBehavior GetBehavior(AvaloniaObject control, MockRegionManagerAccessor accessor)
+        private DelayedRegionCreationBehavior GetBehavior(DependencyObject control, MockRegionManagerAccessor accessor)
         {
             return GetBehavior(control, accessor, new MockRegionAdapter());
         }
@@ -59,20 +61,25 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         [TestMethod]
         public void RegionGetsCreatedWhenAccessingRegions()
         {
-            var control = new MockFrameworkElement();
+            var control1 = new MockFrameworkElement();
+            var control2 = new MockFrameworkContentElement();
 
             var accessor = new MockRegionManagerAccessor
                                {
                                    GetRegionName = d => "myRegionName"
                                };
 
-            var behavior = this.GetBehavior(control, accessor);
-            behavior.Attach();
+            var behavior1 = this.GetBehavior(control1, accessor);
+            behavior1.Attach();
+            var behavior2 = this.GetBehavior(control2, accessor);
+            behavior2.Attach();
 
             accessor.UpdateRegions();
 
-            Assert.IsNotNull(RegionManager.GetObservableRegion(control).Value);
-            Assert.IsInstanceOfType(RegionManager.GetObservableRegion(control).Value, typeof(IRegion));
+            Assert.IsNotNull(RegionManager.GetObservableRegion(control1).Value);
+            Assert.IsInstanceOfType(RegionManager.GetObservableRegion(control1).Value, typeof(IRegion));
+            Assert.IsNotNull(RegionManager.GetObservableRegion(control2).Value);
+            Assert.IsInstanceOfType(RegionManager.GetObservableRegion(control2).Value, typeof(IRegion));
         }
 
         [TestMethod]
@@ -96,6 +103,53 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         }
 
         [TestMethod]
+        public void BehaviorDoesNotPreventControlFromBeingGarbageCollected()
+        {
+            var control = new MockFrameworkElement();
+            WeakReference controlWeakReference = new WeakReference(control);
+
+            var accessor = new MockRegionManagerAccessor
+                               {
+                                   GetRegionName = d => "myRegionName"
+                               };
+
+            var behavior = this.GetBehavior(control, accessor);
+            behavior.Attach();
+
+            Assert.IsTrue(controlWeakReference.IsAlive);
+            GC.KeepAlive(control);
+
+            control = null;
+            GC.Collect();
+
+            Assert.IsFalse(controlWeakReference.IsAlive);
+        }
+
+        [TestMethod]
+        public void BehaviorDoesNotPreventControlFromBeingGarbageCollectedWhenRegionWasCreated()
+        {
+            var control = new MockFrameworkElement();
+            WeakReference controlWeakReference = new WeakReference(control);
+
+            var accessor = new MockRegionManagerAccessor
+            {
+                GetRegionName = d => "myRegionName"
+            };
+
+            var behavior = this.GetBehavior(control, accessor);
+            behavior.Attach();
+            accessor.UpdateRegions();
+            
+            Assert.IsTrue(controlWeakReference.IsAlive);
+            GC.KeepAlive(control);
+
+            control = null;
+            GC.Collect();
+
+            Assert.IsFalse(controlWeakReference.IsAlive);
+        }
+
+        [TestMethod]
         public void BehaviorShouldUnhookEventWhenDetaching()
         {
             var control = new MockFrameworkElement();
@@ -112,6 +166,42 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             behavior.Detach();
 
             Assert.AreEqual<int>(startingCount - 1, accessor.GetSubscribersCount());
+        }
+
+        [TestMethod]
+        public void ShouldCleanupBehaviorOnceRegionIsCreated()
+        {
+            var control = new MockFrameworkElement();
+            var control2 = new MockFrameworkContentElement();
+
+            var accessor = new MockRegionManagerAccessor
+            {
+                GetRegionName = d => "myRegionName"
+            };
+
+            var behavior = this.GetBehavior(control, accessor);
+            WeakReference behaviorWeakReference = new WeakReference(behavior);
+            behavior.Attach();
+            accessor.UpdateRegions();
+            Assert.IsTrue(behaviorWeakReference.IsAlive);
+            GC.KeepAlive(behavior);
+
+            behavior = null;
+            GC.Collect();
+
+            Assert.IsFalse(behaviorWeakReference.IsAlive);
+
+            var behavior2 = this.GetBehavior(control2, accessor);
+            WeakReference behaviorWeakReference2 = new WeakReference(behavior2);
+            behavior2.Attach();
+            accessor.UpdateRegions();
+            Assert.IsTrue(behaviorWeakReference2.IsAlive);
+            GC.KeepAlive(behavior2);
+
+            behavior2 = null;
+            GC.Collect();
+
+            Assert.IsFalse(behaviorWeakReference2.IsAlive);
         }
     }
 }

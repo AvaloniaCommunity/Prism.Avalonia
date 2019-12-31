@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../build/Library.props" />
+  <Import Project="../../build/AvaloniaDependency.props" />
+  <Import Project="../../build/PrismDependency.props" />
+
+  <PropertyGroup>
+    <RootNamespace>Prism.Unity</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Unity" Version="5.11.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Prism.Avalonia\Prism.Avalonia.csproj" />
+  </ItemGroup>
+  
+</Project>

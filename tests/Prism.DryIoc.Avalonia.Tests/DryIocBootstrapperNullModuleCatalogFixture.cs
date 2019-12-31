@@ -24,7 +24,7 @@ namespace Prism.DryIoc.Avalonia.Tests
                 return null;
             }
 
-            protected override IAvaloniaObject CreateShell()
+            protected override IStyledProperty CreateShell()
             {
                 throw new NotImplementedException();
             }

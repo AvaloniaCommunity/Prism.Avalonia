@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Prism.Avalonia.Properties {
+namespace Prism.Properties {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace Prism.Avalonia.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -39,7 +39,7 @@ namespace Prism.Avalonia.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Prism.Avalonia.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Prism.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -118,15 +118,6 @@ namespace Prism.Avalonia.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to At least one cyclic dependency has been found in the module catalog. Cycles in the module dependencies must be avoided..
-        /// </summary>
-        public static string CyclicDependencyFound {
-            get {
-                return ResourceManager.GetString("CyclicDependencyFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Deactivation is not possible in this type of region..
         /// </summary>
         public static string DeactiveNotPossibleException {
@@ -163,38 +154,11 @@ namespace Prism.Avalonia.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot add dependency for unknown module {0}.
-        /// </summary>
-        public static string DependencyForUnknownModule {
-            get {
-                return ResourceManager.GetString("DependencyForUnknownModule", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A module declared a dependency on another module which is not declared to be loaded. Missing module(s): {0}.
-        /// </summary>
-        public static string DependencyOnMissingModule {
-            get {
-                return ResourceManager.GetString("DependencyOnMissingModule", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Directory {0} was not found..
         /// </summary>
         public static string DirectoryNotFound {
             get {
                 return ResourceManager.GetString("DirectoryNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A duplicated module with name {0} has been found by the loader..
-        /// </summary>
-        public static string DuplicatedModule {
-            get {
-                return ResourceManager.GetString("DuplicatedModule", resourceCulture);
             }
         }
         
@@ -213,42 +177,6 @@ namespace Prism.Avalonia.Properties {
         public static string FailedToGetType {
             get {
                 return ResourceManager.GetString("FailedToGetType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An exception occurred while initializing module &apos;{0}&apos;. 
-        ///    - The exception message was: {2}
-        ///    - The Assembly that the module was trying to be loaded from was:{1}
-        ///    Check the InnerException property of the exception for more information. If the exception occurred while creating an object in a DI container, you can exception.GetRootException() to help locate the root cause of the problem. 
-        ///  .
-        /// </summary>
-        public static string FailedToLoadModule {
-            get {
-                return ResourceManager.GetString("FailedToLoadModule", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An exception occurred while initializing module &apos;{0}&apos;. 
-        ///    - The exception message was: {1}
-        ///    Check the InnerException property of the exception for more information. If the exception occurred 
-        ///    while creating an object in a DI container, you can exception.GetRootException() to help locate the 
-        ///    root cause of the problem. .
-        /// </summary>
-        public static string FailedToLoadModuleNoAssemblyInfo {
-            get {
-                return ResourceManager.GetString("FailedToLoadModuleNoAssemblyInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Failed to load type for module {0}. 
-        ///Error was: {1}..
-        /// </summary>
-        public static string FailedToRetrieveModule {
-            get {
-                return ResourceManager.GetString("FailedToRetrieveModule", resourceCulture);
             }
         }
         
@@ -328,15 +256,6 @@ namespace Prism.Avalonia.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Module {0} depends on other modules that don&apos;t belong to the same group..
-        /// </summary>
-        public static string ModuleDependenciesNotMetInGroup {
-            get {
-                return ResourceManager.GetString("ModuleDependenciesNotMetInGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Module {0} was not found in the catalog..
         /// </summary>
         public static string ModuleNotFound {
@@ -360,6 +279,15 @@ namespace Prism.Avalonia.Properties {
         public static string ModuleTypeNotFound {
             get {
                 return ResourceManager.GetString("ModuleTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The ModuleCatalog must implement IModuleGroupCatalog to add groups.
+        /// </summary>
+        public static string MustBeModuleGroupCatalog {
+            get {
+                return ResourceManager.GetString("MustBeModuleGroupCatalog", resourceCulture);
             }
         }
         
@@ -524,15 +452,6 @@ namespace Prism.Avalonia.Properties {
         public static string RegionViewNameExistsException {
             get {
                 return ResourceManager.GetString("RegionViewNameExistsException", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Module {0} is marked for automatic initialization when the application starts, but it depends on modules that are marked as OnDemand initialization. To fix this error, mark the dependency modules for InitializationMode=WhenAvailable, or remove this validation by extending the ModuleCatalog class..
-        /// </summary>
-        public static string StartupModuleDependsOnAnOnDemandModule {
-            get {
-                return ResourceManager.GetString("StartupModuleDependsOnAnOnDemandModule", resourceCulture);
             }
         }
         

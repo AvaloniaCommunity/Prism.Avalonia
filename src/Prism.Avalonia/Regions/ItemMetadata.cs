@@ -1,8 +1,8 @@
 
 
+using Avalonia;
 using System;
 using System.Windows;
-using Avalonia;
 
 namespace Prism.Regions
 {
@@ -35,7 +35,7 @@ namespace Prism.Regions
 
         static ItemMetadata()
         {
-            IsActiveProperty.Changed.Subscribe(args => DependencyPropertyChanged(args?.Sender, args));
+            IsActiveProperty.Changed.Subscribe(args => StyledPropertyChanged(args?.Sender, args));
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Prism.Regions
             if (metadataChangedHandler != null) metadataChangedHandler(this, EventArgs.Empty);
         }
 
-        private static void DependencyPropertyChanged(AvaloniaObject dependencyObject, AvaloniaPropertyChangedEventArgs args)
+        private static void StyledPropertyChanged(AvaloniaObject dependencyObject, AvaloniaPropertyChangedEventArgs args)
         {
             ItemMetadata itemMetadata = dependencyObject as ItemMetadata;
             if (itemMetadata != null)

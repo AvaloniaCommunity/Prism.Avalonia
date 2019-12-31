@@ -162,7 +162,7 @@ namespace Prism.Autofac.Avalonia.Tests
         public bool InitializeShellCalled;
         public bool ConfigureServiceLocatorCalled;
         public bool ConfigureDefaultRegionBehaviorsCalled;
-        public IAvaloniaObject ShellObject = new UserControl();
+        public AvaloniaObject ShellObject = new UserControl();
 
         public IAvaloniaObject BaseShell
         {

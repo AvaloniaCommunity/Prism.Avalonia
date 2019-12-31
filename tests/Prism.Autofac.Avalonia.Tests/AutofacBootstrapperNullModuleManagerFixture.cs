@@ -1,5 +1,5 @@
-﻿using Autofac;
-using Avalonia;
+﻿using Avalonia;
+using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Prism.Logging;
 using Prism.Regions;

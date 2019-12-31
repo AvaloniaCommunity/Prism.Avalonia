@@ -1,34 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../build/Library.props" />
+  <Import Project="../../build/AvaloniaDependency.props" />
+  <Import Project="../../build/PrismDependency.props" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>7.0.0.3962</Version>
-    <Copyright>Copyright (c) 2017 Stratocast3r</Copyright>
-    <PackageLicenseUrl>https://github.com/PurpleGray/Prism.Avalonia/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/PurpleGray/Prism.Avalonia</PackageProjectUrl>
+    <RootNamespace>Prism.DryIoc</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DryIoc" Version="3.0.2" />
+    <PackageReference Include="DryIoc.dll" Version="4.0.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Prism.Avalonia\Prism.Avalonia.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

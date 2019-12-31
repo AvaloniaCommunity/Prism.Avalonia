@@ -1,10 +1,13 @@
+
+
 using System;
 using System.Collections.Specialized;
+using System.Windows;
 using System.Linq;
 using System.Reflection;
+using Prism.Common;
 using Avalonia;
 using Avalonia.Controls;
-using Prism.Common;
 
 namespace Prism.Regions.Behaviors
 {
@@ -82,13 +85,13 @@ namespace Prism.Regions.Behaviors
 
         private void InvokeOnSynchronizedActiveAwareChildren(object item, Action<IActiveAware> invocation)
         {
-            var dependencyObjectView = item as AvaloniaObject;
+            var AvaloniaObjectView = item as AvaloniaObject;
 
-            if (dependencyObjectView != null)
+            if (AvaloniaObjectView != null)
             {
                 // We are assuming that any scoped region managers are attached directly to the 
                 // view.
-                var regionManager = RegionManager.GetRegionManager(dependencyObjectView);
+                var regionManager = RegionManager.GetRegionManager(AvaloniaObjectView);
 
                 // If the view's RegionManager attached property is different from the region's RegionManager,
                 // then the view's region manager is a scoped region manager.
@@ -112,11 +115,11 @@ namespace Prism.Regions.Behaviors
                 return true;
             }
 
-            var viewAsFrameworkElement = view as Control;
+            var viewAsControl = view as Control;
 
-            if (viewAsFrameworkElement != null)
+            if (viewAsControl != null)
             {
-                var viewModel = viewAsFrameworkElement.DataContext;
+                var viewModel = viewAsControl.DataContext;
 
                 return viewModel != null && Attribute.IsDefined(viewModel.GetType(), typeof(SyncActiveStateAttribute));
             }

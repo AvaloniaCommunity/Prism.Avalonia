@@ -49,7 +49,13 @@ namespace ModulesSample
             var mainWindow = base.Shell as Window;
             mainWindow.Show();
 
-            Application.Current.Run(mainWindow);
+            //Application.Current.Run(mainWindow);
+        }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            Application.Current.Run(base.Shell as Window);
         }
 
         protected override ILoggerFacade CreateLogger()

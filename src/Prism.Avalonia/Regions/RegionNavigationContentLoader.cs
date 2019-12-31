@@ -5,9 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Windows;
 using Avalonia.Controls;
-using Prism.Avalonia.Properties;
 
 namespace Prism.Regions
 {
@@ -63,13 +61,13 @@ namespace Prism.Regions
                             return false;
                         }
 
-                        var frameworkElement = v as Control;
-                        if (frameworkElement == null)
+                        var Control = v as Control;
+                        if (Control == null)
                         {
                             return true;
                         }
 
-                        navigationAware = frameworkElement.DataContext as INavigationAware;
+                        navigationAware = Control.DataContext as INavigationAware;
                         return navigationAware == null || navigationAware.IsNavigationTarget(navigationContext);
                     });
 

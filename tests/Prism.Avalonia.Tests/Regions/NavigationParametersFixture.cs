@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Prism.Regions;
+using System.Linq;
 
 namespace Prism.Avalonia.Tests.Regions
 {
@@ -268,6 +268,19 @@ namespace Prism.Avalonia.Tests.Regions
             Assert.IsNotNull(result[0]);
             Assert.IsNotNull(result[1]);
             Assert.IsNotNull(result[2]);
+        }
+
+        [TestMethod]
+        public void ToStringWorksWithNullParameterValues()
+        {
+            var parameters = new NavigationParameters();
+            parameters.Add("id1", 1);
+            parameters.Add("id2", null);
+            parameters.Add("id3", 3);
+
+            var result = parameters.ToString();
+
+            Assert.AreEqual("?id1=1&id2=&id3=3", result);
         }
     }
 
