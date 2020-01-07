@@ -3,7 +3,7 @@
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Version>7.2.0.1424</Version>
-    <PackageProjectUrl>https://github.com/OmidID/Prism.Avalonia</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/AvaloniaCommunity/Prism.Avalonia</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <Copyright>Copyright (c) 2019 OmidID</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
