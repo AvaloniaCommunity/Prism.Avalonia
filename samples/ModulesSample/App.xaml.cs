@@ -1,39 +1,35 @@
 ﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Diagnostics;
 using Avalonia.Logging.Serilog;
 using Avalonia.Markup.Xaml;
+using ModulesSample.Module_System_Logic;
+using Prism.Avalonia.Infrastructure;
+using Prism.DryIoc;
+using Prism.Ioc;
+using Prism.Modularity;
 using Serilog;
 
 namespace ModulesSample
 {
-    public class App : Application
+    public class App : PrismApplication
     {
-        public static AppBuilder BuildAvaloniaApp() => 
-            AppBuilder.Configure<App>()
-                .UsePlatformDetect()
-                .SetupWithoutStarting();
+        public CallbackLogger CallbackLogger { get; } = new CallbackLogger();
+
+        public static AppBuilder BuildAvaloniaApp() =>
+            AppBuilder
+                .Configure<App>()
+                .UsePlatformDetect();
 
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
+            base.Initialize();
         }
 
         static void Main(string[] args)
         {
             InitializeLogging();
-            
-            Bootstrapper bs = new Bootstrapper();
-            
-            bs.Run();
+            BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
         }
-
-//        public static void AttachDevTools(Window window)
-//        {
-//#if DEBUG
-//            DevTools.Attach(window);
-//#endif
-//        }
 
         private static void InitializeLogging()
         {
@@ -43,6 +39,40 @@ namespace ModulesSample
                 .WriteTo.Trace(outputTemplate: "{Area}: {Message}")
                 .CreateLogger());
 #endif
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterInstance(CallbackLogger);
+            containerRegistry.RegisterSingleton<IModuleTracker, ModuleTracker>();
+        }
+
+        protected override IAvaloniaObject CreateShell()
+        {
+            return Container.Resolve<MainWindow>();
+        }
+
+        protected override IModuleCatalog CreateModuleCatalog()
+        {
+            return new AggregateModuleCatalog();
+        }
+
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+        {
+            moduleCatalog.AddModule(new ModuleInfo()
+            {
+                InitializationMode = InitializationMode.WhenAvailable,
+                ModuleName = KnownModuleNames.ModuleDummy,
+                ModuleType = typeof(DummyModule.DummyModule).AssemblyQualifiedName
+            });
+            moduleCatalog.AddModule(new ModuleInfo()
+            {
+                InitializationMode = InitializationMode.WhenAvailable,
+                ModuleName = KnownModuleNames.ModuleDummy2,
+                ModuleType = typeof(DummyModule2.DummyModule2).AssemblyQualifiedName
+            });
+
+            base.ConfigureModuleCatalog(moduleCatalog);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
 using CommonServiceLocator;
@@ -27,7 +28,7 @@ namespace Prism
         IContainerExtension _containerExtension;
         IModuleCatalog _moduleCatalog;
 
-        public Window MainWindow { get; private set; }
+        public IAvaloniaObject MainWindow { get; private set; }
 
         /// <summary>
         /// The dependency injection container used to resolve objects
@@ -82,6 +83,16 @@ namespace Prism
             }
 
             OnInitialized();
+        }
+
+        public override void OnFrameworkInitializationCompleted()
+        {
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
+                desktopLifetime.MainWindow = MainWindow as Window;
+            else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
+                singleViewLifetime.MainView = MainWindow as Control;
+
+            base.OnFrameworkInitializationCompleted();
         }
 
         /// <summary>
@@ -175,12 +186,12 @@ namespace Prism
         /// Creates the shell or main window of the application.
         /// </summary>
         /// <returns>The shell of the application.</returns>
-        protected abstract Window CreateShell();
+        protected abstract IAvaloniaObject CreateShell();
 
         /// <summary>
         /// Initializes the shell.
         /// </summary>
-        protected virtual void InitializeShell(Window shell)
+        protected virtual void InitializeShell(IAvaloniaObject shell)
         {
             MainWindow = shell;
         }
@@ -190,7 +201,7 @@ namespace Prism
         /// </summary>
         protected virtual void OnInitialized()
         {
-            MainWindow.Show();
+            (MainWindow as Window)?.Show();
         }
 
         /// <summary>

@@ -58,7 +58,7 @@ namespace ViewDiscovery
         {
         }
 
-        protected override Window CreateShell()
+        protected override IAvaloniaObject CreateShell()
         {
             return Container.Resolve<MainWindow>();
         }
