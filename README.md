@@ -30,7 +30,8 @@ Install-Package Prism.Autofac.Avalonia -Version 7.1.0.431
 
 ### How to use
 
-***App.xaml.cs:*
+** App.xaml.cs: **
+
 ```csharp
 public class App : PrismApplication
 {
@@ -77,7 +78,7 @@ public class App : PrismApplication
 }
 ```
 
-***Program.cs:*
+** Program.cs: **
 ```csharp
 public static class Program
 {
