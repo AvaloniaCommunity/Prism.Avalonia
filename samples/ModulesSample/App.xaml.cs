@@ -7,6 +7,12 @@ using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;
 using Serilog;
+using Avalonia.LinuxFramebuffer;
+using System.Linq;
+using System;
+using System.Globalization;
+using System.Threading;
+using Avalonia.Dialogs;
 
 namespace ModulesSample
 {
@@ -14,10 +20,25 @@ namespace ModulesSample
     {
         public CallbackLogger CallbackLogger { get; } = new CallbackLogger();
 
-        public static AppBuilder BuildAvaloniaApp() =>
-            AppBuilder
-                .Configure<App>()
-                .UsePlatformDetect();
+        public static AppBuilder BuildAvaloniaApp() => 
+            AppBuilder.Configure<App>()
+                .UsePlatformDetect()
+                .With(new X11PlatformOptions
+                {
+                    EnableMultiTouch = true,
+                    UseDBusMenu = true
+                })
+                .With(new Win32PlatformOptions
+                {
+                    EnableMultitouch = true,
+                    AllowEglInitialization = true
+                })
+                .UseSkia()
+                .UseManagedSystemDialogs();
+
+        public static bool IsSingleViewLifetime =>
+            Environment.GetCommandLineArgs()
+                .Any(a => a == "--fbdev" || a == "--drm");
 
         public override void Initialize()
         {
@@ -25,10 +46,42 @@ namespace ModulesSample
             base.Initialize();
         }
 
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
+            double GetScaling()
+            {
+                var idx = Array.IndexOf(args, "--scaling");
+                if (idx != 0 && args.Length > idx + 1 &&
+                    double.TryParse(args[idx + 1], NumberStyles.Any, CultureInfo.InvariantCulture, out var scaling))
+                    return scaling;
+                return 1;
+            }
+
+            var builder = BuildAvaloniaApp();
             InitializeLogging();
-            BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+            if (args.Contains("--fbdev"))
+            {
+                SilenceConsole();
+                return builder.StartLinuxFbDev(args, scaling: GetScaling());
+            }
+            else if (args.Contains("--drm"))
+            {
+                SilenceConsole();
+                return builder.StartLinuxDrm(args, scaling: GetScaling());
+            }
+            else
+                return builder.StartWithClassicDesktopLifetime(args);
+        }
+
+        static void SilenceConsole()
+        {
+            new Thread(() =>
+            {
+                Console.CursorVisible = false;
+                while (true)
+                    Console.ReadKey(true);
+            })
+            { IsBackground = true }.Start();
         }
 
         private static void InitializeLogging()
@@ -59,18 +112,8 @@ namespace ModulesSample
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            moduleCatalog.AddModule(new ModuleInfo()
-            {
-                InitializationMode = InitializationMode.WhenAvailable,
-                ModuleName = KnownModuleNames.ModuleDummy,
-                ModuleType = typeof(DummyModule.DummyModule).AssemblyQualifiedName
-            });
-            moduleCatalog.AddModule(new ModuleInfo()
-            {
-                InitializationMode = InitializationMode.WhenAvailable,
-                ModuleName = KnownModuleNames.ModuleDummy2,
-                ModuleType = typeof(DummyModule2.DummyModule2).AssemblyQualifiedName
-            });
+            moduleCatalog.AddModule<DummyModule.DummyModule>();
+            moduleCatalog.AddModule<DummyModule2.DummyModule2>();
 
             base.ConfigureModuleCatalog(moduleCatalog);
         }

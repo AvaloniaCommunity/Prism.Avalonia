@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="Serilog.Sinks.Trace" Version="2.1.0" />
     <PackageReference Include="Avalonia" Version="0.9.2" />
+    <PackageReference Include="Avalonia.LinuxFramebuffer" Version="0.9.2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
