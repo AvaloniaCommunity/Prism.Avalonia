@@ -4,6 +4,7 @@
 
   <Import Project="Base.props" />
   <Import Project="EmbedXaml.props" />
+  <Import Project="AvaloniaDependency.props" />
 
   <ItemGroup>
     <ProjectReference Include="$(MSBuildThisFileDirectory)..\src\Prism.DryIoc.Avalonia\Prism.DryIoc.Avalonia.csproj" />
@@ -11,8 +12,6 @@
   
   <ItemGroup>
     <PackageReference Include="Serilog.Sinks.Trace" Version="2.1.0" />
-    <PackageReference Include="Avalonia" Version="0.9.3" />
-    <PackageReference Include="Avalonia.LinuxFramebuffer" Version="0.9.3" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
