@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.DryIoc.Avalonia", "src\Prism.DryIoc.Avalonia\Prism.DryIoc.Avalonia.csproj", "{A379E2C8-BD9A-42A1-8218-CED3C0D75E64}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{70B9D432-E8BD-4EB9-9CA8-E63E2C804F3F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{5F8D330E-F611-4E17-8217-F2D6CDB8E1F7}"
 EndProject
