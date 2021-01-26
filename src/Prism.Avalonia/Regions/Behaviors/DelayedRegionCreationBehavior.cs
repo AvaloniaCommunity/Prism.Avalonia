@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows;
+using Avalonia.Threading;
 
 namespace Prism.Regions.Behaviors
 {
@@ -51,9 +52,9 @@ namespace Prism.Regions.Behaviors
         /// The element that will host the Region.
         /// </summary>
         /// <value>The target element.</value>
-        public AvaloniaObject TargetElement
+        public IAvaloniaObject TargetElement
         {
-            get { return this.elementWeakReference != null ? this.elementWeakReference.Target as AvaloniaObject : null; }
+            get { return this.elementWeakReference != null ? this.elementWeakReference.Target as IAvaloniaObject : null; }
             set { this.elementWeakReference = new WeakReference(value); }
         }
 
@@ -92,14 +93,14 @@ namespace Prism.Regions.Behaviors
 
         private void TryCreateRegion()
         {
-            AvaloniaObject targetElement = this.TargetElement;
+            IAvaloniaObject targetElement = this.TargetElement;
             if (targetElement == null)
             {
                 this.Detach();
                 return;
             }
 
-            if (targetElement.CheckAccess())
+            if (Dispatcher.UIThread.CheckAccess())
             {
                 this.Detach();
 
@@ -118,7 +119,7 @@ namespace Prism.Regions.Behaviors
         /// <param name="targetElement">The target element that will host the <see cref="IRegion"/>.</param>
         /// <param name="regionName">Name of the region.</param>
         /// <returns>The created <see cref="IRegion"/></returns>
-        protected virtual IRegion CreateRegion(AvaloniaObject targetElement, string regionName)
+        protected virtual IRegion CreateRegion(IAvaloniaObject targetElement, string regionName)
         {
             if (targetElement == null)
                 throw new ArgumentNullException(nameof(targetElement));

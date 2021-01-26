@@ -38,7 +38,7 @@ namespace Prism.Common
             set { this.SetValue(ValueProperty, value); }
         }
 
-        private static void ValueChangedCallback(AvaloniaObject d, AvaloniaPropertyChangedEventArgs e)
+        private static void ValueChangedCallback(IAvaloniaObject d, AvaloniaPropertyChangedEventArgs e)
         {
             ObservableObject<T> thisInstance = ((ObservableObject<T>)d);
             PropertyChangedEventHandler eventHandler = thisInstance.PropertyChanged;

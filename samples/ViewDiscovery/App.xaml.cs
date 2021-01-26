@@ -2,7 +2,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Diagnostics;
-using Avalonia.Logging.Serilog;
 using Avalonia.Themes.Default;
 using Avalonia.Markup.Xaml;
 using Serilog;
@@ -15,10 +14,16 @@ namespace ViewDiscovery
 {
     class App : PrismApplication
     {
-        public static AppBuilder BuildAvaloniaApp() =>
-            AppBuilder
+        public static AppBuilder BuildAvaloniaApp()
+        {
+            var builder = AppBuilder
                 .Configure<App>()
                 .UsePlatformDetect();
+#if DEBUG
+            builder.LogToTrace();
+#endif
+            return builder;
+        }
 
 
         public override void Initialize()
@@ -29,7 +34,6 @@ namespace ViewDiscovery
 
         static void Main(string[] args)
         {
-            InitializeLogging();
             BuildAvaloniaApp().Start(AppMain, args);
         }
 
@@ -41,17 +45,6 @@ namespace ViewDiscovery
 
             // Start the main loop
             app.Run(cts.Token);
-        }
-
-
-        private static void InitializeLogging()
-        {
-#if DEBUG
-            SerilogLogger.Initialize(new LoggerConfiguration()
-                .MinimumLevel.Warning()
-                .WriteTo.Trace(outputTemplate: "{Area}: {Message}")
-                .CreateLogger());
-#endif
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
