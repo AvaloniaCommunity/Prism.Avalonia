@@ -101,7 +101,7 @@ namespace Prism.Regions
             return regionWrapper;
         }
 
-        private static void OnSetRegionNameCallback(AvaloniaObject element, AvaloniaPropertyChangedEventArgs args)
+        private static void OnSetRegionNameCallback(IAvaloniaObject element, AvaloniaPropertyChangedEventArgs args)
         {
             if (!IsInDesignMode(element))
             {
@@ -109,7 +109,7 @@ namespace Prism.Regions
             }
         }
 
-        private static void CreateRegion(AvaloniaObject element)
+        private static void CreateRegion(IAvaloniaObject element)
         {
             IServiceLocator locator = ServiceLocator.Current;
             DelayedRegionCreationBehavior regionCreationBehavior = locator.GetInstance<DelayedRegionCreationBehavior>();
@@ -163,7 +163,7 @@ namespace Prism.Regions
         public static readonly AvaloniaProperty RegionContextProperty =
             AvaloniaProperty.RegisterAttached<AvaloniaObject, object>("RegionContext", typeof(RegionManager));
 
-        private static void OnRegionContextChanged(AvaloniaObject depObj, AvaloniaPropertyChangedEventArgs e)
+        private static void OnRegionContextChanged(IAvaloniaObject depObj, AvaloniaPropertyChangedEventArgs e)
         {
             if (RegionContext.GetObservableContext(depObj as Visual).Value != e.NewValue)
             {
@@ -230,7 +230,7 @@ namespace Prism.Regions
             }
         }
 
-        private static bool IsInDesignMode(AvaloniaObject element)
+        private static bool IsInDesignMode(IAvaloniaObject element)
         {
             return Design.IsDesignMode;
         }

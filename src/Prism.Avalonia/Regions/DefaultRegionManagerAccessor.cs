@@ -25,7 +25,7 @@ namespace Prism.Regions
         /// <param name="element">The object to adapt. This is typically a container (i.e a control).</param>
         /// <returns>The name of the region that should be created when
         /// the RegionManager is also set in this element.</returns>
-        public string GetRegionName(AvaloniaObject element)
+        public string GetRegionName(IAvaloniaObject element)
         {
             if (element == null)
                 throw new ArgumentNullException(nameof(element));
@@ -38,7 +38,7 @@ namespace Prism.Regions
         /// </summary>
         /// <param name="element">The target element.</param>
         /// <returns>The <see cref="IRegionManager"/> attached to the <paramref name="element"/> element.</returns>
-        public IRegionManager GetRegionManager(AvaloniaObject element)
+        public IRegionManager GetRegionManager(IAvaloniaObject element)
         {
             if (element == null)
                 throw new ArgumentNullException(nameof(element));

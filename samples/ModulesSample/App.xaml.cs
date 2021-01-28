@@ -1,5 +1,4 @@
 ﻿using Avalonia;
-using Avalonia.Logging.Serilog;
 using Avalonia.Markup.Xaml;
 using ModulesSample.Module_System_Logic;
 using Prism.Avalonia.Infrastructure;
@@ -20,8 +19,9 @@ namespace ModulesSample
     {
         public CallbackLogger CallbackLogger { get; } = new CallbackLogger();
 
-        public static AppBuilder BuildAvaloniaApp() => 
-            AppBuilder.Configure<App>()
+        public static AppBuilder BuildAvaloniaApp()
+        {
+            var builder = AppBuilder.Configure<App>()
                 .UsePlatformDetect()
                 .With(new X11PlatformOptions
                 {
@@ -35,6 +35,12 @@ namespace ModulesSample
                 })
                 .UseSkia()
                 .UseManagedSystemDialogs();
+
+#if DEBUG
+            builder.LogToTrace();
+#endif
+            return builder;
+        }
 
         public static bool IsSingleViewLifetime =>
             Environment.GetCommandLineArgs()
@@ -58,7 +64,6 @@ namespace ModulesSample
             }
 
             var builder = BuildAvaloniaApp();
-            InitializeLogging();
             if (args.Contains("--fbdev"))
             {
                 SilenceConsole();
@@ -82,16 +87,6 @@ namespace ModulesSample
                     Console.ReadKey(true);
             })
             { IsBackground = true }.Start();
-        }
-
-        private static void InitializeLogging()
-        {
-#if DEBUG
-            SerilogLogger.Initialize(new LoggerConfiguration()
-                .MinimumLevel.Warning()
-                .WriteTo.Trace(outputTemplate: "{Area}: {Message}")
-                .CreateLogger());
-#endif
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

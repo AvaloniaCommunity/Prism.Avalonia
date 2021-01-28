@@ -63,7 +63,7 @@ namespace Prism.Modularity
                 throw new ArgumentNullException(nameof(xamlStream));
             }
 
-            return new AvaloniaXamlLoader().Load(xamlStream, null) as ModuleCatalog;
+            return AvaloniaRuntimeXamlLoader.Load(xamlStream, null) as ModuleCatalog;
         }
 
         /// <summary>
@@ -74,8 +74,7 @@ namespace Prism.Modularity
         public static ModuleCatalog CreateFromXaml(Uri builderResourceUri)
         {
             // TODO: Not tested
-            var loader = new AvaloniaXamlLoader();
-            return loader.Load(builderResourceUri) as ModuleCatalog;
+            return AvaloniaXamlLoader.Load(builderResourceUri) as ModuleCatalog;
         }
     }
 }
