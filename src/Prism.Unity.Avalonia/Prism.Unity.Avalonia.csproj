@@ -21,6 +21,7 @@
     <PackageReference Update="Avalonia.Desktop" Version="0.10.6" />
     <PackageReference Update="Avalonia.LinuxFramebuffer" Version="0.10.6" />
     <PackageReference Update="Avalonia.Markup.Xaml.Loader" Version="0.10.6" />
+    <PackageReference Update="Prism.Core" Version="8.1.97" />
   </ItemGroup>
   
 </Project>
