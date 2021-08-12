@@ -1,14 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net5.0</TargetFrameworks>
   </PropertyGroup>
 
-  <Import Project="../../build/SampleApp.props"/>
+  <Import Project="../../build/SampleApp.props" />
 
   <ItemGroup>
     <ProjectReference Include="..\DummyModule2\DummyModule2.csproj" />
     <ProjectReference Include="..\DummyModule\DummyModule.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Avalonia" Version="0.10.6" />
+    <PackageReference Update="Avalonia.Desktop" Version="0.10.6" />
+    <PackageReference Update="Avalonia.Diagnostics" Version="0.10.6" />
+    <PackageReference Update="Avalonia.LinuxFramebuffer" Version="0.10.6" />
+    <PackageReference Update="Avalonia.Markup.Xaml.Loader" Version="0.10.6" />
   </ItemGroup>
 
 </Project>

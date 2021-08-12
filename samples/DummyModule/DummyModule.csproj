@@ -8,6 +8,14 @@
     <ProjectReference Include="..\ModulesSample.Infrastructure\ModulesSample.Infrastructure.csproj" />
   </ItemGroup>
 
-  <Import Project="../../build/SampleApp.props"/>
+  <Import Project="../../build/SampleApp.props" />
+
+  <ItemGroup>
+    <PackageReference Update="Avalonia" Version="0.10.6" />
+    <PackageReference Update="Avalonia.Desktop" Version="0.10.6" />
+    <PackageReference Update="Avalonia.Diagnostics" Version="0.10.6" />
+    <PackageReference Update="Avalonia.LinuxFramebuffer" Version="0.10.6" />
+    <PackageReference Update="Avalonia.Markup.Xaml.Loader" Version="0.10.6" />
+  </ItemGroup>
 
 </Project>
