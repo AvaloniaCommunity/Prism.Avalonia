@@ -3,7 +3,7 @@
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <ItemGroup>
-    <PackageReference Include="Prism.Core" Version="7.2.0.1422" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
   </ItemGroup>
   
 </Project>

@@ -10,12 +10,4 @@
     <ProjectReference Include="..\..\src\Prism.Avalonia\Prism.Avalonia.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Update="Avalonia" Version="0.10.6" />
-    <PackageReference Update="Avalonia.Desktop" Version="0.10.6" />
-    <PackageReference Update="Avalonia.Diagnostics" Version="0.10.6" />
-    <PackageReference Update="Avalonia.LinuxFramebuffer" Version="0.10.6" />
-    <PackageReference Update="Avalonia.Markup.Xaml.Loader" Version="0.10.6" />
-  </ItemGroup>
-
 </Project>
