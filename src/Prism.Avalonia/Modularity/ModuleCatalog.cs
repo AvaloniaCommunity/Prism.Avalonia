@@ -1,10 +1,8 @@
-using Avalonia.Markup.Xaml;
-using Avalonia.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using Avalonia.Markup.Xaml.MarkupExtensions.CompiledBindings;
+using Avalonia.Metadata;
 
 namespace Prism.Modularity
 {
@@ -25,16 +23,14 @@ namespace Prism.Modularity
     /// </list>
     /// The <see cref="ModuleCatalog"/> also serves as a baseclass for more specialized Catalogs .
     /// </summary>
-    ////[Portable.Xaml.Markup.ContentProperty("Items")]  // TODO: From package, Portable.Xaml.
-    ////[ContentProperty("Items")]  // TODO: Using System.Windows.Markup
+    ////[ContentProperty("Items")]  // Avalonia does use, System.Windows.Markup. See property `Items` below.
     public class ModuleCatalog : ModuleCatalogBase, IModuleGroupsCatalog
     {
-        /// <summary>
+        // <summary>
         /// Initializes a new instance of the <see cref="ModuleCatalog"/> class.
         /// </summary>
         public ModuleCatalog() : base()
         {
-         
         }
 
         /// <summary>
@@ -51,33 +47,23 @@ namespace Prism.Modularity
         //     Gets the items in the Prism.Modularity.IModuleCatalog. This property is mainly
         //     used to add Prism.Modularity.IModuleInfoGroups or Prism.Modularity.IModuleInfos
         //     through XAML.
-        [Content] 
+        [Content]
         public new Collection<IModuleCatalogItem> Items => base.Items;
 
         /// <summary>
-        /// Creates a <see cref="ModuleCatalog"/> from XAML.
+        /// Creates a valid file uri to locate the module assembly file
         /// </summary>
-        /// <param name="xamlStream"><see cref="Stream"/> that contains the XAML declaration of the catalog.</param>
-        /// <returns>An instance of <see cref="ModuleCatalog"/> built from the XAML.</returns>
-        public static ModuleCatalog CreateFromXaml(Stream xamlStream)
+        /// <param name="filePath">The relative path to the file</param>
+        /// <returns>The valid absolute file path</returns>
+        protected virtual string GetFileAbsoluteUri(string filePath)
         {
-            if (xamlStream == null)
-            {
-                throw new ArgumentNullException(nameof(xamlStream));
-            }
+            UriBuilder uriBuilder = new UriBuilder();
+            uriBuilder.Host = String.Empty;
+            uriBuilder.Scheme = Uri.UriSchemeFile;
+            uriBuilder.Path = Path.GetFullPath(filePath);
+            Uri fileUri = uriBuilder.Uri;
 
-            return AvaloniaRuntimeXamlLoader.Load(xamlStream, null) as ModuleCatalog;
-        }
-
-        /// <summary>
-        /// Creates a <see cref="ModuleCatalog"/> from a XAML included as an Application Resource.
-        /// </summary>
-        /// <param name="builderResourceUri">Relative <see cref="Uri"/> that identifies the XAML included as an Application Resource.</param>
-        /// <returns>An instance of <see cref="ModuleCatalog"/> build from the XAML.</returns>
-        public static ModuleCatalog CreateFromXaml(Uri builderResourceUri)
-        {
-            // TODO: Not tested
-            return AvaloniaXamlLoader.Load(builderResourceUri) as ModuleCatalog;
+            return fileUri.ToString();
         }
     }
 }
