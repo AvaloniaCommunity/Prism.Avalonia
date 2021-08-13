@@ -15,5 +15,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Prism.Avalonia\Prism.Avalonia.csproj" />
   </ItemGroup>
-  
+
 </Project>

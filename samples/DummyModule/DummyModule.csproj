@@ -8,6 +8,6 @@
     <ProjectReference Include="..\ModulesSample.Infrastructure\ModulesSample.Infrastructure.csproj" />
   </ItemGroup>
 
-  <Import Project="../../build/SampleApp.props"/>
+  <Import Project="../../build/SampleApp.props" />
 
 </Project>
