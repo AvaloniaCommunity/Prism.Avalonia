@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using Avalonia.Markup.Xaml.MarkupExtensions.CompiledBindings;
 
 namespace Prism.Modularity
 {
@@ -24,6 +25,8 @@ namespace Prism.Modularity
     /// </list>
     /// The <see cref="ModuleCatalog"/> also serves as a baseclass for more specialized Catalogs .
     /// </summary>
+    ////[Portable.Xaml.Markup.ContentProperty("Items")]  // TODO: From package, Portable.Xaml.
+    ////[ContentProperty("Items")]  // TODO: Using System.Windows.Markup
     public class ModuleCatalog : ModuleCatalogBase, IModuleGroupsCatalog
     {
         /// <summary>

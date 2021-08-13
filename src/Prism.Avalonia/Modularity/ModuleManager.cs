@@ -1,11 +1,8 @@
-
-
-using Prism.Logging;
-using Prism.Properties;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Prism.Properties;
 
 namespace Prism.Modularity
 {
@@ -26,13 +23,18 @@ namespace Prism.Modularity
         public ModuleManager(IModuleInitializer moduleInitializer, IModuleCatalog moduleCatalog)
         {
             this.moduleInitializer = moduleInitializer ?? throw new ArgumentNullException(nameof(moduleInitializer));
-            this.ModuleCatalog = moduleCatalog ?? throw new ArgumentNullException(nameof(moduleCatalog));
+            ModuleCatalog = moduleCatalog ?? throw new ArgumentNullException(nameof(moduleCatalog));
         }
 
         /// <summary>
         /// The module catalog specified in the constructor.
         /// </summary>
         protected IModuleCatalog ModuleCatalog { get; }
+
+        /// <summary>
+        /// Gets all the <see cref="IModuleInfo"/> classes that are in the <see cref="IModuleCatalog"/>.
+        /// </summary>
+        public IEnumerable<IModuleInfo> Modules => ModuleCatalog.Modules;
 
         /// <summary>
         /// Raised repeatedly to provide progress as modules are loaded in the background.
@@ -71,7 +73,7 @@ namespace Prism.Modularity
 
 
         /// <summary>
-        /// Loads and initializes the module on the <see cref="ModuleCatalog"/> with the name <paramref name="moduleName"/>.
+        /// Loads and initializes the module on the <see cref="IModuleCatalog"/> with the name <paramref name="moduleName"/>.
         /// </summary>
         /// <param name="moduleName">Name of the module requested for initialization.</param>
         public void LoadModule(string moduleName)
@@ -149,7 +151,7 @@ namespace Prism.Modularity
         }
 
         /// <summary>
-        /// Loads the modules that are not intialized and have their dependencies loaded.
+        /// Loads the modules that are not initialized and have their dependencies loaded.
         /// </summary>
         protected virtual void LoadModulesThatAreReadyForLoad()
         {
@@ -178,7 +180,7 @@ namespace Prism.Modularity
             IModuleTypeLoader moduleTypeLoader = this.GetTypeLoaderForModule(moduleInfoToLoadType);
             moduleInfoToLoadType.State = ModuleState.LoadingTypes;
 
-            // Delegate += works differently betweem SL and WPF.
+            // Delegate += works differently between SL and WPF.
             // We only want to subscribe to each instance once.
             if (!this.subscribedToModuleTypeLoaders.Contains(moduleTypeLoader))
             {
@@ -223,10 +225,10 @@ namespace Prism.Modularity
 
         /// <summary>
         /// Handles any exception occurred in the module typeloading process,
-        /// logs the error using the <see cref="ILoggerFacade"/> and throws a <see cref="ModuleTypeLoadingException"/>.
+        /// and throws a <see cref="ModuleTypeLoadingException"/>.
         /// This method can be overridden to provide a different behavior.
         /// </summary>
-        /// <param name="moduleInfo">The module metadata where the error happenened.</param>
+        /// <param name="moduleInfo">The module metadata where the error happened.</param>
         /// <param name="exception">The exception thrown that is the cause of the current error.</param>
         /// <exception cref="ModuleTypeLoadingException"></exception>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "1")]
