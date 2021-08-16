@@ -1,37 +1,36 @@
-﻿using CommonServiceLocator;
+﻿using System;
 using DryIoc;
-using Prism.DryIoc.Ioc;
 using Prism.Ioc;
 using Prism.Regions;
-using System;
 
 namespace Prism.DryIoc
 {
+    /// <summary>
+    /// Base application class that uses <see cref="DryIocContainerExtension"/> as it's container.
+    /// </summary>
     public abstract class PrismApplication : PrismApplicationBase
     {
         /// <summary>
         /// Create <see cref="Rules" /> to alter behavior of <see cref="IContainer" />
         /// </summary>
         /// <returns>An instance of <see cref="Rules" /></returns>
-        protected virtual Rules CreateContainerRules() => Rules.Default.WithAutoConcreteTypeResolution()
-                                                                       .With(Made.Of(FactoryMethod.ConstructorWithResolvableArguments))
-                                                                       .WithDefaultIfAlreadyRegistered(IfAlreadyRegistered.Replace);
+        protected virtual Rules CreateContainerRules() => DryIocContainerExtension.DefaultRules;
 
+        /// <summary>
+        /// Create a new <see cref="DryIocContainerExtension"/> used by Prism.
+        /// </summary>
+        /// <returns>A new <see cref="DryIocContainerExtension"/>.</returns>
         protected override IContainerExtension CreateContainerExtension()
         {
             return new DryIocContainerExtension(new Container(CreateContainerRules()));
         }
 
-        protected override void RegisterRequiredTypes(IContainerRegistry containerRegistry)
-        {
-            base.RegisterRequiredTypes(containerRegistry);
-            containerRegistry.RegisterSingleton<IRegionNavigationContentLoader, RegionNavigationContentLoader>();
-            containerRegistry.RegisterSingleton<IServiceLocator, DryIocServiceLocatorAdapter>();
-        }
-
+        /// <summary>
+        /// Registers the <see cref="Type"/>s of the Exceptions that are not considered 
+        /// root exceptions by the <see cref="ExceptionExtensions"/>.
+        /// </summary>
         protected override void RegisterFrameworkExceptionTypes()
         {
-            base.RegisterFrameworkExceptionTypes();
             ExceptionExtensions.RegisterFrameworkExceptionType(typeof(ContainerException));
         }
     }

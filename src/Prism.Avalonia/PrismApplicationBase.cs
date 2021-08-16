@@ -6,7 +6,6 @@ using Avalonia.Styling;
 using CommonServiceLocator;
 using Prism.Events;
 using Prism.Ioc;
-using Prism.Logging;
 using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -35,54 +34,32 @@ namespace Prism
         /// </summary>
         public IContainerProvider Container => _containerExtension;
 
+        /////// <summary>
+        /////// Raises the System.Windows.Application.Startup event.
+        /////// </summary>
+        /////// <param name="e">A System.Windows.StartupEventArgs that contains the event data.</param>
+        ////protected override void OnStartup(StartupEventArgs e)
+        ////{
+        ////    base.OnStartup(e);
+        ////    InitializeInternal();
+        ////}
+
+        /// <summary>
+        /// Run the initialization process.
+        /// </summary>
+        void InitializeInternal()
+        {
+            ConfigureViewModelLocator();
+            Initialize();
+            OnInitialized();
+        }
+
         /// <summary>
         /// Configures the <see cref="Prism.Mvvm.ViewModelLocator"/> used by Prism.
         /// </summary>
         protected virtual void ConfigureViewModelLocator()
         {
-            ViewModelLocationProvider.SetDefaultViewModelFactory((view, type) =>
-            {
-                return Container.Resolve(type);
-            });
-        }
-
-        /// <summary>
-        /// Runs the initialization sequence to configure the Prism application.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-
-            ConfigureViewModelLocator();
-            
-            _containerExtension = CreateContainerExtension();
-            _moduleCatalog = CreateModuleCatalog();
-            RegisterRequiredTypes(_containerExtension);
-            RegisterTypes(_containerExtension);
-            _containerExtension.FinalizeExtension();
-
-            ConfigureServiceLocator();
-
-            ConfigureModuleCatalog(_moduleCatalog);
-
-            var regionAdapterMappins = _containerExtension.Resolve<RegionAdapterMappings>();
-            ConfigureRegionAdapterMappings(regionAdapterMappins);
-
-            var defaultRegionBehaviors = _containerExtension.Resolve<IRegionBehaviorFactory>();
-            ConfigureDefaultRegionBehaviors(defaultRegionBehaviors);
-
-            RegisterFrameworkExceptionTypes();
-
-            var shell = CreateShell();
-            if (shell != null)
-            {
-                RegionManager.SetRegionManager(shell, _containerExtension.Resolve<IRegionManager>());
-                RegionManager.UpdateRegions();
-                InitializeShell(shell);
-                InitializeModules();
-            }
-
-            OnInitialized();
+            PrismInitializationExtensions.ConfigureViewModelLocator();
         }
 
         public override void OnFrameworkInitializationCompleted()
