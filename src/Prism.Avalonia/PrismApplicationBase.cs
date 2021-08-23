@@ -12,7 +12,7 @@ using Prism.Regions;
 using Prism.Regions.Behaviors;
 using System;
 using System.Linq;
-using System.Windows;
+//using System.Windows;
 
 namespace Prism
 {

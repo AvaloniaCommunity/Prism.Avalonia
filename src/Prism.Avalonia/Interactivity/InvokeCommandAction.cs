@@ -1,6 +1,8 @@
 using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
+using Avalonia;
+using Avalonia.Controls;
 using Microsoft.Xaml.Behaviors;
 
 namespace Prism.Interactivity
@@ -9,15 +11,15 @@ namespace Prism.Interactivity
     /// Trigger action that executes a command when invoked. 
     /// It also maintains the Enabled state of the target control based on the CanExecute method of the command.
     /// </summary>
-    public class InvokeCommandAction : TriggerAction<UIElement>
+    public class InvokeCommandAction : TriggerAction<Control>
     {
         private ExecutableCommandBehavior _commandBehavior;
 
         /// <summary>
         /// Dependency property identifying if the associated element should automatically be enabled or disabled based on the result of the Command's CanExecute
         /// </summary>
-        public static readonly DependencyProperty AutoEnableProperty =
-            DependencyProperty.Register("AutoEnable", typeof(bool), typeof(InvokeCommandAction),
+        public static readonly StyledProperty AutoEnableProperty =
+            StyledProperty.Register("AutoEnable", typeof(bool), typeof(InvokeCommandAction),
                 new PropertyMetadata(true, (d, e) => ((InvokeCommandAction)d).OnAllowDisableChanged((bool)e.NewValue)));
 
         /// <summary>
@@ -39,8 +41,8 @@ namespace Prism.Interactivity
         /// <summary>
         /// Dependency property identifying the command to execute when invoked.
         /// </summary>
-        public static readonly DependencyProperty CommandProperty =
-            DependencyProperty.Register("Command", typeof(ICommand), typeof(InvokeCommandAction),
+        public static readonly StyledProperty CommandProperty =
+            StyledProperty.Register("Command", typeof(ICommand), typeof(InvokeCommandAction),
                 new PropertyMetadata(null, (d, e) => ((InvokeCommandAction)d).OnCommandChanged((ICommand)e.NewValue)));
 
         /// <summary>
@@ -62,8 +64,8 @@ namespace Prism.Interactivity
         /// <summary>
         /// Dependency property identifying the command parameter to supply on command execution.
         /// </summary>
-        public static readonly DependencyProperty CommandParameterProperty =
-            DependencyProperty.Register("CommandParameter", typeof(object), typeof(InvokeCommandAction),
+        public static readonly StyledProperty CommandParameterProperty =
+            StyledProperty.Register("CommandParameter", typeof(object), typeof(InvokeCommandAction),
                 new PropertyMetadata(null, (d, e) => ((InvokeCommandAction)d).OnCommandParameterChanged(e.NewValue)));
 
         /// <summary>
@@ -85,8 +87,8 @@ namespace Prism.Interactivity
         /// <summary>
         /// Dependency property identifying the TriggerParameterPath to be parsed to identify the child property of the trigger parameter to be used as the command parameter.
         /// </summary>
-        public static readonly DependencyProperty TriggerParameterPathProperty =
-            DependencyProperty.Register("TriggerParameterPath", typeof(string), typeof(InvokeCommandAction),
+        public static readonly StyledProperty TriggerParameterPathProperty =
+            StyledProperty.Register("TriggerParameterPath", typeof(string), typeof(InvokeCommandAction),
                 new PropertyMetadata(null, (d, e) => { }));
 
         /// <summary>
@@ -186,13 +188,13 @@ namespace Prism.Interactivity
         /// It is not possible to make the <see cref="InvokeCommandAction"/> inherit from <see cref="CommandBehaviorBase{T}"/>, since the <see cref="InvokeCommandAction"/>
         /// must already inherit from <see cref="TriggerAction{T}"/>, so we chose to follow the aggregation approach.
         /// </summary>
-        private class ExecutableCommandBehavior : CommandBehaviorBase<UIElement>
+        private class ExecutableCommandBehavior : CommandBehaviorBase<Control>
         {
             /// <summary>
             /// Constructor specifying the target object.
             /// </summary>
             /// <param name="target">The target object the behavior is attached to.</param>
-            public ExecutableCommandBehavior(UIElement target)
+            public ExecutableCommandBehavior(Control target)
                 : base(target)
             {
             }
