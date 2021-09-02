@@ -12,7 +12,7 @@
   
   <ItemGroup>
     <PackageReference Include="Serilog.Sinks.Trace" Version="2.1.0" />
-    <PackageReference Include="Avalonia.Diagnostics" Version="0.10.6" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="0.10.7" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
