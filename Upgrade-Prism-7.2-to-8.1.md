@@ -87,8 +87,10 @@
 | Properties\Settings.settings                                | :white_square_button:
 | Regions\Behaviors\AutoPopulateRegionBehavior.cs                 | :white_square_button:
 | Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs  | :white_square_button:
+| Regions\Behaviors\BindRegionContextToDependencyObjectBehavior.cs | :white_square_button: :warning: | Missing!
 | Regions\Behaviors\ClearChildViewsRegionBehavior.cs              | :white_square_button:
 | Regions\Behaviors\DelayedRegionCreationBehavior.cs              | :white_square_button:
+| Regions\Behaviors\DestructibleRegionBehavior.cs                 | :white_square_button: :warning: | Missing!
 | Regions\Behaviors\IHostAwareRegionBehavior.cs                   | :white_square_button:
 | Regions\Behaviors\RegionActiveAwareBehavior.cs                  | :white_square_button:
 | Regions\Behaviors\RegionCreationException.Desktop.cs            | :white_square_button:
