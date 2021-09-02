@@ -82,11 +82,11 @@
 | Modularity\ModulesConfigurationSection.Desktop.cs           | :white_square_button:
 | Modularity\XamlModuleCatalog.cs                             | :new: :warning: | Whats the Avalonia `XamlReader` equivilant?
 | Mvvm\ViewModuleLocator.cs                                   | :heavy_check_mark:
-| Properties\AssemblyInfo                                     | :white_square_button:
-| Properties\Resources.Designer.cs                            | :white_square_button:
-| Properties\Resources.resx                                   | :white_square_button:
-| Properties\Settings.Designer.cs                             | :white_square_button:
-| Properties\Settings.settings                                | :white_square_button:
+| Properties\AssemblyInfo                                     | :heavy_check_mark:
+| Properties\Resources.Designer.cs                            | :heavy_check_mark:
+| Properties\Resources.resx                                   | :heavy_check_mark:
+| Properties\Settings.Designer.cs                             | :heavy_check_mark:
+| Properties\Settings.settings                                | :heavy_check_mark:
 | Regions\Behaviors\AutoPopulateRegionBehavior.cs                 | :white_square_button:
 | Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs  | :white_square_button:
 | Regions\Behaviors\BindRegionContextToDependencyObjectBehavior.cs | :white_square_button: :warning: | Missing!
@@ -226,3 +226,4 @@ Containers is a :new: Folder
 | System.Windows.Markup.MarkupExtension | Avalonia.Markup.Xaml.MarkupExtension | [Reference](http://reference.avaloniaui.net/api/Avalonia.Markup.Xaml/MarkupExtension/)
 | System.Windows.Markup.ContentPropertyAttribute.ContentProperty | Avalonia.Metadata.Content
 | System.Windows.Markup | Avalonia.Markup.Xaml
+| System.Windows.Markup.XmlnsDefinition | Avalonia.Metadata.XmlnsDefinition
