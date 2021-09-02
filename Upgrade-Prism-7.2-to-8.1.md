@@ -2,11 +2,12 @@
 
 | Icon | Text | Description |
 |------|------|-------------|
-| ⚠️ | `:warning:` | Pending
 | 🔳 | `:white_square_button:` | Underway
-| ✔️ | `:heavy_check_mark:` | Done
-| 💔 | `:broken_heart:` | Never implemented in this platform
+| ✔️ | `:heavy_check_mark:` | Updated
+| 🆕 | `:new:` | New
 | ❌ | `:x:` | Removed
+| ⚠️ | `:warning:` | Pending
+| 💔 | `:broken_heart:` | Never implemented in this platform
 
 [Icon Reference](https://github.com/markdown-templates/markdown-emojis)
 
@@ -23,13 +24,19 @@
 
 ## Upgrade Progress
 
+| File                                | Status  |  Notes |
+|-------------------------------------|---------|--------|
+| Readme.md                           | :warning: | Needs updated to match 8.1.x NuGet package version
+
 ### Prism.Avalonia
 
-| File                                | Status |  Notes |
-|-------------------------------------|--------|--------|
+| File                                | Status  |  Notes |
+|-------------------------------------|---------|--------|
+| Prism.Avalonia.csproj               | :heavy_check_mark: | Added `netcore` and `net45` targeting conditions, as per PrismLibrary v8.1.x
 | PrismApplicationBase.cs             | :heavy_check_mark:
-| Bootstrapper.cs                     | :heavy_check_mark: | Renamed to `PrismBootstrapperBase.cs`
-| PrismBootstrapperBase.cs            | :heavy_check_mark: | Replaces `Boostrapper.cs`
+| Bootstrapper.cs                     | :x:     | Renamed to `PrismBootstrapperBase.cs`
+| PrismBootstrapperBase.cs            | :new: :heavy_check_mark: | Replaces `Boostrapper.cs`
+| PrismInitializationExtensions.cs    | :new: | All of the Register container, Behavior, and Adapter goodies.
 | Common\MvvmHelpers.cs               | :white_square_button:
 | Common\ObservableObject.cs          | :white_square_button:
 | Common\UriParsingHelper.cs          | :white_square_button:
@@ -37,33 +44,38 @@
 | Extensions\CollectionExtensions.cs      | :white_square_button:
 | Extensions\ExceptionExtension.cs        | :white_square_button:
 | Extensions\ServiceLocationExtension.cs  | :white_square_button:
-| Ioc\IConainterRegistryExtension.cs      | :white_square_button:
-| Logging\TextLogger.cs                   | :x:
-| Logging\TraceLogger.cs                  | :x:
+| Interactivity\CommandBehaviorBase.cs    | :new: :warning: | May require Avalonia switch
+| Interactivity\InvokeCommandAction.cs    | :new:
+| Ioc\ContainerProviderExtension.cs       | :new:
+| Ioc\IContainerRegistryExtensions.cs     | :white_square_button:
+| Logging\TextLogger.cs                   | :x: | Removed from Prism
+| Logging\TraceLogger.cs                  | :x: | Removed from Prism
 | Modularity\AssemblyResolver.Desktop.cs                      | :white_square_button:
 | Modularity\ConfigurationModuleCatalog.Desktop.cs            | :white_square_button:
 | Modularity\ConfigurationStore.Desktop.cs                    | :white_square_button:
-| Modularity\DirectoryModuleCatalog.Desktop.cs                | :white_square_button:
+| Modularity\DirectoryModuleCatalog.Desktop.cs                | :x: | Replaced by `.net45` and `.netcore` specific implimentations
+| Modularity\DirectoryModuleCatalog.net45.cs                  | :new: |
+| Modularity\DirectoryModuleCatalog.netcore.cs                | :new: |
 | Modularity\FileModuleTypeLoader.Desktop.cs                  | :white_square_button:
 | Modularity\IAssemblyResolver.Desktop.cs                     | :white_square_button:
 | Modularity\IConfigurationStore.Desktop.cs                   | :white_square_button:
 | Modularity\IModuleCatalogExtensions.cs                      | :white_square_button:
-| Modularity\IModuleGroupsCatalog.cs                          | :white_square_button:
+| Modularity\IModuleGroupsCatalog.cs                          | :heavy_check_mark:
 | Modularity\IModuleTypeLoader.cs                             | :white_square_button:
 | Modularity\ModuleAttribute.Desktop.cs                       | :white_square_button:
-| Modularity\ModuleCatalog.cs                                 | :white_square_button:
+| Modularity\ModuleCatalog.cs                                 | :heavy_check_mark:
 | Modularity\ModuleConfigurationElement.Desktop.cs            | :white_square_button:
 | Modularity\ModuleConfigurationElementCollection.Desktop.cs  | :white_square_button:
 | Modularity\ModuleDependencyCollection.Desktop.cs            | :white_square_button:
 | Modularity\ModuleDependencyConfigurationElement.Desktop.cs  | :white_square_button:
-| Modularity\ModuleDownloadProgressChangedEventArgs.cs        | :white_square_button:
+| Modularity\ModuleDownloadProgressChangedEventArgs.cs        | :x: |
 | Modularity\ModuleInfo.Desktop.cs                            | :white_square_button:
 | Modularity\ModuleInfo.cs                                    | :white_square_button:
 | Modularity\ModuleInfoGroup.cs                               | :white_square_button:
 | Modularity\ModuleInfoGroupExtensions.cs                     | :white_square_button:
 | Modularity\ModuleInitializer.cs                             | :white_square_button:
+| Modularity\ModuleManager.cs                                 | :heavy_check_mark:
 | Modularity\ModuleManager.Desktop.cs                         | :white_square_button:
-| Modularity\ModuleManager.cs                                 | :white_square_button:
 | Modularity\ModulesConfigurationSection.Desktop.cs           | :white_square_button:
 | Mvvm\ViewModuleLocator.cs         | :white_square_button:
 | Properties\AssemblyInfo           | :white_square_button:
@@ -137,13 +149,43 @@
 | Regions\ViewRegistrationException.cs          | :white_square_button:
 | Regions\ViewSortHintAttribute.cs              | :white_square_button:
 | Regions\ViewsCollection.cs                    | :white_square_button:
+| Services\Dialogs\ButtonResult.cs              | :new: | New to Prism v8.1
+| Services\Dialogs\Dialog.cs                    | :new: | New to Prism v8.1
+| Services\Dialogs\DialogParameters.cs          | :new: | New to Prism v8.1
+| Services\Dialogs\DialogResult.cs              | :new: | New to Prism v8.1
+| Services\Dialogs\DialogService.cs             | :new: | New to Prism v8.1
+| Services\Dialogs\DialogWindow.xaml            | :new: | New to Prism v8.1
+| Services\Dialogs\DialogWindow.xaml.cs         | :new: | New to Prism v8.1
+| Services\Dialogs\IDialogAware.cs              | :new: | New to Prism v8.1
+| Services\Dialogs\IDialogParameters.cs         | :new: | New to Prism v8.1
+| Services\Dialogs\IDialogResult.cs             | :new: | New to Prism v8.1
+| Services\Dialogs\IDialogService.cs            | :new: | New to Prism v8.1
+| Services\Dialogs\IDialogServiceExtensions.cs  | :new: | New to Prism v8.1
+| Services\Dialogs\IDialogWindow.cs             | :new: | New to Prism v8.1
+| Services\Dialogs\IDialogWindowExtensions.cs   | :new: | New to Prism v8.1
+
+
+### Containers
+
+Containers is a :new: Folder
+
+| File                                | Status  |  Notes |
+|-------------------------------------|---------|--------|
+| Containers\Prism.DryIoc.Shared\DryIocContainerExtension.cs    | :new:
+| Containers\Prism.DryIoc.Shared\Prism.DryIoc.Shared.projitems  | :new:
+| Containers\Prism.DryIoc.Shared\Prism.DryIoc.Shared.shproj     | :new:
+| Containers\Prism.DryIoc.Shared\PrismIocExtensions.cs          | :new:
+| Containers\Prism.Unity.Shared\Prism.Unity.Shared.projitems    | :new:
+| Containers\Prism.Unity.Shared\Prism.Unity.Shared.shproj       | :new:
+| Containers\Prism.Unity.Shared\PrismIocExntensions.cs          | :new:
+| Containers\Prism.Unity.Shared\UnityContainerExtension.cs      | :new:
 
 ### Prism.DryIoc
 
-| File                                | Status |  Notes |
-|-------------------------------------|--------|--------|
+| File                                | Status  |  Notes |
+|-------------------------------------|---------|--------|
 | Ioc\DryIocContainerExtension.cs     | :white_square_button:
-| Ioc\PrismIocExtensions.cs           | :white_square_button:
+| Ioc\PrismIocExtensions.cs           | :heavy_check_mark:  | New
 | Legacy\DryIocBootstrapper.cs        | :white_square_button:
 | Legacy\DryIocExtensions.cs          | :white_square_button:
 | Properties\Resources.Designer.resx  | :white_square_button:
@@ -154,8 +196,8 @@
 
 ### Prism.Unity
 
-| File                                          | Status |  Notes |
-|-----------------------------------------------|--------|--------|
+| File                                          | Status  |  Notes |
+|-----------------------------------------------|---------|--------|
 | Ioc\PrismIocExtensions.cs                     | :white_square_button:
 | Ioc\UnityContainerExtension.cs                | :white_square_button:
 | Legacy\UnityBootstrapper.cs                   | :white_square_button:
