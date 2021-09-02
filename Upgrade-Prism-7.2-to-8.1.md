@@ -36,49 +36,51 @@
 |-------------------------------------|---------|--------|
 | Prism.Avalonia.csproj               | :heavy_check_mark: | Added `netcore` and `net45` targeting conditions, as per PrismLibrary v8.1.x
 | PrismApplicationBase.cs             | :warning: | In-progress; Needs upgraded to Avalonia
-| Bootstrapper.cs                     | :x:     | Renamed to `PrismBootstrapperBase.cs`
+| Bootstrapper.cs                     | :heavy_check_mark: :x:     | Renamed to `PrismBootstrapperBase.cs`
 | PrismBootstrapperBase.cs            | :new: :heavy_check_mark: | Replaces `Boostrapper.cs`
 | PrismInitializationExtensions.cs    | :new: | All of the Register container, Behavior, and Adapter goodies.
 | Common\MvvmHelpers.cs               | :heavy_check_mark:
-| Common\ObservableObject.cs          | :white_square_button:
-| Common\UriParsingHelper.cs          | :white_square_button:
-| Events\WeakDelegatesManager.cs      | :white_square_button:
-| Extensions\CollectionExtensions.cs      | :white_square_button:
-| Extensions\ExceptionExtension.cs        | :white_square_button:
-| Extensions\ServiceLocationExtension.cs  | :white_square_button:
-| Interactivity\CommandBehaviorBase.cs    | :new: :warning: | Requires multiplatform switch
-| Interactivity\InvokeCommandAction.cs    | :new: :warning: | Has **ERRORS**; Needs converted to Avalonia
-| Ioc\ContainerProviderExtension.cs       | :new: :warning: | Has **ERRORS**; `MarkupExtension` needs converted to Avalonia
-| Ioc\IContainerRegistryExtensions.cs     | :white_square_button:
-| Logging\TextLogger.cs                   | :x: | Removed from Prism
-| Logging\TraceLogger.cs                  | :x: | Removed from Prism
-| Modularity\AssemblyResolver.Desktop.cs                      | :white_square_button:
-| Modularity\ConfigurationModuleCatalog.Desktop.cs            | :white_square_button:
-| Modularity\ConfigurationStore.Desktop.cs                    | :white_square_button:
-| Modularity\DirectoryModuleCatalog.Desktop.cs                | :x: | Replaced by `.net45` and `.netcore` specific implimentations
-| Modularity\DirectoryModuleCatalog.net45.cs                  | :new: |
-| Modularity\DirectoryModuleCatalog.netcore.cs                | :new: |
-| Modularity\FileModuleTypeLoader.Desktop.cs                  | :white_square_button:
-| Modularity\IAssemblyResolver.Desktop.cs                     | :white_square_button:
-| Modularity\IConfigurationStore.Desktop.cs                   | :white_square_button:
-| Modularity\IModuleCatalogExtensions.cs                      | :white_square_button:
+| Common\ObservableObject.cs          | :white_square_button: :warning: | Needs Avalonia expert
+| Common\UriParsingHelper.cs          | :heavy_check_mark:
+| Events\WeakDelegatesManager.cs      | :heavy_check_mark: :x: | It's apart of `Prism.Events`
+| Extensions\CollectionExtensions.cs        | :heavy_check_mark:
+| Extensions\DependencyObjectExtensions.cs  | :warning: | Needs Avalonia expert
+| Extensions\ExceptionExtension.cs          | :heavy_check_mark: :x:
+| Extensions\ServiceLocationExtension.cs    | :heavy_check_mark: :x:
+| Interactivity\CommandBehaviorBase.cs      | :heavy_check_mark: :warning: | Needs verification
+| Interactivity\InvokeCommandAction.cs      | :new: :warning: | Has **ERRORS**; Needs converted to Avalonia
+| Ioc\ContainerProviderExtension.cs         | :new: :heavy_check_mark: :warning: | Needs verification
+| Ioc\IContainerRegistryExtensions.cs     | :heavy_check_mark:
+| Logging\TextLogger.cs                   | :heavy_check_mark: :x: | Removed from Prism
+| Logging\TraceLogger.cs                  | :heavy_check_mark: :x: | Removed from Prism
+| Modularity\AssemblyResolver.Desktop.cs                      | :heavy_check_mark:
+| Modularity\ConfigurationModuleCatalog.Desktop.cs            | :heavy_check_mark:
+| Modularity\ConfigurationStore.Desktop.cs                    | :heavy_check_mark:
+| Modularity\DirectoryModuleCatalog.Desktop.cs                | :heavy_check_mark: :x:
+| Modularity\DirectoryModuleCatalog.net45.cs                  | :heavy_check_mark: :new: |
+| Modularity\DirectoryModuleCatalog.netcore.cs                | :heavy_check_mark: :new: |
+| Modularity\FileModuleTypeLoader.Desktop.cs                  | :heavy_check_mark:
+| Modularity\IAssemblyResolver.Desktop.cs                     | :heavy_check_mark:
+| Modularity\IConfigurationStore.Desktop.cs                   | :heavy_check_mark:
+| Modularity\IModuleCatalogExtensions.cs                      | :heavy_check_mark:
 | Modularity\IModuleGroupsCatalog.cs                          | :heavy_check_mark:
-| Modularity\IModuleTypeLoader.cs                             | :white_square_button:
-| Modularity\ModuleAttribute.Desktop.cs                       | :white_square_button:
+| Modularity\IModuleTypeLoader.cs                             | :heavy_check_mark:
+| Modularity\ModuleAttribute.Desktop.cs                       | :heavy_check_mark:
 | Modularity\ModuleCatalog.cs                                 | :heavy_check_mark:
-| Modularity\ModuleConfigurationElement.Desktop.cs            | :white_square_button:
-| Modularity\ModuleConfigurationElementCollection.Desktop.cs  | :white_square_button:
-| Modularity\ModuleDependencyCollection.Desktop.cs            | :white_square_button:
-| Modularity\ModuleDependencyConfigurationElement.Desktop.cs  | :white_square_button:
+| Modularity\ModuleConfigurationElement.Desktop.cs            | :heavy_check_mark:
+| Modularity\ModuleConfigurationElementCollection.Desktop.cs  | :heavy_check_mark:
+| Modularity\ModuleDependencyCollection.Desktop.cs            | :heavy_check_mark:
+| Modularity\ModuleDependencyConfigurationElement.Desktop.cs  | :heavy_check_mark:
 | Modularity\ModuleDownloadProgressChangedEventArgs.cs        | :x: |
-| Modularity\ModuleInfo.Desktop.cs                            | :white_square_button:
-| Modularity\ModuleInfo.cs                                    | :white_square_button:
-| Modularity\ModuleInfoGroup.cs                               | :white_square_button:
-| Modularity\ModuleInfoGroupExtensions.cs                     | :white_square_button:
+| Modularity\ModuleInfo.cs                                    | :heavy_check_mark:
+| Modularity\ModuleInfo.Desktop.cs                            | :heavy_check_mark:
+| Modularity\ModuleInfoGroup.cs                               | :heavy_check_mark:
+| Modularity\ModuleInfoGroupExtensions.cs                     | :heavy_check_mark:
 | Modularity\ModuleInitializer.cs                             | :heavy_check_mark:
 | Modularity\ModuleManager.cs                                 | :heavy_check_mark:
-| Modularity\ModuleManager.Desktop.cs                         | :white_square_button:
+| Modularity\ModuleManager.Desktop.cs                         | :heavy_check_mark:
 | Modularity\ModulesConfigurationSection.Desktop.cs           | :white_square_button:
+| Modularity\XamlModuleCatalog.cs                             | :new: :warning: | Whats the Avalonia `XamlReader` equivilant?
 | Mvvm\ViewModuleLocator.cs                                   | :heavy_check_mark:
 | Properties\AssemblyInfo                                     | :white_square_button:
 | Properties\Resources.Designer.cs                            | :white_square_button:
@@ -215,9 +217,12 @@ Containers is a :new: Folder
 | Properties\Resources.resx                     | :white_square_button:
 | Regions\UnityRegionNavigationContentLoader.cs | :white_square_button:
 
-
 ## Conversion Helpers
 
-| WPF                             | Avalonia |
-|---------------------------------|---------------------------|
-| System.Windows.FrameworkElement | Avalonia.Controls.Control |
+| WPF                             | Avalonia | Reference |
+|---------------------------------|----------|-----------|
+| System.Windows.FrameworkElement | Avalonia.Controls.Control | [Reference](https://docs.avaloniaui.net/misc/wpf/uielement-frameworkelement-and-control) |
+| UIElement                       | Avalonia.Controls.Control |
+| System.Windows.Markup.MarkupExtension | Avalonia.Markup.Xaml.MarkupExtension | [Reference](http://reference.avaloniaui.net/api/Avalonia.Markup.Xaml/MarkupExtension/)
+| System.Windows.Markup.ContentPropertyAttribute.ContentProperty | Avalonia.Metadata.Content
+| System.Windows.Markup | Avalonia.Markup.Xaml

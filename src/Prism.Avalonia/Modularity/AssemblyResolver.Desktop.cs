@@ -1,11 +1,9 @@
-
-
-using Prism.Properties;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Prism.Properties;
 
 namespace Prism.Modularity
 {
@@ -22,7 +20,7 @@ namespace Prism.Modularity
         /// <summary>
         /// Registers the specified assembly and resolves the types in it when the AppDomain requests for it.
         /// </summary>
-        /// <param name="assemblyFilePath">The path to the assemly to load in the LoadFrom context.</param>
+        /// <param name="assemblyFilePath">The path to the assembly to load in the LoadFrom context.</param>
         /// <remarks>This method does not load the assembly immediately, but lazily until someone requests a <see cref="Type"/>
         /// declared in the assembly.</remarks>
         public void LoadAssemblyFrom(string assemblyFilePath)

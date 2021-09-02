@@ -46,10 +46,7 @@ namespace Prism.Modularity
 
         private void RaiseModuleDownloadProgressChanged(ModuleDownloadProgressChangedEventArgs e)
         {
-            if (this.ModuleDownloadProgressChanged != null)
-            {
-                this.ModuleDownloadProgressChanged(this, e);
-            }
+            ModuleDownloadProgressChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -86,7 +83,6 @@ namespace Prism.Modularity
 
             return moduleInfo.Ref != null && moduleInfo.Ref.StartsWith(RefFilePrefix, StringComparison.Ordinal);
         }
-
 
         /// <summary>
         /// Retrieves the <paramref name="moduleInfo"/>.

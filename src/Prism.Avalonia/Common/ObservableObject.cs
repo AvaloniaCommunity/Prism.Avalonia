@@ -21,6 +21,7 @@ namespace Prism.Common
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "This is the pattern for WPF dependency properties")]
         public static readonly StyledProperty<T> ValueProperty =
                 AvaloniaProperty.Register<Control, T>(name: nameof(Value));
+
         //StyledProperty.Register("Value", typeof(T), typeof(ObservableObject<T>), new PropertyMetadata(ValueChangedCallback));
 
         /// <summary>
