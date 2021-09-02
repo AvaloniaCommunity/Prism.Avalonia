@@ -95,19 +95,7 @@ namespace Prism
         /// <param name="containerRegistry"></param>
         protected virtual void RegisterRequiredTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterInstance(_containerExtension);
-            containerRegistry.RegisterInstance(_moduleCatalog);
-            containerRegistry.RegisterSingleton<ILoggerFacade, TextLogger>();
-            containerRegistry.RegisterSingleton<IModuleInitializer, ModuleInitializer>();
-            containerRegistry.RegisterSingleton<IModuleManager, ModuleManager>();
-            containerRegistry.RegisterSingleton<RegionAdapterMappings>();
-            containerRegistry.RegisterSingleton<IRegionManager, RegionManager>();
-            containerRegistry.RegisterSingleton<IEventAggregator, EventAggregator>();
-            containerRegistry.RegisterSingleton<IRegionViewRegistry, RegionViewRegistry>();
-            containerRegistry.RegisterSingleton<IRegionBehaviorFactory, RegionBehaviorFactory>();
-            containerRegistry.Register<IRegionNavigationJournalEntry, RegionNavigationJournalEntry>();
-            containerRegistry.Register<IRegionNavigationJournal, RegionNavigationJournal>();
-            containerRegistry.Register<IRegionNavigationService, RegionNavigationService>();
+            containerRegistry.RegisterRequiredTypes(_moduleCatalog);
         }
 
         /// <summary>
@@ -121,16 +109,7 @@ namespace Prism
         /// </summary>
         protected virtual void ConfigureDefaultRegionBehaviors(IRegionBehaviorFactory regionBehaviors)
         {
-            if (regionBehaviors != null)
-            {
-                regionBehaviors.AddIfMissing(BindRegionContextToAvaloniaObjectBehavior.BehaviorKey, typeof(BindRegionContextToAvaloniaObjectBehavior));
-                regionBehaviors.AddIfMissing(RegionActiveAwareBehavior.BehaviorKey, typeof(RegionActiveAwareBehavior));
-                regionBehaviors.AddIfMissing(SyncRegionContextWithHostBehavior.BehaviorKey, typeof(SyncRegionContextWithHostBehavior));
-                regionBehaviors.AddIfMissing(RegionManagerRegistrationBehavior.BehaviorKey, typeof(RegionManagerRegistrationBehavior));
-                regionBehaviors.AddIfMissing(RegionMemberLifetimeBehavior.BehaviorKey, typeof(RegionMemberLifetimeBehavior));
-                regionBehaviors.AddIfMissing(ClearChildViewsRegionBehavior.BehaviorKey, typeof(ClearChildViewsRegionBehavior));
-                regionBehaviors.AddIfMissing(AutoPopulateRegionBehavior.BehaviorKey, typeof(AutoPopulateRegionBehavior));
-            }
+            regionBehaviors?.RegisterDefaultRegionBehaviors();
         }
 
         /// <summary>
@@ -141,14 +120,9 @@ namespace Prism
         /// <returns>The <see cref="RegionAdapterMappings"/> instance containing all the mappings.</returns>
         protected virtual void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
         {
-            if (regionAdapterMappings != null)
-            {
-                //TODO: Do we have something similar to Selector in Avalonia?
-                //regionAdapterMappings.RegisterMapping(typeof(Selector), _containerExtension.Resolve<SelectorRegionAdapter>());
-                regionAdapterMappings.RegisterMapping(typeof(ItemsControl), _containerExtension.Resolve<ItemsControlRegionAdapter>());
-                regionAdapterMappings.RegisterMapping(typeof(ContentControl), _containerExtension.Resolve<ContentControlRegionAdapter>());
-            }
+            regionAdapterMappings?.RegisterDefaultRegionAdapterMappings();
         }
+
 
         /// <summary>
         /// Registers the <see cref="Type"/>s of the Exceptions that are not considered 
@@ -156,14 +130,13 @@ namespace Prism
         /// </summary>
         protected virtual void RegisterFrameworkExceptionTypes()
         {
-            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(ActivationException));
         }
 
         /// <summary>
         /// Creates the shell or main window of the application.
         /// </summary>
         /// <returns>The shell of the application.</returns>
-        protected abstract IAvaloniaObject CreateShell();
+        protected abstract Window CreateShell();
 
         /// <summary>
         /// Initializes the shell.
@@ -191,8 +164,7 @@ namespace Prism
         /// </summary>
         protected virtual void InitializeModules()
         {
-            IModuleManager manager = _containerExtension.Resolve<IModuleManager>();
-            manager.Run();
+            PrismInitializationExtensions.RunModuleManager(Container);
         }
 
         /// <summary>

@@ -9,7 +9,8 @@
 | ⚠️ | `:warning:` | Pending
 | 💔 | `:broken_heart:` | Never implemented in this platform
 
-[Icon Reference](https://github.com/markdown-templates/markdown-emojis)
+* [Icon Reference](https://github.com/markdown-templates/markdown-emojis)
+* Basis of comparison: [Prism Library v7.2.0.1422...v8.1.97](https://github.com/PrismLibrary/Prism/compare/v7.2.0.1422...v8.1.97)
 
 ## Action Items
 
@@ -24,16 +25,17 @@
 
 ## Upgrade Progress
 
-| File                                | Status  |  Notes |
-|-------------------------------------|---------|--------|
-| Readme.md                           | :warning: | Needs updated to match 8.1.x NuGet package version
+| File                  | Status  |  Notes |
+|-----------------------|---------|--------|
+| Readme.md             | :warning: | Needs updated to match 8.1.x NuGet package version
+| src\Readme.md         | :new:     | Added from PrismLibrary v8.1.x
 
 ### Prism.Avalonia
 
 | File                                | Status  |  Notes |
 |-------------------------------------|---------|--------|
 | Prism.Avalonia.csproj               | :heavy_check_mark: | Added `netcore` and `net45` targeting conditions, as per PrismLibrary v8.1.x
-| PrismApplicationBase.cs             | :heavy_check_mark:
+| PrismApplicationBase.cs             | :warning: | In-progress; Needs upgraded to Avalonia
 | Bootstrapper.cs                     | :x:     | Renamed to `PrismBootstrapperBase.cs`
 | PrismBootstrapperBase.cs            | :new: :heavy_check_mark: | Replaces `Boostrapper.cs`
 | PrismInitializationExtensions.cs    | :new: | All of the Register container, Behavior, and Adapter goodies.
@@ -45,8 +47,8 @@
 | Extensions\ExceptionExtension.cs        | :white_square_button:
 | Extensions\ServiceLocationExtension.cs  | :white_square_button:
 | Interactivity\CommandBehaviorBase.cs    | :new: :warning: | May require Avalonia switch
-| Interactivity\InvokeCommandAction.cs    | :new:
-| Ioc\ContainerProviderExtension.cs       | :new:
+| Interactivity\InvokeCommandAction.cs    | :new: :warning: | Has **ERRORS**; Needs converted to Avalonia
+| Ioc\ContainerProviderExtension.cs       | :new: :warning: | Has **ERRORS**; `MarkupExtension` needs converted to Avalonia
 | Ioc\IContainerRegistryExtensions.cs     | :white_square_button:
 | Logging\TextLogger.cs                   | :x: | Removed from Prism
 | Logging\TraceLogger.cs                  | :x: | Removed from Prism
@@ -149,21 +151,20 @@
 | Regions\ViewRegistrationException.cs          | :white_square_button:
 | Regions\ViewSortHintAttribute.cs              | :white_square_button:
 | Regions\ViewsCollection.cs                    | :white_square_button:
-| Services\Dialogs\ButtonResult.cs              | :new: | New to Prism v8.1
-| Services\Dialogs\Dialog.cs                    | :new: | New to Prism v8.1
-| Services\Dialogs\DialogParameters.cs          | :new: | New to Prism v8.1
-| Services\Dialogs\DialogResult.cs              | :new: | New to Prism v8.1
-| Services\Dialogs\DialogService.cs             | :new: | New to Prism v8.1
-| Services\Dialogs\DialogWindow.xaml            | :new: | New to Prism v8.1
-| Services\Dialogs\DialogWindow.xaml.cs         | :new: | New to Prism v8.1
-| Services\Dialogs\IDialogAware.cs              | :new: | New to Prism v8.1
-| Services\Dialogs\IDialogParameters.cs         | :new: | New to Prism v8.1
-| Services\Dialogs\IDialogResult.cs             | :new: | New to Prism v8.1
-| Services\Dialogs\IDialogService.cs            | :new: | New to Prism v8.1
-| Services\Dialogs\IDialogServiceExtensions.cs  | :new: | New to Prism v8.1
-| Services\Dialogs\IDialogWindow.cs             | :new: | New to Prism v8.1
-| Services\Dialogs\IDialogWindowExtensions.cs   | :new: | New to Prism v8.1
-
+| Services\Dialogs\ButtonResult.cs              | :new: :warning: |
+| Services\Dialogs\Dialog.cs                    | :new: :warning: |
+| Services\Dialogs\DialogParameters.cs          | :new: :warning: |
+| Services\Dialogs\DialogResult.cs              | :new: :warning: |
+| Services\Dialogs\DialogService.cs             | :new: :warning: |
+| Services\Dialogs\DialogWindow.xaml            | :new: :warning: | Needs renamed to `axml`
+| Services\Dialogs\DialogWindow.xaml.cs         | :new: :warning: | Has error, needs converted to Avalonia
+| Services\Dialogs\IDialogAware.cs              | :new: :warning: | 
+| Services\Dialogs\IDialogParameters.cs         | :new: :warning: | 
+| Services\Dialogs\IDialogResult.cs             | :new: :warning: | 
+| Services\Dialogs\IDialogService.cs            | :new: :warning: | 
+| Services\Dialogs\IDialogServiceExtensions.cs  | :new: :warning: | 
+| Services\Dialogs\IDialogWindow.cs             | :new: :warning: | 
+| Services\Dialogs\IDialogWindowExtensions.cs   | :new: :warning: | 
 
 ### Containers
 
@@ -180,31 +181,34 @@ Containers is a :new: Folder
 | Containers\Prism.Unity.Shared\PrismIocExntensions.cs          | :new:
 | Containers\Prism.Unity.Shared\UnityContainerExtension.cs      | :new:
 
-### Prism.DryIoc
+### Prism.DryIoc.Avalonia
 
 | File                                | Status  |  Notes |
 |-------------------------------------|---------|--------|
-| Ioc\DryIocContainerExtension.cs     | :white_square_button:
-| Ioc\PrismIocExtensions.cs           | :heavy_check_mark:  | New
+| Prism.DryIoc.Avalonia.csproj.cs     | :heavy_check_mark: | Updated to DryIoc v4.8.1
+| DryIocServiceLocatorAdapter.cs      | :x:
+| GlobalSuppressions.cs               | :white_square_button:
+| PrismApplication.cs                 | :heavy_check_mark:
+| PrismBootstrapper.cs                | :new:
+| Ioc\DryIocContainerExtension.cs     | :x:     | Moved to `Containers`
+| Ioc\PrismIocExtensions.cs           | :x:     | Moved to `Containers`
 | Legacy\DryIocBootstrapper.cs        | :white_square_button:
 | Legacy\DryIocExtensions.cs          | :white_square_button:
+| Properties\AssemblyInfo             | :new:
 | Properties\Resources.Designer.resx  | :white_square_button:
 | Properties\Resources.resx           | :white_square_button:
-| DryIocServiceLocatorAdapter.cs      | :white_square_button:
-| GlobalSuppressions.cs               | :white_square_button:
-| PrismApplication.cs                 | :white_square_button:
 
-### Prism.Unity
+### Prism.Unity.Avalonia
 
 | File                                          | Status  |  Notes |
 |-----------------------------------------------|---------|--------|
-| Ioc\PrismIocExtensions.cs                     | :white_square_button:
-| Ioc\UnityContainerExtension.cs                | :white_square_button:
+| PrismApplication.cs                           | :white_square_button:
+| UnityServiceLocatorApplication.cs             | :white_square_button:
+| Ioc\PrismIocExtensions.cs                     | :x:     | Moved to `Containers`
+| Ioc\UnityContainerExtension.cs                | :x:     | Moved to `Containers`
 | Legacy\UnityBootstrapper.cs                   | :white_square_button:
 | Legacy\UnityContainerHelper.cs                | :white_square_button:
 | Legacy\UnityExtensions.cs                     | :white_square_button:
 | Properties\Resources.Designer.resx            | :white_square_button:
 | Properties\Resources.resx                     | :white_square_button:
 | Regions\UnityRegionNavigationContentLoader.cs | :white_square_button:
-| PrismApplication.cs                           | :white_square_button:
-| UnityServiceLocatorApplication.cs             | :white_square_button:
