@@ -1,9 +1,6 @@
-
-
 using Avalonia;
 using Avalonia.Controls;
 using System;
-using System.Windows;
 
 namespace Prism.Regions.Behaviors
 {

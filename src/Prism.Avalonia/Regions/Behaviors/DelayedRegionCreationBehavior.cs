@@ -1,12 +1,11 @@
-using Avalonia;
-using Avalonia.Controls;
-using Prism.Properties;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Windows;
+using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Threading;
+using Prism.Properties;
 
 namespace Prism.Regions.Behaviors
 {
@@ -153,14 +152,14 @@ namespace Prism.Regions.Behaviors
                 return;
             }
 
-            //TODO: find equalization of FrameworkContentElement in Avalonia
-
-            //FrameworkContentElement fcElement = this.TargetElement as FrameworkContentElement;
-            //if (fcElement != null)
-            //{
-            //    fcElement.Loaded += this.ElementLoaded;
-            //    return;
-            //}
+            // TODO: NEEDS UPGRADED TO AVALONIA!
+            ////System.Windows.FrameworkContentElement fcElement = this.TargetElement as System.Windows.FrameworkContentElement;
+            ////Avalonia.Controls.Control fcElement = this.TargetElement as Control;
+            ////if (fcElement != null)
+            ////{
+            ////    fcElement.Loaded += this.ElementLoaded;
+            ////    return;
+            ////}
 
             //if the element is a dependency object, and not a Control, nothing is holding onto the reference after the DelayedRegionCreationBehavior
             //is instantiated inside RegionManager.CreateRegion(DependencyObject element). If the GC runs before RegionManager.UpdateRegions is called, the region will
@@ -182,7 +181,9 @@ namespace Prism.Regions.Behaviors
                 return;
             }
 
+            // TODO: NEEDS UPGRADED TO AVALONIA!
             //FrameworkContentElement fcElement = this.TargetElement as FrameworkContentElement;
+            //Avalonia.Controls.Control fcElement = this.TargetElement as Control;
             //if (fcElement != null)
             //{
             //    fcElement.Loaded -= this.ElementLoaded;
@@ -197,13 +198,12 @@ namespace Prism.Regions.Behaviors
             }
         }
 
-
         /// <summary>
         /// Add the instance of this class to <see cref="_instanceTracker"/> to keep it alive
         /// </summary>
         private void Track()
         {
-            lock(_trackerLock)
+            lock (_trackerLock)
             {
                 if (!_instanceTracker.Contains(this))
                 {
@@ -211,17 +211,17 @@ namespace Prism.Regions.Behaviors
                 }
             }
         }
-  
+
         /// <summary>
         /// Remove the instance of this class from <see cref="_instanceTracker"/>
         /// so it can eventually be garbage collected
         /// </summary>
         private void Untrack()
         {
-            lock(_trackerLock)
+            lock (_trackerLock)
             {
                 _instanceTracker.Remove(this);
-            } 
+            }
         }
     }
 }

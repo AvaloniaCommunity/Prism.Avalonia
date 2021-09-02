@@ -1,10 +1,7 @@
-
-
 using System;
 using System.ComponentModel;
 using System.Windows;
 using Prism.Properties;
-using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.VisualTree;

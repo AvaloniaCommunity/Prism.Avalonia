@@ -83,24 +83,23 @@
 | Modularity\XamlModuleCatalog.cs                             | :new: :warning: | Whats the Avalonia `XamlReader` equivilant?
 | Mvvm\ViewModuleLocator.cs                                   | :heavy_check_mark:
 | Properties\AssemblyInfo                                     | :heavy_check_mark:
-| Properties\Resources.Designer.cs                            | :heavy_check_mark:
 | Properties\Resources.resx                                   | :heavy_check_mark:
+| Properties\Resources.Designer.cs                            | :heavy_check_mark:
 | Properties\Settings.Designer.cs                             | :heavy_check_mark:
 | Properties\Settings.settings                                | :heavy_check_mark:
-| Regions\Behaviors\AutoPopulateRegionBehavior.cs                 | :white_square_button:
-| Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs  | :white_square_button:
-| Regions\Behaviors\BindRegionContextToDependencyObjectBehavior.cs | :white_square_button: :warning: | Missing!
-| Regions\Behaviors\ClearChildViewsRegionBehavior.cs              | :white_square_button:
-| Regions\Behaviors\DelayedRegionCreationBehavior.cs              | :white_square_button:
-| Regions\Behaviors\DestructibleRegionBehavior.cs                 | :white_square_button: :warning: | Missing!
-| Regions\Behaviors\IHostAwareRegionBehavior.cs                   | :white_square_button:
-| Regions\Behaviors\RegionActiveAwareBehavior.cs                  | :white_square_button:
-| Regions\Behaviors\RegionCreationException.Desktop.cs            | :white_square_button:
-| Regions\Behaviors\RegionCreationException.cs                    | :white_square_button:
-| Regions\Behaviors\RegionManagerRegistrationBehavior.cs          | :white_square_button:
-| Regions\Behaviors\RegionMemberLifetimeBehavior.cs               | :white_square_button:
-| Regions\Behaviors\SelectorItemsSourceSyncBehavior.cs            | :white_square_button:
-| Regions\Behaviors\SyncRegionContextWithHostBehavior.cs          | :white_square_button:
+| Regions\Behaviors\AutoPopulateRegionBehavior.cs                 | :heavy_check_mark:
+| Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs  | :white_square_button: :warning: | Needs reviewed; Equivilant, `BindRegionContextToDependencyObjectBehavior`
+| Regions\Behaviors\ClearChildViewsRegionBehavior.cs              | :heavy_check_mark:
+| Regions\Behaviors\DelayedRegionCreationBehavior.cs              | :white_square_button: :warning: | Needs Avalonia equivilant of `FrameworkContentElement += Loaded`
+| Regions\Behaviors\DestructibleRegionBehavior.cs                 | :heavy_check_mark: :new:
+| Regions\Behaviors\IHostAwareRegionBehavior.cs                   | :heavy_check_mark:
+| Regions\Behaviors\RegionActiveAwareBehavior.cs                  | :heavy_check_mark:
+| Regions\Behaviors\RegionCreationException.cs                    | :heavy_check_mark:
+| Regions\Behaviors\RegionCreationException.Desktop.cs            | :heavy_check_mark:
+| Regions\Behaviors\RegionManagerRegistrationBehavior.cs          | :heavy_check_mark: :warning: | Needs reviewed
+| Regions\Behaviors\RegionMemberLifetimeBehavior.cs               | :heavy_check_mark:
+| Regions\Behaviors\SelectorItemsSourceSyncBehavior.cs            | :white_square_button: :warning: | Needs attention
+| Regions\Behaviors\SyncRegionContextWithHostBehavior.cs          | :heavy_check_mark:
 | Regions\AllActiveRegion.cs                    | :white_square_button:
 | Regions\ContentControlRegionAdapter.cs        | :white_square_button:
 | Regions\DefaultRegionManagerAccessor.cs       | :white_square_button:
@@ -222,8 +221,11 @@ Containers is a :new: Folder
 | WPF                             | Avalonia | Reference |
 |---------------------------------|----------|-----------|
 | System.Windows.FrameworkElement | Avalonia.Controls.Control | [Reference](https://docs.avaloniaui.net/misc/wpf/uielement-frameworkelement-and-control) |
+| System.WIndows.FrameworkContentElement | Avalonia.Controls.Control
 | UIElement                       | Avalonia.Controls.Control |
 | System.Windows.Markup.MarkupExtension | Avalonia.Markup.Xaml.MarkupExtension | [Reference](http://reference.avaloniaui.net/api/Avalonia.Markup.Xaml/MarkupExtension/)
 | System.Windows.Markup.ContentPropertyAttribute.ContentProperty | Avalonia.Metadata.Content
 | System.Windows.Markup | Avalonia.Markup.Xaml
 | System.Windows.Markup.XmlnsDefinition | Avalonia.Metadata.XmlnsDefinition
+| System.Windows.DependencyObject | Avalonia.AvaloniaObject
+
