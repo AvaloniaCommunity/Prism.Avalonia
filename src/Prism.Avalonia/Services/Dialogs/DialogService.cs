@@ -139,47 +139,48 @@ namespace Prism.Services.Dialogs
         /// <param name="callback">The action to perform when the dialog is closed.</param>
         protected virtual void ConfigureDialogWindowEvents(IDialogWindow dialogWindow, Action<IDialogResult> callback)
         {
-            Action<IDialogResult> requestCloseHandler = null;
-            requestCloseHandler = (o) =>
-            {
-                dialogWindow.Result = o;
-                dialogWindow.Close();
-            };
-
-            RoutedEventHandler loadedHandler = null;
-            loadedHandler = (o, e) =>
-            {
-                dialogWindow.Loaded -= loadedHandler;
-                dialogWindow.GetDialogViewModel().RequestClose += requestCloseHandler;
-            };
-            dialogWindow.Loaded += loadedHandler;
-
-            CancelEventHandler closingHandler = null;
-            closingHandler = (o, e) =>
-            {
-                if (!dialogWindow.GetDialogViewModel().CanCloseDialog())
-                    e.Cancel = true;
-            };
-            dialogWindow.Closing += closingHandler;
-
-            EventHandler closedHandler = null;
-            closedHandler = (o, e) =>
-                {
-                    dialogWindow.Closed -= closedHandler;
-                    dialogWindow.Closing -= closingHandler;
-                    dialogWindow.GetDialogViewModel().RequestClose -= requestCloseHandler;
-
-                    dialogWindow.GetDialogViewModel().OnDialogClosed();
-
-                    if (dialogWindow.Result == null)
-                        dialogWindow.Result = new DialogResult();
-
-                    callback?.Invoke(dialogWindow.Result);
-
-                    dialogWindow.DataContext = null;
-                    dialogWindow.Content = null;
-                };
-            dialogWindow.Closed += closedHandler;
+            throw new NotImplementedException();
+////            Action<IDialogResult> requestCloseHandler = null;
+////            requestCloseHandler = (o) =>
+////            {
+////                dialogWindow.Result = o;
+////                dialogWindow.Close();
+////            };
+////
+////            RoutedEventHandler loadedHandler = null;
+////            loadedHandler = (o, e) =>
+////            {
+////                dialogWindow.Loaded -= loadedHandler;
+////                dialogWindow.GetDialogViewModel().RequestClose += requestCloseHandler;
+////            };
+////            dialogWindow.Loaded += loadedHandler;
+////
+////            CancelEventHandler closingHandler = null;
+////            closingHandler = (o, e) =>
+////            {
+////                if (!dialogWindow.GetDialogViewModel().CanCloseDialog())
+////                    e.Cancel = true;
+////            };
+////            dialogWindow.Closing += closingHandler;
+////
+////            EventHandler closedHandler = null;
+////            closedHandler = (o, e) =>
+////                {
+////                    dialogWindow.Closed -= closedHandler;
+////                    dialogWindow.Closing -= closingHandler;
+////                    dialogWindow.GetDialogViewModel().RequestClose -= requestCloseHandler;
+////
+////                    dialogWindow.GetDialogViewModel().OnDialogClosed();
+////
+////                    if (dialogWindow.Result == null)
+////                        dialogWindow.Result = new DialogResult();
+////
+////                    callback?.Invoke(dialogWindow.Result);
+////
+////                    dialogWindow.DataContext = null;
+////                    dialogWindow.Content = null;
+////                };
+////            dialogWindow.Closed += closedHandler;
         }
 
         /// <summary>
@@ -190,15 +191,16 @@ namespace Prism.Services.Dialogs
         /// <param name="viewModel">The dialog's ViewModel.</param>
         protected virtual void ConfigureDialogWindowProperties(IDialogWindow window, FrameworkElement dialogContent, IDialogAware viewModel)
         {
-            var windowStyle = Dialog.GetWindowStyle(dialogContent);
-            if (windowStyle != null)
-                window.Style = windowStyle;
-
-            window.Content = dialogContent;
-            window.DataContext = viewModel; //we want the host window and the dialog to share the same data context
-
-            if (window.Owner == null)
-                window.Owner = Application.Current?.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
+            throw new NotImplementedException();
+////            var windowStyle = Dialog.GetWindowStyle(dialogContent);
+////            if (windowStyle != null)
+////                window.Style = windowStyle;
+////
+////            window.Content = dialogContent;
+////            window.DataContext = viewModel; //we want the host window and the dialog to share the same data context
+////
+////            if (window.Owner == null)
+////                window.Owner = Application.Current?.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
         }
     }
 }

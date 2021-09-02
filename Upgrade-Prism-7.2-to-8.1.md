@@ -39,14 +39,14 @@
 | Bootstrapper.cs                     | :x:     | Renamed to `PrismBootstrapperBase.cs`
 | PrismBootstrapperBase.cs            | :new: :heavy_check_mark: | Replaces `Boostrapper.cs`
 | PrismInitializationExtensions.cs    | :new: | All of the Register container, Behavior, and Adapter goodies.
-| Common\MvvmHelpers.cs               | :white_square_button:
+| Common\MvvmHelpers.cs               | :heavy_check_mark:
 | Common\ObservableObject.cs          | :white_square_button:
 | Common\UriParsingHelper.cs          | :white_square_button:
 | Events\WeakDelegatesManager.cs      | :white_square_button:
 | Extensions\CollectionExtensions.cs      | :white_square_button:
 | Extensions\ExceptionExtension.cs        | :white_square_button:
 | Extensions\ServiceLocationExtension.cs  | :white_square_button:
-| Interactivity\CommandBehaviorBase.cs    | :new: :warning: | May require Avalonia switch
+| Interactivity\CommandBehaviorBase.cs    | :new: :warning: | Requires multiplatform switch
 | Interactivity\InvokeCommandAction.cs    | :new: :warning: | Has **ERRORS**; Needs converted to Avalonia
 | Ioc\ContainerProviderExtension.cs       | :new: :warning: | Has **ERRORS**; `MarkupExtension` needs converted to Avalonia
 | Ioc\IContainerRegistryExtensions.cs     | :white_square_button:
@@ -75,16 +75,16 @@
 | Modularity\ModuleInfo.cs                                    | :white_square_button:
 | Modularity\ModuleInfoGroup.cs                               | :white_square_button:
 | Modularity\ModuleInfoGroupExtensions.cs                     | :white_square_button:
-| Modularity\ModuleInitializer.cs                             | :white_square_button:
+| Modularity\ModuleInitializer.cs                             | :heavy_check_mark:
 | Modularity\ModuleManager.cs                                 | :heavy_check_mark:
 | Modularity\ModuleManager.Desktop.cs                         | :white_square_button:
 | Modularity\ModulesConfigurationSection.Desktop.cs           | :white_square_button:
-| Mvvm\ViewModuleLocator.cs         | :white_square_button:
-| Properties\AssemblyInfo           | :white_square_button:
-| Properties\Resources.Designer.cs  | :white_square_button:
-| Properties\Resources.resx         | :white_square_button:
-| Properties\Settings.Designer.cs   | :white_square_button:
-| Properties\Settings.settings      | :white_square_button:
+| Mvvm\ViewModuleLocator.cs                                   | :heavy_check_mark:
+| Properties\AssemblyInfo                                     | :white_square_button:
+| Properties\Resources.Designer.cs                            | :white_square_button:
+| Properties\Resources.resx                                   | :white_square_button:
+| Properties\Settings.Designer.cs                             | :white_square_button:
+| Properties\Settings.settings                                | :white_square_button:
 | Regions\Behaviors\AutoPopulateRegionBehavior.cs                 | :white_square_button:
 | Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs  | :white_square_button:
 | Regions\Behaviors\ClearChildViewsRegionBehavior.cs              | :white_square_button:
@@ -151,20 +151,20 @@
 | Regions\ViewRegistrationException.cs          | :white_square_button:
 | Regions\ViewSortHintAttribute.cs              | :white_square_button:
 | Regions\ViewsCollection.cs                    | :white_square_button:
-| Services\Dialogs\ButtonResult.cs              | :new: :warning: |
-| Services\Dialogs\Dialog.cs                    | :new: :warning: |
-| Services\Dialogs\DialogParameters.cs          | :new: :warning: |
-| Services\Dialogs\DialogResult.cs              | :new: :warning: |
-| Services\Dialogs\DialogService.cs             | :new: :warning: |
+| Services\Dialogs\ButtonResult.cs              | :new: :heavy_check_mark: |
+| Services\Dialogs\Dialog.cs                    | :new: :warning: | Temp Disabled!
+| Services\Dialogs\DialogParameters.cs          | :new: :heavy_check_mark: |
+| Services\Dialogs\DialogResult.cs              | :new: :heavy_check_mark: |
+| Services\Dialogs\DialogService.cs             | :new: :warning: | Temp Disabled!
 | Services\Dialogs\DialogWindow.xaml            | :new: :warning: | Needs renamed to `axml`
 | Services\Dialogs\DialogWindow.xaml.cs         | :new: :warning: | Has error, needs converted to Avalonia
-| Services\Dialogs\IDialogAware.cs              | :new: :warning: | 
-| Services\Dialogs\IDialogParameters.cs         | :new: :warning: | 
-| Services\Dialogs\IDialogResult.cs             | :new: :warning: | 
-| Services\Dialogs\IDialogService.cs            | :new: :warning: | 
-| Services\Dialogs\IDialogServiceExtensions.cs  | :new: :warning: | 
-| Services\Dialogs\IDialogWindow.cs             | :new: :warning: | 
-| Services\Dialogs\IDialogWindowExtensions.cs   | :new: :warning: | 
+| Services\Dialogs\IDialogAware.cs              | :new: :heavy_check_mark: |
+| Services\Dialogs\IDialogParameters.cs         | :new: :heavy_check_mark: |
+| Services\Dialogs\IDialogResult.cs             | :new: :heavy_check_mark: |
+| Services\Dialogs\IDialogService.cs            | :new: :warning: | Needs multiplatform verification
+| Services\Dialogs\IDialogServiceExtensions.cs  | :new: :warning: | Needs multiplatform verification
+| Services\Dialogs\IDialogWindow.cs             | :new: :warning: | Temp Disabled!
+| Services\Dialogs\IDialogWindowExtensions.cs   | :new: :warning: | Temp Disabled!
 
 ### Containers
 
@@ -212,3 +212,10 @@ Containers is a :new: Folder
 | Properties\Resources.Designer.resx            | :white_square_button:
 | Properties\Resources.resx                     | :white_square_button:
 | Regions\UnityRegionNavigationContentLoader.cs | :white_square_button:
+
+
+## Conversion Helpers
+
+| WPF                             | Avalonia |
+|---------------------------------|---------------------------|
+| System.Windows.FrameworkElement | Avalonia.Controls.Control |

@@ -19,10 +19,10 @@ namespace Prism.Services.Dialogs
         /// </summary>
         void Close();
 
-        /// <summary>
-        /// The window's owner.
-        /// </summary>
-        Window Owner { get; set; }
+        ////        /// <summary>
+        ////        /// The window's owner.
+        ////        /// </summary>
+        ////        Window Owner { get; set; }
 
         /// <summary>
         /// Show a non-modal dialog.
@@ -43,10 +43,10 @@ namespace Prism.Services.Dialogs
         /// </remarks>
         object DataContext { get; set; }
 
-        /// <summary>
-        /// Called when the window is loaded.
-        /// </summary>
-        event RoutedEventHandler Loaded;
+        /////// <summary>
+        /////// Called when the window is loaded.
+        /////// </summary>
+        ////event RoutedEventHandler Loaded;
 
         /// <summary>
         /// Called when the window is closed.
@@ -63,9 +63,9 @@ namespace Prism.Services.Dialogs
         /// </summary>
         IDialogResult Result { get; set; }
 
-        /// <summary>
-        /// The window style.
-        /// </summary>
-        Style Style { get; set; }
+        ////        /// <summary>
+        ////        /// The window style.
+        ////        /// </summary>
+        ////        Style Style { get; set; }
     }
 }
