@@ -1,18 +1,11 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Markup.Xaml;
-using Avalonia.Styling;
 using CommonServiceLocator;
-using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Mvvm;
 using Prism.Regions;
-using Prism.Regions.Behaviors;
 using System;
-using System.Linq;
-//using System.Windows;
 
 namespace Prism
 {

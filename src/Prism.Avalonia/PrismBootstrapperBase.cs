@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Windows;
+using Avalonia;
+using Avalonia.Controls;
 using Prism.Common;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
-using CommonServiceLocator;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Styling;
-using Avalonia.VisualTree;
 
 namespace Prism
 {
@@ -21,8 +17,8 @@ namespace Prism
     /// </remarks>
     public abstract class PrismBootstrapperBase
     {
-        IContainerExtension _containerExtension;
-        IModuleCatalog _moduleCatalog;
+        private IContainerExtension _containerExtension;
+        private IModuleCatalog _moduleCatalog;
 
         /// <summary>
         /// The dependency injection container used to resolve objects
@@ -33,7 +29,7 @@ namespace Prism
         /// Gets the shell user interface
         /// </summary>
         /// <value>The shell user interface.</value>
-        protected DependencyObject Shell { get; set; }
+        protected AvaloniaObject Shell { get; set; }
 
         /// <summary>
         /// Runs the bootstrapper process.
@@ -122,8 +118,8 @@ namespace Prism
         protected abstract void RegisterTypes(IContainerRegistry containerRegistry);
 
         /// <summary>
-        /// Configures the <see cref="IRegionBehaviorFactory"/>. 
-        /// This will be the list of default behaviors that will be added to a region. 
+        /// Configures the <see cref="IRegionBehaviorFactory"/>.
+        /// This will be the list of default behaviors that will be added to a region.
         /// </summary>
         protected virtual void ConfigureDefaultRegionBehaviors(IRegionBehaviorFactory regionBehaviors)
         {
@@ -142,7 +138,7 @@ namespace Prism
         }
 
         /// <summary>
-        /// Registers the <see cref="Type"/>s of the Exceptions that are not considered 
+        /// Registers the <see cref="Type"/>s of the Exceptions that are not considered
         /// root exceptions by the <see cref="ExceptionExtensions"/>.
         /// </summary>
         protected virtual void RegisterFrameworkExceptionTypes()
@@ -153,12 +149,12 @@ namespace Prism
         /// Creates the shell or main window of the application.
         /// </summary>
         /// <returns>The shell of the application.</returns>
-        protected abstract DependencyObject CreateShell();
+        protected abstract AvaloniaObject CreateShell();
 
         /// <summary>
         /// Initializes the shell.
         /// </summary>
-        protected virtual void InitializeShell(DependencyObject shell)
+        protected virtual void InitializeShell(AvaloniaObject shell)
         {
             Shell = shell;
         }

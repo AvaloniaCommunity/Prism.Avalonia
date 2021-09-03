@@ -34,31 +34,31 @@
 
 | File                                | Status  |  Notes |
 |-------------------------------------|---------|--------|
-| Prism.Avalonia.csproj               | :heavy_check_mark: | Added `netcore` and `net45` targeting conditions, as per PrismLibrary v8.1.x
-| PrismApplicationBase.cs             | :warning: | In-progress; Needs upgraded to Avalonia
-| Bootstrapper.cs                     | :heavy_check_mark: :x:     | Renamed to `PrismBootstrapperBase.cs`
-| PrismBootstrapperBase.cs            | :new: :heavy_check_mark: | Replaces `Boostrapper.cs`
-| PrismInitializationExtensions.cs    | :new: | All of the Register container, Behavior, and Adapter goodies.
-| Common\MvvmHelpers.cs               | :heavy_check_mark:
-| Common\ObservableObject.cs          | :white_square_button: :warning: | Needs Avalonia expert
-| Common\UriParsingHelper.cs          | :heavy_check_mark:
-| Events\WeakDelegatesManager.cs      | :heavy_check_mark: :x: | It's apart of `Prism.Events`
+| Prism.Avalonia.csproj                     | :heavy_check_mark:            | Added `netcore` and `net45` targeting conditions, as per PrismLibrary v8.1.x
+| PrismApplicationBase.cs                   | :heavy_check_mark: :warning:  | Needs verification
+| Bootstrapper.cs                           | :heavy_check_mark: :x:        | Renamed to `PrismBootstrapperBase.cs`
+| PrismBootstrapperBase.cs                  | :heavy_check_mark: :new:      | Replaces `Boostrapper.cs`
+| PrismInitializationExtensions.cs          | :white_square_button: :new:   | All of the Register container, Behavior, and Adapter goodies.
+| Common\MvvmHelpers.cs                     | :heavy_check_mark:
+| Common\ObservableObject.cs                | :warning: | Needs Avalonia expert
+| Common\UriParsingHelper.cs                | :heavy_check_mark:
+| Events\WeakDelegatesManager.cs            | :heavy_check_mark: :x: | It's apart of `Prism.Events`
 | Extensions\CollectionExtensions.cs        | :heavy_check_mark:
 | Extensions\DependencyObjectExtensions.cs  | :warning: | Needs Avalonia expert
 | Extensions\ExceptionExtension.cs          | :heavy_check_mark: :x:
 | Extensions\ServiceLocationExtension.cs    | :heavy_check_mark: :x:
 | Interactivity\CommandBehaviorBase.cs      | :heavy_check_mark: :warning: | Needs verification
-| Interactivity\InvokeCommandAction.cs      | :new: :warning: | Has **ERRORS**; Needs converted to Avalonia
-| Ioc\ContainerProviderExtension.cs         | :new: :heavy_check_mark: :warning: | Needs verification
-| Ioc\IContainerRegistryExtensions.cs     | :heavy_check_mark:
-| Logging\TextLogger.cs                   | :heavy_check_mark: :x: | Removed from Prism
-| Logging\TraceLogger.cs                  | :heavy_check_mark: :x: | Removed from Prism
+| Interactivity\InvokeCommandAction.cs      | :warning: :new: | Has **ERRORS**; Needs converted to Avalonia
+| Ioc\ContainerProviderExtension.cs         | :heavy_check_mark: :new: :warning: | Needs verification
+| Ioc\IContainerRegistryExtensions.cs       | :heavy_check_mark:
+| Logging\TextLogger.cs                     | :heavy_check_mark: :x: | Removed from Prism
+| Logging\TraceLogger.cs                    | :heavy_check_mark: :x: | Removed from Prism
 | Modularity\AssemblyResolver.Desktop.cs                      | :heavy_check_mark:
 | Modularity\ConfigurationModuleCatalog.Desktop.cs            | :heavy_check_mark:
 | Modularity\ConfigurationStore.Desktop.cs                    | :heavy_check_mark:
 | Modularity\DirectoryModuleCatalog.Desktop.cs                | :heavy_check_mark: :x:
-| Modularity\DirectoryModuleCatalog.net45.cs                  | :heavy_check_mark: :new: |
-| Modularity\DirectoryModuleCatalog.netcore.cs                | :heavy_check_mark: :new: |
+| Modularity\DirectoryModuleCatalog.net45.cs                  | :heavy_check_mark: :new:
+| Modularity\DirectoryModuleCatalog.netcore.cs                | :heavy_check_mark: :new:
 | Modularity\FileModuleTypeLoader.Desktop.cs                  | :heavy_check_mark:
 | Modularity\IAssemblyResolver.Desktop.cs                     | :heavy_check_mark:
 | Modularity\IConfigurationStore.Desktop.cs                   | :heavy_check_mark:
@@ -71,7 +71,7 @@
 | Modularity\ModuleConfigurationElementCollection.Desktop.cs  | :heavy_check_mark:
 | Modularity\ModuleDependencyCollection.Desktop.cs            | :heavy_check_mark:
 | Modularity\ModuleDependencyConfigurationElement.Desktop.cs  | :heavy_check_mark:
-| Modularity\ModuleDownloadProgressChangedEventArgs.cs        | :x: |
+| Modularity\ModuleDownloadProgressChangedEventArgs.cs        | :heavy_check_mark: :x:
 | Modularity\ModuleInfo.cs                                    | :heavy_check_mark:
 | Modularity\ModuleInfo.Desktop.cs                            | :heavy_check_mark:
 | Modularity\ModuleInfoGroup.cs                               | :heavy_check_mark:
@@ -80,7 +80,7 @@
 | Modularity\ModuleManager.cs                                 | :heavy_check_mark:
 | Modularity\ModuleManager.Desktop.cs                         | :heavy_check_mark:
 | Modularity\ModulesConfigurationSection.Desktop.cs           | :white_square_button:
-| Modularity\XamlModuleCatalog.cs                             | :new: :warning: | Whats the Avalonia `XamlReader` equivilant?
+| Modularity\XamlModuleCatalog.cs                             | :warning: :new: | Whats the Avalonia `XamlReader` equivilant?
 | Mvvm\ViewModuleLocator.cs                                   | :heavy_check_mark:
 | Properties\AssemblyInfo                                     | :heavy_check_mark:
 | Properties\Resources.resx                                   | :heavy_check_mark:
@@ -88,9 +88,9 @@
 | Properties\Settings.Designer.cs                             | :heavy_check_mark:
 | Properties\Settings.settings                                | :heavy_check_mark:
 | Regions\Behaviors\AutoPopulateRegionBehavior.cs                 | :heavy_check_mark:
-| Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs  | :white_square_button: :warning: | Needs reviewed; Equivilant, `BindRegionContextToDependencyObjectBehavior`
+| Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs  | :warning: | Needs reviewed; Equivilant, `BindRegionContextToDependencyObjectBehavior`
 | Regions\Behaviors\ClearChildViewsRegionBehavior.cs              | :heavy_check_mark:
-| Regions\Behaviors\DelayedRegionCreationBehavior.cs              | :white_square_button: :warning: | Needs Avalonia equivilant of `FrameworkContentElement += Loaded`
+| Regions\Behaviors\DelayedRegionCreationBehavior.cs              | :warning: | Needs Avalonia equivilant of `FrameworkContentElement += Loaded`
 | Regions\Behaviors\DestructibleRegionBehavior.cs                 | :heavy_check_mark: :new:
 | Regions\Behaviors\IHostAwareRegionBehavior.cs                   | :heavy_check_mark:
 | Regions\Behaviors\RegionActiveAwareBehavior.cs                  | :heavy_check_mark:
@@ -98,7 +98,7 @@
 | Regions\Behaviors\RegionCreationException.Desktop.cs            | :heavy_check_mark:
 | Regions\Behaviors\RegionManagerRegistrationBehavior.cs          | :heavy_check_mark: :warning: | Needs reviewed
 | Regions\Behaviors\RegionMemberLifetimeBehavior.cs               | :heavy_check_mark:
-| Regions\Behaviors\SelectorItemsSourceSyncBehavior.cs            | :white_square_button: :warning: | Needs attention
+| Regions\Behaviors\SelectorItemsSourceSyncBehavior.cs            | :warning:           | Needs attention - _Currently disabled_
 | Regions\Behaviors\SyncRegionContextWithHostBehavior.cs          | :heavy_check_mark:
 | Regions\AllActiveRegion.cs                    | :white_square_button:
 | Regions\ContentControlRegionAdapter.cs        | :white_square_button:
@@ -228,4 +228,3 @@ Containers is a :new: Folder
 | System.Windows.Markup | Avalonia.Markup.Xaml
 | System.Windows.Markup.XmlnsDefinition | Avalonia.Metadata.XmlnsDefinition
 | System.Windows.DependencyObject | Avalonia.AvaloniaObject
-
