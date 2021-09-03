@@ -1,7 +1,6 @@
+using System;
 using Avalonia.Controls;
 using Prism.Properties;
-using System;
-using System.Linq;
 
 namespace Prism.Regions
 {
@@ -33,7 +32,7 @@ namespace Prism.Regions
             if (regionTarget == null)
                 throw new ArgumentNullException(nameof(regionTarget));
 
-            //TODO: In Avalonia Items never be null
+            // In Avalonia, Items will never be null
             bool itemsSourceIsSet = regionTarget.ItemCount > 0;
 
             if (itemsSourceIsSet)
@@ -42,11 +41,13 @@ namespace Prism.Regions
             }
 
             // If control has child items, move them to the region and then bind control to region. Can't set ItemsSource if child items exist.
-            if (regionTarget.Items != null)
+            if (regionTarget.ItemCount > 0)
+            {
                 foreach (object childItem in regionTarget.Items)
                 {
                     region.Add(childItem);
                 }
+            }
 
             regionTarget.Items = region.Views;
         }

@@ -1,11 +1,15 @@
 # Prism.Avalonia
 
-Prism (https://github.com/PrismLibrary/Prism) framework support for Avalonia UI.
+Prism [https://github.com/PrismLibrary/Prism] framework support for Avalonia UI.
 
 This library actually copies functionality of Prism for WPF implementation, which can be found here:
-https://github.com/PrismLibrary/Prism/tree/master/Source/Wpf
+[https://github.com/PrismLibrary/Prism/tree/master/Source/Wpf]
   
 Logic and approach for development of your applications remained the same as it was for Prism.Wpf library. 
+
+## Upgrade to Prism 8.1 Progress
+
+Check out [Upgrade-Prism-7.2-to-8.1.md] for the latest progress
 
 ## Install
 
@@ -25,12 +29,6 @@ Unity:
 
 ```powershell
 Install-Package Prism.Unity.Avalonia -Version 7.2.0.1429
-```
-
-Autofac (_Deprecated from Prism 8.x_):
-
-```powershell
-Install-Package Prism.Autofac.Avalonia -Version 7.1.0.431
 ```
 
 ## How to use
