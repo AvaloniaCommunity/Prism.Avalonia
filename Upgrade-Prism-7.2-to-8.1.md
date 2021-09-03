@@ -116,7 +116,7 @@
 | Regions\IRegionCollection.cs                  | :heavy_check_mark:
 | Regions\IRegionManager.cs                     | :heavy_check_mark:
 | Regions\IRegionManagerAccessor.cs             | :heavy_check_mark:
-| Regions\IRegionManagerExtensions.cs           | :heavy_check_mark:
+| Regions\IRegionManagerExtensions.cs           | :heavy_check_mark: :new:
 | Regions\IRegionMemberLifetime.cs              | :heavy_check_mark:
 | Regions\IRegionNavigationContentLoader.cs     | :heavy_check_mark:
 | Regions\IRegionNavigationJournal.cs           | :heavy_check_mark:
