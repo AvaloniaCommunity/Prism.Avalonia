@@ -1,5 +1,3 @@
-
-
 using Avalonia.Controls;
 using Prism.Properties;
 using System;

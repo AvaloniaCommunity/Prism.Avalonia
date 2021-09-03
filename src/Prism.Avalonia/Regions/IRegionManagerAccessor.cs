@@ -1,8 +1,5 @@
-
-
-using Avalonia;
 using System;
-using System.Windows;
+using Avalonia;
 
 namespace Prism.Regions
 {
@@ -12,7 +9,7 @@ namespace Prism.Regions
     public interface IRegionManagerAccessor
     {
         /// <summary>
-        /// Notification used by attached behaviors to update the region managers appropriatelly if needed to.
+        /// Notification used by attached behaviors to update the region managers appropriately if needed to.
         /// </summary>
         /// <remarks>This event uses weak references to the event handler to prevent this static event of keeping the
         /// target element longer than expected.</remarks>
@@ -22,7 +19,7 @@ namespace Prism.Regions
         /// Gets the value for the RegionName attached property.
         /// </summary>
         /// <param name="element">The object to adapt. This is typically a container (i.e a control).</param>
-        /// <returns>The name of the region that should be created when 
+        /// <returns>The name of the region that should be created when
         /// the RegionManager is also set in this element.</returns>
         string GetRegionName(IAvaloniaObject element);
 

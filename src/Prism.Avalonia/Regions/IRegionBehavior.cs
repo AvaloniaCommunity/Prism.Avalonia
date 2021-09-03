@@ -1,5 +1,3 @@
-
-
 namespace Prism.Regions
 {
     /// <summary>
@@ -16,6 +14,5 @@ namespace Prism.Regions
         /// Attaches the behavior to the specified region.
         /// </summary>
         void Attach();
-
     }
 }

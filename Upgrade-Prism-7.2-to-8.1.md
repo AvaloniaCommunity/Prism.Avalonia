@@ -100,29 +100,31 @@
 | Regions\Behaviors\RegionMemberLifetimeBehavior.cs               | :heavy_check_mark:
 | Regions\Behaviors\SelectorItemsSourceSyncBehavior.cs            | :warning:           | Needs attention - _Currently disabled_
 | Regions\Behaviors\SyncRegionContextWithHostBehavior.cs          | :heavy_check_mark:
-| Regions\AllActiveRegion.cs                    | :white_square_button:
-| Regions\ContentControlRegionAdapter.cs        | :white_square_button:
-| Regions\DefaultRegionManagerAccessor.cs       | :white_square_button:
-| Regions\IConfirmNavigationRequest.cs          | :white_square_button:
-| Regions\IJournalAware.cs                      | :white_square_button:
-| Regions\INavigateAsync.cs                     | :white_square_button:
-| Regions\INavigationAware.cs                   | :white_square_button:
-| Regions\IRegion.cs                            | :white_square_button:
-| Regions\IRegionAdapter.cs                     | :white_square_button:
-| Regions\IRegionBehavior.cs                    | :white_square_button:
-| Regions\IRegionBehaviorCollection.cs          | :white_square_button:
-| Regions\IRegionBehaviorFactory.cs             | :white_square_button:
-| Regions\IRegionCollection.cs                  | :white_square_button:
-| Regions\IRegionManager.cs                     | :white_square_button:
-| Regions\IRegionManagerAccessor.cs             | :white_square_button:
-| Regions\IRegionMemberLifetime.cs              | :white_square_button:
-| Regions\IRegionNavigationContentLoader.cs     | :white_square_button:
-| Regions\IRegionNavigationJournal.cs           | :white_square_button:
-| Regions\IRegionNavigationJournalEntry.cs      | :white_square_button:
-| Regions\IRegionNavigationService.cs           | :white_square_button:
-| Regions\IRegionViewRegistry.cs                | :white_square_button:
-| Regions\IViewsCollection.cs                   | :white_square_button:
-| Regions\ItemMetadata.cs                       | :white_square_button:
+| Regions\AllActiveRegion.cs                    | :heavy_check_mark:
+| Regions\ContentControlRegionAdapter.cs        | :white_square_button: :warning: | Needs attention
+| Regions\DefaultRegionManagerAccessor.cs       | :heavy_check_mark:
+| Regions\IConfirmNavigationRequest.cs          | :heavy_check_mark:
+| Regions\IJournalAware.cs                      | :heavy_check_mark:
+| Regions\INavigateAsync.cs                     | :heavy_check_mark:
+| Regions\INavigationAware.cs                   | :heavy_check_mark:
+| Regions\IRegion.cs                            | :heavy_check_mark:
+| Regions\IRegionAdapter.cs                     | :heavy_check_mark:
+| Regions\IRegionBehavior.cs                    | :heavy_check_mark:
+| Regions\IRegionBehaviorCollection.cs          | :heavy_check_mark:
+| Regions\IRegionBehaviorFactory.cs             | :heavy_check_mark:
+| Regions\IRegionBehaviorFactoryExtensions.cs   | :heavy_check_mark: :new:
+| Regions\IRegionCollection.cs                  | :heavy_check_mark:
+| Regions\IRegionManager.cs                     | :heavy_check_mark:
+| Regions\IRegionManagerAccessor.cs             | :heavy_check_mark:
+| Regions\IRegionManagerExtensions.cs           | :heavy_check_mark:
+| Regions\IRegionMemberLifetime.cs              | :heavy_check_mark:
+| Regions\IRegionNavigationContentLoader.cs     | :heavy_check_mark:
+| Regions\IRegionNavigationJournal.cs           | :heavy_check_mark:
+| Regions\IRegionNavigationJournalEntry.cs      | :heavy_check_mark:
+| Regions\IRegionNavigationService.cs           | :heavy_check_mark:
+| Regions\IRegionViewRegistry.cs                | :heavy_check_mark:
+| Regions\IViewsCollection.cs                   | :heavy_check_mark:
+| Regions\ItemMetadata.cs                       | :heavy_check_mark:
 | Regions\ItemsControlRegionAdapter.cs          | :white_square_button:
 | Regions\NavigationAsyncExtensions.cs          | :white_square_button:
 | Regions\NavigationContext.cs                  | :white_square_button:
@@ -225,6 +227,41 @@ Containers is a :new: Folder
 | UIElement                       | Avalonia.Controls.Control |
 | System.Windows.Markup.MarkupExtension | Avalonia.Markup.Xaml.MarkupExtension | [Reference](http://reference.avaloniaui.net/api/Avalonia.Markup.Xaml/MarkupExtension/)
 | System.Windows.Markup.ContentPropertyAttribute.ContentProperty | Avalonia.Metadata.Content
-| System.Windows.Markup | Avalonia.Markup.Xaml
+| System.Windows.Markup                 | Avalonia.Markup.Xaml
 | System.Windows.Markup.XmlnsDefinition | Avalonia.Metadata.XmlnsDefinition
-| System.Windows.DependencyObject | Avalonia.AvaloniaObject
+| System.Windows.DependencyObject       | Avalonia.AvaloniaObject
+| System.Windows.DependencyProperty     | Avalonia.AvaloniaProperty
+
+### Inheriting WPF DependencyObject in Avalonia
+
+WPF:
+
+```cs
+    public partial class ItemMetadata : DependencyObject
+    {
+      ...
+        private static void DependencyPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+        {
+            ItemMetadata itemMetadata = dependencyObject as ItemMetadata;
+            if (itemMetadata != null)
+            {
+                itemMetadata.InvokeMetadataChanged();
+            }
+        }
+```
+
+Avalonia
+
+```cs
+    public class ItemMetadata : AvaloniaObject
+    {
+      ...
+        private static void StyledPropertyChanged(IAvaloniaObject dependencyObject, AvaloniaPropertyChangedEventArgs args)
+        {
+            ItemMetadata itemMetadata = dependencyObject as ItemMetadata;
+            if (itemMetadata != null)
+            {
+                itemMetadata.InvokeMetadataChanged();
+            }
+        }
+```
