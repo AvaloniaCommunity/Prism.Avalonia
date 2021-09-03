@@ -1,11 +1,8 @@
-
-
+using System;
+using System.Globalization;
 using Avalonia;
 using Prism.Properties;
 using Prism.Regions.Behaviors;
-using System;
-using System.Globalization;
-using System.Windows;
 
 namespace Prism.Regions
 {
@@ -82,7 +79,7 @@ namespace Prism.Regions
             IRegionBehaviorFactory behaviorFactory = this.RegionBehaviorFactory;
             if (behaviorFactory != null)
             {
-                AvaloniaObject AvaloniaObjectRegionTarget = regionTarget as AvaloniaObject;
+                AvaloniaObject avaloniaObjectRegionTarget = regionTarget as AvaloniaObject;
 
                 foreach (string behaviorKey in behaviorFactory)
                 {
@@ -90,12 +87,12 @@ namespace Prism.Regions
                     {
                         IRegionBehavior behavior = behaviorFactory.CreateFromKey(behaviorKey);
 
-                        if (AvaloniaObjectRegionTarget != null)
+                        if (avaloniaObjectRegionTarget != null)
                         {
                             IHostAwareRegionBehavior hostAwareRegionBehavior = behavior as IHostAwareRegionBehavior;
                             if (hostAwareRegionBehavior != null)
                             {
-                                hostAwareRegionBehavior.HostControl = AvaloniaObjectRegionTarget;
+                                hostAwareRegionBehavior.HostControl = avaloniaObjectRegionTarget;
                             }
                         }
 

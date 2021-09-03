@@ -131,12 +131,12 @@
 | Regions\NavigationParameters.cs               | :heavy_check_mark:
 | Regions\NavigationResult.cs                   | :heavy_check_mark:
 | Regions\Region.cs                             | :heavy_check_mark:
-| Regions\RegionAdapterBase.cs                  | :white_square_button:
-| Regions\RegionAdapterMappings.cs              | :white_square_button:
-| Regions\RegionBehavior.cs                     | :white_square_button:
-| Regions\RegionBehaviorCollection.cs           | :white_square_button:
-| Regions\RegionBehaviorFactory.cs              | :white_square_button:
-| Regions\RegionContext.cs                      | :white_square_button:
+| Regions\RegionAdapterBase.cs                  | :heavy_check_mark:
+| Regions\RegionAdapterMappings.cs              | :heavy_check_mark:
+| Regions\RegionBehavior.cs                     | :heavy_check_mark:
+| Regions\RegionBehaviorCollection.cs           | :heavy_check_mark:
+| Regions\RegionBehaviorFactory.cs              | :heavy_check_mark:
+| Regions\RegionContext.cs                      | :heavy_check_mark:
 | Regions\RegionManager.cs                      | :white_square_button:
 | Regions\RegionMemberLifetimeAttribute.cs      | :white_square_button:
 | Regions\RegionNavigationContentLoader.cs      | :white_square_button:
@@ -237,31 +237,49 @@ Containers is a :new: Folder
 WPF:
 
 ```cs
-    public partial class ItemMetadata : DependencyObject
+public partial class ItemMetadata : DependencyObject
+{
+    ...
+    private static void DependencyPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
     {
-      ...
-        private static void DependencyPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+        ItemMetadata itemMetadata = dependencyObject as ItemMetadata;
+        if (itemMetadata != null)
         {
-            ItemMetadata itemMetadata = dependencyObject as ItemMetadata;
-            if (itemMetadata != null)
-            {
-                itemMetadata.InvokeMetadataChanged();
-            }
+            itemMetadata.InvokeMetadataChanged();
         }
+    }
 ```
 
 Avalonia
 
 ```cs
-    public class ItemMetadata : AvaloniaObject
+public class ItemMetadata : AvaloniaObject
+{
+    ...
+    private static void StyledPropertyChanged(IAvaloniaObject dependencyObject, AvaloniaPropertyChangedEventArgs args)
     {
-      ...
-        private static void StyledPropertyChanged(IAvaloniaObject dependencyObject, AvaloniaPropertyChangedEventArgs args)
+        ItemMetadata itemMetadata = dependencyObject as ItemMetadata;
+        if (itemMetadata != null)
         {
-            ItemMetadata itemMetadata = dependencyObject as ItemMetadata;
-            if (itemMetadata != null)
-            {
-                itemMetadata.InvokeMetadataChanged();
-            }
+            itemMetadata.InvokeMetadataChanged();
         }
+    }
+```
+
+### Properties
+
+WPF:
+
+```cs
+private static readonly DependencyProperty ObservableRegionContextProperty =
+    DependencyProperty.RegisterAttached("ObservableRegionContext", typeof(ObservableObject<object>), typeof(RegionContext), null);
+
+```
+
+Avalonia:
+
+```cs
+private static readonly AvaloniaProperty ObservableRegionContextProperty =
+    AvaloniaProperty.RegisterAttached<Visual, ObservableObject<object>>("ObservableRegionContext", typeof(RegionContext));
+
 ```

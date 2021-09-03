@@ -1,9 +1,8 @@
-
-
-using Prism.Properties;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Prism.Ioc;
+using Prism.Properties;
 
 namespace Prism.Regions
 {
@@ -30,10 +29,29 @@ namespace Prism.Regions
                 throw new ArgumentNullException(nameof(adapter));
 
             if (mappings.ContainsKey(controlType))
-                throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture,
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture,
                                                                   Resources.MappingExistsException, controlType.Name));
 
             mappings.Add(controlType, adapter);
+        }
+
+        /// <summary>
+        /// Registers the mapping between a type and an adapter.
+        /// </summary>
+        /// <typeparam name="TControl">The type of the control</typeparam>
+        public void RegisterMapping<TControl>(IRegionAdapter adapter)
+        {
+            RegisterMapping(typeof(TControl), adapter);
+        }
+
+        /// <summary>
+        /// Registers the mapping between a type and an adapter.
+        /// </summary>
+        /// <typeparam name="TControl">The type of the control</typeparam>
+        /// <typeparam name="TAdapter">The type of the IRegionAdapter to use with the TControl</typeparam>
+        public void RegisterMapping<TControl, TAdapter>() where TAdapter : IRegionAdapter
+        {
+            RegisterMapping(typeof(TControl), ContainerLocator.Container.Resolve<TAdapter>());
         }
 
         /// <summary>
@@ -59,7 +77,22 @@ namespace Prism.Regions
                 }
                 currentType = currentType.BaseType;
             }
-            throw new KeyNotFoundException(String.Format(CultureInfo.CurrentCulture, Resources.NoRegionAdapterException, controlType));
+            throw new KeyNotFoundException(string.Format(CultureInfo.CurrentCulture, Resources.NoRegionAdapterException, controlType));
+        }
+
+        /// <summary>
+        /// Returns the adapter associated with the type provided.
+        /// </summary>
+        /// <typeparam name="T">The control type used to obtain the <see cref="IRegionAdapter"/> mapped.</typeparam>
+        /// <returns>The <see cref="IRegionAdapter"/> mapped to the <typeparamref name="T"/>.</returns>
+        /// <remarks>This class will look for a registered type for <typeparamref name="T"/> and if there is not any,
+        /// it will look for a registered type for any of its ancestors in the class hierarchy.
+        /// If there is no registered type for <typeparamref name="T"/> or any of its ancestors,
+        /// an exception will be thrown.</remarks>
+        /// <exception cref="KeyNotFoundException">When there is no registered type for <typeparamref name="T"/> or any of its ancestors.</exception>
+        public IRegionAdapter GetMapping<T>()
+        {
+            return GetMapping(typeof(T));
         }
     }
 }
