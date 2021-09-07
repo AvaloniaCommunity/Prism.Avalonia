@@ -147,15 +147,15 @@
 | Regions\RegionNavigationService.cs            | :heavy_check_mark:
 | Regions\RegionViewRegistry.cs                 | :heavy_check_mark:
 | Regions\SelectorRegionAdapter.cs              | :white_square_button:
-| Regions\SingleActiveRegion.cs                 | :white_square_button:
-| Regions\SyncActiveStateAttribute.cs           | :white_square_button:
-| Regions\UpdateRegionsException.Desktop.cs     | :white_square_button:
-| Regions\UpdateRegionsException.cs             | :white_square_button:
-| Regions\ViewRegisteredEventArgs.cs            | :white_square_button:
-| Regions\ViewRegistrationException.Desktop.cs  | :white_square_button:
-| Regions\ViewRegistrationException.cs          | :white_square_button:
-| Regions\ViewSortHintAttribute.cs              | :white_square_button:
-| Regions\ViewsCollection.cs                    | :white_square_button:
+| Regions\SingleActiveRegion.cs                 | :heavy_check_mark:
+| Regions\SyncActiveStateAttribute.cs           | :heavy_check_mark:
+| Regions\UpdateRegionsException.Desktop.cs     | :heavy_check_mark:
+| Regions\UpdateRegionsException.cs             | :heavy_check_mark:
+| Regions\ViewRegisteredEventArgs.cs            | :heavy_check_mark:
+| Regions\ViewRegistrationException.Desktop.cs  | :heavy_check_mark:
+| Regions\ViewRegistrationException.cs          | :heavy_check_mark:
+| Regions\ViewSortHintAttribute.cs              | :heavy_check_mark:
+| Regions\ViewsCollection.cs                    | :heavy_check_mark:
 | Services\Dialogs\ButtonResult.cs              | :new: :heavy_check_mark: |
 | Services\Dialogs\Dialog.cs                    | :new: :warning: | Temp Disabled!
 | Services\Dialogs\DialogParameters.cs          | :new: :heavy_check_mark: |

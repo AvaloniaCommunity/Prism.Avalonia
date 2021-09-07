@@ -1,14 +1,13 @@
-
-
 using System;
 
 namespace Prism.Regions
 {
     /// <summary>
-    /// Exception that's thrown when something goes wrong while Registering a View with a region name in the <see cref="RegionViewRegistry"/> class. 
+    /// Exception that's thrown when something goes wrong while Registering a View with a region name in the <see cref="RegionViewRegistry"/> class.
     /// </summary>
     public partial class ViewRegistrationException : Exception
     {
+        // TODO: Find updated links as these are dead...
         //
         // For guidelines regarding the creation of new exception types, see
         //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpgenref/html/cpconerrorraisinghandlingguidelines.asp
@@ -39,7 +38,5 @@ namespace Prism.Regions
         public ViewRegistrationException(string message, Exception inner) : base(message, inner)
         {
         }
-
-       
     }
 }
