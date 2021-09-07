@@ -1,10 +1,3 @@
-using Avalonia;
-using Avalonia.Controls;
-using CommonServiceLocator;
-using Prism.Common;
-using Prism.Events;
-using Prism.Properties;
-using Prism.Regions.Behaviors;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +7,14 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
-using System.Windows;
+using Prism.Common;
+using Prism.Events;
+using Prism.Ioc;
+using Prism.Properties;
+using Prism.Regions.Behaviors;
+using Prism.Ioc.Internals;
+using Avalonia;
+using Avalonia.Controls;
 
 namespace Prism.Regions
 {
@@ -111,8 +111,8 @@ namespace Prism.Regions
 
         private static void CreateRegion(IAvaloniaObject element)
         {
-            IServiceLocator locator = ServiceLocator.Current;
-            DelayedRegionCreationBehavior regionCreationBehavior = locator.GetInstance<DelayedRegionCreationBehavior>();
+            var container = ContainerLocator.Container;
+            DelayedRegionCreationBehavior regionCreationBehavior = container.Resolve<DelayedRegionCreationBehavior>();
             regionCreationBehavior.TargetElement = element;
             regionCreationBehavior.Attach();
         }
@@ -198,7 +198,7 @@ namespace Prism.Regions
         }
 
         /// <summary>
-        /// Notification used by attached behaviors to update the region managers appropriatelly if needed to.
+        /// Notification used by attached behaviors to update the region managers appropriately if needed to.
         /// </summary>
         /// <remarks>This event uses weak references to the event handler to prevent this static event of keeping the
         /// target element longer than expected.</remarks>
@@ -209,7 +209,7 @@ namespace Prism.Regions
         }
 
         /// <summary>
-        /// Notifies attached behaviors to update the region managers appropriatelly if needed to.
+        /// Notifies attached behaviors to update the region managers appropriately if needed to.
         /// </summary>
         /// <remarks>
         /// This method is normally called internally, and there is usually no need to call this from user code.
@@ -249,9 +249,11 @@ namespace Prism.Regions
 
         static RegionManager()
         {
+            // TODO: Could this go into the default constructor?
             RegionNameProperty.Changed.Subscribe(args => OnSetRegionNameCallback(args?.Sender, args));
             RegionContextProperty.Changed.Subscribe(args => OnRegionContextChanged(args?.Sender, args));
         }
+
         /// <summary>
         /// Gets a collection of <see cref="IRegion"/> that identify each region by name. You can use this collection to add or remove regions to the current region manager.
         /// </summary>
@@ -271,7 +273,7 @@ namespace Prism.Regions
         }
 
         /// <summary>
-        ///     Add a view to the Views collection of a Region. Note that the region must already exist in this regionmanager.
+        ///     Add a view to the Views collection of a Region. Note that the region must already exist in this <see cref="IRegionManager"/>.
         /// </summary>
         /// <param name="regionName">The name of the region to add a view to</param>
         /// <param name="view">The view to add to the views collection</param>
@@ -285,20 +287,51 @@ namespace Prism.Regions
         }
 
         /// <summary>
+        /// Add a view to the Views collection of a Region. Note that the region must already exist in this <see cref="IRegionManager"/>.
+        /// </summary>
+        /// <param name="regionName">The name of the region to add a view to</param>
+        /// <param name="targetName">The view to add to the views collection</param>
+        /// <returns>The RegionManager, to easily add several views. </returns>
+        public IRegionManager AddToRegion(string regionName, string targetName)
+        {
+            if (!Regions.ContainsRegionWithName(regionName))
+                throw new ArgumentException(string.Format(Thread.CurrentThread.CurrentCulture, Resources.RegionNotFound, regionName), nameof(regionName));
+
+            var view = CreateNewRegionItem(targetName);
+
+            return Regions[regionName].Add(view);
+        }
+
+        /// <summary>
         /// Associate a view with a region, by registering a type. When the region get's displayed
         /// this type will be resolved using the ServiceLocator into a concrete instance. The instance
         /// will be added to the Views collection of the region
         /// </summary>
         /// <param name="regionName">The name of the region to associate the view with.</param>
         /// <param name="viewType">The type of the view to register with the </param>
-        /// <returns>The regionmanager, for adding several views easily</returns>
+        /// <returns>The <see cref="IRegionManager"/>, for adding several views easily</returns>
         public IRegionManager RegisterViewWithRegion(string regionName, Type viewType)
         {
-            var regionViewRegistry = ServiceLocator.Current.GetInstance<IRegionViewRegistry>();
+            var regionViewRegistry = ContainerLocator.Container.Resolve<IRegionViewRegistry>();
 
             regionViewRegistry.RegisterViewWithRegion(regionName, viewType);
 
             return this;
+        }
+
+        /// <summary>
+        /// Associate a view with a region, by registering a type. When the region get's displayed
+        /// this type will be resolved using the ServiceLocator into a concrete instance. The instance
+        /// will be added to the Views collection of the region
+        /// </summary>
+        /// <param name="regionName">The name of the region to associate the view with.</param>
+        /// <param name="targetName">The type of the view to register with the </param>
+        /// <returns>The <see cref="IRegionManager"/>, for adding several views easily</returns>
+        public IRegionManager RegisterViewWithRegion(string regionName, string targetName)
+        {
+            var viewType = ContainerLocator.Current.GetRegistrationType(targetName);
+
+            return RegisterViewWithRegion(regionName, viewType);
         }
 
         /// <summary>
@@ -308,10 +341,10 @@ namespace Prism.Regions
         /// </summary>
         /// <param name="regionName">The name of the region to associate the view with.</param>
         /// <param name="getContentDelegate">The delegate used to resolve a concrete instance of the view.</param>
-        /// <returns>The regionmanager, for adding several views easily</returns>
+        /// <returns>The <see cref="IRegionManager"/>, for adding several views easily</returns>
         public IRegionManager RegisterViewWithRegion(string regionName, Func<object> getContentDelegate)
         {
-            var regionViewRegistry = ServiceLocator.Current.GetInstance<IRegionViewRegistry>();
+            var regionViewRegistry = ContainerLocator.Container.Resolve<IRegionViewRegistry>();
 
             regionViewRegistry.RegisterViewWithRegion(regionName, getContentDelegate);
 
@@ -429,6 +462,33 @@ namespace Prism.Regions
             RequestNavigate(regionName, new Uri(target, UriKind.RelativeOrAbsolute), nr => { }, navigationParameters);
         }
 
+        /// <summary>
+        /// Provides a new item for the region based on the supplied candidate target contract name.
+        /// </summary>
+        /// <param name="candidateTargetContract">The target contract to build.</param>
+        /// <returns>An instance of an item to put into the <see cref="IRegion"/>.</returns>
+        protected virtual object CreateNewRegionItem(string candidateTargetContract)
+        {
+            try
+            {
+                var view = ContainerLocator.Container.Resolve<object>(candidateTargetContract);
+
+                MvvmHelpers.AutowireViewModel(view);
+
+                return view;
+            }
+            catch (ContainerResolutionException)
+            {
+                throw;
+            }
+            catch (Exception e)
+            {
+                throw new InvalidOperationException(
+                    string.Format(CultureInfo.CurrentCulture, Resources.CannotCreateNavigationTarget, candidateTargetContract),
+                    e);
+            }
+        }
+
         private class RegionCollection : IRegionCollection
         {
             private readonly IRegionManager regionManager;
@@ -521,10 +581,10 @@ namespace Prism.Regions
             }
 
             /// <summary>
-            /// Adds a region to the regionmanager with the name received as argument.
+            /// Adds a region to the <see cref="RegionManager"/> with the name received as argument.
             /// </summary>
             /// <param name="regionName">The name to be given to the region.</param>
-            /// <param name="region">The region to be added to the regionmanager.</param>
+            /// <param name="region">The region to be added to the <see cref="RegionManager"/>.</param>
             /// <exception cref="ArgumentNullException">Thrown if <paramref name="region"/> is <see langword="null"/>.</exception>
             /// <exception cref="ArgumentException">Thrown if <paramref name="regionName"/> and <paramref name="region"/>'s name do not match and the <paramref name="region"/> <see cref="IRegion.Name"/> is not <see langword="null"/>.</exception>
             public void Add(string regionName, IRegion region)

@@ -1,15 +1,14 @@
 # Prism.Avalonia
 
-Prism [https://github.com/PrismLibrary/Prism] framework support for Avalonia UI.
+[Prism framework](https://github.com/PrismLibrary/Prism) support for Avalonia UI.
 
-This library actually copies functionality of Prism for WPF implementation, which can be found here:
-[https://github.com/PrismLibrary/Prism/tree/master/Source/Wpf]
+This library actually uses the same functionality of [Prism for WPF](https://github.com/PrismLibrary/Prism/tree/master/Source/Wpf) implementation to bring you Prism for Avalonia!
   
-Logic and approach for development of your applications remained the same as it was for Prism.Wpf library. 
+Logic and approach for development of your applications remained the same as it was for Prism.Wpf library.
 
 ## Upgrade to Prism 8.1 Progress
 
-Check out [Upgrade-Prism-7.2-to-8.1.md] for the latest progress
+Check out [Upgrade-Prism-7.2-to-8.1.md](https://github.com/AvaloniaCommunity/Prism.Avalonia/blob/feature-Prism8197/Upgrade-Prism-7.2-to-8.1.md) for the latest progress.
 
 ## Install
 

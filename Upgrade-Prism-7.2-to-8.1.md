@@ -137,7 +137,7 @@
 | Regions\RegionBehaviorCollection.cs           | :heavy_check_mark:
 | Regions\RegionBehaviorFactory.cs              | :heavy_check_mark:
 | Regions\RegionContext.cs                      | :heavy_check_mark:
-| Regions\RegionManager.cs                      | :white_square_button:
+| Regions\RegionManager.cs                      | :heavy_check_mark:
 | Regions\RegionMemberLifetimeAttribute.cs      | :white_square_button:
 | Regions\RegionNavigationContentLoader.cs      | :white_square_button:
 | Regions\RegionNavigationEventArgs.cs          | :white_square_button:
@@ -222,15 +222,18 @@ Containers is a :new: Folder
 
 | WPF                             | Avalonia | Reference |
 |---------------------------------|----------|-----------|
-| System.Windows.FrameworkElement | Avalonia.Controls.Control | [Reference](https://docs.avaloniaui.net/misc/wpf/uielement-frameworkelement-and-control) |
+| System.Windows                        | Avalonia
+| System.Windows.FrameworkElement       | Avalonia.Controls.Control | [Reference](https://docs.avaloniaui.net/misc/wpf/uielement-frameworkelement-and-control) |
 | System.WIndows.FrameworkContentElement | Avalonia.Controls.Control
-| UIElement                       | Avalonia.Controls.Control |
+| UIElement                             | Avalonia.Controls.Control |
 | System.Windows.Markup.MarkupExtension | Avalonia.Markup.Xaml.MarkupExtension | [Reference](http://reference.avaloniaui.net/api/Avalonia.Markup.Xaml/MarkupExtension/)
 | System.Windows.Markup.ContentPropertyAttribute.ContentProperty | Avalonia.Metadata.Content
 | System.Windows.Markup                 | Avalonia.Markup.Xaml
 | System.Windows.Markup.XmlnsDefinition | Avalonia.Metadata.XmlnsDefinition
 | System.Windows.DependencyObject       | Avalonia.AvaloniaObject
 | System.Windows.DependencyProperty     | Avalonia.AvaloniaProperty
+| System.Windows.DependencyPropertyChangedEventArgs | Avalonia.AvaloniaPropertyChangedEventArgs
+| System.ComponentModel.DesignerProperties.GetIsInDesignMode(DependencyObject element); | Avalonia.Controls.Design.IsDesignMode;
 
 ### Inheriting WPF DependencyObject in Avalonia
 
@@ -266,14 +269,13 @@ public class ItemMetadata : AvaloniaObject
     }
 ```
 
-### Properties
+### Property
 
 WPF:
 
 ```cs
 private static readonly DependencyProperty ObservableRegionContextProperty =
     DependencyProperty.RegisterAttached("ObservableRegionContext", typeof(ObservableObject<object>), typeof(RegionContext), null);
-
 ```
 
 Avalonia:
@@ -282,4 +284,29 @@ Avalonia:
 private static readonly AvaloniaProperty ObservableRegionContextProperty =
     AvaloniaProperty.RegisterAttached<Visual, ObservableObject<object>>("ObservableRegionContext", typeof(RegionContext));
 
+```
+
+### Property with Callback
+
+WPF:
+
+```cs
+public static readonly DependencyProperty RegionNameProperty = DependencyProperty.RegisterAttached(
+    "RegionName",
+    typeof(string),
+    typeof(RegionManager),
+    new PropertyMetadata(defaultValue: null, propertyChangedCallback: OnSetRegionNameCallback));
+```
+
+Avalonia:
+
+```cs
+static ClassConstructor()
+{
+    RegionNameProperty.Changed.Subscribe(args => OnSetRegionNameCallback(args?.Sender, args));
+}
+
+public static readonly AvaloniaProperty RegionNameProperty = AvaloniaProperty.RegisterAttached<AvaloniaObject, string>(
+    "RegionName",
+    typeof(RegionManager));
 ```
