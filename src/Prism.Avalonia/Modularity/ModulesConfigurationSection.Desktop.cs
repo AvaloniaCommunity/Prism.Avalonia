@@ -1,22 +1,19 @@
-using System.Configuration;
+using System;
+using System.Runtime.Serialization;
 
 namespace Prism.Modularity
 {
-    /// <summary>
-    /// A <see cref="ConfigurationSection"/> for module configuration.
-    /// </summary>
-    public class ModulesConfigurationSection : ConfigurationSection
+    [Serializable]
+    public partial class ModuleTypeLoaderNotFoundException
     {
         /// <summary>
-        /// Gets or sets the collection of modules configuration.
+        /// Initializes a new instance with serialized data.
         /// </summary>
-        /// <value>A <see cref="ModuleConfigurationElementCollection"/> of <see cref="ModuleConfigurationElement"/>.</value>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [ConfigurationProperty("", IsDefaultCollection = true, IsKey = false)]
-        public ModuleConfigurationElementCollection Modules
+        /// <param name="info">The <see cref="SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+        /// <param name="context">The <see cref="StreamingContext"/> that contains contextual information about the source or destination.</param>
+        protected ModuleTypeLoaderNotFoundException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
-            get { return (ModuleConfigurationElementCollection)base[""]; }
-            set { base[""] = value; }
         }
     }
 }

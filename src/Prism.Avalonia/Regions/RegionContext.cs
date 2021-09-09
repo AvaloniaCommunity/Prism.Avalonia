@@ -5,7 +5,7 @@ using Prism.Common;
 namespace Prism.Regions
 {
     /// <summary>
-    /// Class that holds methods to Set and Get the RegionContext from a DependencyObject.
+    /// Class that holds methods to Set and Get the RegionContext from a <seealso cref="AvaloniaObject"/>.
     ///
     /// RegionContext allows sharing of contextual information between the view that's hosting a <see cref="IRegion"/>
     /// and any views that are inside the Region.
@@ -23,7 +23,7 @@ namespace Prism.Regions
         /// <summary>
         /// Returns an <see cref="ObservableObject{T}"/> wrapper around the RegionContext value. The RegionContext
         /// will be set on any views (dependency objects) that are inside the <see cref="IRegion.Views"/> collection by
-        /// the <see cref="Behaviors.BindRegionContextToDependencyObjectBehavior"/> Behavior.
+        /// the <see cref="Behaviors.BindRegionContextToAvaloniaObjectBehavior"/> Behavior.
         /// The RegionContext will also be set to the control that hosts the Region, by the <see cref="Behaviors.SyncRegionContextWithHostBehavior"/> Behavior.
         ///
         /// If the <see cref="ObservableObject{T}"/> wrapper does not already exist, an empty one will be created. This way, an observer can

@@ -15,12 +15,12 @@
 ## Action Items
 
 * [ ] Upgrade Prism.Avalonia
-* [ ] Upgrade Prism.DryIoc
+* [X] Upgrade Prism.DryIoc
 * [ ] Upgrade Prism.Unity
-* [ ] Remove IOCs not supported by Prism v8.1
-* [ ] Restructure folders to match PrismLibrary
+* [X] Remove IOCs not supported by Prism v8.1
 * [ ] Add Prism Dialogs for Avalonia
-* [ ] Add Samples
+* [ ] Upgrade Samples
+* [ ] Restructure folders to match PrismLibrary
 * [ ] Add Unit Tests, matching PrismLibrary
 
 ## Upgrade Progress
@@ -35,16 +35,16 @@
 | File                                | Status  |  Notes |
 |-------------------------------------|---------|--------|
 | Prism.Avalonia.csproj                     | :heavy_check_mark:            | Added `netcore` and `net45` targeting conditions, as per PrismLibrary v8.1.x
-| PrismApplicationBase.cs                   | :heavy_check_mark: :warning:  | Needs verification
+| PrismApplicationBase.cs                   | :heavy_check_mark:
 | Bootstrapper.cs                           | :heavy_check_mark: :x:        | Renamed to `PrismBootstrapperBase.cs`
 | PrismBootstrapperBase.cs                  | :heavy_check_mark: :new:      | Replaces `Boostrapper.cs`
-| PrismInitializationExtensions.cs          | :white_square_button: :new:   | All of the Register container, Behavior, and Adapter goodies.
+| PrismInitializationExtensions.cs          | :white_square_button: :warning: :new: | Needs, `SelectorRegionAdapter.cs`. Register container, Behavior, and Adapter goodies.
 | Common\MvvmHelpers.cs                     | :heavy_check_mark:
-| Common\ObservableObject.cs                | :warning: | Needs Avalonia expert
+| Common\ObservableObject.cs                | :heavy_check_mark: | Needs verified
 | Common\UriParsingHelper.cs                | :heavy_check_mark:
 | Events\WeakDelegatesManager.cs            | :heavy_check_mark: :x: | It's apart of `Prism.Events`
 | Extensions\CollectionExtensions.cs        | :heavy_check_mark:
-| Extensions\DependencyObjectExtensions.cs  | :warning: | Needs Avalonia expert
+| Extensions\DependencyObjectExtensions.cs  | :warning: | Needs verified. Rename to `AvaloniaObjectionExtension`?
 | Extensions\ExceptionExtension.cs          | :heavy_check_mark: :x:
 | Extensions\ServiceLocationExtension.cs    | :heavy_check_mark: :x:
 | Interactivity\CommandBehaviorBase.cs      | :heavy_check_mark: :warning: | Needs verification
@@ -79,8 +79,10 @@
 | Modularity\ModuleInitializer.cs                             | :heavy_check_mark:
 | Modularity\ModuleManager.cs                                 | :heavy_check_mark:
 | Modularity\ModuleManager.Desktop.cs                         | :heavy_check_mark:
-| Modularity\ModulesConfigurationSection.Desktop.cs           | :white_square_button:
-| Modularity\XamlModuleCatalog.cs                             | :warning: :new: | Whats the Avalonia `XamlReader` equivilant?
+| Modularity\ModulesConfigurationSection.Desktop.cs           | :heavy_check_mark:
+| Modularity\ModuleTypeLoaderNotFoundException.cs             | :heavy_check_mark:
+| Modularity\ModuleTypeLoaderNotFoundException.Desktop.cs     | :heavy_check_mark:
+| Modularity\XamlModuleCatalog.cs                             | :heavy_check_mark: :warning: :new: | `CreateFromXaml(Stream)` needs verified
 | Mvvm\ViewModuleLocator.cs                                   | :heavy_check_mark:
 | Properties\AssemblyInfo                                     | :heavy_check_mark:
 | Properties\Resources.resx                                   | :heavy_check_mark:
@@ -98,7 +100,7 @@
 | Regions\Behaviors\RegionCreationException.Desktop.cs            | :heavy_check_mark:
 | Regions\Behaviors\RegionManagerRegistrationBehavior.cs          | :heavy_check_mark: :warning: | Needs reviewed
 | Regions\Behaviors\RegionMemberLifetimeBehavior.cs               | :heavy_check_mark:
-| Regions\Behaviors\SelectorItemsSourceSyncBehavior.cs            | :warning:           | Needs attention - _Currently disabled_
+| Regions\Behaviors\SelectorItemsSourceSyncBehavior.cs            | :white_square_button: :warning: | Needs attention
 | Regions\Behaviors\SyncRegionContextWithHostBehavior.cs          | :heavy_check_mark:
 | Regions\AllActiveRegion.cs                    | :heavy_check_mark:
 | Regions\ContentControlRegionAdapter.cs        | :white_square_button: :warning: | Needs attention
@@ -146,7 +148,7 @@
 | Regions\RegionNavigationJournalEntry.cs       | :heavy_check_mark:
 | Regions\RegionNavigationService.cs            | :heavy_check_mark:
 | Regions\RegionViewRegistry.cs                 | :heavy_check_mark:
-| Regions\SelectorRegionAdapter.cs              | :white_square_button:
+| Regions\SelectorRegionAdapter.cs              | :white_square_button: :warning: | Needs attention
 | Regions\SingleActiveRegion.cs                 | :heavy_check_mark:
 | Regions\SyncActiveStateAttribute.cs           | :heavy_check_mark:
 | Regions\UpdateRegionsException.Desktop.cs     | :heavy_check_mark:

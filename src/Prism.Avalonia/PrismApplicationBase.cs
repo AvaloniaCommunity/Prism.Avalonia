@@ -1,11 +1,11 @@
-﻿using Avalonia;
+﻿using System;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using CommonServiceLocator;
+using Prism.Common;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
-using System;
 
 namespace Prism
 {
@@ -17,8 +17,8 @@ namespace Prism
     /// </remarks>
     public abstract class PrismApplicationBase : Application
     {
-        IContainerExtension _containerExtension;
-        IModuleCatalog _moduleCatalog;
+        private IContainerExtension _containerExtension;
+        private IModuleCatalog _moduleCatalog;
 
         public IAvaloniaObject MainWindow { get; private set; }
 
@@ -37,10 +37,20 @@ namespace Prism
         ////    InitializeInternal();
         ////}
 
+        public override void OnFrameworkInitializationCompleted()
+        {
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
+                desktopLifetime.MainWindow = MainWindow as Window;
+            else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
+                singleViewLifetime.MainView = MainWindow as Control;
+
+            base.OnFrameworkInitializationCompleted();
+        }
+
         /// <summary>
         /// Run the initialization process.
         /// </summary>
-        void InitializeInternal()
+        private void InitializeInternal()
         {
             ConfigureViewModelLocator();
             Initialize();
@@ -55,14 +65,38 @@ namespace Prism
             PrismInitializationExtensions.ConfigureViewModelLocator();
         }
 
-        public override void OnFrameworkInitializationCompleted()
+        /// <summary>
+        /// Runs the initialization sequence to configure the Prism application.
+        /// </summary>
+        protected virtual void Initialize()
         {
-            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
-                desktopLifetime.MainWindow = MainWindow as Window;
-            else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
-                singleViewLifetime.MainView = MainWindow as Control;
+            ContainerLocator.SetContainerExtension(CreateContainerExtension);
+            _containerExtension = ContainerLocator.Current;
+            _moduleCatalog = CreateModuleCatalog();
+            RegisterRequiredTypes(_containerExtension);
+            RegisterTypes(_containerExtension);
+            _containerExtension.FinalizeExtension();
 
-            base.OnFrameworkInitializationCompleted();
+            ConfigureModuleCatalog(_moduleCatalog);
+
+            var regionAdapterMappings = _containerExtension.Resolve<RegionAdapterMappings>();
+            ConfigureRegionAdapterMappings(regionAdapterMappings);
+
+            var defaultRegionBehaviors = _containerExtension.Resolve<IRegionBehaviorFactory>();
+            ConfigureDefaultRegionBehaviors(defaultRegionBehaviors);
+
+            RegisterFrameworkExceptionTypes();
+
+            var shell = CreateShell();
+            if (shell != null)
+            {
+                MvvmHelpers.AutowireViewModel(shell);
+                RegionManager.SetRegionManager(shell, _containerExtension.Resolve<IRegionManager>());
+                RegionManager.UpdateRegions();
+                InitializeShell(shell);
+            }
+
+            InitializeModules();
         }
 
         /// <summary>
@@ -97,8 +131,8 @@ namespace Prism
         protected abstract void RegisterTypes(IContainerRegistry containerRegistry);
 
         /// <summary>
-        /// Configures the <see cref="IRegionBehaviorFactory"/>. 
-        /// This will be the list of default behaviors that will be added to a region. 
+        /// Configures the <see cref="IRegionBehaviorFactory"/>.
+        /// This will be the list of default behaviors that will be added to a region.
         /// </summary>
         protected virtual void ConfigureDefaultRegionBehaviors(IRegionBehaviorFactory regionBehaviors)
         {
@@ -116,9 +150,8 @@ namespace Prism
             regionAdapterMappings?.RegisterDefaultRegionAdapterMappings();
         }
 
-
         /// <summary>
-        /// Registers the <see cref="Type"/>s of the Exceptions that are not considered 
+        /// Registers the <see cref="Type"/>s of the Exceptions that are not considered
         /// root exceptions by the <see cref="ExceptionExtensions"/>.
         /// </summary>
         protected virtual void RegisterFrameworkExceptionTypes()
@@ -134,7 +167,7 @@ namespace Prism
         /// <summary>
         /// Initializes the shell.
         /// </summary>
-        protected virtual void InitializeShell(IAvaloniaObject shell)
+        protected virtual void InitializeShell(Window shell)
         {
             MainWindow = shell;
         }
@@ -158,14 +191,6 @@ namespace Prism
         protected virtual void InitializeModules()
         {
             PrismInitializationExtensions.RunModuleManager(Container);
-        }
-
-        /// <summary>
-        /// Configures the LocatorProvider for the <see cref="Microsoft.Practices.ServiceLocation.ServiceLocator" />.
-        /// </summary>
-        protected virtual void ConfigureServiceLocator()
-        {
-            ServiceLocator.SetLocatorProvider(() => _containerExtension.Resolve<IServiceLocator>());
         }
     }
 }
