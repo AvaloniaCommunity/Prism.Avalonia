@@ -26,7 +26,7 @@ namespace Prism.Modularity
     ////[ContentProperty("Items")]  // Avalonia does use, System.Windows.Markup. See property `Items` below.
     public class ModuleCatalog : ModuleCatalogBase, IModuleGroupsCatalog
     {
-        // <summary>
+        /// <summary>
         /// Initializes a new instance of the <see cref="ModuleCatalog"/> class.
         /// </summary>
         public ModuleCatalog() : base()
@@ -42,11 +42,11 @@ namespace Prism.Modularity
         {
         }
 
-        //
-        // Summary:
-        //     Gets the items in the Prism.Modularity.IModuleCatalog. This property is mainly
-        //     used to add Prism.Modularity.IModuleInfoGroups or Prism.Modularity.IModuleInfos
-        //     through XAML.
+        /// <summary>
+        /// Gets the items in the Prism.Modularity.IModuleCatalog. This property is mainly
+        /// used to add Prism.Modularity.IModuleInfoGroups or Prism.Modularity.IModuleInfos
+        /// through XAML.
+        /// </summary>
         [Content]
         public new Collection<IModuleCatalogItem> Items => base.Items;
 

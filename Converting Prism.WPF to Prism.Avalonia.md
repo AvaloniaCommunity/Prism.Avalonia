@@ -17,3 +17,9 @@ As we all know, not everything is straight forward between these two XAML techno
 | `UIElement`             | `Control`
 | `DependencyProperty`    | `StyledProperty`
 | `[ContentProperty(..)]` | `Content`         | [https://github.com/AvaloniaUI/Avalonia/pull/1126]
+
+## Behaviors and Triggers
+
+In order to use Behaviors in Avalonia, you must download the [Avalonia XAML Behaviors](https://github.com/wieslawsoltes/AvaloniaBehaviors) [NuGet](https://www.nuget.org/packages/Avalonia.Xaml.Behaviors).
+
+For example, [InvokeCommandActionView.axaml](https://github.com/wieslawsoltes/AvaloniaBehaviors/blob/master/samples/BehaviorsTestApplication/Views/Pages/InvokeCommandActionView.axaml) uses [InvokeCommandAction.cs](https://github.com/wieslawsoltes/AvaloniaBehaviors/blob/master/src/Avalonia.Xaml.Interactions/Core/InvokeCommandAction.cs).

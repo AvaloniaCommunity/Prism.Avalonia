@@ -48,7 +48,7 @@
 | Extensions\ExceptionExtension.cs          | :heavy_check_mark: :x:
 | Extensions\ServiceLocationExtension.cs    | :heavy_check_mark: :x:
 | Interactivity\CommandBehaviorBase.cs      | :heavy_check_mark: :warning: | Needs verification
-| Interactivity\InvokeCommandAction.cs      | :warning: :new: | Has **ERRORS**; Needs converted to Avalonia
+| Interactivity\InvokeCommandAction.cs      | :warning: :new: |Needs converted to Avalonia; reference [AvaloniaBehaviors](https://github.com/wieslawsoltes/AvaloniaBehaviors/blob/master/src/Avalonia.Xaml.Interactions/Core/InvokeCommandAction.cs).
 | Ioc\ContainerProviderExtension.cs         | :heavy_check_mark: :new: :warning: | Needs verification
 | Ioc\IContainerRegistryExtensions.cs       | :heavy_check_mark:
 | Logging\TextLogger.cs                     | :heavy_check_mark: :x: | Removed from Prism

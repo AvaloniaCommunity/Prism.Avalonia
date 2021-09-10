@@ -1,13 +1,12 @@
-
-
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
+////using System.Windows.Controls;
+////using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Styling;
 using Prism.Properties;
 
 namespace Prism.Regions.Behaviors

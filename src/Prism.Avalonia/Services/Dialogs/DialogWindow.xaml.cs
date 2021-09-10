@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using System.ComponentModel;
+using Avalonia.Controls;
 
 namespace Prism.Services.Dialogs
 {
@@ -18,6 +19,17 @@ namespace Prism.Services.Dialogs
         public DialogWindow()
         {
             InitializeComponent();
+        }
+
+        event CancelEventHandler IDialogWindow.Closing
+        {
+            add => throw new System.NotImplementedException();
+            remove => throw new System.NotImplementedException();
+        }
+
+        public bool? ShowDialog()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
