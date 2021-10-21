@@ -15,19 +15,19 @@ Check out [Upgrade-Prism-7.2-to-8.1.md](https://github.com/AvaloniaCommunity/Pri
 Add package from nuget to your project:
 
 ```powershell
-Install-Package Prism.Avalonia -Version 7.2.0.1429
+Install-Package Prism.Avalonia -Version 8.1.0.97
 ```
 
 DryIoc:
 
 ```powershell
-Install-Package Prism.DryIoc.Avalonia -Version 7.2.0.1429
+Install-Package Prism.DryIoc.Avalonia -Version 8.1.0.97
 ```
 
 Unity:
 
 ```powershell
-Install-Package Prism.Unity.Avalonia -Version 7.2.0.1429
+Install-Package Prism.Unity.Avalonia -Version 8.1.0.97
 ```
 
 ## How to use
