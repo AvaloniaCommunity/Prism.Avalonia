@@ -25,6 +25,9 @@ indent_size = 2
 [*.{csproj,proj,projitems,shproj}]
 indent_size = 2
 
+[*.md]
+indent_size = 2
+
 [*.json]
 indent_size = 2
 

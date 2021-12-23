@@ -53,55 +53,55 @@
 | Ioc\IContainerRegistryExtensions.cs       | :heavy_check_mark:
 | Logging\TextLogger.cs                     | :heavy_check_mark: :x: | Removed from Prism
 | Logging\TraceLogger.cs                    | :heavy_check_mark: :x: | Removed from Prism
-| Modularity\AssemblyResolver.Desktop.cs                      | :heavy_check_mark:
-| Modularity\ConfigurationModuleCatalog.Desktop.cs            | :heavy_check_mark:
-| Modularity\ConfigurationStore.Desktop.cs                    | :heavy_check_mark:
-| Modularity\DirectoryModuleCatalog.Desktop.cs                | :heavy_check_mark: :x:
-| Modularity\DirectoryModuleCatalog.net45.cs                  | :heavy_check_mark: :new:
-| Modularity\DirectoryModuleCatalog.netcore.cs                | :heavy_check_mark: :new:
-| Modularity\FileModuleTypeLoader.Desktop.cs                  | :heavy_check_mark:
-| Modularity\IAssemblyResolver.Desktop.cs                     | :heavy_check_mark:
-| Modularity\IConfigurationStore.Desktop.cs                   | :heavy_check_mark:
-| Modularity\IModuleCatalogExtensions.cs                      | :heavy_check_mark:
-| Modularity\IModuleGroupsCatalog.cs                          | :heavy_check_mark:
-| Modularity\IModuleTypeLoader.cs                             | :heavy_check_mark:
-| Modularity\ModuleAttribute.Desktop.cs                       | :heavy_check_mark:
-| Modularity\ModuleCatalog.cs                                 | :heavy_check_mark:
-| Modularity\ModuleConfigurationElement.Desktop.cs            | :heavy_check_mark:
-| Modularity\ModuleConfigurationElementCollection.Desktop.cs  | :heavy_check_mark:
-| Modularity\ModuleDependencyCollection.Desktop.cs            | :heavy_check_mark:
-| Modularity\ModuleDependencyConfigurationElement.Desktop.cs  | :heavy_check_mark:
-| Modularity\ModuleDownloadProgressChangedEventArgs.cs        | :heavy_check_mark: :x:
-| Modularity\ModuleInfo.cs                                    | :heavy_check_mark:
-| Modularity\ModuleInfo.Desktop.cs                            | :heavy_check_mark:
-| Modularity\ModuleInfoGroup.cs                               | :heavy_check_mark:
-| Modularity\ModuleInfoGroupExtensions.cs                     | :heavy_check_mark:
-| Modularity\ModuleInitializer.cs                             | :heavy_check_mark:
-| Modularity\ModuleManager.cs                                 | :heavy_check_mark:
-| Modularity\ModuleManager.Desktop.cs                         | :heavy_check_mark:
-| Modularity\ModulesConfigurationSection.Desktop.cs           | :heavy_check_mark:
-| Modularity\ModuleTypeLoaderNotFoundException.cs             | :heavy_check_mark:
-| Modularity\ModuleTypeLoaderNotFoundException.Desktop.cs     | :heavy_check_mark:
-| Modularity\XamlModuleCatalog.cs                             | :heavy_check_mark: :warning: :new: | `CreateFromXaml(Stream)` needs verified
-| Mvvm\ViewModuleLocator.cs                                   | :heavy_check_mark:
-| Properties\AssemblyInfo                                     | :heavy_check_mark:
-| Properties\Resources.resx                                   | :heavy_check_mark:
-| Properties\Resources.Designer.cs                            | :heavy_check_mark:
-| Properties\Settings.Designer.cs                             | :heavy_check_mark:
-| Properties\Settings.settings                                | :heavy_check_mark:
-| Regions\Behaviors\AutoPopulateRegionBehavior.cs                 | :heavy_check_mark:
-| Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs  | :warning: | Needs reviewed; Equivilant, `BindRegionContextToDependencyObjectBehavior`
-| Regions\Behaviors\ClearChildViewsRegionBehavior.cs              | :heavy_check_mark:
-| Regions\Behaviors\DelayedRegionCreationBehavior.cs              | :warning: | Needs Avalonia equivilant of `FrameworkContentElement += Loaded`
-| Regions\Behaviors\DestructibleRegionBehavior.cs                 | :heavy_check_mark: :new:
-| Regions\Behaviors\IHostAwareRegionBehavior.cs                   | :heavy_check_mark:
-| Regions\Behaviors\RegionActiveAwareBehavior.cs                  | :heavy_check_mark:
-| Regions\Behaviors\RegionCreationException.cs                    | :heavy_check_mark:
-| Regions\Behaviors\RegionCreationException.Desktop.cs            | :heavy_check_mark:
-| Regions\Behaviors\RegionManagerRegistrationBehavior.cs          | :heavy_check_mark: :warning: | Needs reviewed
-| Regions\Behaviors\RegionMemberLifetimeBehavior.cs               | :heavy_check_mark:
-| Regions\Behaviors\SelectorItemsSourceSyncBehavior.cs            | :white_square_button: :warning: | Needs attention
-| Regions\Behaviors\SyncRegionContextWithHostBehavior.cs          | :heavy_check_mark:
+| Modularity\AssemblyResolver.Desktop.cs                        | :heavy_check_mark:
+| Modularity\ConfigurationModuleCatalog.Desktop.cs              | :heavy_check_mark:
+| Modularity\ConfigurationStore.Desktop.cs                      | :heavy_check_mark:
+| Modularity\DirectoryModuleCatalog.Desktop.cs                  | :heavy_check_mark: :x:
+| Modularity\DirectoryModuleCatalog.net45.cs                    | :heavy_check_mark: :new:
+| Modularity\DirectoryModuleCatalog.netcore.cs                  | :heavy_check_mark: :new:
+| Modularity\FileModuleTypeLoader.Desktop.cs                    | :heavy_check_mark:
+| Modularity\IAssemblyResolver.Desktop.cs                       | :heavy_check_mark:
+| Modularity\IConfigurationStore.Desktop.cs                     | :heavy_check_mark:
+| Modularity\IModuleCatalogExtensions.cs                        | :heavy_check_mark:
+| Modularity\IModuleGroupsCatalog.cs                            | :heavy_check_mark:
+| Modularity\IModuleTypeLoader.cs                               | :heavy_check_mark:
+| Modularity\ModuleAttribute.Desktop.cs                         | :heavy_check_mark:
+| Modularity\ModuleCatalog.cs                                   | :heavy_check_mark:
+| Modularity\ModuleConfigurationElement.Desktop.cs              | :heavy_check_mark:
+| Modularity\ModuleConfigurationElementCollection.Desktop.cs    | :heavy_check_mark:
+| Modularity\ModuleDependencyCollection.Desktop.cs              | :heavy_check_mark:
+| Modularity\ModuleDependencyConfigurationElement.Desktop.cs    | :heavy_check_mark:
+| Modularity\ModuleDownloadProgressChangedEventArgs.cs          | :heavy_check_mark: :x:
+| Modularity\ModuleInfo.cs                                      | :heavy_check_mark:
+| Modularity\ModuleInfo.Desktop.cs                              | :heavy_check_mark:
+| Modularity\ModuleInfoGroup.cs                                 | :heavy_check_mark:
+| Modularity\ModuleInfoGroupExtensions.cs                       | :heavy_check_mark:
+| Modularity\ModuleInitializer.cs                               | :heavy_check_mark:
+| Modularity\ModuleManager.cs                                   | :heavy_check_mark:
+| Modularity\ModuleManager.Desktop.cs                           | :heavy_check_mark:
+| Modularity\ModulesConfigurationSection.Desktop.cs             | :heavy_check_mark:
+| Modularity\ModuleTypeLoaderNotFoundException.cs               | :heavy_check_mark:
+| Modularity\ModuleTypeLoaderNotFoundException.Desktop.cs       | :heavy_check_mark:
+| Modularity\XamlModuleCatalog.cs                               | :heavy_check_mark: :warning: :new: | `CreateFromXaml(Stream)` needs verified
+| Mvvm\ViewModuleLocator.cs                                     | :heavy_check_mark:
+| Properties\AssemblyInfo                                       | :heavy_check_mark:
+| Properties\Resources.resx                                     | :heavy_check_mark:
+| Properties\Resources.Designer.cs                              | :heavy_check_mark:
+| Properties\Settings.Designer.cs                               | :heavy_check_mark:
+| Properties\Settings.settings                                  | :heavy_check_mark:
+| Regions\Behaviors\AutoPopulateRegionBehavior.cs               | :heavy_check_mark:
+| Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs  | :warning:   | Needs reviewed; Equivilant, `BindRegionContextToDependencyObjectBehavior`
+| Regions\Behaviors\ClearChildViewsRegionBehavior.cs            | :heavy_check_mark:
+| Regions\Behaviors\DelayedRegionCreationBehavior.cs            | :warning:     | Needs Avalonia equivilant of `FrameworkContentElement += Loaded`
+| Regions\Behaviors\DestructibleRegionBehavior.cs               | :heavy_check_mark: :new:
+| Regions\Behaviors\IHostAwareRegionBehavior.cs                 | :heavy_check_mark:
+| Regions\Behaviors\RegionActiveAwareBehavior.cs                | :heavy_check_mark:
+| Regions\Behaviors\RegionCreationException.cs                  | :heavy_check_mark:
+| Regions\Behaviors\RegionCreationException.Desktop.cs          | :heavy_check_mark:
+| Regions\Behaviors\RegionManagerRegistrationBehavior.cs        | :heavy_check_mark: :warning: | Needs reviewed
+| Regions\Behaviors\RegionMemberLifetimeBehavior.cs             | :heavy_check_mark:
+| Regions\Behaviors\SelectorItemsSourceSyncBehavior.cs          | :white_square_button: :warning: | Needs attention
+| Regions\Behaviors\SyncRegionContextWithHostBehavior.cs        | :heavy_check_mark:
 | Regions\AllActiveRegion.cs                    | :heavy_check_mark:
 | Regions\ContentControlRegionAdapter.cs        | :white_square_button: :warning: | Needs attention
 | Regions\DefaultRegionManagerAccessor.cs       | :heavy_check_mark:
@@ -158,20 +158,20 @@
 | Regions\ViewRegistrationException.cs          | :heavy_check_mark:
 | Regions\ViewSortHintAttribute.cs              | :heavy_check_mark:
 | Regions\ViewsCollection.cs                    | :heavy_check_mark:
-| Services\Dialogs\ButtonResult.cs              | :new: :heavy_check_mark: |
-| Services\Dialogs\Dialog.cs                    | :new: :warning: | Temp Disabled!
-| Services\Dialogs\DialogParameters.cs          | :new: :heavy_check_mark: |
-| Services\Dialogs\DialogResult.cs              | :new: :heavy_check_mark: |
-| Services\Dialogs\DialogService.cs             | :new: :warning: | Temp Disabled!
-| Services\Dialogs\DialogWindow.xaml            | :new: :warning: | Needs renamed to `axml`
-| Services\Dialogs\DialogWindow.xaml.cs         | :new: :warning: | Has error, needs converted to Avalonia
-| Services\Dialogs\IDialogAware.cs              | :new: :heavy_check_mark: |
-| Services\Dialogs\IDialogParameters.cs         | :new: :heavy_check_mark: |
-| Services\Dialogs\IDialogResult.cs             | :new: :heavy_check_mark: |
-| Services\Dialogs\IDialogService.cs            | :new: :warning: | Needs multiplatform verification
-| Services\Dialogs\IDialogServiceExtensions.cs  | :new: :warning: | Needs multiplatform verification
-| Services\Dialogs\IDialogWindow.cs             | :new: :warning: | Temp Disabled!
-| Services\Dialogs\IDialogWindowExtensions.cs   | :new: :warning: | Temp Disabled!
+| Services\Dialogs\ButtonResult.cs              | :new: :heavy_check_mark:
+| Services\Dialogs\Dialog.cs                    | :new: :warning:           | Temp Disabled!
+| Services\Dialogs\DialogParameters.cs          | :new: :heavy_check_mark:
+| Services\Dialogs\DialogResult.cs              | :new: :heavy_check_mark:
+| Services\Dialogs\DialogService.cs             | :new: :warning:           | Temp Disabled!
+| Services\Dialogs\DialogWindow.xaml            | :new: :warning:           | Needs renamed to `axml`
+| Services\Dialogs\DialogWindow.xaml.cs         | :new: :warning:           | Has error, needs converted to Avalonia
+| Services\Dialogs\IDialogAware.cs              | :new: :heavy_check_mark:
+| Services\Dialogs\IDialogParameters.cs         | :new: :heavy_check_mark:
+| Services\Dialogs\IDialogResult.cs             | :new: :heavy_check_mark:
+| Services\Dialogs\IDialogService.cs            | :new: :warning:           | Needs multiplatform verification
+| Services\Dialogs\IDialogServiceExtensions.cs  | :new: :warning:           | Needs multiplatform verification
+| Services\Dialogs\IDialogWindow.cs             | :new: :warning:           | Temp Disabled!
+| Services\Dialogs\IDialogWindowExtensions.cs   | :new: :warning:           | Temp Disabled!
 
 ### Containers
 
@@ -192,13 +192,13 @@ Containers is a :new: Folder
 
 | File                                | Status  |  Notes |
 |-------------------------------------|---------|--------|
-| Prism.DryIoc.Avalonia.csproj.cs     | :heavy_check_mark: | Updated to DryIoc v4.8.1
+| Prism.DryIoc.Avalonia.csproj.cs     | :heavy_check_mark:      | Updated to DryIoc v4.8.1
 | DryIocServiceLocatorAdapter.cs      | :x:
 | GlobalSuppressions.cs               | :white_square_button:
 | PrismApplication.cs                 | :heavy_check_mark:
 | PrismBootstrapper.cs                | :new:
-| Ioc\DryIocContainerExtension.cs     | :x:     | Moved to `Containers`
-| Ioc\PrismIocExtensions.cs           | :x:     | Moved to `Containers`
+| Ioc\DryIocContainerExtension.cs     | :x:                     | Moved to `Containers`
+| Ioc\PrismIocExtensions.cs           | :x:                     | Moved to `Containers`
 | Legacy\DryIocBootstrapper.cs        | :white_square_button:
 | Legacy\DryIocExtensions.cs          | :white_square_button:
 | Properties\AssemblyInfo             | :new:
@@ -211,8 +211,8 @@ Containers is a :new: Folder
 |-----------------------------------------------|---------|--------|
 | PrismApplication.cs                           | :white_square_button:
 | UnityServiceLocatorApplication.cs             | :white_square_button:
-| Ioc\PrismIocExtensions.cs                     | :x:     | Moved to `Containers`
-| Ioc\UnityContainerExtension.cs                | :x:     | Moved to `Containers`
+| Ioc\PrismIocExtensions.cs                     | :x:                   | Moved to `Containers`
+| Ioc\UnityContainerExtension.cs                | :x:                   | Moved to `Containers`
 | Legacy\UnityBootstrapper.cs                   | :white_square_button:
 | Legacy\UnityContainerHelper.cs                | :white_square_button:
 | Legacy\UnityExtensions.cs                     | :white_square_button:
@@ -222,18 +222,18 @@ Containers is a :new: Folder
 
 ## Conversion Helpers
 
-| WPF                             | Avalonia | Reference |
-|---------------------------------|----------|-----------|
-| System.Windows                        | Avalonia
-| System.Windows.FrameworkElement       | Avalonia.Controls.Control | [Reference](https://docs.avaloniaui.net/misc/wpf/uielement-frameworkelement-and-control) |
-| System.WIndows.FrameworkContentElement | Avalonia.Controls.Control
-| UIElement                             | Avalonia.Controls.Control |
-| System.Windows.Markup.MarkupExtension | Avalonia.Markup.Xaml.MarkupExtension | [Reference](http://reference.avaloniaui.net/api/Avalonia.Markup.Xaml/MarkupExtension/)
+| WPF                                     | Avalonia | Reference |
+|-----------------------------------------|----------|-----------|
+| System.Windows                          | Avalonia
+| System.Windows.FrameworkElement         | Avalonia.Controls.Control | [Reference](https://docs.avaloniaui.net/misc/wpf/uielement-frameworkelement-and-control)
+| System.WIndows.FrameworkContentElement  | Avalonia.Controls.Control
+| UIElement                               | Avalonia.Controls.Control
+| System.Windows.Markup.MarkupExtension   | Avalonia.Markup.Xaml.MarkupExtension | [Reference](http://reference.avaloniaui.net/api/Avalonia.Markup.Xaml/MarkupExtension/)
 | System.Windows.Markup.ContentPropertyAttribute.ContentProperty | Avalonia.Metadata.Content
-| System.Windows.Markup                 | Avalonia.Markup.Xaml
-| System.Windows.Markup.XmlnsDefinition | Avalonia.Metadata.XmlnsDefinition
-| System.Windows.DependencyObject       | Avalonia.AvaloniaObject
-| System.Windows.DependencyProperty     | Avalonia.AvaloniaProperty
+| System.Windows.Markup                   | Avalonia.Markup.Xaml
+| System.Windows.Markup.XmlnsDefinition   | Avalonia.Metadata.XmlnsDefinition
+| System.Windows.DependencyObject         | Avalonia.AvaloniaObject
+| System.Windows.DependencyProperty       | Avalonia.AvaloniaProperty
 | System.Windows.DependencyPropertyChangedEventArgs | Avalonia.AvaloniaPropertyChangedEventArgs
 | System.ComponentModel.DesignerProperties.GetIsInDesignMode(DependencyObject element); | Avalonia.Controls.Design.IsDesignMode;
 
