@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-////using System.Windows.Controls;
-////using System.Windows.Controls.Primitives;
-using System.Windows.Data;
+using Prism.Properties;
+
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Styling;
-using Prism.Properties;
+using Avalonia.Controls.Primitives;
+using Avalonia.Data;
+using System.Windows.Controls.Primitives;
 
 namespace Prism.Regions.Behaviors
 {
@@ -56,7 +56,8 @@ namespace Prism.Regions.Behaviors
         protected override void OnAttach()
         {
             bool itemsSourceIsSet = this.hostControl.ItemsSource != null;
-            itemsSourceIsSet = itemsSourceIsSet || (BindingOperations.GetBinding(this.hostControl, ItemsControl.ItemsSourceProperty) != null);
+            itemsSourceIsSet = itemsSourceIsSet || (hostControl.HasBinding(this.hostControl, ItemsControl.ItemsSourceProperty) != null);
+            ////itemsSourceIsSet = itemsSourceIsSet || (BindingOperations.GetBinding(this.hostControl, ItemsControl.ItemsSourceProperty) != null);
 
             if (itemsSourceIsSet)
             {
@@ -147,7 +148,7 @@ namespace Prism.Regions.Behaviors
                 this.updatingActiveViewsInHostControlSelectionChanged = true;
 
                 object source;
-                source = e.OriginalSource;
+                source = e.Source;    // source = e.OriginalSource;
 
                 if (source == sender)
                 {
