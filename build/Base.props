@@ -5,7 +5,7 @@
     <Version>8.1.97</Version>
     <PackageProjectUrl>https://github.com/AvaloniaCommunity/Prism.Avalonia</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
-    <Copyright>Copyright (c) 2021 Avalonia Community</Copyright>
+    <Copyright>Copyright (c) 2022 Avalonia Community</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl></RepositoryUrl>
   </PropertyGroup>

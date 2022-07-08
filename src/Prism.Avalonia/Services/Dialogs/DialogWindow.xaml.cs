@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 
 namespace Prism.Services.Dialogs
 {
-    /// <summary>
-    /// Prism's default dialog host.
-    /// </summary>
+    /// <summary>Prism's default dialog host.</summary>
     public partial class DialogWindow : Window, IDialogWindow
     {
         /// <summary>
@@ -19,6 +19,15 @@ namespace Prism.Services.Dialogs
         public DialogWindow()
         {
             InitializeComponent();
+
+#if DEBUG
+            //// this.AttachDevTools();
+#endif
+        }
+
+        private void InitializeComponent()
+        {
+            AvaloniaXamlLoader.Load(this);
         }
 
         event CancelEventHandler IDialogWindow.Closing

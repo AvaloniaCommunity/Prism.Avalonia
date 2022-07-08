@@ -82,7 +82,7 @@
 | Modularity\ModulesConfigurationSection.Desktop.cs             | :heavy_check_mark:
 | Modularity\ModuleTypeLoaderNotFoundException.cs               | :heavy_check_mark:
 | Modularity\ModuleTypeLoaderNotFoundException.Desktop.cs       | :heavy_check_mark:
-| Modularity\XamlModuleCatalog.cs                               | :heavy_check_mark: :warning: :new: | `CreateFromXaml(Stream)` needs verified
+| Modularity\XamlModuleCatalog.cs                               | :warning: :new: | _disabled; only used by WPF, not XF, Maui or UNO._
 | Mvvm\ViewModuleLocator.cs                                     | :heavy_check_mark:
 | Properties\AssemblyInfo                                       | :heavy_check_mark:
 | Properties\Resources.resx                                     | :heavy_check_mark:

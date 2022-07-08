@@ -1,7 +1,6 @@
 ﻿using System;
 using DryIoc;
 using Prism.Ioc;
-using Prism.Regions;
 
 namespace Prism.DryIoc
 {
