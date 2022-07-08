@@ -54,7 +54,7 @@ namespace Prism
 
         internal static void RegisterDefaultRegionAdapterMappings(this RegionAdapterMappings regionAdapterMappings)
         {
-            regionAdapterMappings.RegisterMapping<Selector, SelectorRegionAdapter>();
+            //// regionAdapterMappings.RegisterMapping<Selector, SelectorRegionAdapter>();
             regionAdapterMappings.RegisterMapping<ItemsControl, ItemsControlRegionAdapter>();
             regionAdapterMappings.RegisterMapping<ContentControl, ContentControlRegionAdapter>();
         }

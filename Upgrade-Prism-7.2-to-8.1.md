@@ -148,7 +148,7 @@
 | Regions\RegionNavigationJournalEntry.cs       | :heavy_check_mark:
 | Regions\RegionNavigationService.cs            | :heavy_check_mark:
 | Regions\RegionViewRegistry.cs                 | :heavy_check_mark:
-| Regions\SelectorRegionAdapter.cs              | :white_square_button: :warning: | Needs attention
+| Regions\SelectorRegionAdapter.cs              | :white_square_button: :warning: | Needs attention - _Commented out and disabled in `PrismInitializationExtensions`_
 | Regions\SingleActiveRegion.cs                 | :heavy_check_mark:
 | Regions\SyncActiveStateAttribute.cs           | :heavy_check_mark:
 | Regions\UpdateRegionsException.Desktop.cs     | :heavy_check_mark:
@@ -220,22 +220,39 @@ Containers is a :new: Folder
 | Properties\Resources.resx                     | :white_square_button:
 | Regions\UnityRegionNavigationContentLoader.cs | :white_square_button:
 
+## Prism Upgrade Comparison
+
+As we all know, not everything is straight forward between these two XAML technologies. However, it's a good reminder to document the differences and 'got-yas'.
+
+* [Prism v7.2.0.1422 to v8.0.0.1909](https://github.com/PrismLibrary/Prism/compare/v7.2.0.1422...v8.0.0.1909)
+* [Prism v7.2.0.1422 to v8.1.97](https://github.com/PrismLibrary/Prism/compare/v7.2.0.1422...v8.1.97)
+* [Prism v8.0.0.1909 to v8.1.97](https://github.com/PrismLibrary/Prism/compare/v8.0.0.1909...v8.1.97)
+
 ## Conversion Helpers
+
+[https://docs.avaloniaui.net/misc/wpf/Control-frameworkelement-and-control]
 
 | WPF                                     | Avalonia | Reference |
 |-----------------------------------------|----------|-----------|
-| System.Windows                          | Avalonia
-| System.Windows.FrameworkElement         | Avalonia.Controls.Control | [Reference](https://docs.avaloniaui.net/misc/wpf/uielement-frameworkelement-and-control)
-| System.WIndows.FrameworkContentElement  | Avalonia.Controls.Control
-| UIElement                               | Avalonia.Controls.Control
-| System.Windows.Markup.MarkupExtension   | Avalonia.Markup.Xaml.MarkupExtension | [Reference](http://reference.avaloniaui.net/api/Avalonia.Markup.Xaml/MarkupExtension/)
-| System.Windows.Markup.ContentPropertyAttribute.ContentProperty | Avalonia.Metadata.Content
-| System.Windows.Markup                   | Avalonia.Markup.Xaml
-| System.Windows.Markup.XmlnsDefinition   | Avalonia.Metadata.XmlnsDefinition
-| System.Windows.DependencyObject         | Avalonia.AvaloniaObject
-| System.Windows.DependencyProperty       | Avalonia.AvaloniaProperty
-| System.Windows.DependencyPropertyChangedEventArgs | Avalonia.AvaloniaPropertyChangedEventArgs
-| System.ComponentModel.DesignerProperties.GetIsInDesignMode(DependencyObject element); | Avalonia.Controls.Design.IsDesignMode;
+| `System.Windows`                          | `Avalonia`
+| `System.Windows.FrameworkElement`         | `Avalonia.Controls.Control` | [Reference](https://docs.avaloniaui.net/misc/wpf/uielement-frameworkelement-and-control)
+| `System.WIndows.FrameworkContentElement`  | `Avalonia.Controls.Control`
+| `UIElement`                               | `Avalonia.Controls.Control`
+| `System.Windows.Markup.MarkupExtension`   | `Avalonia.Markup.Xaml.MarkupExtension` | [Reference](http://reference.avaloniaui.net/api/Avalonia.Markup.Xaml/MarkupExtension/)
+| `System.Windows.Markup.ContentPropertyAttribute.ContentProperty` | `Avalonia.Metadata.Content` | [https://github.com/AvaloniaUI/Avalonia/pull/1126]
+| `System.Windows.Markup`                   | `Avalonia.Markup.Xaml`
+| `System.Windows.Markup.XmlnsDefinition`   | `Avalonia.Metadata.XmlnsDefinition`
+| `System.Windows.DependencyObject`         | `Avalonia.AvaloniaObject`
+| `System.Windows.DependencyProperty`       | `Avalonia.AvaloniaProperty`
+| `System.Windows.DependencyPropertyChangedEventArgs` | `Avalonia.AvaloniaPropertyChangedEventArgs`
+| `System.ComponentModel.DesignerProperties.GetIsInDesignMode(DependencyObject element);` | `Avalonia.Controls.Design.IsDesignMode;`
+| `System.Windows.Controls.Primitives.Selector` | ?? | _used by `SelectorRegionAdapter.cs` and `PrismInitializationExtensions.cs`_
+
+### Behaviors and Triggers
+
+In order to use Behaviors in Avalonia, you must download the [Avalonia XAML Behaviors](https://github.com/wieslawsoltes/AvaloniaBehaviors) [NuGet](https://www.nuget.org/packages/Avalonia.Xaml.Behaviors).
+
+For example, [InvokeCommandActionView.axaml](https://github.com/wieslawsoltes/AvaloniaBehaviors/blob/master/samples/BehaviorsTestApplication/Views/Pages/InvokeCommandActionView.axaml) uses [InvokeCommandAction.cs](https://github.com/wieslawsoltes/AvaloniaBehaviors/blob/master/src/Avalonia.Xaml.Interactions/Core/InvokeCommandAction.cs).
 
 ### Inheriting WPF DependencyObject in Avalonia
 
