@@ -13,20 +13,20 @@ using Prism.Regions;
 
 namespace DummyModule
 {
-    public class DummyModule : IModule
+    public class DummyModule1 : IModule
     {
-        ////private readonly ILoggerFacade logger;
-        private readonly IModuleTracker moduleTracker;
-        private readonly IEventAggregator eventAggregator;
-        private readonly IRegionManager regionManager;
+        ////private readonly ILoggerFacade _logger;
+        private readonly IModuleTracker _moduleTracker;
+        private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
 
-        public DummyModule(IModuleTracker moduleTracker, IEventAggregator eventAggregator, IRegionManager regionManager)
+        public DummyModule1(IModuleTracker moduleTracker, IEventAggregator eventAggregator, IRegionManager regionManager)
+        ////public DummyModule1(ILoggerFacade logger, IModuleTracker moduleTracker, IEventAggregator eventAggregator, IRegionManager regionManager)
         {
-            // (ILoggerFacade logger,
-            ////this.logger = logger;
-            this.moduleTracker = moduleTracker;
-            this.eventAggregator = eventAggregator;
-            this.regionManager = regionManager;
+            ////_logger = logger;
+            _moduleTracker = moduleTracker;
+            _eventAggregator = eventAggregator;
+            _regionManager = regionManager;
         }
 
         private void DummyEventPublisher()
@@ -34,7 +34,7 @@ namespace DummyModule
             while (true)
             {
                 Thread.Sleep(2500);
-                eventAggregator.GetEvent<DummyEvent>().Publish();
+                _eventAggregator.GetEvent<DummyEvent>().Publish();
             }
         }
 
@@ -47,9 +47,8 @@ namespace DummyModule
             Thread thread = new Thread(new ThreadStart(DummyEventPublisher));
             thread.Start();
 
-            regionManager.RegisterViewWithRegion("Region1", typeof(DummyModuleView));
-
-            this.moduleTracker.RecordModuleInitialized(KnownModuleNames.ModuleDummy);
+            _regionManager.RegisterViewWithRegion(RegionNames.Region1, typeof(DummyModuleView));
+            _moduleTracker.RecordModuleInitialized(ModuleNames.ModuleDummy1);
         }
     }
 }

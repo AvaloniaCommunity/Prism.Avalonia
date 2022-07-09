@@ -2,9 +2,9 @@
 
 [Prism framework](https://github.com/PrismLibrary/Prism) support for Avalonia UI.
 
-This library actually uses the same functionality of [Prism for WPF](https://github.com/PrismLibrary/Prism/tree/master/Source/Wpf) implementation to bring you Prism for Avalonia!
-  
-Logic and approach for development of your applications remained the same as it was for Prism.Wpf library.
+[![Prism.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.Avalonia?dWidth=70&includePreReleases=true)](https://www.nuget.org/packages/Prism.Avalonia/)
+
+Prism.Avalonia's logic and development approach is similar to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/tree/master/Source/Wpf) so you can get started right away with Prism for Avalonia!
 
 ## Upgrade to Prism 8.1 Progress
 
@@ -62,7 +62,7 @@ public class App : PrismApplication
 
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
     {
-        // TODO: Register modules
+        // Register modules
         moduleCatalog.AddModule<Module1.Module>();
         moduleCatalog.AddModule<Module2.Module>();
         moduleCatalog.AddModule<Module3.Module>();
@@ -98,7 +98,7 @@ public class App : PrismApplication
 ```csharp
 public static class Program
 {
-    public static AppBuilder BuildAvaloniaApp() => 
+    public static AppBuilder BuildAvaloniaApp() =>
         AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .With(new X11PlatformOptions

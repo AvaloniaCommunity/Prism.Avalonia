@@ -6,13 +6,13 @@ namespace DummyModule.View
 {
     public class DummyModuleView : UserControl
     {
-        private readonly IEventAggregator eventAggregator;
+        private readonly IEventAggregator _eventAggregator;
 
-        private TextBox logTextBox;
+        private TextBox _logTextBox;
 
         public DummyModuleView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void InitializeComponent()

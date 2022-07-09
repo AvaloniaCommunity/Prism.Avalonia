@@ -116,7 +116,7 @@ namespace ModulesSample
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            moduleCatalog.AddModule<DummyModule.DummyModule>();
+            moduleCatalog.AddModule<DummyModule.DummyModule1>();
             moduleCatalog.AddModule<DummyModule2.DummyModule2>();
 
             base.ConfigureModuleCatalog(moduleCatalog);

@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DummyModules", "DummyModule
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModulesSample", "samples\ModulesSample\ModulesSample.csproj", "{DCC68F88-29C9-44EF-90E3-685666AFD6AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyModule", "samples\DummyModule\DummyModule.csproj", "{2B315287-FDAE-4092-9A80-7DA07D934BF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyModule1", "samples\DummyModule1\DummyModule1.csproj", "{2B315287-FDAE-4092-9A80-7DA07D934BF1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyModule2", "samples\DummyModule2\DummyModule2.csproj", "{CC39B117-CA19-4151-8B2E-419514AEAE90}"
 EndProject

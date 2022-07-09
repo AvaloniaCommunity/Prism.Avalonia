@@ -1,11 +1,11 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="clr-namespace:Prism.Regions.Behaviors;assembly=Prism.Avalonia"
-             x:Class="DummyModule.View.DummyModuleView"
-        >
+             x:Class="DummyModule.View.DummyModuleView">
   <StackPanel Orientation="Horizontal">
-    <TextBox Text="DummyModule Region View"
+    <TextBox Text="DummyModule1 Region View"
              IsReadOnly="True" />
-    <Button Content="Test"></Button>
+    
+    <Button Content="Dummy Button"></Button>
   </StackPanel>
 </UserControl>

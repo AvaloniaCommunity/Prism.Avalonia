@@ -6,14 +6,16 @@
 
   <Import Project="../../build/SampleApp.props" />
 
-  <!--<ItemGroup>
+  <!--
+  <ItemGroup>
     <PackageReference Include="Prism.Plugin.Logging.Abstractions" Version="8.1.16" />
     <PackageReference Include="Serilog.Sinks.Trace" Version="3.0.0" />
-  </ItemGroup>-->
+  </ItemGroup>
+  -->
 
   <ItemGroup>
     <ProjectReference Include="..\DummyModule2\DummyModule2.csproj" />
-    <ProjectReference Include="..\DummyModule\DummyModule.csproj" />
+    <ProjectReference Include="..\DummyModule1\DummyModule1.csproj" />
   </ItemGroup>
 
 </Project>
