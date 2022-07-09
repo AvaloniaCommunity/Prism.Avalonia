@@ -2,6 +2,9 @@
         xmlns:prism="clr-namespace:Prism.Regions;assembly=Prism.Avalonia"
         Title="Shell" Height="350" Width="525"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="ViewDiscovery.Views.MainWindow">
-  <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        x:Class="BasicApp.Views.MainWindow">
+    <!--<ContentControl prism:RegionManager.RegionName="ContentRegion" />-->
+  <Grid>
+    <TextBlock Text="View A" FontSize="38" />
+  </Grid>
 </Window>

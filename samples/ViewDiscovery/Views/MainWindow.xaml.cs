@@ -29,7 +29,6 @@ namespace ViewDiscovery.Views
         {
             await Task.Delay(2000);
 
-
             var region = _regionManager.Regions["ContentRegion"];
             var viewA = region.Views.FirstOrDefault();
             var viewB = region.Views.Skip(1).FirstOrDefault();

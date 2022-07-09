@@ -1,0 +1,9 @@
+﻿<prism:PrismApplication xmlns="https://github.com/avaloniaui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Avalonia"
+                        x:Class="BasicApp.App">
+  <Application.Styles>
+    <StyleInclude Source="resm:Avalonia.Themes.Default.DefaultTheme.xaml?assembly=Avalonia.Themes.Default"/>
+    <StyleInclude Source="resm:Avalonia.Themes.Default.Accents.BaseLight.xaml?assembly=Avalonia.Themes.Default"/>
+  </Application.Styles>
+</prism:PrismApplication>

@@ -75,7 +75,6 @@ namespace Prism.Regions
         private static readonly AvaloniaProperty ObservableRegionProperty =
             AvaloniaProperty.RegisterAttached<AvaloniaObject, ObservableObject<IRegion>>("ObservableRegion", typeof(RegionManager));
 
-
         /// <summary>
         /// Returns an <see cref="ObservableObject{T}"/> wrapper that can hold an <see cref="IRegion"/>. Using this wrapper
         /// you can detect when an <see cref="IRegion"/> has been created by the <see cref="RegionAdapterBase{T}"/>.
