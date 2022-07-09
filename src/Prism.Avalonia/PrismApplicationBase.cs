@@ -20,42 +20,13 @@ namespace Prism
         private IContainerExtension _containerExtension;
         private IModuleCatalog _moduleCatalog;
 
+        // FROM Prism.Avalonia7.1.2
         public IAvaloniaObject MainWindow { get; private set; }
 
         /// <summary>
         /// The dependency injection container used to resolve objects
         /// </summary>
         public IContainerProvider Container => _containerExtension;
-
-        /////// <summary>
-        /////// Raises the System.Windows.Application.Startup event.
-        /////// </summary>
-        /////// <param name="e">A System.Windows.StartupEventArgs that contains the event data.</param>
-        ////protected override void OnStartup(StartupEventArgs e)
-        ////{
-        ////    base.OnStartup(e);
-        ////    InitializeInternal();
-        ////}
-
-        public override void OnFrameworkInitializationCompleted()
-        {
-            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
-                desktopLifetime.MainWindow = MainWindow as Window;
-            else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
-                singleViewLifetime.MainView = MainWindow as Control;
-
-            base.OnFrameworkInitializationCompleted();
-        }
-
-        /// <summary>
-        /// Run the initialization process.
-        /// </summary>
-        private void InitializeInternal()
-        {
-            ConfigureViewModelLocator();
-            Initialize();
-            OnInitialized();
-        }
 
         /// <summary>
         /// Configures the <see cref="Prism.Mvvm.ViewModelLocator"/> used by Prism.
@@ -70,6 +41,10 @@ namespace Prism
         /// </summary>
         protected virtual void Initialize()
         {
+            base.Initialize();
+
+            ConfigureViewModelLocator();
+
             ContainerLocator.SetContainerExtension(CreateContainerExtension);
             _containerExtension = ContainerLocator.Current;
             _moduleCatalog = CreateModuleCatalog();
@@ -97,6 +72,18 @@ namespace Prism
             }
 
             InitializeModules();
+
+            OnInitialized();
+        }
+
+        public override void OnFrameworkInitializationCompleted()
+        {
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
+                desktopLifetime.MainWindow = MainWindow as Window;
+            else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
+                singleViewLifetime.MainView = MainWindow as Control;
+
+            base.OnFrameworkInitializationCompleted();
         }
 
         /// <summary>
@@ -162,12 +149,12 @@ namespace Prism
         /// Creates the shell or main window of the application.
         /// </summary>
         /// <returns>The shell of the application.</returns>
-        protected abstract Window CreateShell();
+        protected abstract IAvaloniaObject CreateShell(); //// Window CreateShell();
 
         /// <summary>
         /// Initializes the shell.
         /// </summary>
-        protected virtual void InitializeShell(Window shell)
+        protected virtual void InitializeShell(IAvaloniaObject shell)
         {
             MainWindow = shell;
         }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29324.140
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32611.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Avalonia", "src\Prism.Avalonia\Prism.Avalonia.csproj", "{F4A9F2F0-979F-4964-8BC8-A39F4816803B}"
 EndProject
@@ -52,13 +52,9 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.DryIoc.Shared", "src\
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.Unity.Shared", "src\Containers\Prism.Unity.Shared\Prism.Unity.Shared.shproj", "{D66336A6-07E5-401A-A710-DAEDD6975D59}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BasicApp", "BasicApp", "{087E9B6F-1646-413D-8F8D-5B505F031D18}"
+EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\Containers\Prism.DryIoc.Shared\Prism.DryIoc.Shared.projitems*{6e7ec81d-da39-4c4f-a898-0148558c34f4}*SharedItemsImports = 13
-		src\Containers\Prism.Unity.Shared\Prism.Unity.Shared.projitems*{87550619-24c8-47ed-917e-eb58d325fc9e}*SharedItemsImports = 5
-		src\Containers\Prism.DryIoc.Shared\Prism.DryIoc.Shared.projitems*{a379e2c8-bd9a-42a1-8218-ced3c0d75e64}*SharedItemsImports = 5
-		src\Containers\Prism.Unity.Shared\Prism.Unity.Shared.projitems*{d66336a6-07e5-401a-a710-daedd6975d59}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -120,8 +116,15 @@ Global
 		{366415D3-E0ED-449C-99E2-A258F6A566F6} = {70B9D432-E8BD-4EB9-9CA8-E63E2C804F3F}
 		{6E7EC81D-DA39-4C4F-A898-0148558C34F4} = {366415D3-E0ED-449C-99E2-A258F6A566F6}
 		{D66336A6-07E5-401A-A710-DAEDD6975D59} = {366415D3-E0ED-449C-99E2-A258F6A566F6}
+		{087E9B6F-1646-413D-8F8D-5B505F031D18} = {5F8D330E-F611-4E17-8217-F2D6CDB8E1F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D260344D-8648-441D-B85B-9D280005F098}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\Containers\Prism.DryIoc.Shared\Prism.DryIoc.Shared.projitems*{6e7ec81d-da39-4c4f-a898-0148558c34f4}*SharedItemsImports = 13
+		src\Containers\Prism.Unity.Shared\Prism.Unity.Shared.projitems*{87550619-24c8-47ed-917e-eb58d325fc9e}*SharedItemsImports = 5
+		src\Containers\Prism.DryIoc.Shared\Prism.DryIoc.Shared.projitems*{a379e2c8-bd9a-42a1-8218-ced3c0d75e64}*SharedItemsImports = 5
+		src\Containers\Prism.Unity.Shared\Prism.Unity.Shared.projitems*{d66336a6-07e5-401a-a710-daedd6975d59}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

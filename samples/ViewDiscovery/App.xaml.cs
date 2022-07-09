@@ -12,48 +12,31 @@ using System.Threading;
 
 namespace ViewDiscovery
 {
-    class App : PrismApplication
+    public partial class App : PrismApplication
     {
-        public static AppBuilder BuildAvaloniaApp()
-        {
-            var builder = AppBuilder
-                .Configure<App>()
-                .UsePlatformDetect();
-#if DEBUG
-            builder.LogToTrace();
-#endif
-            return builder;
-        }
-
-
-        public override void Initialize()
+        /// <summary>App entry point.</summary>
+        public App()
         {
             AvaloniaXamlLoader.Load(this);
             base.Initialize();
         }
 
-        static void Main(string[] args)
-        {
-            BuildAvaloniaApp().Start(AppMain, args);
-        }
+        // No longer override, Initialize(), use the constructor.
+        ////public override void Initialize()
+        ////{
+        ////    AvaloniaXamlLoader.Load(this);
+        ////    base.Initialize();
+        ////}
 
-        // Application entry point. Avalonia is completely initialized.
-        static void AppMain(Application app, string[] args)
+        /// <summary>User interface entry point, called after Register and ConfigureModules.</summary>
+        /// <returns>Startup View.</returns>
+        protected override IAvaloniaObject CreateShell()
         {
-            // A cancellation token source that will be used to stop the main loop
-            var cts = new CancellationTokenSource();
-
-            // Start the main loop
-            app.Run(cts.Token);
+            return Container.Resolve<MainWindow>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-        }
-
-        protected override IAvaloniaObject CreateShell()
-        {
-            return Container.Resolve<MainWindow>();
         }
     }
 }
