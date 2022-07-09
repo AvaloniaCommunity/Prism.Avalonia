@@ -17,16 +17,16 @@ namespace ViewDiscovery
         /// <summary>App entry point.</summary>
         public App()
         {
+            //AvaloniaXamlLoader.Load(this);
+            //base.Initialize();
+        }
+
+        // Prism v8.1 has WPF's `PrismApplicationBase.Initialize()` as a protected virtual void, not public. Should we too?
+        public override void Initialize()
+        {
             AvaloniaXamlLoader.Load(this);
             base.Initialize();
         }
-
-        // No longer override, Initialize(), use the constructor.
-        ////public override void Initialize()
-        ////{
-        ////    AvaloniaXamlLoader.Load(this);
-        ////    base.Initialize();
-        ////}
 
         /// <summary>User interface entry point, called after Register and ConfigureModules.</summary>
         /// <returns>Startup View.</returns>

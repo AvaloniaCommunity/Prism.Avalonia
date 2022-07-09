@@ -39,7 +39,7 @@ namespace Prism
         /// <summary>
         /// Runs the initialization sequence to configure the Prism application.
         /// </summary>
-        protected virtual void Initialize()
+        public override void Initialize()
         {
             base.Initialize();
 
