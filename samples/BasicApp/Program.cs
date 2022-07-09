@@ -10,12 +10,13 @@ namespace BasicApp
         {
             var builder = AppBuilder
                 .Configure<App>()
-                .UsePlatformDetect();
-            // from personal project
-            ////.With(new X11PlatformOptions { EnableMultiTouch = true, UseDBusMenu = true })
-            ////.With(new Win32PlatformOptions { EnableMultitouch = true, AllowEglInitialization = true })
-            ////.UseSkia()
-            ////.UseReactiveUI()
+                .UsePlatformDetect()
+                // from personal project
+                .With(new X11PlatformOptions { EnableMultiTouch = true, UseDBusMenu = true })
+                .With(new Win32PlatformOptions { EnableMultitouch = true, AllowEglInitialization = true })
+                .UseSkia();
+                //// .UseReactiveUI();
+
             ////.LogToTrace();
 #if DEBUG
             builder.LogToTrace();
