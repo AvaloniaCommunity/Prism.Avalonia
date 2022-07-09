@@ -5,13 +5,13 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Prism.Avalonia.Infrastructure.Events;
 using Prism.Events;
-using Prism.Logging;
+////using Prism.Logging;
 
 namespace ModulesSample
 {
     public class MainWindow : Window
     {
-        private readonly CallbackLogger logger;
+        ////private readonly CallbackLogger logger;
         private readonly IEventAggregator eventAggregator;
 
         private TextBox logTextBox;
@@ -22,7 +22,8 @@ namespace ModulesSample
             
         }
 
-        public MainWindow(CallbackLogger logger, IEventAggregator eventAggregator)
+        public MainWindow(IEventAggregator eventAggregator)
+        ////public MainWindow(CallbackLogger logger, IEventAggregator eventAggregator)
         {
             this.InitializeComponent();
             this.AttachDevTools();
@@ -30,9 +31,9 @@ namespace ModulesSample
             this.logTextBox = this.FindControl<TextBox>("LogTextBox");
             this.itemsControl = this.FindControl<ListBox>("ItemsControl1");
 
-            this.logger = logger;
-            this.logger.Callback = this.Log;
-            this.logger.ReplaySavedLogs();
+            ////this.logger = logger;
+            ////this.logger.Callback = this.Log;
+            ////this.logger.ReplaySavedLogs();
 
             this.eventAggregator = eventAggregator;
             this.eventAggregator.GetEvent<DummyEvent>().Subscribe(() =>
@@ -51,10 +52,10 @@ namespace ModulesSample
             AvaloniaXamlLoader.Load(this);
         }
 
-        private void Log(string message, Category category, Priority priority)
-        {
-            this.logTextBox.Text += string.Format(CultureInfo.CurrentUICulture, "[{0}][{1}] {2} \r\n", category,
-                priority, message);
-        }
+        ////private void Log(string message, Category category, Priority priority)
+        ////{
+        ////    this.logTextBox.Text += string.Format(CultureInfo.CurrentUICulture, "[{0}][{1}] {2} \r\n", category,
+        ////        priority, message);
+        ////}
     }
 }

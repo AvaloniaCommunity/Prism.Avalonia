@@ -6,7 +6,7 @@ using Avalonia.Themes.Default;
 using Avalonia.Markup.Xaml;
 using CommonServiceLocator;
 using DryIoc;
-using Serilog;
+////using Serilog;
 using Prism.DryIoc;
 using System.Threading;
 using Prism.Ioc;

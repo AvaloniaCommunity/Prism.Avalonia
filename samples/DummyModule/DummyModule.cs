@@ -1,10 +1,13 @@
-﻿using System.Threading;
+﻿// Temp disabled logging:
+// - Prism.Logging has been moved and `ILoggerFacade` is deprecated.Prism.Logging.Serilog is out of date.
+// - https://github.com/augustoproiete/prism-logging-serilog/issues/3
+using System.Threading;
 using DummyModule.View;
-using Prism.Avalonia.Infrastructure;
+using ModulesSample.Infrastructure;
 using Prism.Avalonia.Infrastructure.Events;
 using Prism.Events;
 using Prism.Ioc;
-using Prism.Logging;
+////using Prism.Logging;
 using Prism.Modularity;
 using Prism.Regions;
 
@@ -12,15 +15,15 @@ namespace DummyModule
 {
     public class DummyModule : IModule
     {
-        private readonly ILoggerFacade logger;
+        ////private readonly ILoggerFacade logger;
         private readonly IModuleTracker moduleTracker;
         private readonly IEventAggregator eventAggregator;
         private readonly IRegionManager regionManager;
 
-        public DummyModule(ILoggerFacade logger, IModuleTracker moduleTracker, IEventAggregator eventAggregator,
-            IRegionManager regionManager)
+        public DummyModule(IModuleTracker moduleTracker, IEventAggregator eventAggregator, IRegionManager regionManager)
         {
-            this.logger = logger;
+            // (ILoggerFacade logger,
+            ////this.logger = logger;
             this.moduleTracker = moduleTracker;
             this.eventAggregator = eventAggregator;
             this.regionManager = regionManager;

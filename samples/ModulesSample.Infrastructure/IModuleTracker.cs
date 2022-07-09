@@ -1,4 +1,4 @@
-﻿namespace Prism.Avalonia.Infrastructure
+﻿namespace ModulesSample.Infrastructure
 {
     /// <summary>
     /// Provides ability for modules to inform state of their loading

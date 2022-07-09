@@ -1,4 +1,4 @@
-﻿namespace Prism.Avalonia.Infrastructure
+﻿namespace ModulesSample.Infrastructure
 {
     /// <summary>
     /// A set of known module names for communication with IModuleTracker

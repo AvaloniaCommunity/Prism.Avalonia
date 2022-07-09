@@ -1,4 +1,4 @@
-﻿namespace Prism.Avalonia.Infrastructure
+﻿namespace ModulesSample.Infrastructure
 {
     public enum ModuleInitializationStatus
     {

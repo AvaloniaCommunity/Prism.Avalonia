@@ -1,5 +1,5 @@
 ﻿using DummyModule2.View;
-using Prism.Avalonia.Infrastructure;
+using ModulesSample.Infrastructure;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
