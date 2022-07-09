@@ -132,12 +132,14 @@ namespace Prism.Modularity
                 {
                     return loadedAssembly;
                 }
+
                 AssemblyName assemblyName = new AssemblyName(args.Name);
                 string dependentAssemblyFilename = Path.Combine(directory.FullName, assemblyName.Name + ".dll");
                 if (File.Exists(dependentAssemblyFilename))
                 {
                     return Assembly.ReflectionOnlyLoadFrom(dependentAssemblyFilename);
                 }
+
                 return Assembly.ReflectionOnlyLoad(args.Name);
             }
 

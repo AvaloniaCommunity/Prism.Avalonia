@@ -7,7 +7,7 @@
 
   <PropertyGroup>
     <RootNamespace>Prism.DryIoc</RootNamespace>
-    <TargetFrameworks>net5.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
     <Description>Use these extensions to build Prism applications based on DryIoc.</Description>
     <Authors>Omid Mafakher, Damian Suess, various contributiors</Authors>
     <Copyright>Copyright (c) 2022 Avalonia Community</Copyright>
