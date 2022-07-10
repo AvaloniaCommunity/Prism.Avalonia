@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Prism.Commands;
 using Prism.Regions;
 
@@ -8,7 +9,7 @@ namespace BasicMvvmApp.ViewModels
     {
         private int _counter = 0;
         private int _listItemSelected = -1;
-        private List<string> _listItems = new();
+        private ObservableCollection<string> _listItems = new();
         private string _listItemText;
 
         public DashboardViewModel(IRegionManager regionManager)
@@ -19,6 +20,8 @@ namespace BasicMvvmApp.ViewModels
         {
             _counter++;
             ListItems.Add($"Item Number: {_counter}");
+
+            // Optionall use, `Insert(0, ..)` to insert items at the top
             //ListItems.Insert(0, entry);
         });
 
@@ -47,7 +50,7 @@ namespace BasicMvvmApp.ViewModels
             set => SetProperty(ref _listItemText, value);
         }
 
-        public List<string> ListItems
+        public ObservableCollection<string> ListItems
         {
             get => _listItems;
             set => SetProperty(ref _listItems, value);

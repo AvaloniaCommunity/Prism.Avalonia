@@ -2,6 +2,8 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFrameworks>net5.0</TargetFrameworks>
+    <Authors>Damian Suess</Authors>
+    <Title>Sample MVVM App</Title>
   </PropertyGroup>
 
   <Import Project="../../build/SampleApp.props" />

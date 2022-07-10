@@ -8,7 +8,7 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         x:Class="BasicMvvmApp.Views.MainWindow"
         Title="{Binding Title}"
-        Height="350" Width="525"
+        Height="500" Width="700"
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent">
   <Panel>
@@ -24,8 +24,14 @@
     <Grid ColumnDefinitions="Auto,*" RowDefinitions="*,150,Auto">
       <!-- Sidebar -->
       <Panel Grid.Row="0" Grid.Column="0" Background="LightGray">
+
         <views:SidebarView />
-        <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.SidebarRegion}" />-->
+        <!--
+          Rendered SidebarView without a region on purpose to show it in designer mode.
+
+          Optionall use:
+          <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.SidebarRegion}" />
+        -->
       </Panel>
 
       <!-- Main Content -->
@@ -51,14 +57,14 @@
 
       <Panel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Background="LightSteelBlue">
         <StackPanel Orientation="Horizontal" Spacing="5" Margin="5">
-          <TextBlock Text="Client Name: " FontWeight="Bold" />
-          <TextBlock Text="{Binding ClientName}" FontStyle="Italic" />
+          <TextBlock Text="User Name: " FontWeight="Bold" />
+          <TextBlock Text="PrismAvalonia!" FontStyle="Italic" />
 
-          <TextBlock Text="SignalR Status:" FontWeight="Bold" />
-          <TextBlock Text="{Binding ClientConnectionStatus}" Foreground="{Binding HubColor}" />
+          <TextBlock Text="Status:" FontWeight="Bold" />
+          <TextBlock Text="Disconnected" Foreground="{Binding HubColor}" />
 
           <TextBlock Text="Connection Id: " FontWeight="Bold" />
-          <TextBlock Text="{Binding ClientConnectionId}" FontStyle="Italic" />
+          <TextBlock Text="0x07CC" FontStyle="Italic" />
         </StackPanel>
       </Panel>
 

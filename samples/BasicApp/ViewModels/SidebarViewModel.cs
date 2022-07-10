@@ -6,7 +6,7 @@ namespace BasicMvvmApp.ViewModels
 {
     public class SidebarViewModel : ViewModelBase
     {
-        private const int Collapsed = 35;
+        private const int Collapsed = 40;
         private const int Expanded = 200;
 
         private readonly IRegionNavigationJournal? _journal;

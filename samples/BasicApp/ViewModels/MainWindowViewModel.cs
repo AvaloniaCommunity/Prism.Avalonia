@@ -13,6 +13,8 @@ namespace BasicMvvmApp.ViewModels
             // on startup, rather than putting them in the DashboardViewModel.
             //
             // For example, initiate the pulling of News Feeds, etc.
+
+            Title = "Sample Prism.Avalonia MVVM!";
         }
     }
 }

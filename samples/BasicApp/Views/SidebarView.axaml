@@ -19,6 +19,7 @@
 
   <DockPanel>
 
+    <!-- Dock the hamburger menu button to the top with no text -->
     <Button DockPanel.Dock="Top"
             Command="{Binding CmdFlyoutMenu}"
             ToolTip.Tip="Expand/Collapse"
@@ -29,6 +30,7 @@
       </StackPanel>
     </Button>
 
+    <!-- Dock the Settings button to the bottom -->
     <Button DockPanel.Dock="Bottom" Command="{Binding CmdSettings}" ToolTip.Tip="Settings">
       <StackPanel Orientation="Horizontal">
         <PathIcon Data="{StaticResource settings_regular}" />
@@ -44,9 +46,16 @@
             <TextBlock Text="Dashboard" />
           </StackPanel>
         </Button>
-        
+
+        <!-- Place additionals buttons here... -->
+        <Button Command="{Binding .}" ToolTip.Tip="Dashboard">
+          <StackPanel Orientation="Horizontal">
+            <PathIcon Data="{StaticResource lock_regular}" />
+            <TextBlock Text="Something Else" />
+          </StackPanel>
+        </Button>
+
       </StackPanel>
-    </ScrollViewer>
-    
+    </ScrollViewer>    
   </DockPanel>
 </UserControl>

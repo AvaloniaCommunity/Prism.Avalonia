@@ -21,7 +21,7 @@
   </UserControl.Styles>
 
   <StackPanel>
-    <Label Content="Welcome to the Dashboard!" FontSize="38" />
+    <Label Content="Welcome to the Dashboard!" FontSize="32" />
 
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
       <Button Content="Add Item" Command="{Binding CmdAddItem}" />
@@ -29,9 +29,11 @@
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
-      <Label Content="Selected Index:" />
+      <Label Content="Selected Index:"  FontWeight="Bold" />
       <Label Content="{Binding ListItemSelected}" />
-      <Label Content="Selected Text:" />
+    <StackPanel Orientation="Horizontal">
+    </StackPanel>
+      <Label Content="Selected Text:" FontWeight="Bold" />
       <Label Content="{Binding ListItemText}" />
     </StackPanel>
 
@@ -40,7 +42,7 @@
              SelectedIndex="{Binding ListItemSelected}"
              ScrollViewer.VerticalScrollBarVisibility="Visible"
              ScrollViewer.HorizontalScrollBarVisibility="Visible"
-             VerticalAlignment="Stretch"
+             VerticalAlignment="Bottom"
              Margin="2">
       <ListBox.DataTemplates>
         <DataTemplate>
