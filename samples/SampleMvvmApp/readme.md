@@ -2,6 +2,7 @@
 
 This demonstrates the following Prism.Avalonia features:
 
+* .NET 6 - Cross-platform
 * MVVM Pattern - _Model View ViewModel_
 * Prism Navigation with and without passing parameters.
 * Prism Journling backwards

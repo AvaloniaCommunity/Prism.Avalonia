@@ -52,7 +52,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.DryIoc.Shared", "src\
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.Unity.Shared", "src\Containers\Prism.Unity.Shared\Prism.Unity.Shared.shproj", "{D66336A6-07E5-401A-A710-DAEDD6975D59}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicMvvmApp", "samples\BasicApp\BasicMvvmApp.csproj", "{7AF14280-214B-4A96-AFE8-CF063E2B6CA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicMvvmApp", "samples\SampleMvvmApp\BasicMvvmApp.csproj", "{7AF14280-214B-4A96-AFE8-CF063E2B6CA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
