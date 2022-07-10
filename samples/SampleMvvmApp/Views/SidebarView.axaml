@@ -1,0 +1,61 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="150"
+             Width="{Binding FlyoutWidth}"
+             x:Class="BasicMvvmApp.Views.SidebarView">
+  <UserControl.Styles>
+    <Style Selector="Button">
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+    </Style>
+
+    <Style Selector="PathIcon">
+      <Setter Property="Margin" Value="0,0,10,0" />
+    </Style>
+  </UserControl.Styles>
+
+  <DockPanel>
+
+    <!-- Dock the hamburger menu button to the top with no text -->
+    <Button DockPanel.Dock="Top"
+            Command="{Binding CmdFlyoutMenu}"
+            ToolTip.Tip="Expand/Collapse"
+            Height="25">
+      <StackPanel Orientation="Horizontal">
+        <PathIcon Data="{StaticResource line_horizontal_3_regular}" />
+        <TextBlock Text="" />
+      </StackPanel>
+    </Button>
+
+    <!-- Dock the Settings button to the bottom -->
+    <Button DockPanel.Dock="Bottom" Command="{Binding CmdSettings}" ToolTip.Tip="Settings">
+      <StackPanel Orientation="Horizontal">
+        <PathIcon Data="{StaticResource settings_regular}" />
+        <TextBlock Text="Settings" />
+      </StackPanel>
+    </Button>
+
+    <ScrollViewer>
+      <StackPanel>
+        <Button Command="{Binding CmdDashboard}" ToolTip.Tip="Dashboard">
+          <StackPanel Orientation="Horizontal">
+            <PathIcon Data="{StaticResource home_regular}" />
+            <TextBlock Text="Dashboard" />
+          </StackPanel>
+        </Button>
+
+        <!-- Place additionals buttons here... -->
+        <Button Command="{Binding .}" ToolTip.Tip="Dashboard">
+          <StackPanel Orientation="Horizontal">
+            <PathIcon Data="{StaticResource lock_regular}" />
+            <TextBlock Text="Something Else" />
+          </StackPanel>
+        </Button>
+
+      </StackPanel>
+    </ScrollViewer>    
+  </DockPanel>
+</UserControl>
