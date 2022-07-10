@@ -6,8 +6,27 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="350"
              x:Class="BasicMvvmApp.Views.SettingsView">
-    <Grid RowDefinitions="50,*">
-      <TextBlock Text="SettingsView, subview:" FontSize="38" />
-      <ContentControl Name="Test" Grid.Row="1"></ContentControl>
-    </Grid>
+  <DockPanel>
+    <StackPanel DockPanel.Dock="Top" Spacing="5">
+      <Grid Background="LightGray" ColumnDefinitions="Auto, *">
+        <!--
+        <Button Content="Back" Command="{Binding CmdNavigateBack}" CornerRadius="10">
+          <PathIcon Data="{StaticResource arrow_reply_regular}" />
+        </Button>
+        -->
+        <TextBlock Grid.Column="1"
+                   Text="{Binding Title}"
+                   FontWeight="Bold"
+                   Margin="5"
+                   VerticalAlignment="Center" />      </Grid>
+    </StackPanel>
+
+    <ScrollViewer Margin="5">
+      <StackPanel>
+        
+        <Label Content="Some content here for SettingsView" FontSize="18" />
+        <Button Content="Goto Child" Command="{Binding CmdNavigateToChild}" />
+      </StackPanel>
+    </ScrollViewer>
+  </DockPanel>
 </UserControl>
