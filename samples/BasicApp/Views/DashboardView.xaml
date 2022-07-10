@@ -1,0 +1,52 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="350"
+             x:Class="BasicMvvmApp.Views.DashboardView">
+
+  <UserControl.Styles>
+    <!--<Style Selector="Button.cmdBtn">-->
+    <Style Selector="Button">
+      <Setter Property="Padding" Value="10" />
+      <Setter Property="Margin" Value="5" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="StackPanel">
+      <Setter Property="Margin" Value="10" />
+    </Style>
+  </UserControl.Styles>
+
+  <StackPanel>
+    <Label Content="Welcome to the Dashboard!" FontSize="38" />
+
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+      <Button Content="Add Item" Command="{Binding CmdAddItem}" />
+      <Button Content="Clear" Command="{Binding CmdClearItems}" />
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal">
+      <Label Content="Selected Index:" />
+      <Label Content="{Binding ListItemSelected}" />
+      <Label Content="Selected Text:" />
+      <Label Content="{Binding ListItemText}" />
+    </StackPanel>
+
+    <ListBox Items="{Binding ListItems}"
+             SelectionMode="Single"
+             SelectedIndex="{Binding ListItemSelected}"
+             ScrollViewer.VerticalScrollBarVisibility="Visible"
+             ScrollViewer.HorizontalScrollBarVisibility="Visible"
+             VerticalAlignment="Stretch"
+             Margin="2">
+      <ListBox.DataTemplates>
+        <DataTemplate>
+          <TextBlock Text="{Binding .}" FontSize="10" TextWrapping="NoWrap" />
+        </DataTemplate>
+      </ListBox.DataTemplates>
+    </ListBox>
+  </StackPanel>
+</UserControl>

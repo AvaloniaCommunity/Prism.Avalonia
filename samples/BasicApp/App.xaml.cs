@@ -1,11 +1,13 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.Markup.Xaml;
-using BasicApp.Views;
+using BasicMvvmApp.ViewModels;
+using BasicMvvmApp.Views;
 using Prism.DryIoc;
 using Prism.Ioc;
+using Prism.Regions;
 
-namespace BasicApp
+namespace BasicMvvmApp
 {
     /// <summary>
     ///   Application entry point.
@@ -14,25 +16,6 @@ namespace BasicApp
     /// </summary>
     public class App : PrismApplication
     {
-        private static void Main(string[] args) => BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
-
-        public static AppBuilder BuildAvaloniaApp()
-        {
-            var builder = AppBuilder
-                .Configure<App>()
-                .UsePlatformDetect();
-            // from personal project
-            ////.With(new X11PlatformOptions { EnableMultiTouch = true, UseDBusMenu = true })
-            ////.With(new Win32PlatformOptions { EnableMultitouch = true, AllowEglInitialization = true })
-            ////.UseSkia()
-            ////.UseReactiveUI();
-
-#if DEBUG
-            builder.LogToTrace();
-#endif
-            return builder;
-        }
-
         /// <summary>App entry point.</summary>
         public App()
         {
@@ -50,11 +33,34 @@ namespace BasicApp
             base.Initialize();
         }
 
+        /// <summary>Called after Initialize.</summary>
+        protected override void OnInitialized()
+        {
+            // Register Views to Region it will appear in. Don't register them in the ViewModel.
+            var regionManager = Container.Resolve<IRegionManager>();
+            regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(DashboardView));
+            regionManager.RegisterViewWithRegion(RegionNames.SidebarRegion, typeof(SidebarView));
+
+            ////var logService = Container.Resolve<ILogService>();
+            ////logService.Configure("swlog.config");
+        }
+
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             Console.WriteLine("RegisterTypes()");
-        }
 
+            // Services
+            //// containerRegistry.RegisterSingleton<ILogService, LogService>();
+
+            // Views - Generic
+            containerRegistry.Register<SidebarView>();
+            containerRegistry.Register<MainWindow>();
+
+            // Views - Region Navigation
+            containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
+            containerRegistry.RegisterForNavigation<SubSettingsView, SubSettingsViewModel>();
+        }
 
         /// <summary>User interface entry point, called after Register and ConfigureModules.</summary>
         /// <returns>Startup View.</returns>

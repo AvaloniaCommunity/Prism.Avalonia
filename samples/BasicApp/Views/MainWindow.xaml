@@ -2,14 +2,66 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:core="clr-namespace:BasicMvvmApp;assembly=BasicMvvmApp"
+        xmlns:views="using:BasicMvvmApp.Views"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="Shell" Height="350" Width="525"
-        x:Class="BasicApp.Views.MainWindow">
-    <!--<ContentControl prism:RegionManager.RegionName="ContentRegion" />-->
+        x:Class="BasicMvvmApp.Views.MainWindow"
+        Title="{Binding Title}"
+        Height="350" Width="525"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent">
   <Panel>
-    <Grid>
-      <TextBlock Text="Hello World" FontSize="38" />
+    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial BackgroundSource="Digger"
+                                     TintColor="LightGray"
+                                     TintOpacity="1"
+                                     MaterialOpacity="0.65" />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+
+    <Grid ColumnDefinitions="Auto,*" RowDefinitions="*,150,Auto">
+      <!-- Sidebar -->
+      <Panel Grid.Row="0" Grid.Column="0" Background="LightGray">
+        <views:SidebarView />
+        <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.SidebarRegion}" />-->
+      </Panel>
+
+      <!-- Main Content -->
+      <ContentControl Grid.Row="0"
+                      Grid.Column="1"
+                      prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" />
+
+      <!-- Footer -->
+      <Panel Grid.Column="0"
+             Grid.ColumnSpan="2"
+             Grid.Row="1"
+             Background="LightGray">
+        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FooterRegion}" />
+      </Panel>
+
+      <GridSplitter Grid.Row="1" Grid.ColumnSpan="2"
+                    VerticalAlignment="Top" Height="3"
+                    HorizontalAlignment="Stretch"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Background="LightGray" />
+
+
+      <Panel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Background="LightSteelBlue">
+        <StackPanel Orientation="Horizontal" Spacing="5" Margin="5">
+          <TextBlock Text="Client Name: " FontWeight="Bold" />
+          <TextBlock Text="{Binding ClientName}" FontStyle="Italic" />
+
+          <TextBlock Text="SignalR Status:" FontWeight="Bold" />
+          <TextBlock Text="{Binding ClientConnectionStatus}" Foreground="{Binding HubColor}" />
+
+          <TextBlock Text="Connection Id: " FontWeight="Bold" />
+          <TextBlock Text="{Binding ClientConnectionId}" FontStyle="Italic" />
+        </StackPanel>
+      </Panel>
+
     </Grid>
   </Panel>
 </Window>

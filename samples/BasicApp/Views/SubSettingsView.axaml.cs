@@ -1,17 +1,13 @@
-﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
 namespace BasicMvvmApp.Views
 {
-    public partial class MainWindow : Window
+    public partial class SubSettingsView : UserControl
     {
-        public MainWindow()
+        public SubSettingsView()
         {
             InitializeComponent();
-#if DEBUG
-            this.AttachDevTools();
-#endif
         }
 
         private void InitializeComponent()
