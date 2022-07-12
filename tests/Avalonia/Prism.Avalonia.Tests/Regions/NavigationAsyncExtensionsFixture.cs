@@ -1,16 +1,13 @@
-
-
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Prism.Regions;
+using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
 {
-    [TestClass]
     public class NavigationAsyncExtensionsFixture
     {
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingWithANullThis_ThenThrows()
         {
             INavigateAsync navigate = null;
@@ -23,7 +20,7 @@ namespace Prism.Avalonia.Tests.Regions
                 });
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingWithANullStringTarget_ThenThrows()
         {
             INavigateAsync navigate = new Mock<INavigateAsync>().Object;
@@ -36,7 +33,7 @@ namespace Prism.Avalonia.Tests.Regions
                 });
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingWithARelativeStringTarget_ThenNavigatesToRelativeUri()
         {
             var navigateMock = new Mock<INavigateAsync>();
@@ -54,7 +51,7 @@ namespace Prism.Avalonia.Tests.Regions
             navigateMock.VerifyAll();
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingWithAnAbsoluteStringTarget_ThenNavigatesToAbsoluteUri()
         {
             var navigateMock = new Mock<INavigateAsync>();
@@ -72,7 +69,7 @@ namespace Prism.Avalonia.Tests.Regions
             navigateMock.VerifyAll();
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingWithANullThisAndAUri_ThenThrows()
         {
             INavigateAsync navigate = null;
@@ -85,7 +82,7 @@ namespace Prism.Avalonia.Tests.Regions
                 });
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingWithAUri_ThenNavigatesToUriWithCallback()
         {
             Uri target = new Uri("relative", UriKind.Relative);
@@ -97,7 +94,6 @@ namespace Prism.Avalonia.Tests.Regions
                         target,
                         It.Is<Action<NavigationResult>>(c => c != null)))
                 .Verifiable();
-
 
             navigateMock.Object.RequestNavigate(target);
 

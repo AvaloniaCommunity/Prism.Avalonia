@@ -222,6 +222,8 @@ Containers is a :new: Folder
 
 ### Tests - Prism.Avalonia.Tests
 
+Test writted to [Prism.WPF specs](https://github.com/PrismLibrary/Prism/tree/master/tests/Wpf/Prism.Wpf.Tests).
+
 | File                                          | Status  |  Notes |
 |-----------------------------------------------|---------|--------|
 | Prism.Avalonia.Tests.csproj                   | :heavy_check_mark:            | Upgraded to .NET 6 (_Prism v8.1.97 uses .NET v4.7.1_)
@@ -231,8 +233,8 @@ Containers is a :new: Folder
 | ExceptionAssert.cs                            | :heavy_check_mark:
 | ListDictionaryFixture.cs                      | :heavy_check_mark:
 | CollectionChangedTracker.cs                   | :heavy_check_mark:
-| PrismApplicationBaseFixture.cs                | :new: :white_square_button:   | Needs, `BindRegionContextToDependencyObjectBehavior`
-| PrismBootstrapperBaseFixture.cs               | :new: :white_square_button:   | Throwing, _"protection level errors."_
+| PrismApplicationBaseFixture.cs                | :white_square_button:   | Needs, `BindRegionContextToDependencyObjectBehavior`
+| PrismBootstrapperBaseFixture.cs               | :white_square_button:   | Throwing, _"protection level errors."_
 | Logging\ ...                                  | :x:
 | Interactivity\CommandBehaviorBaseFixture.cs   | :heavy_check_mark:
 | Interactivity\InvokeCommandActionFixture.cs   | :heavy_check_mark:
@@ -246,15 +248,37 @@ Containers is a :new: Folder
 | Mocks\Modules\MockModuleReferencingAssembly.cs    | :heavy_check_mark:
 | Mocks\Modules\MockModuleReferencingOtherModule.cs | :heavy_check_mark:
 | Mocks\Modules\MockModuleThrowingException.cs      | :heavy_check_mark:
-| ViewModels\MockOptOutViewModel.cs             | :heavy_check_mark:
-| ViewModels\MockViewModel.cs                   | :heavy_check_mark:
-| Views\Mock.cs                                 | :heavy_check_mark:
-| Views\MockOptOut.cs                           | :heavy_check_mark:
-| Views\MockView.cs                             | :heavy_check_mark:
-| Modularity\ ...                               | :white_square_button:
-| Modularity\ModuleCatalogXml\ ...              | :white_square_button:
-| Mvvm\ModuleCatalogXml\ViewModelLocationFixture.cs | :heavy_check_mark:
-| Regions\ ...                                  | :white_square_button:
+| ViewModels\MockOptOutViewModel.cs                 | :heavy_check_mark:
+| ViewModels\MockViewModel.cs                       | :heavy_check_mark:
+| Views\Mock.cs                                     | :heavy_check_mark:
+| Views\MockOptOut.cs                               | :heavy_check_mark:
+| Views\MockView.cs                                 | :heavy_check_mark:
+| Modularity\ ...                                   | :white_square_button:
+| ...                                               | :white_square_button:
+| Modularity\ModuleCatalogXml\ ...                  | :white_square_button:
+| ...                                               | :white_square_button:
+| Mvvm\ViewModelLocatorFixture.cs                   | :heavy_check_mark:
+| Regions\AllActiveRegionFixture.cs                 | :heavy_check_mark:
+| Regions\ContentControlRegionAdapterFixture.cs     | :white_square_button: :warning:
+| Regions\ItemsControlRegionAdapterFixture.cs       | :white_square_button: :warning: [https://github.com/AvaloniaUI/Avalonia/issues/7553]
+| Regions\LocatorNavigationTargetHandlerFixture.cs  | :heavy_check_mark:
+| Regions\NavigationAsyncExtensionsFixture.cs       | :heavy_check_mark:
+| Regions\NavigationContextFixture.cs               | :heavy_check_mark:
+| Regions\NavigationParametersFixture.cs            | :white_square_button:
+| Regions\RegionAdapterBaseFixture.cs               | :white_square_button:
+| Regions\RegionAdapterMappingsFixture.cs           | :white_square_button:
+| Regions\RegionBehaviorCollectionFixture.cs        | :white_square_button:
+| Regions\RegionBehaviorFactoryFixture.cs           | :white_square_button:
+| Regions\RegionBehaviorFixture.cs                  | :white_square_button:
+| Regions\RegionFixture.cs                          | :white_square_button:
+| Regions\RegionManagerFixture.cs                   | :white_square_button:
+| Regions\RegionManagerRequestNavigateFixture.cs    | :white_square_button:
+| Regions\RegionNavigationJournalFixture.cs         | :white_square_button:
+| Regions\RegionNavigationServiceFixture.new.cs     | :white_square_button:
+| Regions\RegionViewRegistryFixture.cs              | :white_square_button:
+| Regions\SelectorRegionAdapterFixture.cs           | :white_square_button: :new: :warning:
+| Regions\SingleActiveRegionFixture.cs              | :white_square_button:
+| Regions\ViewsCollectionFixture.cs                 | :white_square_button:
 | Regions\Bahaviors ...                         | :white_square_button:
 
 ### Tests - Prism.Container.Avalonia.Shared
@@ -294,12 +318,13 @@ As we all know, not everything is straight forward between these two XAML techno
 
 [https://docs.avaloniaui.net/misc/wpf/Control-frameworkelement-and-control]
 
-| WPF                                     | Avalonia | Reference |
-|-----------------------------------------|----------|-----------|
+| WPF                                       | Avalonia | Reference |
+|-------------------------------------------|----------|-----------|
 | `System.Windows`                          | `Avalonia`
 | `System.Windows.FrameworkElement`         | `Avalonia.Controls.Control` | [Reference](https://docs.avaloniaui.net/misc/wpf/uielement-frameworkelement-and-control)
 | `System.WIndows.FrameworkContentElement`  | `Avalonia.Controls.Control`
 | `UIElement`                               | `Avalonia.Controls.Control`
+| `ItemsControl.ItemsSource`                | `Avalonia.Controls.ItemsControl.ItemsSource` | [Naming Convention](https://github.com/AvaloniaUI/Avalonia/issues/7553#issuecomment-1032714913)
 | `System.Windows.Markup.MarkupExtension`   | `Avalonia.Markup.Xaml.MarkupExtension` | [Reference](http://reference.avaloniaui.net/api/Avalonia.Markup.Xaml/MarkupExtension/)
 | `System.Windows.Markup.ContentPropertyAttribute.ContentProperty` | `Avalonia.Metadata.Content` | [https://github.com/AvaloniaUI/Avalonia/pull/1126]
 | `System.Windows.Markup`                   | `Avalonia.Markup.Xaml`

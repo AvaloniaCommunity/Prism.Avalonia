@@ -1,23 +1,20 @@
-
-
-using System;
-using System.Windows;
-using CommonServiceLocator;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Avalonia.Controls;
 using Moq;
+using Prism.Ioc;
 using Prism.Regions;
+using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
 {
-    [TestClass]
+    public class FrameworkElement : Control { }
+
     public class LocatorNavigationTargetHandlerFixture
     {
-        [TestMethod]
+        [Fact]
         public void WhenViewExistsAndDoesNotImplementINavigationAware_ThenReturnsView()
         {
             // Arrange
-
-            var serviceLocatorMock = new Mock<IServiceLocator>();
+            var containerMock = new Mock<IContainerExtension>();
 
             var region = new Region();
 
@@ -27,25 +24,20 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationContext = new NavigationContext(null, new Uri(view.GetType().Name, UriKind.Relative));
 
-            var navigationTargetHandler = new TestRegionNavigationContentLoader(serviceLocatorMock.Object);
-
+            var navigationTargetHandler = new TestRegionNavigationContentLoader(containerMock.Object);
 
             // Act
-
             var returnedView = navigationTargetHandler.LoadContent(region, navigationContext);
 
-
             // Assert
-
-            Assert.AreSame(view, returnedView);
+            Assert.Same(view, returnedView);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenRegionHasMultipleViews_ThenViewsWithMatchingTypeNameAreConsidered()
         {
             // Arrange
-
-            var serviceLocatorMock = new Mock<IServiceLocator>();
+            var containerMock = new Mock<IContainerExtension>();
 
             var region = new Region();
 
@@ -57,25 +49,20 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationContext = new NavigationContext(null, new Uri(view2.GetType().Name, UriKind.Relative));
 
-            var navigationTargetHandler = new TestRegionNavigationContentLoader(serviceLocatorMock.Object);
-
+            var navigationTargetHandler = new TestRegionNavigationContentLoader(containerMock.Object);
 
             // Act
-
             var returnedView = navigationTargetHandler.LoadContent(region, navigationContext);
 
-
             // Assert
-
-            Assert.AreSame(view2, returnedView);
+            Assert.Same(view2, returnedView);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenRegionHasMultipleViews_ThenViewsWithMatchingFullTypeNameAreConsidered()
         {
             // Arrange
-
-            var serviceLocatorMock = new Mock<IServiceLocator>();
+            var containerMock = new Mock<IContainerExtension>();
 
             var region = new Region();
 
@@ -87,25 +74,20 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationContext = new NavigationContext(null, new Uri(view2.GetType().FullName, UriKind.Relative));
 
-            var navigationTargetHandler = new TestRegionNavigationContentLoader(serviceLocatorMock.Object);
-
+            var navigationTargetHandler = new TestRegionNavigationContentLoader(containerMock.Object);
 
             // Act
-
             var returnedView = navigationTargetHandler.LoadContent(region, navigationContext);
 
-
             // Assert
-
-            Assert.AreSame(view2, returnedView);
+            Assert.Same(view2, returnedView);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenViewExistsAndImplementsINavigationAware_ThenViewIsQueriedForNavigationAndIsReturnedIfAcceptsIt()
         {
             // Arrange
-
-            var serviceLocatorMock = new Mock<IServiceLocator>();
+            var containerMock = new Mock<IContainerExtension>();
 
             var region = new Region();
 
@@ -119,26 +101,21 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationContext = new NavigationContext(null, new Uri(viewMock.Object.GetType().Name, UriKind.Relative));
 
-            var navigationTargetHandler = new TestRegionNavigationContentLoader(serviceLocatorMock.Object);
-
+            var navigationTargetHandler = new TestRegionNavigationContentLoader(containerMock.Object);
 
             // Act
-
             var returnedView = navigationTargetHandler.LoadContent(region, navigationContext);
 
-
             // Assert
-
-            Assert.AreSame(viewMock.Object, returnedView);
+            Assert.Same(viewMock.Object, returnedView);
             viewMock.VerifyAll();
         }
 
-        [TestMethod]
+        [StaFact]
         public void WhenViewExistsAndHasDataContextThatImplementsINavigationAware_ThenDataContextIsQueriedForNavigationAndIsReturnedIfAcceptsIt()
         {
             // Arrange
-
-            var serviceLocatorMock = new Mock<IServiceLocator>();
+            var containerMock = new Mock<IContainerExtension>();
 
             var region = new Region();
 
@@ -154,57 +131,45 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationContext = new NavigationContext(null, new Uri(viewMock.Object.GetType().Name, UriKind.Relative));
 
-            var navigationTargetHandler = new TestRegionNavigationContentLoader(serviceLocatorMock.Object);
-
+            var navigationTargetHandler = new TestRegionNavigationContentLoader(containerMock.Object);
 
             // Act
-
             var returnedView = navigationTargetHandler.LoadContent(region, navigationContext);
 
-
             // Assert
-
-            Assert.AreSame(viewMock.Object, returnedView);
+            Assert.Same(viewMock.Object, returnedView);
             dataContextMock.VerifyAll();
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNoCurrentMatchingViewExists_ThenReturnsNewlyCreatedInstanceWithServiceLocatorAddedToTheRegion()
         {
             // Arrange
-
-            var serviceLocatorMock = new Mock<IServiceLocator>();
+            var containerMock = new Mock<IContainerExtension>();
 
             var region = new Region();
 
             var view = new TestView();
 
-            serviceLocatorMock
-                .Setup(sl => sl.GetInstance<object>(view.GetType().Name))
-                .Returns(view);
+            containerMock.Setup(sl => sl.Resolve(typeof(object), view.GetType().Name)).Returns(view);
 
             var navigationContext = new NavigationContext(null, new Uri(view.GetType().Name, UriKind.Relative));
 
-            var navigationTargetHandler = new TestRegionNavigationContentLoader(serviceLocatorMock.Object);
-
+            var navigationTargetHandler = new TestRegionNavigationContentLoader(containerMock.Object);
 
             // Act
-
             var returnedView = navigationTargetHandler.LoadContent(region, navigationContext);
 
-
             // Assert
-
-            Assert.AreSame(view, returnedView);
-            Assert.IsTrue(region.Views.Contains(view));
+            Assert.Same(view, returnedView);
+            Assert.True(region.Views.Contains(view));
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenViewExistsAndImplementsINavigationAware_ThenViewIsQueriedForNavigationAndNewInstanceIsCreatedIfItRejectsIt()
         {
             // Arrange
-
-            var serviceLocatorMock = new Mock<IServiceLocator>();
+            var containerMock = new Mock<IContainerExtension>();
 
             var region = new Region();
 
@@ -218,33 +183,26 @@ namespace Prism.Avalonia.Tests.Regions
 
             var newView = new TestView();
 
-            serviceLocatorMock
-                .Setup(sl => sl.GetInstance<object>(viewMock.Object.GetType().Name))
-                .Returns(newView);
+            containerMock.Setup(sl => sl.Resolve(typeof(object), viewMock.Object.GetType().Name)).Returns(newView);
 
             var navigationContext = new NavigationContext(null, new Uri(viewMock.Object.GetType().Name, UriKind.Relative));
 
-            var navigationTargetHandler = new TestRegionNavigationContentLoader(serviceLocatorMock.Object);
-
+            var navigationTargetHandler = new TestRegionNavigationContentLoader(containerMock.Object);
 
             // Act
-
             var returnedView = navigationTargetHandler.LoadContent(region, navigationContext);
 
-
             // Assert
-
-            Assert.AreSame(newView, returnedView);
-            Assert.IsTrue(region.Views.Contains(newView));
+            Assert.Same(newView, returnedView);
+            Assert.True(region.Views.Contains(newView));
             viewMock.VerifyAll();
         }
 
-        [TestMethod]
+        [StaFact]
         public void WhenViewExistsAndHasDataContextThatImplementsINavigationAware_ThenDataContextIsQueriedForNavigationAndNewInstanceIsCreatedIfItRejectsIt()
         {
             // Arrange
-
-            var serviceLocatorMock = new Mock<IServiceLocator>();
+            var containerMock = new Mock<IContainerExtension>();
 
             var region = new Region();
 
@@ -253,6 +211,7 @@ namespace Prism.Avalonia.Tests.Regions
                 .Setup(v => v.IsNavigationTarget(It.IsAny<NavigationContext>()))
                 .Returns(false)
                 .Verifiable();
+
             var viewMock = new Mock<FrameworkElement>();
             viewMock.Object.DataContext = dataContextMock.Object;
 
@@ -260,44 +219,34 @@ namespace Prism.Avalonia.Tests.Regions
 
             var newView = new TestView();
 
-            serviceLocatorMock
-                .Setup(sl => sl.GetInstance<object>(viewMock.Object.GetType().Name))
-                .Returns(newView);
+            containerMock.Setup(sl => sl.Resolve(typeof(object), viewMock.Object.GetType().Name)).Returns(newView);
 
             var navigationContext = new NavigationContext(null, new Uri(viewMock.Object.GetType().Name, UriKind.Relative));
 
-            var navigationTargetHandler = new TestRegionNavigationContentLoader(serviceLocatorMock.Object);
-
+            var navigationTargetHandler = new TestRegionNavigationContentLoader(containerMock.Object);
 
             // Act
-
             var returnedView = navigationTargetHandler.LoadContent(region, navigationContext);
 
-
             // Assert
-
-            Assert.AreSame(newView, returnedView);
-            Assert.IsTrue(region.Views.Contains(newView));
+            Assert.Same(newView, returnedView);
+            Assert.True(region.Views.Contains(newView));
             dataContextMock.VerifyAll();
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenViewCannotBeCreated_ThenThrowsAnException()
         {
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock
-                .Setup(sl => sl.GetInstance<object>(typeof(TestView).Name))
-                .Throws<ActivationException>();
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(sl => sl.Resolve(typeof(object), typeof(TestView).Name)).Throws<ActivationException>();
 
             var region = new Region();
 
             var navigationContext = new NavigationContext(null, new Uri(typeof(TestView).Name, UriKind.Relative));
 
-            var navigationTargetHandler = new TestRegionNavigationContentLoader(serviceLocatorMock.Object);
-
+            var navigationTargetHandler = new TestRegionNavigationContentLoader(containerMock.Object);
 
             // Act
-
             ExceptionAssert.Throws<InvalidOperationException>(
                 () =>
                 {
@@ -306,48 +255,40 @@ namespace Prism.Avalonia.Tests.Regions
                 });
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenViewAddedByHandlerDoesNotImplementINavigationAware_ThenReturnsView()
         {
             // Arrange
-
-            var serviceLocatorMock = new Mock<IServiceLocator>();
+            var containerMock = new Mock<IContainerExtension>();
 
             var region = new Region();
 
             var view = new TestView();
 
-            serviceLocatorMock
-                .Setup(sl => sl.GetInstance<object>(view.GetType().Name))
-                .Returns(view);
+            containerMock.Setup(sl => sl.Resolve(typeof(object), view.GetType().Name)).Returns(view);
 
             var navigationContext = new NavigationContext(null, new Uri(view.GetType().Name, UriKind.Relative));
 
-            var navigationTargetHandler = new TestRegionNavigationContentLoader(serviceLocatorMock.Object);
-
+            var navigationTargetHandler = new TestRegionNavigationContentLoader(containerMock.Object);
 
             // Act
-
             var firstReturnedView = navigationTargetHandler.LoadContent(region, navigationContext);
             var secondReturnedView = navigationTargetHandler.LoadContent(region, navigationContext);
 
-
             // Assert
-
-            Assert.AreSame(view, firstReturnedView);
-            Assert.AreSame(view, secondReturnedView);
-            serviceLocatorMock.Verify(sl => sl.GetInstance<object>(view.GetType().Name), Times.Once());
+            Assert.Same(view, firstReturnedView);
+            Assert.Same(view, secondReturnedView);
+            containerMock.Verify(sl => sl.Resolve(typeof(object), view.GetType().Name), Times.Once());
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenRequestingContentForNullRegion_ThenThrows()
         {
-            var serviceLocatorMock = new Mock<IServiceLocator>();
+            var containerMock = new Mock<IContainerExtension>();
 
             var navigationContext = new NavigationContext(null, new Uri("/", UriKind.Relative));
 
-            var navigationTargetHandler = new TestRegionNavigationContentLoader(serviceLocatorMock.Object);
-
+            var navigationTargetHandler = new TestRegionNavigationContentLoader(containerMock.Object);
 
             ExceptionAssert.Throws<ArgumentNullException>(
                 () =>
@@ -357,15 +298,14 @@ namespace Prism.Avalonia.Tests.Regions
                 });
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenRequestingContentForNullContext_ThenThrows()
         {
-            var serviceLocatorMock = new Mock<IServiceLocator>();
+            var containerMock = new Mock<IContainerExtension>();
 
             var region = new Region();
 
-            var navigationTargetHandler = new TestRegionNavigationContentLoader(serviceLocatorMock.Object);
-
+            var navigationTargetHandler = new TestRegionNavigationContentLoader(containerMock.Object);
 
             ExceptionAssert.Throws<ArgumentNullException>(
                 () =>
@@ -377,11 +317,18 @@ namespace Prism.Avalonia.Tests.Regions
 
         public class TestRegionNavigationContentLoader : RegionNavigationContentLoader
         {
-            public TestRegionNavigationContentLoader(IServiceLocator serviceLocator)
-                : base(serviceLocator)
+            public TestRegionNavigationContentLoader(IContainerExtension container)
+                : base(container)
             { }
         }
 
         public class TestView { }
+    }
+
+    public class ActivationException : Exception
+    {
+        public ActivationException()
+        {
+        }
     }
 }
