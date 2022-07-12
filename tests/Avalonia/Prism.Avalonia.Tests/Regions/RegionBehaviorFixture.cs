@@ -1,36 +1,38 @@
-
-
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Prism.Regions;
 using Prism.Avalonia.Tests.Mocks;
+using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
 {
-    [TestClass]
     public class RegionBehaviorFixture
     {
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [Fact]
         public void CannotChangeRegionAfterAttach()
         {
-            TestableRegionBehavior regionBehavior = new TestableRegionBehavior();
+            var ex = Assert.Throws<InvalidOperationException>(() =>
+            {
+                TestableRegionBehavior regionBehavior = new TestableRegionBehavior();
 
-            regionBehavior.Region = new MockPresentationRegion();
+                regionBehavior.Region = new MockPresentationRegion();
 
-            regionBehavior.Attach();
-            regionBehavior.Region = new MockPresentationRegion();
+                regionBehavior.Attach();
+                regionBehavior.Region = new MockPresentationRegion();
+            });
+
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [Fact]
         public void ShouldFailWhenAttachedWithoutRegion()
         {
-            TestableRegionBehavior regionBehavior = new TestableRegionBehavior();
-            regionBehavior.Attach();
+            var ex = Assert.Throws<InvalidOperationException>(() =>
+            {
+                TestableRegionBehavior regionBehavior = new TestableRegionBehavior();
+                regionBehavior.Attach();
+            });
+
         }
 
-        [TestMethod]
+        [Fact]
         public void ShouldCallOnAttachWhenAttachMethodIsInvoked()
         {
             TestableRegionBehavior regionBehavior = new TestableRegionBehavior();
@@ -39,7 +41,7 @@ namespace Prism.Avalonia.Tests.Regions
 
             regionBehavior.Attach();
 
-            Assert.IsTrue(regionBehavior.onAttachCalled);
+            Assert.True(regionBehavior.onAttachCalled);
         }
 
         private class TestableRegionBehavior : RegionBehavior
@@ -52,6 +54,4 @@ namespace Prism.Avalonia.Tests.Regions
             }
         }
     }
-
-    
 }
