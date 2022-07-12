@@ -1,6 +1,5 @@
 using Prism.Ioc;
 using Prism.Modularity;
-using System;
 
 namespace Prism.Avalonia.Tests.Mocks.Modules
 {

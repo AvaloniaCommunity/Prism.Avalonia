@@ -1,5 +1,3 @@
-
-
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
@@ -7,19 +5,18 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using Microsoft.CSharp;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Prism.Modularity;
 using Prism.Ioc;
+using Prism.Modularity;
+using Xunit;
 
-namespace Prism.Avalonia.Tests
+namespace Prism.Wpf.Tests
 {
-    public class CompilerHelper 
+    public class CompilerHelper
     {
         private static string moduleTemplate =
             @"using System;
             using Prism.Ioc;
             using Prism.Modularity;
-
             namespace TestModules
             {
                 #module#
@@ -29,7 +26,6 @@ namespace Prism.Avalonia.Tests
                     {
                         Console.WriteLine(""#className#.Start"");
                     }
-
                     public void RegisterTypes(IContainerRegistry containerRegistry)
                     {
                         
@@ -163,7 +159,8 @@ namespace Prism.Avalonia.Tests
                 {
                     sb.AppendLine(error.ToString());
                 }
-                Assert.IsFalse(results.Errors.HasErrors, sb.ToString());
+
+                Assert.False(results.Errors.HasErrors, sb.ToString());
             }
         }
 

@@ -25,11 +25,5 @@ namespace Prism
         /// <returns><c>true</c> if there is an active binding, otherwise <c>false</c></returns>
         public static bool HasBinding(this Control instance, AvaloniaProperty property)
             => instance.GetBindingObservable(property) != null;
-
-        ////#if HAS_UWP || HAS_WINUI
-        ////            => instance.GetBindingExpression(property) != null;
-        ////#else
-        ////            => BindingOperations.GetBinding(instance, property) != null;
-        ////#endif
     }
 }

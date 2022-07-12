@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Prism.Avalonia.Tests
+namespace Prism.Wpf.Tests
 {
     public class CollectionChangedTracker
     {

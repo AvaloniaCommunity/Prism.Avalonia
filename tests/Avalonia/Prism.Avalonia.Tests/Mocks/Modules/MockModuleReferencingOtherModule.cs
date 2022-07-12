@@ -1,6 +1,5 @@
 using Prism.Ioc;
 using Prism.Modularity;
-using System;
 
 namespace Prism.Avalonia.Tests.Mocks.Modules
 {
@@ -17,5 +16,6 @@ namespace Prism.Avalonia.Tests.Mocks.Modules
         }
     }
 
-    public class MyDummyClass : DummyClass {}
+    public class MyDummyClass : DummyClass
+    { }
 }

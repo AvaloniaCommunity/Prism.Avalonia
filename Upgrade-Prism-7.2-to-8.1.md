@@ -220,6 +220,68 @@ Containers is a :new: Folder
 | Properties\Resources.resx                     | :white_square_button:
 | Regions\UnityRegionNavigationContentLoader.cs | :white_square_button:
 
+### Tests - Prism.Avalonia.Tests
+
+| File                                          | Status  |  Notes |
+|-----------------------------------------------|---------|--------|
+| Prism.Avalonia.Tests.csproj                   | :heavy_check_mark:            | Upgraded to .NET 6 (_Prism v8.1.97 uses .NET v4.7.1_)
+| CollectionChangedTracker.cs                   | :heavy_check_mark:
+| CollectionExtensionsFixture.cs                | :heavy_check_mark:
+| CompilerHelper.Desktop.cs                     | :heavy_check_mark:
+| ExceptionAssert.cs                            | :heavy_check_mark:
+| ListDictionaryFixture.cs                      | :heavy_check_mark:
+| CollectionChangedTracker.cs                   | :heavy_check_mark:
+| PrismApplicationBaseFixture.cs                | :new: :white_square_button:   | Needs, `BindRegionContextToDependencyObjectBehavior`
+| PrismBootstrapperBaseFixture.cs               | :new: :white_square_button:   | Throwing, _"protection level errors."_
+| Logging\ ...                                  | :x:
+| Interactivity\CommandBehaviorBaseFixture.cs   | :heavy_check_mark:
+| Interactivity\InvokeCommandActionFixture.cs   | :heavy_check_mark:
+| Mocks\Modules\MockAbstractModule.cs           | :heavy_check_mark:
+| Mocks\Modules\MockAttributedModule.cs         | :heavy_check_mark:
+| Mocks\Modules\MockDependantModule.cs          | :heavy_check_mark:
+| Mocks\Modules\MockDependencyModule.cs         | :heavy_check_mark:
+| Mocks\Modules\MockExposingTypeFromGacAssemblyModule.cs | :heavy_check_mark:
+| Mocks\Modules\MockModuleA.cs                  | :heavy_check_mark:
+| Mocks\Modules\MockModuleReferencedAssembly.cs | :heavy_check_mark:
+| Mocks\Modules\MockModuleReferencingAssembly.cs    | :heavy_check_mark:
+| Mocks\Modules\MockModuleReferencingOtherModule.cs | :heavy_check_mark:
+| Mocks\Modules\MockModuleThrowingException.cs      | :heavy_check_mark:
+| ViewModels\MockOptOutViewModel.cs             | :heavy_check_mark:
+| ViewModels\MockViewModel.cs                   | :heavy_check_mark:
+| Views\Mock.cs                                 | :heavy_check_mark:
+| Views\MockOptOut.cs                           | :heavy_check_mark:
+| Views\MockView.cs                             | :heavy_check_mark:
+| Modularity\ ...                               | :white_square_button:
+| Modularity\ModuleCatalogXml\ ...              | :white_square_button:
+| Mvvm\ModuleCatalogXml\ViewModelLocationFixture.cs | :heavy_check_mark:
+| Regions\ ...                                  | :white_square_button:
+| Regions\Bahaviors ...                         | :white_square_button:
+
+### Tests - Prism.Container.Avalonia.Shared
+
+| File                                          | Status  |  Notes |
+|-----------------------------------------------|---------|--------|
+| Fixtures\ContainerExtensionCollection.cs      | :heavy_check_mark: |
+| Mocks\NullModuleCatalogBootstrapper.cs        | :heavy_check_mark: |
+
+### Tests - Prism.DryIoc.Avalonia.Tests
+
+**_TBD_**
+
+| File                                          | Status  |  Notes |
+|-----------------------------------------------|---------|--------|
+
+### Tests - Prism.Unity.Avalonia.Tests
+
+**_TBD_**
+
+| File                                          | Status  |  Notes |
+|-----------------------------------------------|---------|--------|
+
+### Tests - Prism.AutoFac.Avalonia.Tests
+
+**_Deprecated_**
+
 ## Prism Upgrade Comparison
 
 As we all know, not everything is straight forward between these two XAML technologies. However, it's a good reminder to document the differences and 'got-yas'.

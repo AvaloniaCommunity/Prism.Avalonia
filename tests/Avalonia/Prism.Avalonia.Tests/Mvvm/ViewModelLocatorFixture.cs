@@ -1,89 +1,88 @@
 ﻿using System;
 using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Prism.Mvvm;
 using Prism.Avalonia.Tests.Mocks.ViewModels;
 using Prism.Avalonia.Tests.Mocks.Views;
+using Xunit;
 
 namespace Prism.Avalonia.Tests.Mvvm
 {
-    [TestClass]
     public class ViewModelLocatorFixture
     {
-        [TestMethod]
+        [StaFact]
         public void ShouldLocateViewModelWithDefaultSettings()
         {
             ResetViewModelLocationProvider();
 
             Mock view = new Mock();
-            Assert.IsNull(view.DataContext);
+            Assert.Null(view.DataContext);
 
             ViewModelLocator.SetAutoWireViewModel(view, true);
-            Assert.IsNotNull(view.DataContext);
-            Assert.IsInstanceOfType(view.DataContext, typeof(MockViewModel));
+            Assert.NotNull(view.DataContext);
+            Assert.IsType<MockViewModel>(view.DataContext);
         }
 
-        [TestMethod]
+        [StaFact]
         public void ShouldLocateViewModelWithDefaultSettingsForViewsThatEndWithView()
         {
             ResetViewModelLocationProvider();
 
             MockView view = new MockView();
-            Assert.IsNull(view.DataContext);
+            Assert.Null(view.DataContext);
 
             ViewModelLocator.SetAutoWireViewModel(view, true);
-            Assert.IsNotNull(view.DataContext);
-            Assert.IsInstanceOfType(view.DataContext, typeof(MockViewModel));
+            Assert.NotNull(view.DataContext);
+            Assert.IsType<MockViewModel>(view.DataContext);
         }
 
-        [TestMethod]
+        [StaFact]
         public void ShouldUseCustomDefaultViewModelFactoryWhenSet()
         {
             ResetViewModelLocationProvider();
 
             Mock view = new Mock();
-            Assert.IsNull(view.DataContext);
+            Assert.Null(view.DataContext);
 
             object mockObject = new object();
             ViewModelLocationProvider.SetDefaultViewModelFactory(viewType => mockObject);
 
             ViewModelLocator.SetAutoWireViewModel(view, true);
-            Assert.IsNotNull(view.DataContext);
+            Assert.NotNull(view.DataContext);
             ReferenceEquals(view.DataContext, mockObject);
         }
 
-        [TestMethod]
+        [StaFact]
         public void ShouldUseCustomDefaultViewTypeToViewModelTypeResolverWhenSet()
         {
             ResetViewModelLocationProvider();
 
             Mock view = new Mock();
-            Assert.IsNull(view.DataContext);
+            Assert.Null(view.DataContext);
 
             ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver(viewType => typeof(ViewModelLocatorFixture));
 
-            ViewModelLocator.SetAutoWireViewModel(view, true);            
-            Assert.IsNotNull(view.DataContext);
-            Assert.IsInstanceOfType(view.DataContext, typeof(ViewModelLocatorFixture));
+            ViewModelLocator.SetAutoWireViewModel(view, true);
+            Assert.NotNull(view.DataContext);
+            Assert.IsType<ViewModelLocatorFixture>(view.DataContext);
         }
 
-        [TestMethod]
+        [StaFact]
         public void ShouldUseCustomFactoryWhenSet()
         {
             ResetViewModelLocationProvider();
 
             Mock view = new Mock();
-            Assert.IsNull(view.DataContext);
+            Assert.Null(view.DataContext);
 
             string viewModel = "Test String";
             ViewModelLocationProvider.Register(view.GetType().ToString(), () => viewModel);
-            
+
             ViewModelLocator.SetAutoWireViewModel(view, true);
-            Assert.IsNotNull(view.DataContext);
+            Assert.NotNull(view.DataContext);
             ReferenceEquals(view.DataContext, viewModel);
         }
 
-        private static void ResetViewModelLocationProvider()
+        internal static void ResetViewModelLocationProvider()
         {
             Type staticType = typeof(ViewModelLocationProvider);
             ConstructorInfo ci = staticType.TypeInitializer;
