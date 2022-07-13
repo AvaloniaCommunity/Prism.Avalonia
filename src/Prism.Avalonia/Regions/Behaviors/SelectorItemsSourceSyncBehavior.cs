@@ -1,3 +1,13 @@
+// TODO: 2022-07-08 - Feature disabled until a workaround can be created
+// Consider using Avalonia.Styling.IStylable or Avalonia.Styling.Selector
+// in place of WPF's `Selector` object or AvaloniaObject.
+// This theory is untested and causes issues on code such as, `hostControl.Items`
+//      - private Selector hostControl;
+//      - public IStyleable HostControl
+// Ref:
+//  - https://github.com/AvaloniaUI/Avalonia/issues/3593
+//  - https://stackoverflow.com/questions/44241761/how-do-style-selectors-work-in-avalonia
+//  - https://stackoverflow.com/questions/72238118/avalonia-style-selector-doent-works-on-derived-classes
 /*
 using System;
 using System.Collections.Generic;

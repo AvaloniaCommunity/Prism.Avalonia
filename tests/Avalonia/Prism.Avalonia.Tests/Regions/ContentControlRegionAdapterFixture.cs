@@ -1,12 +1,10 @@
-/*
 using System;
 using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Data;
+using Avalonia.Controls;
+using Avalonia.Data;
 using Prism.Regions;
 using Prism.Avalonia.Tests.Mocks;
 using Xunit;
-
 
 namespace Prism.Avalonia.Tests.Regions
 {
@@ -37,7 +35,6 @@ namespace Prism.Avalonia.Tests.Regions
             Assert.Null(control.Content);
         }
 
-
         [StaFact]
         public void ControlWithExistingContentThrows()
         {
@@ -63,7 +60,8 @@ namespace Prism.Avalonia.Tests.Regions
             var control = new ContentControl();
             Binding binding = new Binding("ObjectContents");
             binding.Source = new SimpleModel() { ObjectContents = null };
-            control.SetBinding(ContentControl.ContentProperty, binding);
+            control.SetValue(ContentControl.ContentProperty, binding);
+            /// WPF: control.SetBinding(ContentControl.ContentProperty, binding);
 
             IRegionAdapter adapter = new TestableContentControlRegionAdapter();
 
@@ -164,4 +162,3 @@ namespace Prism.Avalonia.Tests.Regions
         }
     }
 }
-*/

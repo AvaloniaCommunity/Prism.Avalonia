@@ -1,4 +1,10 @@
+// TODO: 2022-07-12
 // REF: https://github.com/AvaloniaUI/Avalonia/issues/7553
+// Cannot perform the following. Check out, ContentControlRegionAdapterFixture.cs
+// However, ItemsControl.Items is `IEnumerable` and doesn't play nicely.
+//  `control.Items.Add(view);`
+//  `control.Items[0]`
+//  Needs Tested: `control.SetBinding(ItemsControl.ItemsSourceProperty, binding);`
 /*
 using System;
 using System.Collections;
@@ -23,7 +29,8 @@ namespace Prism.Avalonia.Tests.Regions
             IRegion region = adapter.Initialize(control, "Region1");
             Assert.NotNull(region);
 
-            Assert.Same(control.Items, region.Views); //// WPF: Assert.Same(control.ItemsSource, region.Views);
+            //// WPF: Assert.Same(control.ItemsSource, region.Views);
+            Assert.Same(control.Items, region.Views);
         }
 
         [StaFact]
@@ -36,7 +43,6 @@ namespace Prism.Avalonia.Tests.Regions
             Assert.NotNull(region);
             Assert.IsType<AllActiveRegion>(region);
         }
-
 
         [StaFact]
         public void ShouldMoveAlreadyExistingContentInControlToRegion()
@@ -78,7 +84,9 @@ namespace Prism.Avalonia.Tests.Regions
             var control = new ItemsControl();
             Binding binding = new Binding("Enumerable");
             binding.Source = new SimpleModel() { Enumerable = null };
-            control.SetBinding(ItemsControl.ItemsSourceProperty, binding);
+            // WPF: control.SetBinding(ItemsControl.ItemsSourceProperty, binding);
+            // NEEDS TESTED - (From, Suess):
+            control.SetValue(ItemsControl.ItemsProperty, binding);
 
             IRegionAdapter adapter = new TestableItemsControlRegionAdapter();
 

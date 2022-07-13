@@ -9,8 +9,6 @@
 
   <ItemGroup>
     <Compile Remove="Mocks\MockInteractionRequestAwareElement.cs" />
-    <Compile Remove="Regions\Behaviors\SelectorItemsSourceSyncRegionBehaviorFixture.cs" />
-    <Compile Remove="Regions\SelectorRegionAdapterFixture.cs" />
   </ItemGroup>
 
   <ItemGroup>

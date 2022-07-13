@@ -1,20 +1,15 @@
-
-
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Windows.Controls;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Avalonia.Controls;
+using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
 using Prism.Regions.Behaviors;
-using Prism.Avalonia.Tests.Mocks;
+using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions.Behaviors
 {
-    [TestClass]
     public class RegionManagerRegistrationBehaviorFixture
     {
-        [TestMethod]
+        [StaFact]
         public void ShouldRegisterRegionIfRegionManagerIsSet()
         {
             var control = new ItemsControl();
@@ -23,21 +18,21 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             {
                 GetRegionManager = d => regionManager
             };
-            var region = new MockPresentationRegion() {Name = "myRegionName"};
+            var region = new MockPresentationRegion() { Name = "myRegionName" };
             var behavior = new RegionManagerRegistrationBehavior()
-                               {
-                                   RegionManagerAccessor = accessor,
-                                   Region = region,
-                                   HostControl = control
-                               };
+            {
+                RegionManagerAccessor = accessor,
+                Region = region,
+                HostControl = control
+            };
 
             behavior.Attach();
 
-            Assert.IsTrue(regionManager.MockRegionCollection.AddCalled);
-            Assert.AreSame(region, regionManager.MockRegionCollection.AddArgument);
+            Assert.True(regionManager.MockRegionCollection.AddCalled);
+            Assert.Same(region, regionManager.MockRegionCollection.AddArgument);
         }
 
-        [TestMethod]
+        [StaFact]
         public void DoesNotFailIfRegionManagerIsNotSet()
         {
             var control = new ItemsControl();
@@ -52,7 +47,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             behavior.Attach();
         }
 
-        [TestMethod]
+        [StaFact]
         public void RegionGetsAddedInRegionManagerWhenAddedIntoAScopeAndAccessingRegions()
         {
             var regionManager = new MockRegionManager();
@@ -72,15 +67,15 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             };
             behavior.Attach();
 
-            Assert.IsFalse(regionManager.MockRegionCollection.AddCalled);
+            Assert.False(regionManager.MockRegionCollection.AddCalled);
 
             regionScopeControl.Content = control;
             accessor.UpdateRegions();
 
-            Assert.IsTrue(regionManager.MockRegionCollection.AddCalled);
+            Assert.True(regionManager.MockRegionCollection.AddCalled);
         }
 
-        [TestMethod]
+        [StaFact]
         public void RegionDoesNotGetAddedTwiceWhenUpdatingRegions()
         {
             var regionManager = new MockRegionManager();
@@ -100,19 +95,19 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             };
             behavior.Attach();
 
-            Assert.IsFalse(regionManager.MockRegionCollection.AddCalled);
+            Assert.False(regionManager.MockRegionCollection.AddCalled);
 
             regionScopeControl.Content = control;
             accessor.UpdateRegions();
 
-            Assert.IsTrue(regionManager.MockRegionCollection.AddCalled);
+            Assert.True(regionManager.MockRegionCollection.AddCalled);
             regionManager.MockRegionCollection.AddCalled = false;
 
             accessor.UpdateRegions();
-            Assert.IsFalse(regionManager.MockRegionCollection.AddCalled);
+            Assert.False(regionManager.MockRegionCollection.AddCalled);
         }
 
-        [TestMethod]
+        [StaFact]
         public void RegionGetsRemovedFromRegionManagerWhenRemovedFromScope()
         {
             var regionManager = new MockRegionManager();
@@ -123,7 +118,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
                 GetRegionManager = d => d == regionScopeControl ? regionManager : null
             };
 
-            var region = new MockPresentationRegion() {Name = "myRegionName"};
+            var region = new MockPresentationRegion() { Name = "myRegionName" };
             var behavior = new RegionManagerRegistrationBehavior()
             {
                 RegionManagerAccessor = accessor,
@@ -134,16 +129,16 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
 
             regionScopeControl.Content = control;
             accessor.UpdateRegions();
-            Assert.IsTrue(regionManager.MockRegionCollection.AddCalled);
-            Assert.AreSame(region, regionManager.MockRegionCollection.AddArgument);
+            Assert.True(regionManager.MockRegionCollection.AddCalled);
+            Assert.Same(region, regionManager.MockRegionCollection.AddArgument);
 
             regionScopeControl.Content = null;
             accessor.UpdateRegions();
 
-            Assert.IsTrue(regionManager.MockRegionCollection.RemoveCalled);
+            Assert.True(regionManager.MockRegionCollection.RemoveCalled);
         }
 
-        [TestMethod]
+        [StaFact]
         public void CanAttachBeforeSettingName()
         {
             var control = new ItemsControl();
@@ -161,27 +156,30 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             };
 
             behavior.Attach();
-            Assert.IsFalse(regionManager.MockRegionCollection.AddCalled);
+            Assert.False(regionManager.MockRegionCollection.AddCalled);
 
             region.Name = "myRegionName";
 
-            Assert.IsTrue(regionManager.MockRegionCollection.AddCalled);
-            Assert.AreSame(region, regionManager.MockRegionCollection.AddArgument);
+            Assert.True(regionManager.MockRegionCollection.AddCalled);
+            Assert.Same(region, regionManager.MockRegionCollection.AddArgument);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [StaFact]
         public void HostControlSetAfterAttachThrows()
         {
-            var behavior = new RegionManagerRegistrationBehavior();
-            var hostControl1 = new MockDependencyObject();
-            var hostControl2 = new MockDependencyObject();
-            behavior.HostControl = hostControl1;
-            behavior.Attach();
-            behavior.HostControl = hostControl2;
+            var ex = Assert.Throws<InvalidOperationException>(() =>
+            {
+                var behavior = new RegionManagerRegistrationBehavior();
+                var hostControl1 = new MockDependencyObject();
+                var hostControl2 = new MockDependencyObject();
+                behavior.HostControl = hostControl1;
+                behavior.Attach();
+                behavior.HostControl = hostControl2;
+            });
+
         }
 
-        [TestMethod]
+        [StaFact]
         public void BehaviorDoesNotPreventRegionManagerFromBeingGarbageCollected()
         {
             var control = new MockFrameworkElement();
@@ -202,14 +200,14 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             };
             behavior.Attach();
 
-            Assert.IsTrue(regionManagerWeakReference.IsAlive);
+            Assert.True(regionManagerWeakReference.IsAlive);
             GC.KeepAlive(regionManager);
 
             regionManager = null;
 
             GC.Collect();
 
-            Assert.IsFalse(regionManagerWeakReference.IsAlive);
+            Assert.False(regionManagerWeakReference.IsAlive);
         }
 
         internal class MockRegionManager : IRegionManager
@@ -286,6 +284,16 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             #endregion
 
             public bool Navigate(Uri source)
+            {
+                throw new NotImplementedException();
+            }
+
+            public IRegionManager AddToRegion(string regionName, string viewName)
+            {
+                throw new NotImplementedException();
+            }
+
+            public IRegionManager RegisterViewWithRegion(string regionName, string viewName)
             {
                 throw new NotImplementedException();
             }

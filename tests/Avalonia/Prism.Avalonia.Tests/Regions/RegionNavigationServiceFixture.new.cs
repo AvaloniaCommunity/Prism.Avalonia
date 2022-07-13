@@ -1,20 +1,16 @@
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using CommonServiceLocator;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Prism.Ioc;
 using Prism.Regions;
-
+using Xunit;
 namespace Prism.Avalonia.Tests.Regions
 {
-    [TestClass]
     public class RegionNavigationServiceFixture
     {
-        [TestMethod]
+        [Fact]
         public void WhenNavigating_ViewIsActivated()
         {
             // Prepare
@@ -28,27 +24,29 @@ namespace Prism.Avalonia.Tests.Regions
             RegionManager regionManager = new RegionManager();
             regionManager.Regions.Add(regionName, region);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(serviceLocator);
+            var container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(container);
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             bool isNavigationSuccessful = false;
             target.RequestNavigate(viewUri, nr => isNavigationSuccessful = nr.Result == true);
 
             // Verify
-            Assert.IsTrue(isNavigationSuccessful);
+            Assert.True(isNavigationSuccessful);
             bool isViewActive = region.ActiveViews.Contains(view);
-            Assert.IsTrue(isViewActive);
+            Assert.True(isViewActive);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingWithQueryString_ViewIsActivated()
         {
             // Prepare
@@ -62,30 +60,32 @@ namespace Prism.Avalonia.Tests.Regions
             RegionManager regionManager = new RegionManager();
             regionManager.Regions.Add(regionName, region);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(serviceLocator);
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(container);
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             bool isNavigationSuccessful = false;
             target.RequestNavigate(viewUri, nr => isNavigationSuccessful = nr.Result == true);
 
             // Verify
-            Assert.IsTrue(isNavigationSuccessful);
+            Assert.True(isNavigationSuccessful);
             bool isViewActive = region.ActiveViews.Contains(view);
-            Assert.IsTrue(isViewActive);
+            Assert.True(isViewActive);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingAndViewCannotBeAcquired_ThenNavigationResultHasError()
         {
-            // Prepare             
+            // Prepare
             object view = new object();
             Uri viewUri = new Uri(view.GetType().Name, UriKind.Relative);
 
@@ -94,17 +94,19 @@ namespace Prism.Avalonia.Tests.Regions
 
             string otherType = "OtherType";
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
+            IContainerExtension container = containerMock.Object;
 
             Mock<IRegionNavigationContentLoader> targetHandlerMock = new Mock<IRegionNavigationContentLoader>();
             targetHandlerMock.Setup(th => th.LoadContent(It.IsAny<IRegion>(), It.IsAny<NavigationContext>())).Throws<ArgumentException>();
 
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, targetHandlerMock.Object, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, targetHandlerMock.Object, journal)
+            {
+                Region = region
+            };
 
             // Act
             Exception error = null;
@@ -117,37 +119,39 @@ namespace Prism.Avalonia.Tests.Regions
 
             // Verify
             bool isViewActive = region.ActiveViews.Contains(view);
-            Assert.IsFalse(isViewActive);
-            Assert.IsInstanceOfType(error, typeof(ArgumentException));
+            Assert.False(isViewActive);
+            Assert.IsType<ArgumentException>(error);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingWithNullUri_Throws()
         {
             // Prepare
             IRegion region = new Region();
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(serviceLocator).Object;
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(container).Object;
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             NavigationResult navigationResult = null;
             target.RequestNavigate((Uri)null, nr => navigationResult = nr);
 
             // Verify
-            Assert.IsFalse(navigationResult.Result.Value);
-            Assert.IsNotNull(navigationResult.Error);
-            Assert.IsInstanceOfType(navigationResult.Error, typeof(ArgumentNullException));
+            Assert.False(navigationResult.Result.Value);
+            Assert.NotNull(navigationResult.Error);
+            Assert.IsType<ArgumentNullException>(navigationResult.Error);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingAndViewImplementsINavigationAware_ThenNavigatedIsInvokedOnNavigation()
         {
             // Prepare
@@ -160,15 +164,17 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri(view.GetType().Name, UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(serviceLocator);
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(container);
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             target.RequestNavigate(navigationUri, nr => { });
@@ -177,7 +183,7 @@ namespace Prism.Avalonia.Tests.Regions
             viewMock.Verify(v => v.OnNavigatedTo(It.Is<NavigationContext>(nc => nc.Uri == navigationUri && nc.NavigationService == target)));
         }
 
-        [TestMethod]
+        [StaFact]
         public void WhenNavigatingAndDataContextImplementsINavigationAware_ThenNavigatedIsInvokesOnNavigation()
         {
             // Prepare
@@ -193,15 +199,17 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri(view.GetType().Name, UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(serviceLocator);
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(container);
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             target.RequestNavigate(navigationUri, nr => { });
@@ -210,7 +218,7 @@ namespace Prism.Avalonia.Tests.Regions
             mockINavigationAwareDataContext.Verify(v => v.OnNavigatedTo(It.Is<NavigationContext>(nc => nc.Uri == navigationUri)));
         }
 
-        [TestMethod]
+        [StaFact]
         public void WhenNavigatingAndBothViewAndDataContextImplementINavigationAware_ThenNavigatedIsInvokesOnNavigation()
         {
             // Prepare
@@ -229,15 +237,17 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri(view.GetType().Name, UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(serviceLocator);
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(container);
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             target.RequestNavigate(navigationUri, nr => { });
@@ -247,7 +257,7 @@ namespace Prism.Avalonia.Tests.Regions
             mockINavigationAwareDataContext.Verify(v => v.OnNavigatedTo(It.Is<NavigationContext>(nc => nc.Uri == navigationUri)));
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigating_NavigationIsRecordedInJournal()
         {
             // Prepare
@@ -263,32 +273,32 @@ namespace Prism.Avalonia.Tests.Regions
 
             IRegionNavigationJournalEntry journalEntry = new RegionNavigationJournalEntry();
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>())
-                .Returns(journalEntry);
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(journalEntry);
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(serviceLocator);
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(container);
 
             var journalMock = new Mock<IRegionNavigationJournal>();
             journalMock.Setup(x => x.RecordNavigation(journalEntry, true)).Verifiable();
 
             IRegionNavigationJournal journal = journalMock.Object;
 
-
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             target.RequestNavigate(viewUri, nr => { });
 
             // Verify
-            Assert.IsNotNull(journalEntry);
-            Assert.AreEqual(viewUri, journalEntry.Uri);
+            Assert.NotNull(journalEntry);
+            Assert.Equal(viewUri, journalEntry.Uri);
             journalMock.VerifyAll();
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingAndCurrentlyActiveViewImplementsINavigateWithVeto_ThenNavigationRequestQueriesForVeto()
         {
             // Prepare
@@ -305,15 +315,17 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri(view.GetType().Name, UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(serviceLocator).Object;
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(container).Object;
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             target.RequestNavigate(navigationUri, nr => { });
@@ -322,7 +334,7 @@ namespace Prism.Avalonia.Tests.Regions
             viewMock.VerifyAll();
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigating_ThenNavigationRequestQueriesForVetoOnAllActiveViewsIfAllSucceed()
         {
             // Prepare
@@ -361,15 +373,17 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri(view1.GetType().Name, UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(serviceLocator).Object;
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(container).Object;
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             target.RequestNavigate(navigationUri, nr => { });
@@ -381,7 +395,7 @@ namespace Prism.Avalonia.Tests.Regions
             view4Mock.VerifyAll();
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenRequestNavigateAwayAcceptsThroughCallback_ThenNavigationProceeds()
         {
             // Prepare
@@ -404,15 +418,17 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri(view2.GetType().Name, UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(serviceLocator);
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(container);
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             var navigationSucceeded = false;
@@ -420,11 +436,11 @@ namespace Prism.Avalonia.Tests.Regions
 
             // Verify
             view1Mock.VerifyAll();
-            Assert.IsTrue(navigationSucceeded);
-            CollectionAssert.AreEqual(new object[] { view1, view2 }, region.ActiveViews.ToArray());
+            Assert.True(navigationSucceeded);
+            Assert.Equal(new object[] { view1, view2 }, region.ActiveViews.ToArray());
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenRequestNavigateAwayRejectsThroughCallback_ThenNavigationDoesNotProceed()
         {
             // Prepare
@@ -447,15 +463,17 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri(view2.GetType().Name, UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(serviceLocator).Object;
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(container).Object;
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             var navigationFailed = false;
@@ -463,11 +481,11 @@ namespace Prism.Avalonia.Tests.Regions
 
             // Verify
             view1Mock.VerifyAll();
-            Assert.IsTrue(navigationFailed);
-            CollectionAssert.AreEqual(new object[] { view1 }, region.ActiveViews.ToArray());
+            Assert.True(navigationFailed);
+            Assert.Equal(new object[] { view1 }, region.ActiveViews.ToArray());
         }
 
-        [TestMethod]
+        [StaFact]
         public void WhenNavigatingAndDataContextOnCurrentlyActiveViewImplementsINavigateWithVeto_ThenNavigationRequestQueriesForVeto()
         {
             // Prepare
@@ -488,15 +506,17 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri(view.GetType().Name, UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(serviceLocator).Object;
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(container).Object;
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             target.RequestNavigate(navigationUri, nr => { });
@@ -505,7 +525,7 @@ namespace Prism.Avalonia.Tests.Regions
             viewModelMock.VerifyAll();
         }
 
-        [TestMethod]
+        [StaFact]
         public void WhenRequestNavigateAwayOnDataContextAcceptsThroughCallback_ThenNavigationProceeds()
         {
             // Prepare
@@ -530,15 +550,17 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri(view2.GetType().Name, UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(serviceLocator);
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(container);
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             var navigationSucceeded = false;
@@ -546,11 +568,11 @@ namespace Prism.Avalonia.Tests.Regions
 
             // Verify
             view1DataContextMock.VerifyAll();
-            Assert.IsTrue(navigationSucceeded);
-            CollectionAssert.AreEqual(new object[] { view1, view2 }, region.ActiveViews.ToArray());
+            Assert.True(navigationSucceeded);
+            Assert.Equal(new object[] { view1, view2 }, region.ActiveViews.ToArray());
         }
 
-        [TestMethod]
+        [StaFact]
         public void WhenRequestNavigateAwayOnDataContextRejectsThroughCallback_ThenNavigationDoesNotProceed()
         {
             // Prepare
@@ -575,15 +597,17 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri(view2.GetType().Name, UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(serviceLocator).Object;
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(container).Object;
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             var navigationFailed = false;
@@ -591,11 +615,11 @@ namespace Prism.Avalonia.Tests.Regions
 
             // Verify
             view1DataContextMock.VerifyAll();
-            Assert.IsTrue(navigationFailed);
-            CollectionAssert.AreEqual(new object[] { view1 }, region.ActiveViews.ToArray());
+            Assert.True(navigationFailed);
+            Assert.Equal(new object[] { view1 }, region.ActiveViews.ToArray());
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenViewAcceptsNavigationOutAfterNewIncomingRequestIsReceived_ThenOriginalRequestIsIgnored()
         {
             var region = new Region();
@@ -614,9 +638,9 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri("", UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock
-                .Setup(x => x.GetInstance<IRegionNavigationJournalEntry>())
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock
+                .Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry)))
                 .Returns(new RegionNavigationJournalEntry());
 
             var contentLoaderMock = new Mock<IRegionNavigationContentLoader>();
@@ -624,28 +648,30 @@ namespace Prism.Avalonia.Tests.Regions
                 .Setup(cl => cl.LoadContent(region, It.IsAny<NavigationContext>()))
                 .Returns(view);
 
-            var serviceLocator = serviceLocatorMock.Object;
+            var container = containerMock.Object;
             var contentLoader = contentLoaderMock.Object;
             var journal = new Mock<IRegionNavigationJournal>().Object;
 
-            var target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            var target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             bool firstNavigation = false;
             bool secondNavigation = false;
             target.RequestNavigate(navigationUri, nr => firstNavigation = nr.Result.Value);
             target.RequestNavigate(navigationUri, nr => secondNavigation = nr.Result.Value);
 
-            Assert.AreEqual(2, confirmationRequests.Count);
+            Assert.Equal(2, confirmationRequests.Count);
 
             confirmationRequests[0](true);
             confirmationRequests[1](true);
 
-            Assert.IsFalse(firstNavigation);
-            Assert.IsTrue(secondNavigation);
+            Assert.False(firstNavigation);
+            Assert.True(secondNavigation);
         }
 
-        [TestMethod]
+        [StaFact]
         public void WhenViewModelAcceptsNavigationOutAfterNewIncomingRequestIsReceived_ThenOriginalRequestIsIgnored()
         {
             var region = new Region();
@@ -667,9 +693,9 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri("", UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock
-                .Setup(x => x.GetInstance<IRegionNavigationJournalEntry>())
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock
+                .Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry)))
                 .Returns(new RegionNavigationJournalEntry());
 
             var contentLoaderMock = new Mock<IRegionNavigationContentLoader>();
@@ -677,28 +703,30 @@ namespace Prism.Avalonia.Tests.Regions
                 .Setup(cl => cl.LoadContent(region, It.IsAny<NavigationContext>()))
                 .Returns(view);
 
-            var serviceLocator = serviceLocatorMock.Object;
+            var container = containerMock.Object;
             var contentLoader = contentLoaderMock.Object;
             var journal = new Mock<IRegionNavigationJournal>().Object;
 
-            var target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            var target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             bool firstNavigation = false;
             bool secondNavigation = false;
             target.RequestNavigate(navigationUri, nr => firstNavigation = nr.Result.Value);
             target.RequestNavigate(navigationUri, nr => secondNavigation = nr.Result.Value);
 
-            Assert.AreEqual(2, confirmationRequests.Count);
+            Assert.Equal(2, confirmationRequests.Count);
 
             confirmationRequests[0](true);
             confirmationRequests[1](true);
 
-            Assert.IsFalse(firstNavigation);
-            Assert.IsTrue(secondNavigation);
+            Assert.False(firstNavigation);
+            Assert.True(secondNavigation);
         }
 
-        [TestMethod]
+        [Fact]
         public void BeforeNavigating_NavigatingEventIsRaised()
         {
             // Prepare
@@ -712,18 +740,20 @@ namespace Prism.Avalonia.Tests.Regions
             RegionManager regionManager = new RegionManager();
             regionManager.Regions.Add(regionName, region);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(serviceLocator);
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(container);
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             bool isNavigatingRaised = false;
-            target.Navigating += delegate(object sender, RegionNavigationEventArgs e)
+            target.Navigating += delegate (object sender, RegionNavigationEventArgs e)
             {
                 if (sender == target)
                 {
@@ -731,18 +761,16 @@ namespace Prism.Avalonia.Tests.Regions
                 }
             };
 
-
             // Act
             bool isNavigationSuccessful = false;
             target.RequestNavigate(viewUri, nr => isNavigationSuccessful = nr.Result == true);
 
             // Verify
-            Assert.IsTrue(isNavigationSuccessful);
-            Assert.IsTrue(isNavigatingRaised);
-
+            Assert.True(isNavigationSuccessful);
+            Assert.True(isNavigatingRaised);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigationSucceeds_NavigatedIsRaised()
         {
             // Prepare
@@ -756,18 +784,20 @@ namespace Prism.Avalonia.Tests.Regions
             RegionManager regionManager = new RegionManager();
             regionManager.Regions.Add(regionName, region);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(serviceLocator);
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new RegionNavigationContentLoader(container);
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             bool isNavigatedRaised = false;
-            target.Navigated += delegate(object sender, RegionNavigationEventArgs e)
+            target.Navigated += delegate (object sender, RegionNavigationEventArgs e)
             {
                 if (sender == target)
                 {
@@ -775,21 +805,19 @@ namespace Prism.Avalonia.Tests.Regions
                 }
             };
 
-
             // Act
             bool isNavigationSuccessful = false;
             target.RequestNavigate(viewUri, nr => isNavigationSuccessful = nr.Result == true);
 
             // Verify
-            Assert.IsTrue(isNavigationSuccessful);
-            Assert.IsTrue(isNavigatedRaised);
-
+            Assert.True(isNavigationSuccessful);
+            Assert.True(isNavigatedRaised);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenTargetViewCreationThrowsWithAsyncConfirmation_ThenExceptionIsProvidedToNavigationCallback()
         {
-            var serviceLocatorMock = new Mock<IServiceLocator>();
+            var containerMock = new Mock<IContainerExtension>();
 
             var targetException = new Exception();
             var targetHandlerMock = new Mock<IRegionNavigationContentLoader>();
@@ -809,18 +837,20 @@ namespace Prism.Avalonia.Tests.Regions
             region.Add(viewMock.Object);
             region.Activate(viewMock.Object);
 
-            var target = new RegionNavigationService(serviceLocatorMock.Object, targetHandlerMock.Object, journalMock.Object);
-            target.Region = region;
+            var target = new RegionNavigationService(containerMock.Object, targetHandlerMock.Object, journalMock.Object)
+            {
+                Region = region
+            };
 
             NavigationResult result = null;
             target.RequestNavigate(new Uri("", UriKind.Relative), nr => result = nr);
             navigationCallback(true);
 
-            Assert.IsNotNull(result);
-            Assert.AreSame(targetException, result.Error);
+            Assert.NotNull(result);
+            Assert.Same(targetException, result.Error);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingFromViewThatIsNavigationAware_ThenNotifiesActiveViewNavigatingFrom()
         {
             // Arrange
@@ -834,16 +864,18 @@ namespace Prism.Avalonia.Tests.Regions
 
             region.Activate(view);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
             var navigationUri = new Uri(view2.GetType().Name, UriKind.Relative);
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(serviceLocator).Object;
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(container).Object;
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             target.RequestNavigate(navigationUri, nr => { });
@@ -852,7 +884,7 @@ namespace Prism.Avalonia.Tests.Regions
             viewMock.Verify(v => v.OnNavigatedFrom(It.Is<NavigationContext>(ctx => ctx.Uri == navigationUri && ctx.Parameters.Count() == 0)));
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigationFromViewThatIsNavigationAware_OnlyNotifiesOnNavigateFromForActiveViews()
         {
             // Arrange
@@ -875,25 +907,27 @@ namespace Prism.Avalonia.Tests.Regions
 
             region.Activate(activeViewMock.Object);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
             var navigationUri = new Uri(targetViewMock.Object.GetType().Name, UriKind.Relative);
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(serviceLocator).Object;
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(container).Object;
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             target.RequestNavigate(navigationUri, nr => { });
 
             // Verify
-            Assert.IsFalse(navigationFromInvoked);
+            Assert.False(navigationFromInvoked);
         }
 
-        [TestMethod]
+        [StaFact]
         public void WhenNavigatingFromActiveViewWithNavigatinAwareDataConext_NotifiesContextOfNavigatingFrom()
         {
             // Arrange
@@ -912,16 +946,18 @@ namespace Prism.Avalonia.Tests.Regions
 
             region.Activate(view1);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock.Setup(x => x.GetInstance<IRegionNavigationJournalEntry>()).Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
             var navigationUri = new Uri(view2.GetType().Name, UriKind.Relative);
-            IServiceLocator serviceLocator = serviceLocatorMock.Object;
-            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(serviceLocator).Object;
+            IContainerExtension container = containerMock.Object;
+            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(container).Object;
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             // Act
             target.RequestNavigate(navigationUri, nr => { });
@@ -930,18 +966,20 @@ namespace Prism.Avalonia.Tests.Regions
             mockDataContext.Verify(v => v.OnNavigatedFrom(It.Is<NavigationContext>(ctx => ctx.Uri == navigationUri && ctx.Parameters.Count() == 0)));
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingWithNullCallback_ThenThrows()
         {
             var region = new Region();
 
             var navigationUri = new Uri("/", UriKind.Relative);
-            IServiceLocator serviceLocator = new Mock<IServiceLocator>().Object;
-            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(serviceLocator).Object;
+            IContainerExtension container = new Mock<IContainerExtension>().Object;
+            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(container).Object;
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             ExceptionAssert.Throws<ArgumentNullException>(
                 () =>
@@ -950,66 +988,67 @@ namespace Prism.Avalonia.Tests.Regions
                 });
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingWithNoRegionSet_ThenMarshallExceptionToCallback()
         {
             var navigationUri = new Uri("/", UriKind.Relative);
-            IServiceLocator serviceLocator = new Mock<IServiceLocator>().Object;
-            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(serviceLocator).Object;
+            IContainerExtension container = new Mock<IContainerExtension>().Object;
+            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(container).Object;
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal);
 
             Exception error = null;
             target.RequestNavigate(navigationUri, nr => error = nr.Error);
 
-            Assert.IsNotNull(error);
-            Assert.IsInstanceOfType(error, typeof(InvalidOperationException));
+            Assert.NotNull(error);
+            Assert.IsType<InvalidOperationException>(error);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigatingWithNullUri_ThenMarshallExceptionToCallback()
         {
-            IServiceLocator serviceLocator = new Mock<IServiceLocator>().Object;
-            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(serviceLocator).Object;
+            IContainerExtension container = new Mock<IContainerExtension>().Object;
+            RegionNavigationContentLoader contentLoader = new Mock<RegionNavigationContentLoader>(container).Object;
             IRegionNavigationJournal journal = new Mock<IRegionNavigationJournal>().Object;
 
-            RegionNavigationService target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = new Region();
+            RegionNavigationService target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = new Region()
+            };
 
             Exception error = null;
             target.RequestNavigate(null, nr => error = nr.Error);
 
-            Assert.IsNotNull(error);
-            Assert.IsInstanceOfType(error, typeof(ArgumentNullException));
+            Assert.NotNull(error);
+            Assert.IsType<ArgumentNullException>(error);
         }
 
-
-        [TestMethod]
+        [Fact]
         public void WhenNavigationFailsBecauseTheContentViewCannotBeRetrieved_ThenNavigationFailedIsRaised()
         {
             // Prepare
             var region = new Region { Name = "RegionName" };
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock
-                .Setup(x => x.GetInstance<IRegionNavigationJournalEntry>())
-                .Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
             var contentLoaderMock = new Mock<IRegionNavigationContentLoader>();
             contentLoaderMock
                 .Setup(cl => cl.LoadContent(region, It.IsAny<NavigationContext>()))
                 .Throws<InvalidOperationException>();
 
-            var serviceLocator = serviceLocatorMock.Object;
+            var container = containerMock.Object;
             var contentLoader = contentLoaderMock.Object;
             var journal = new Mock<IRegionNavigationJournal>().Object;
 
-            var target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            var target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             RegionNavigationFailedEventArgs eventArgs = null;
-            target.NavigationFailed += delegate(object sender, RegionNavigationFailedEventArgs e)
+            target.NavigationFailed += delegate (object sender, RegionNavigationFailedEventArgs e)
             {
                 if (sender == target)
                 {
@@ -1022,12 +1061,12 @@ namespace Prism.Avalonia.Tests.Regions
             target.RequestNavigate(new Uri("invalid", UriKind.Relative), nr => isNavigationSuccessful = nr.Result);
 
             // Verify
-            Assert.IsFalse(isNavigationSuccessful.Value);
-            Assert.IsNotNull(eventArgs);
-            Assert.IsNotNull(eventArgs.Error);
+            Assert.False(isNavigationSuccessful.Value);
+            Assert.NotNull(eventArgs);
+            Assert.NotNull(eventArgs.Error);
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenNavigationFailsBecauseActiveViewRejectsIt_ThenNavigationFailedIsRaised()
         {
             // Prepare
@@ -1050,25 +1089,25 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri(view2.GetType().Name, UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock
-                .Setup(x => x.GetInstance<IRegionNavigationJournalEntry>())
-                .Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
             var contentLoaderMock = new Mock<IRegionNavigationContentLoader>();
             contentLoaderMock
                 .Setup(cl => cl.LoadContent(region, It.IsAny<NavigationContext>()))
                 .Returns(view2);
 
-            var serviceLocator = serviceLocatorMock.Object;
+            var container = containerMock.Object;
             var contentLoader = contentLoaderMock.Object;
             var journal = new Mock<IRegionNavigationJournal>().Object;
 
-            var target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            var target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             RegionNavigationFailedEventArgs eventArgs = null;
-            target.NavigationFailed += delegate(object sender, RegionNavigationFailedEventArgs e)
+            target.NavigationFailed += delegate (object sender, RegionNavigationFailedEventArgs e)
             {
                 if (sender == target)
                 {
@@ -1082,12 +1121,12 @@ namespace Prism.Avalonia.Tests.Regions
 
             // Verify
             view1Mock.VerifyAll();
-            Assert.IsFalse(isNavigationSuccessful.Value);
-            Assert.IsNotNull(eventArgs);
-            Assert.IsNull(eventArgs.Error);
+            Assert.False(isNavigationSuccessful.Value);
+            Assert.NotNull(eventArgs);
+            Assert.Null(eventArgs.Error);
         }
 
-        [TestMethod]
+        [StaFact]
         public void WhenNavigationFailsBecauseDataContextForActiveViewRejectsIt_ThenNavigationFailedIsRaised()
         {
             // Prepare
@@ -1098,7 +1137,6 @@ namespace Prism.Avalonia.Tests.Regions
                 .Setup(ina => ina.ConfirmNavigationRequest(It.IsAny<NavigationContext>(), It.IsAny<Action<bool>>()))
                 .Callback<NavigationContext, Action<bool>>((nc, c) => c(false))
                 .Verifiable();
-
 
             var view1Mock = new Mock<FrameworkElement>();
             var view1 = view1Mock.Object;
@@ -1113,25 +1151,25 @@ namespace Prism.Avalonia.Tests.Regions
 
             var navigationUri = new Uri(view2.GetType().Name, UriKind.Relative);
 
-            var serviceLocatorMock = new Mock<IServiceLocator>();
-            serviceLocatorMock
-                .Setup(x => x.GetInstance<IRegionNavigationJournalEntry>())
-                .Returns(new RegionNavigationJournalEntry());
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationJournalEntry))).Returns(new RegionNavigationJournalEntry());
 
             var contentLoaderMock = new Mock<IRegionNavigationContentLoader>();
             contentLoaderMock
                 .Setup(cl => cl.LoadContent(region, It.IsAny<NavigationContext>()))
                 .Returns(view2);
 
-            var serviceLocator = serviceLocatorMock.Object;
+            var container = containerMock.Object;
             var contentLoader = contentLoaderMock.Object;
             var journal = new Mock<IRegionNavigationJournal>().Object;
 
-            var target = new RegionNavigationService(serviceLocator, contentLoader, journal);
-            target.Region = region;
+            var target = new RegionNavigationService(container, contentLoader, journal)
+            {
+                Region = region
+            };
 
             RegionNavigationFailedEventArgs eventArgs = null;
-            target.NavigationFailed += delegate(object sender, RegionNavigationFailedEventArgs e)
+            target.NavigationFailed += delegate (object sender, RegionNavigationFailedEventArgs e)
             {
                 if (sender == target)
                 {
@@ -1145,9 +1183,9 @@ namespace Prism.Avalonia.Tests.Regions
 
             // Verify
             viewModel1Mock.VerifyAll();
-            Assert.IsFalse(isNavigationSuccessful.Value);
-            Assert.IsNotNull(eventArgs);
-            Assert.IsNull(eventArgs.Error);
+            Assert.False(isNavigationSuccessful.Value);
+            Assert.NotNull(eventArgs);
+            Assert.Null(eventArgs.Error);
         }
     }
 }

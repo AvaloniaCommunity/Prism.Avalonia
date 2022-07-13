@@ -1,35 +1,33 @@
-
-
-using System;
+// NOTE:
+//  Avalonia.Data.CollectionViewSource control does not exist in Avalonia.
+//  This feature was apart of a legacy build:
+//  https://github.com/grokys/Avalonia/blob/master/Avalonia/Data/CollectionViewSource.cs
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Windows.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Prism.Regions;
 using Prism.Avalonia.Tests.Mocks;
+using Prism.Regions;
+using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
 {
-    [TestClass]
     public class ViewsCollectionFixture
     {
-        [TestMethod]
+        [Fact]
         public void CanWrapCollectionCollection()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
             IViewsCollection viewsCollection = new ViewsCollection(originalCollection, x => true);
 
-            Assert.AreEqual(0, viewsCollection.Count());
+            Assert.Empty(viewsCollection);
 
             var item = new object();
             originalCollection.Add(new ItemMetadata(item));
-            Assert.AreEqual(1, viewsCollection.Count());
-            Assert.AreSame(item, viewsCollection.First());
+            Assert.Single(viewsCollection);
+            Assert.Same(item, viewsCollection.First());
         }
 
-        [TestMethod]
+        [Fact]
         public void CanFilterCollection()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
@@ -37,16 +35,16 @@ namespace Prism.Avalonia.Tests.Regions
 
             originalCollection.Add(new ItemMetadata(new object()));
 
-            Assert.AreEqual(0, viewsCollection.Count());
+            Assert.Empty(viewsCollection);
 
             var item = new object();
-            originalCollection.Add(new ItemMetadata(item) {Name = "Possible"});
-            Assert.AreEqual(1, viewsCollection.Count());
+            originalCollection.Add(new ItemMetadata(item) { Name = "Possible" });
+            Assert.Single(viewsCollection);
 
-            Assert.AreSame(item, viewsCollection.First());
+            Assert.Same(item, viewsCollection.First());
         }
 
-        [TestMethod]
+        [Fact]
         public void RaisesCollectionChangedWhenFilteredCollectionChanges()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
@@ -54,12 +52,12 @@ namespace Prism.Avalonia.Tests.Regions
             bool collectionChanged = false;
             viewsCollection.CollectionChanged += (s, e) => collectionChanged = true;
 
-            originalCollection.Add(new ItemMetadata(new object()) {IsActive = true});
+            originalCollection.Add(new ItemMetadata(new object()) { IsActive = true });
 
-            Assert.IsTrue(collectionChanged);
+            Assert.True(collectionChanged);
         }
 
-        [TestMethod]
+        [Fact]
         public void RaisesCollectionChangedWithAddAndRemoveWhenFilteredCollectionChanges()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
@@ -67,44 +65,44 @@ namespace Prism.Avalonia.Tests.Regions
             bool addedToCollection = false;
             bool removedFromCollection = false;
             viewsCollection.CollectionChanged += (s, e) =>
-                                                     {
-                                                         if (e.Action == NotifyCollectionChangedAction.Add)
-                                                         {
-                                                             addedToCollection = true;
-                                                         }
-                                                         else if (e.Action == NotifyCollectionChangedAction.Remove)
-                                                         {
-                                                             removedFromCollection = true;
-                                                         }
-                                                     };
-            var filteredInObject = new ItemMetadata(new object()) {IsActive = true};
+            {
+                if (e.Action == NotifyCollectionChangedAction.Add)
+                {
+                    addedToCollection = true;
+                }
+                else if (e.Action == NotifyCollectionChangedAction.Remove)
+                {
+                    removedFromCollection = true;
+                }
+            };
+            var filteredInObject = new ItemMetadata(new object()) { IsActive = true };
 
             originalCollection.Add(filteredInObject);
 
-            Assert.IsTrue(addedToCollection);
-            Assert.IsFalse(removedFromCollection);
+            Assert.True(addedToCollection);
+            Assert.False(removedFromCollection);
 
             originalCollection.Remove(filteredInObject);
 
-            Assert.IsTrue(removedFromCollection);
+            Assert.True(removedFromCollection);
         }
 
-        [TestMethod]
+        [Fact]
         public void DoesNotRaiseCollectionChangedWhenAddingOrRemovingFilteredOutObject()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
             IViewsCollection viewsCollection = new ViewsCollection(originalCollection, x => x.IsActive);
             bool collectionChanged = false;
             viewsCollection.CollectionChanged += (s, e) => collectionChanged = true;
-            var filteredOutObject = new ItemMetadata(new object()) {IsActive = false};
+            var filteredOutObject = new ItemMetadata(new object()) { IsActive = false };
 
             originalCollection.Add(filteredOutObject);
             originalCollection.Remove(filteredOutObject);
 
-            Assert.IsFalse(collectionChanged);
+            Assert.False(collectionChanged);
         }
 
-        [TestMethod]
+        [Fact]
         public void CollectionChangedPassesWrappedItemInArgumentsWhenAdding()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
@@ -116,12 +114,12 @@ namespace Prism.Avalonia.Tests.Regions
             viewsCollection.CollectionChanged += (s, e) => { oldItemsPassed = e.OldItems; };
             originalCollection.Remove(filteredInObject);
 
-            Assert.IsNotNull(oldItemsPassed);
-            Assert.AreEqual(1, oldItemsPassed.Count);
-            Assert.AreSame(filteredInObject.Item, oldItemsPassed[0]);
+            Assert.NotNull(oldItemsPassed);
+            Assert.Equal(1, oldItemsPassed.Count);
+            Assert.Same(filteredInObject.Item, oldItemsPassed[0]);
         }
 
-        [TestMethod]
+        [Fact]
         public void CollectionChangedPassesWrappedItemInArgumentsWhenRemoving()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
@@ -132,12 +130,12 @@ namespace Prism.Avalonia.Tests.Regions
 
             originalCollection.Add(filteredInObject);
 
-            Assert.IsNotNull(newItemsPassed);
-            Assert.AreEqual(1, newItemsPassed.Count);
-            Assert.AreSame(filteredInObject.Item, newItemsPassed[0]);
+            Assert.NotNull(newItemsPassed);
+            Assert.Equal(1, newItemsPassed.Count);
+            Assert.Same(filteredInObject.Item, newItemsPassed[0]);
         }
 
-        [TestMethod]
+        [Fact]
         public void EnumeratesWrappedItems()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>()
@@ -146,13 +144,13 @@ namespace Prism.Avalonia.Tests.Regions
                                              new ItemMetadata(new object())
                                          };
             IViewsCollection viewsCollection = new ViewsCollection(originalCollection, x => true);
-            Assert.AreEqual(2, viewsCollection.Count());
+            Assert.Equal(2, viewsCollection.Count());
 
-            Assert.AreSame(originalCollection[0].Item, viewsCollection.ElementAt(0));
-            Assert.AreSame(originalCollection[1].Item, viewsCollection.ElementAt(1));
+            Assert.Same(originalCollection[0].Item, viewsCollection.ElementAt(0));
+            Assert.Same(originalCollection[1].Item, viewsCollection.ElementAt(1));
         }
 
-        [TestMethod]
+        [Fact]
         public void ChangingMetadataOnItemAddsOrRemovesItFromTheFilteredCollection()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
@@ -160,39 +158,39 @@ namespace Prism.Avalonia.Tests.Regions
             bool addedToCollection = false;
             bool removedFromCollection = false;
             viewsCollection.CollectionChanged += (s, e) =>
-                                                     {
-                                                         if (e.Action == NotifyCollectionChangedAction.Add)
-                                                         {
-                                                             addedToCollection = true;
-                                                         }
-                                                         else if (e.Action == NotifyCollectionChangedAction.Remove)
-                                                         {
-                                                             removedFromCollection = true;
-                                                         }
-                                                     };
+            {
+                if (e.Action == NotifyCollectionChangedAction.Add)
+                {
+                    addedToCollection = true;
+                }
+                else if (e.Action == NotifyCollectionChangedAction.Remove)
+                {
+                    removedFromCollection = true;
+                }
+            };
 
-            originalCollection.Add(new ItemMetadata(new object()) {IsActive = true});
-            Assert.IsTrue(addedToCollection);
-            Assert.IsFalse(removedFromCollection);
+            originalCollection.Add(new ItemMetadata(new object()) { IsActive = true });
+            Assert.True(addedToCollection);
+            Assert.False(removedFromCollection);
             addedToCollection = false;
 
             originalCollection[0].IsActive = false;
 
-            Assert.AreEqual(0, viewsCollection.Count());
-            Assert.IsTrue(removedFromCollection);
-            Assert.IsFalse(addedToCollection);
-            Assert.AreEqual(0, viewsCollection.Count());
+            Assert.Empty(viewsCollection);
+            Assert.True(removedFromCollection);
+            Assert.False(addedToCollection);
+            Assert.Empty(viewsCollection);
             addedToCollection = false;
             removedFromCollection = false;
 
             originalCollection[0].IsActive = true;
 
-            Assert.AreEqual(1, viewsCollection.Count());
-            Assert.IsTrue(addedToCollection);
-            Assert.IsFalse(removedFromCollection);
+            Assert.Single(viewsCollection);
+            Assert.True(addedToCollection);
+            Assert.False(removedFromCollection);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddingToOriginalCollectionFiresAddCollectionChangeEvent()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
@@ -202,10 +200,10 @@ namespace Prism.Avalonia.Tests.Regions
 
             originalCollection.Add(new ItemMetadata(new object()));
 
-            Assert.IsTrue(eventTracker.ActionsFired.Contains(NotifyCollectionChangedAction.Add));
+            Assert.Contains(NotifyCollectionChangedAction.Add, eventTracker.ActionsFired);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddingToOriginalCollectionFiresResetNotificationIfSortComparisonSet()
         {
             // Reset is fired to support the need to resort after updating the collection
@@ -217,13 +215,13 @@ namespace Prism.Avalonia.Tests.Regions
 
             originalCollection.Add(new ItemMetadata(new object()));
 
-            Assert.IsTrue(eventTracker.ActionsFired.Contains(NotifyCollectionChangedAction.Add));
-            Assert.AreEqual(
+            Assert.Contains(NotifyCollectionChangedAction.Add, eventTracker.ActionsFired);
+            Assert.Equal(
                 1,
                 eventTracker.ActionsFired.Count(a => a == NotifyCollectionChangedAction.Reset));
         }
 
-        [TestMethod]
+        [Fact]
         public void OnAddNotifyCollectionChangedThenIndexProvided()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
@@ -234,10 +232,10 @@ namespace Prism.Avalonia.Tests.Regions
             originalCollection.Add(new ItemMetadata("a"));
 
             var addEvent = eventTracker.NotifyEvents.Single(e => e.Action == NotifyCollectionChangedAction.Add);
-            Assert.AreEqual(0, addEvent.NewStartingIndex);
+            Assert.Equal(0, addEvent.NewStartingIndex);
         }
 
-        [TestMethod]
+        [Fact]
         public void OnRemoveNotifyCollectionChangedThenIndexProvided()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
@@ -250,11 +248,11 @@ namespace Prism.Avalonia.Tests.Regions
             originalCollection.RemoveAt(1);
 
             var removeEvent = eventTracker.NotifyEvents.Single(e => e.Action == NotifyCollectionChangedAction.Remove);
-            Assert.IsNotNull(removeEvent);
-            Assert.AreEqual(1, removeEvent.OldStartingIndex);
+            Assert.NotNull(removeEvent);
+            Assert.Equal(1, removeEvent.OldStartingIndex);
         }
 
-        [TestMethod]
+        [Fact]
         public void OnRemoveOfFilterMatchingItemThenViewCollectionRelativeIndexProvided()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
@@ -267,34 +265,33 @@ namespace Prism.Avalonia.Tests.Regions
             originalCollection.RemoveAt(2);
 
             var removeEvent = eventTracker.NotifyEvents.Single(e => e.Action == NotifyCollectionChangedAction.Remove);
-            Assert.IsNotNull(removeEvent);
-            Assert.AreEqual(1, removeEvent.OldStartingIndex);
+            Assert.NotNull(removeEvent);
+            Assert.Equal(1, removeEvent.OldStartingIndex);
         }
 
+        ////[Fact]
+        ////public void RemovingFromFilteredCollectionDoesNotThrow()
+        ////{
+        ////    var originalCollection = new ObservableCollection<ItemMetadata>();
+        ////    originalCollection.Add(new ItemMetadata("a"));
+        ////    originalCollection.Add(new ItemMetadata("b"));
+        ////    originalCollection.Add(new ItemMetadata("c"));
+        ////    IViewsCollection viewsCollection = new ViewsCollection(originalCollection, (i) => true);
+        ////
+        ////    CollectionViewSource cvs = new CollectionViewSource { Source = viewsCollection };
+        ////
+        ////    var view = cvs.View;
+        ////    //try
+        ////    //{
+        ////    originalCollection.RemoveAt(1);
+        ////    //}
+        ////    //catch (Exception ex)
+        ////    //{
+        ////    //Assert.Fail(ex.Message);
+        ////    //}
+        ////}
 
-        [TestMethod]
-        public void RemovingFromFilteredCollectionDoesNotThrow()
-        {
-            var originalCollection = new ObservableCollection<ItemMetadata>();
-            originalCollection.Add(new ItemMetadata("a"));
-            originalCollection.Add(new ItemMetadata("b"));
-            originalCollection.Add(new ItemMetadata("c"));
-            IViewsCollection viewsCollection = new ViewsCollection(originalCollection, (i) => true);
-
-            CollectionViewSource cvs = new CollectionViewSource {Source = viewsCollection};
-
-            var view = cvs.View;
-            try
-            {
-                originalCollection.RemoveAt(1);
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail(ex.Message);
-            }
-        }
-
-        [TestMethod]
+        [Fact]
         public void ViewsCollectionSortedAfterAddingItemToOriginalCollection()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
@@ -309,12 +306,12 @@ namespace Prism.Avalonia.Tests.Regions
             originalCollection.Add(new ItemMetadata(view3));
             originalCollection.Add(new ItemMetadata(view1));
 
-            Assert.AreSame(view1, viewsCollection.ElementAt(0));
-            Assert.AreSame(view2, viewsCollection.ElementAt(1));
-            Assert.AreSame(view3, viewsCollection.ElementAt(2));
+            Assert.Same(view1, viewsCollection.ElementAt(0));
+            Assert.Same(view2, viewsCollection.ElementAt(1));
+            Assert.Same(view3, viewsCollection.ElementAt(2));
         }
 
-        [TestMethod]
+        [Fact]
         public void ChangingSortComparisonCausesResortingOfCollection()
         {
             var originalCollection = new ObservableCollection<ItemMetadata>();
@@ -329,17 +326,17 @@ namespace Prism.Avalonia.Tests.Regions
             originalCollection.Add(new ItemMetadata(view1));
 
             // ensure items are in original order
-            Assert.AreSame(view2, viewsCollection.ElementAt(0));
-            Assert.AreSame(view3, viewsCollection.ElementAt(1));
-            Assert.AreSame(view1, viewsCollection.ElementAt(2));
+            Assert.Same(view2, viewsCollection.ElementAt(0));
+            Assert.Same(view3, viewsCollection.ElementAt(1));
+            Assert.Same(view1, viewsCollection.ElementAt(2));
 
             // change sort comparison
             viewsCollection.SortComparison = Region.DefaultSortComparison;
 
             // ensure items are properly sorted
-            Assert.AreSame(view1, viewsCollection.ElementAt(0));
-            Assert.AreSame(view2, viewsCollection.ElementAt(1));
-            Assert.AreSame(view3, viewsCollection.ElementAt(2));
+            Assert.Same(view1, viewsCollection.ElementAt(0));
+            Assert.Same(view2, viewsCollection.ElementAt(1));
+            Assert.Same(view3, viewsCollection.ElementAt(2));
         }
     }
 }

@@ -224,27 +224,27 @@ Containers is a :new: Folder
 
 Test writted to [Prism.WPF specs](https://github.com/PrismLibrary/Prism/tree/master/tests/Wpf/Prism.Wpf.Tests).
 
-| File                                          | Status  |  Notes |
-|-----------------------------------------------|---------|--------|
-| Prism.Avalonia.Tests.csproj                   | :heavy_check_mark:            | Upgraded to .NET 6 (_Prism v8.1.97 uses .NET v4.7.1_)
-| CollectionChangedTracker.cs                   | :heavy_check_mark:
-| CollectionExtensionsFixture.cs                | :heavy_check_mark:
-| CompilerHelper.Desktop.cs                     | :heavy_check_mark:
-| ExceptionAssert.cs                            | :heavy_check_mark:
-| ListDictionaryFixture.cs                      | :heavy_check_mark:
-| CollectionChangedTracker.cs                   | :heavy_check_mark:
-| PrismApplicationBaseFixture.cs                | :white_square_button:   | Needs, `BindRegionContextToDependencyObjectBehavior`
-| PrismBootstrapperBaseFixture.cs               | :white_square_button:   | Throwing, _"protection level errors."_
-| Logging\ ...                                  | :x:
-| Interactivity\CommandBehaviorBaseFixture.cs   | :heavy_check_mark:
-| Interactivity\InvokeCommandActionFixture.cs   | :heavy_check_mark:
-| Mocks\Modules\MockAbstractModule.cs           | :heavy_check_mark:
-| Mocks\Modules\MockAttributedModule.cs         | :heavy_check_mark:
-| Mocks\Modules\MockDependantModule.cs          | :heavy_check_mark:
-| Mocks\Modules\MockDependencyModule.cs         | :heavy_check_mark:
+| File                                              | Status  |  Notes |
+|---------------------------------------------------|---------|--------|
+| Prism.Avalonia.Tests.csproj                       | :heavy_check_mark: | Upgraded to .NET 6 (_Prism v8.1.97 uses .NET v4.7.1_)
+| CollectionChangedTracker.cs                       | :heavy_check_mark:
+| CollectionExtensionsFixture.cs                    | :heavy_check_mark:
+| CompilerHelper.Desktop.cs                         | :heavy_check_mark:
+| ExceptionAssert.cs                                | :heavy_check_mark:
+| ListDictionaryFixture.cs                          | :heavy_check_mark:
+| CollectionChangedTracker.cs                       | :heavy_check_mark:
+| PrismApplicationBaseFixture.cs                    | :white_square_button: :warning:
+| PrismBootstrapperBaseFixture.cs                   | :white_square_button: | Throwing, _"protection level errors."_
+| Logging\ ...                                      | :x:
+| Interactivity\CommandBehaviorBaseFixture.cs       | :heavy_check_mark:
+| Interactivity\InvokeCommandActionFixture.cs       | :heavy_check_mark:
+| Mocks\Modules\MockAbstractModule.cs               | :heavy_check_mark:
+| Mocks\Modules\MockAttributedModule.cs             | :heavy_check_mark:
+| Mocks\Modules\MockDependantModule.cs              | :heavy_check_mark:
+| Mocks\Modules\MockDependencyModule.cs             | :heavy_check_mark:
 | Mocks\Modules\MockExposingTypeFromGacAssemblyModule.cs | :heavy_check_mark:
-| Mocks\Modules\MockModuleA.cs                  | :heavy_check_mark:
-| Mocks\Modules\MockModuleReferencedAssembly.cs | :heavy_check_mark:
+| Mocks\Modules\MockModuleA.cs                      | :heavy_check_mark:
+| Mocks\Modules\MockModuleReferencedAssembly.cs     | :heavy_check_mark:
 | Mocks\Modules\MockModuleReferencingAssembly.cs    | :heavy_check_mark:
 | Mocks\Modules\MockModuleReferencingOtherModule.cs | :heavy_check_mark:
 | Mocks\Modules\MockModuleThrowingException.cs      | :heavy_check_mark:
@@ -302,16 +302,24 @@ Test writted to [Prism.WPF specs](https://github.com/PrismLibrary/Prism/tree/mas
 | Regions\RegionBehaviorCollectionFixture.cs        | :heavy_check_mark:
 | Regions\RegionBehaviorFactoryFixture.cs           | :heavy_check_mark:
 | Regions\RegionBehaviorFixture.cs                  | :heavy_check_mark:
-| Regions\RegionFixture.cs                          | :white_square_button:
-| Regions\RegionManagerFixture.cs                   | :white_square_button:
-| Regions\RegionManagerRequestNavigateFixture.cs    | :white_square_button:
-| Regions\RegionNavigationJournalFixture.cs         | :white_square_button:
-| Regions\RegionNavigationServiceFixture.new.cs     | :white_square_button:
-| Regions\RegionViewRegistryFixture.cs              | :white_square_button:
+| Regions\RegionFixture.cs                          | :heavy_check_mark:
+| Regions\RegionManagerFixture.cs                   | :heavy_check_mark:
+| Regions\RegionManagerRequestNavigateFixture.cs    | :heavy_check_mark:
+| Regions\RegionNavigationJournalFixture.cs         | :heavy_check_mark:
+| Regions\RegionNavigationServiceFixture.new.cs     | :heavy_check_mark:
+| Regions\RegionViewRegistryFixture.cs              | :heavy_check_mark:
 | Regions\SelectorRegionAdapterFixture.cs           | :white_square_button: :new: :warning:
-| Regions\SingleActiveRegionFixture.cs              | :white_square_button:
-| Regions\ViewsCollectionFixture.cs                 | :white_square_button:
-| Regions\Bahaviors ...                         | :white_square_button:
+| Regions\SingleActiveRegionFixture.cs              | :heavy_check_mark:
+| Regions\ViewsCollectionFixture.cs                 | :heavy_check_mark:
+| Regions\Behaviors\AutoPopulateRegionBehaviorFixture.cs                    | :heavy_check_mark:
+| Regions\Behaviors\BindRegionContextToDependencyObjectBehaviorFixture.cs   | :heavy_check_mark:
+| Regions\Behaviors\ClearChildViewsRegionBehaviorFixture.cs                 | :heavy_check_mark:
+| Regions\Behaviors\DelayedRegionCreationBehaviorFixture.cs                 | :heavy_check_mark:
+| Regions\Behaviors\RegionActiveAwareBehaviorFixture.cs                     | :heavy_check_mark:
+| Regions\Behaviors\RegionManagerRegistrationBehaviorFixture.cs             | :heavy_check_mark:
+| Regions\Behaviors\RegionMemberLifetimeBehaviorFixture.cs                  | :heavy_check_mark:
+| Regions\Behaviors\SelectorItemsSourceSyncRegionBehaviorFixture.cs         | :white_square_button: :warning:
+| Regions\Behaviors\SyncRegionContextWithHostBehaviorFixture.cs             | :heavy_check_mark:
 
 ### Tests - Prism.Container.Avalonia.Shared
 

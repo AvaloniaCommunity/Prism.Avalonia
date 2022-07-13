@@ -1,58 +1,50 @@
-
-
-using System;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Prism.Avalonia.Tests.Mvvm;
+using Prism.Ioc;
 using Prism.Regions;
-using Prism.Avalonia.Tests.Mocks;
+using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
 {
-    [TestClass]
     public class RegionViewRegistryFixture
     {
-        [TestMethod]
+        [Fact]
         public void CanRegisterContentAndRetrieveIt()
         {
-            MockServiceLocator locator = new MockServiceLocator();
-            Type calledType = null;
-            locator.GetInstance = (type) =>
-                                      {
-                                          calledType = type;
-                                          return new MockContentObject();
-                                      };
-            var registry = new RegionViewRegistry(locator);
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(c => c.Resolve(typeof(MockContentObject))).Returns(new MockContentObject());
+            var registry = new RegionViewRegistry(containerMock.Object);
 
             registry.RegisterViewWithRegion("MyRegion", typeof(MockContentObject));
             var result = registry.GetContents("MyRegion");
 
-            Assert.AreEqual(typeof(MockContentObject), calledType);
-            Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.Count());
-            Assert.IsInstanceOfType(result.ElementAt(0), typeof(MockContentObject));
+            //Assert.Equal(typeof(MockContentObject), calledType);
+            Assert.NotNull(result);
+            Assert.Single(result);
+            Assert.IsType<MockContentObject>(result.ElementAt(0));
         }
 
-        [TestMethod]
+        [Fact]
         public void ShouldRaiseEventWhenAddingContent()
         {
             var listener = new MySubscriberClass();
-            MockServiceLocator locator = new MockServiceLocator();
-            locator.GetInstance = (type) => new MockContentObject();
-            var registry = new RegionViewRegistry(locator);
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(c => c.Resolve(typeof(MockContentObject))).Returns(new MockContentObject());
+            var registry = new RegionViewRegistry(containerMock.Object);
 
             registry.ContentRegistered += listener.OnContentRegistered;
 
             registry.RegisterViewWithRegion("MyRegion", typeof(MockContentObject));
 
-            Assert.IsNotNull(listener.onViewRegisteredArguments);
-            Assert.IsNotNull(listener.onViewRegisteredArguments.GetView);
+            Assert.NotNull(listener.onViewRegisteredArguments);
+            Assert.NotNull(listener.onViewRegisteredArguments.GetView);
 
             var result = listener.onViewRegisteredArguments.GetView();
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(MockContentObject));
+            Assert.NotNull(result);
+            Assert.IsType<MockContentObject>(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void CanRegisterContentAsDelegateAndRetrieveIt()
         {
             var registry = new RegionViewRegistry(null);
@@ -61,12 +53,12 @@ namespace Prism.Avalonia.Tests.Regions
             registry.RegisterViewWithRegion("MyRegion", () => content);
             var result = registry.GetContents("MyRegion");
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.Count());
-            Assert.AreSame(content, result.ElementAt(0));
+            Assert.NotNull(result);
+            Assert.Single(result);
+            Assert.Same(content, result.ElementAt(0));
         }
 
-        [TestMethod]
+        [Fact]
         public void ShouldNotPreventSubscribersFromBeingGarbageCollected()
         {
             var registry = new RegionViewRegistry(null);
@@ -78,10 +70,10 @@ namespace Prism.Avalonia.Tests.Regions
             subscriber = null;
             GC.Collect();
 
-            Assert.IsFalse(subscriberWeakReference.IsAlive);
+            Assert.False(subscriberWeakReference.IsAlive);
         }
 
-        [TestMethod]
+        [Fact]
         public void OnRegisterErrorShouldGiveClearException()
         {
             var registry = new RegionViewRegistry(null);
@@ -90,46 +82,77 @@ namespace Prism.Avalonia.Tests.Regions
             try
             {
                 registry.RegisterViewWithRegion("R1", typeof(object));
-                Assert.Fail();
+                //Assert.Fail();
             }
             catch (ViewRegistrationException ex)
             {
-                Assert.IsTrue(ex.Message.Contains("Dont do this"));
-                Assert.IsTrue(ex.Message.Contains("R1"));
-                Assert.AreEqual(ex.InnerException.Message, "Dont do this");
-            }
-            catch(Exception)
-            {
-                Assert.Fail("Wrong exception type");
-            }
-
-        }
-
-
-        [TestMethod]
-        public void OnRegisterErrorShouldSkipFrameworkExceptions()
-        {
-            ExceptionExtensions.RegisterFrameworkExceptionType(typeof (FrameworkException));
-            var registry = new RegionViewRegistry(null);
-            registry.ContentRegistered +=new EventHandler<ViewRegisteredEventArgs>(FailWithFrameworkException);
-
-            try
-            {
-                registry.RegisterViewWithRegion("R1", typeof (object));
-                Assert.Fail();
-            }
-            catch (ViewRegistrationException ex)
-            {
-                Assert.IsTrue(ex.Message.Contains("Dont do this"));
-                Assert.IsTrue(ex.Message.Contains("R1"));
+                Assert.Contains("Dont do this", ex.Message);
+                Assert.Contains("R1", ex.Message);
+                Assert.Equal("Dont do this", ex.InnerException.Message);
             }
             catch (Exception)
             {
-                Assert.Fail("Wrong exception type");
+                //Assert.Fail("Wrong exception type");
             }
         }
 
-        public void FailWithFrameworkException(object sender, ViewRegisteredEventArgs e)
+        [Fact]
+        public void OnRegisterErrorShouldSkipFrameworkExceptions()
+        {
+            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(FrameworkException));
+            var registry = new RegionViewRegistry(null);
+            registry.ContentRegistered += new EventHandler<ViewRegisteredEventArgs>(FailWithFrameworkException);
+            var ex = Record.Exception(() => registry.RegisterViewWithRegion("R1", typeof(object)));
+            Assert.NotNull(ex);
+            Assert.IsType<ViewRegistrationException>(ex);
+            Assert.Contains("Dont do this", ex.Message);
+            Assert.Contains("R1", ex.Message);
+        }
+
+        [StaFact]
+        public void RegisterViewWithRegion_ShouldHaveViewModel_ByDefault()
+        {
+            ViewModelLocatorFixture.ResetViewModelLocationProvider();
+
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(c => c.Resolve(typeof(Mocks.Views.Mock))).Returns(new Mocks.Views.Mock());
+            containerMock.Setup(c => c.Resolve(typeof(Mocks.ViewModels.MockViewModel))).Returns(new Mocks.ViewModels.MockViewModel());
+            var registry = new RegionViewRegistry(containerMock.Object);
+
+            registry.RegisterViewWithRegion("MyRegion", typeof(Mocks.Views.Mock));
+
+            var result = registry.GetContents("MyRegion");
+            Assert.NotNull(result);
+            Assert.Single(result);
+
+            var view = result.ElementAt(0) as FrameworkElement;
+            Assert.IsType<Mocks.Views.Mock>(view);
+            Assert.NotNull(view.DataContext);
+            Assert.IsType<Mocks.ViewModels.MockViewModel>(view.DataContext);
+        }
+
+        [StaFact]
+        public void RegisterViewWithRegion_ShouldNotHaveViewModel_OnOptOut()
+        {
+            ViewModelLocatorFixture.ResetViewModelLocationProvider();
+
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(c => c.Resolve(typeof(Mocks.Views.MockOptOut))).Returns(new Mocks.Views.MockOptOut());
+            containerMock.Setup(c => c.Resolve(typeof(Mocks.ViewModels.MockOptOutViewModel))).Returns(new Mocks.ViewModels.MockOptOutViewModel());
+            var registry = new RegionViewRegistry(containerMock.Object);
+
+            registry.RegisterViewWithRegion("MyRegion", typeof(Mocks.Views.MockOptOut));
+
+            var result = registry.GetContents("MyRegion");
+            Assert.NotNull(result);
+            Assert.Single(result);
+
+            var view = result.ElementAt(0) as FrameworkElement;
+            Assert.IsType<Mocks.Views.MockOptOut>(view);
+            Assert.Null(view.DataContext);
+        }
+
+        private void FailWithFrameworkException(object sender, ViewRegisteredEventArgs e)
         {
             try
             {
@@ -137,22 +160,20 @@ namespace Prism.Avalonia.Tests.Regions
             }
             catch (Exception ex)
             {
-
                 throw new FrameworkException(ex);
             }
         }
 
-        public void FailWithInvalidOperationException(object sender, ViewRegisteredEventArgs e)
+        private void FailWithInvalidOperationException(object sender, ViewRegisteredEventArgs e)
         {
             throw new InvalidOperationException("Dont do this");
         }
 
-        public class MockContentObject
+        private class MockContentObject
         {
         }
 
-
-        public class MySubscriberClass
+        private class MySubscriberClass
         {
             public ViewRegisteredEventArgs onViewRegisteredArguments;
             public void OnContentRegistered(object sender, ViewRegisteredEventArgs e)
@@ -161,7 +182,7 @@ namespace Prism.Avalonia.Tests.Regions
             }
         }
 
-        class FrameworkException : Exception
+        private class FrameworkException : Exception
         {
             public FrameworkException(Exception innerException)
                 : base("", innerException)
@@ -169,6 +190,5 @@ namespace Prism.Avalonia.Tests.Regions
 
             }
         }
-
     }
 }

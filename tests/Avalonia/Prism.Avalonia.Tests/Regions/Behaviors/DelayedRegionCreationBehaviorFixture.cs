@@ -1,19 +1,14 @@
-
-
-using System;
-using System.Linq;
-using System.Windows;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Avalonia;
+using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
 using Prism.Regions.Behaviors;
-using Prism.Avalonia.Tests.Mocks;
+using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions.Behaviors
 {
-    [TestClass]
     public class DelayedRegionCreationBehaviorFixture
     {
-        private DelayedRegionCreationBehavior GetBehavior(DependencyObject control, MockRegionManagerAccessor accessor, MockRegionAdapter adapter)
+        private DelayedRegionCreationBehavior GetBehavior(AvaloniaObject control, MockRegionManagerAccessor accessor, MockRegionAdapter adapter)
         {
             var mappings = new RegionAdapterMappings();
             mappings.RegisterMapping(control.GetType(), adapter);
@@ -23,22 +18,21 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             return behavior;
         }
 
-
-        private DelayedRegionCreationBehavior GetBehavior(DependencyObject control, MockRegionManagerAccessor accessor)
+        private DelayedRegionCreationBehavior GetBehavior(AvaloniaObject control, MockRegionManagerAccessor accessor)
         {
             return GetBehavior(control, accessor, new MockRegionAdapter());
         }
 
-        [TestMethod]
+        [StaFact]
         public void RegionWillNotGetCreatedTwiceWhenThereAreMoreRegions()
         {
             var control1 = new MockFrameworkElement();
             var control2 = new MockFrameworkElement();
 
             var accessor = new MockRegionManagerAccessor
-                               {
-                                   GetRegionName = d => d == control1 ? "Region1" : "Region2"
-                               };
+            {
+                GetRegionName = d => d == control1 ? "Region1" : "Region2"
+            };
 
             var adapter = new MockRegionAdapter();
             adapter.Accessor = accessor;
@@ -51,23 +45,21 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
 
             accessor.UpdateRegions();
 
-            Assert.IsTrue(adapter.CreatedRegions.Contains("Region1"));
-            Assert.IsTrue(adapter.CreatedRegions.Contains("Region2"));
-            Assert.AreEqual(1, adapter.CreatedRegions.Count((name) => name == "Region2"));
-
+            Assert.Contains("Region1", adapter.CreatedRegions);
+            Assert.Contains("Region2", adapter.CreatedRegions);
+            Assert.Equal(1, adapter.CreatedRegions.Count((name) => name == "Region2"));
         }
 
-
-        [TestMethod]
+        [StaFact]
         public void RegionGetsCreatedWhenAccessingRegions()
         {
             var control1 = new MockFrameworkElement();
             var control2 = new MockFrameworkContentElement();
 
             var accessor = new MockRegionManagerAccessor
-                               {
-                                   GetRegionName = d => "myRegionName"
-                               };
+            {
+                GetRegionName = d => "myRegionName"
+            };
 
             var behavior1 = this.GetBehavior(control1, accessor);
             behavior1.Attach();
@@ -76,13 +68,13 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
 
             accessor.UpdateRegions();
 
-            Assert.IsNotNull(RegionManager.GetObservableRegion(control1).Value);
-            Assert.IsInstanceOfType(RegionManager.GetObservableRegion(control1).Value, typeof(IRegion));
-            Assert.IsNotNull(RegionManager.GetObservableRegion(control2).Value);
-            Assert.IsInstanceOfType(RegionManager.GetObservableRegion(control2).Value, typeof(IRegion));
+            Assert.NotNull(RegionManager.GetObservableRegion(control1).Value);
+            Assert.IsAssignableFrom<IRegion>(RegionManager.GetObservableRegion(control1).Value);
+            Assert.NotNull(RegionManager.GetObservableRegion(control2).Value);
+            Assert.IsAssignableFrom<IRegion>(RegionManager.GetObservableRegion(control2).Value);
         }
 
-        [TestMethod]
+        [StaFact]
         public void RegionDoesNotGetCreatedTwiceWhenUpdatingRegions()
         {
             var control = new MockFrameworkElement();
@@ -99,33 +91,33 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
 
             accessor.UpdateRegions();
 
-            Assert.AreSame(region, RegionManager.GetObservableRegion(control).Value);
+            Assert.Same(region, RegionManager.GetObservableRegion(control).Value);
         }
 
-        [TestMethod]
+        [StaFact]
         public void BehaviorDoesNotPreventControlFromBeingGarbageCollected()
         {
             var control = new MockFrameworkElement();
             WeakReference controlWeakReference = new WeakReference(control);
 
             var accessor = new MockRegionManagerAccessor
-                               {
-                                   GetRegionName = d => "myRegionName"
-                               };
+            {
+                GetRegionName = d => "myRegionName"
+            };
 
             var behavior = this.GetBehavior(control, accessor);
             behavior.Attach();
 
-            Assert.IsTrue(controlWeakReference.IsAlive);
+            Assert.True(controlWeakReference.IsAlive);
             GC.KeepAlive(control);
 
             control = null;
             GC.Collect();
 
-            Assert.IsFalse(controlWeakReference.IsAlive);
+            Assert.False(controlWeakReference.IsAlive);
         }
 
-        [TestMethod]
+        [StaFact]
         public void BehaviorDoesNotPreventControlFromBeingGarbageCollectedWhenRegionWasCreated()
         {
             var control = new MockFrameworkElement();
@@ -139,25 +131,25 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             var behavior = this.GetBehavior(control, accessor);
             behavior.Attach();
             accessor.UpdateRegions();
-            
-            Assert.IsTrue(controlWeakReference.IsAlive);
+
+            Assert.True(controlWeakReference.IsAlive);
             GC.KeepAlive(control);
 
             control = null;
             GC.Collect();
 
-            Assert.IsFalse(controlWeakReference.IsAlive);
+            Assert.False(controlWeakReference.IsAlive);
         }
 
-        [TestMethod]
+        [StaFact]
         public void BehaviorShouldUnhookEventWhenDetaching()
         {
             var control = new MockFrameworkElement();
 
             var accessor = new MockRegionManagerAccessor
-                               {
-                                   GetRegionName = d => "myRegionName",
-                               };
+            {
+                GetRegionName = d => "myRegionName",
+            };
             var behavior = this.GetBehavior(control, accessor);
             behavior.Attach();
 
@@ -165,10 +157,10 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
 
             behavior.Detach();
 
-            Assert.AreEqual<int>(startingCount - 1, accessor.GetSubscribersCount());
+            Assert.Equal<int>(startingCount - 1, accessor.GetSubscribersCount());
         }
 
-        [TestMethod]
+        [StaFact]
         public void ShouldCleanupBehaviorOnceRegionIsCreated()
         {
             var control = new MockFrameworkElement();
@@ -183,25 +175,25 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             WeakReference behaviorWeakReference = new WeakReference(behavior);
             behavior.Attach();
             accessor.UpdateRegions();
-            Assert.IsTrue(behaviorWeakReference.IsAlive);
+            Assert.True(behaviorWeakReference.IsAlive);
             GC.KeepAlive(behavior);
 
             behavior = null;
             GC.Collect();
 
-            Assert.IsFalse(behaviorWeakReference.IsAlive);
+            Assert.False(behaviorWeakReference.IsAlive);
 
             var behavior2 = this.GetBehavior(control2, accessor);
             WeakReference behaviorWeakReference2 = new WeakReference(behavior2);
             behavior2.Attach();
             accessor.UpdateRegions();
-            Assert.IsTrue(behaviorWeakReference2.IsAlive);
+            Assert.True(behaviorWeakReference2.IsAlive);
             GC.KeepAlive(behavior2);
 
             behavior2 = null;
             GC.Collect();
 
-            Assert.IsFalse(behaviorWeakReference2.IsAlive);
+            Assert.False(behaviorWeakReference2.IsAlive);
         }
     }
 }
