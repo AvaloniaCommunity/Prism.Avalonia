@@ -1,184 +1,345 @@
-using System;
 using Avalonia;
 using Avalonia.Controls;
-using Prism.Common;
+using Moq;
+using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
+using Prism.Regions.Behaviors;
+using Prism.Services.Dialogs;
+using Xunit;
 
 namespace Prism
 {
-    /// <summary>
-    /// Base class that provides a basic bootstrapping sequence and hooks
-    /// that specific implementations can override
-    /// </summary>
+    /// <summary>Bootstrapper Fixture</summary>
     /// <remarks>
-    /// This class must be overridden to provide application specific configuration.
+    ///   TODO Items:
+    ///     - public void ConfigureRegionAdapterMappingsShouldRegisterSelectorMapping() ...
+    ///     - MockContainer.Setup(x => x.Resolve(typeof(SelectorRegionAdapter...
     /// </remarks>
-    public abstract class PrismBootstrapperBase
+    public class PrismBootstapperSetup : IDisposable
     {
-        IContainerExtension _containerExtension;
-        IModuleCatalog _moduleCatalog;
+        public PrismBootstrapper Bootstrapper { get; set; }
 
-        /// <summary>
-        /// The dependency injection container used to resolve objects
-        /// </summary>
-        public IContainerProvider Container => _containerExtension;
-
-        /// <summary>
-        /// Gets the shell user interface
-        /// </summary>
-        /// <value>The shell user interface.</value>
-        protected AvaloniaObject Shell { get; set; }
-
-        /// <summary>
-        /// Runs the bootstrapper process.
-        /// </summary>
-        public void Run()
+        public PrismBootstapperSetup()
         {
-            ConfigureViewModelLocator();
-            Initialize();
-            OnInitialized();
+            ContainerLocator.ResetContainer();
+            Bootstrapper = new PrismBootstrapper();
+            Bootstrapper.Run();
         }
 
-        /// <summary>
-        /// Configures the <see cref="Prism.Mvvm.ViewModelLocator"/> used by Prism.
-        /// </summary>
-        protected virtual void ConfigureViewModelLocator()
+        public void Dispose()
         {
-            PrismInitializationExtensions.ConfigureViewModelLocator();
+            ContainerLocator.ResetContainer();
+        }
+    }
+
+    public class PrismBootstapperBaseFixture : IClassFixture<PrismBootstapperSetup>
+    {
+        PrismBootstrapper bootstrapper = null;
+
+        public PrismBootstapperBaseFixture(PrismBootstapperSetup setup)
+        {
+            bootstrapper = setup.Bootstrapper;
         }
 
-        /// <summary>
-        /// Runs the initialization sequence to configure the Prism application.
-        /// </summary>
-        protected virtual void Initialize()
+        [Fact]
+        public void BootstrapperShouldCallConfigureViewModelLocator()
         {
-            ContainerLocator.SetContainerExtension(CreateContainerExtension);
-            _containerExtension = ContainerLocator.Current;
-            _moduleCatalog = CreateModuleCatalog();
-            RegisterRequiredTypes(_containerExtension);
-            RegisterTypes(_containerExtension);
-            _containerExtension.FinalizeExtension();
-
-            ConfigureModuleCatalog(_moduleCatalog);
-
-            var regionAdapterMappings = _containerExtension.Resolve<RegionAdapterMappings>();
-            ConfigureRegionAdapterMappings(regionAdapterMappings);
-
-            var defaultRegionBehaviors = _containerExtension.Resolve<IRegionBehaviorFactory>();
-            ConfigureDefaultRegionBehaviors(defaultRegionBehaviors);
-
-            RegisterFrameworkExceptionTypes();
-
-            var shell = CreateShell();
-            if (shell != null)
-            {
-                MvvmHelpers.AutowireViewModel(shell);
-                RegionManager.SetRegionManager(shell, _containerExtension.Resolve<IRegionManager>());
-                RegionManager.UpdateRegions();
-                InitializeShell(shell);
-            }
-
-            InitializeModules();
+            Assert.True(bootstrapper.ConfigureViewModelLocatorWasCalled);
         }
 
-        /// <summary>
-        /// Creates the container used by Prism.
-        /// </summary>
-        /// <returns>The container</returns>
-        protected abstract IContainerExtension CreateContainerExtension();
-
-        /// <summary>
-        /// Creates the <see cref="IModuleCatalog"/> used by Prism.
-        /// </summary>
-        ///  <remarks>
-        /// The base implementation returns a new ModuleCatalog.
-        /// </remarks>
-        protected virtual IModuleCatalog CreateModuleCatalog()
+        [Fact]
+        public void BootstrapperShouldCallInitialize()
         {
-            return new ModuleCatalog();
+            Assert.True(bootstrapper.InitializeCalled);
         }
 
-        /// <summary>
-        /// Registers all types that are required by Prism to function with the container.
-        /// </summary>
-        /// <param name="containerRegistry"></param>
-        protected virtual void RegisterRequiredTypes(IContainerRegistry containerRegistry)
+        [Fact]
+        public void BootstrapperShouldCallCreateContainerExtension()
         {
-            if (_moduleCatalog == null)
-                throw new InvalidOperationException("IModuleCatalog");
-
-            containerRegistry.RegisterRequiredTypes(_moduleCatalog);
+            Assert.True(bootstrapper.CreateContainerExtensionCalled);
         }
 
-        /// <summary>
-        /// Used to register types with the container that will be used by your application.
-        /// </summary>
-        protected abstract void RegisterTypes(IContainerRegistry containerRegistry);
-
-        /// <summary>
-        /// Configures the <see cref="IRegionBehaviorFactory"/>. 
-        /// This will be the list of default behaviors that will be added to a region. 
-        /// </summary>
-        protected virtual void ConfigureDefaultRegionBehaviors(IRegionBehaviorFactory regionBehaviors)
+        [Fact]
+        public void BootstrapperShouldCallCreateModuleCatalog()
         {
-            regionBehaviors?.RegisterDefaultRegionBehaviors();
+            Assert.True(bootstrapper.CreateModuleCatalogCalled);
         }
 
-        /// <summary>
-        /// Configures the default region adapter mappings to use in the application, in order
-        /// to adapt UI controls defined in XAML to use a region and register it automatically.
-        /// May be overwritten in a derived class to add specific mappings required by the application.
-        /// </summary>
-        /// <returns>The <see cref="RegionAdapterMappings"/> instance containing all the mappings.</returns>
-        protected virtual void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
+        [Fact]
+        public void BootstrapperShouldCallRegisterRequiredTypes()
         {
-            regionAdapterMappings?.RegisterDefaultRegionAdapterMappings();
+            Assert.True(bootstrapper.RegisterRequiredTypesCalled);
         }
 
-        /// <summary>
-        /// Registers the <see cref="Type"/>s of the Exceptions that are not considered 
-        /// root exceptions by the <see cref="ExceptionExtensions"/>.
-        /// </summary>
-        protected virtual void RegisterFrameworkExceptionTypes()
+        [Fact]
+        public void BootstrapperShouldCallRegisterTypes()
         {
+            Assert.True(bootstrapper.RegisterTypesWasCalled);
         }
 
-        /// <summary>
-        /// Creates the shell or main window of the application.
-        /// </summary>
-        /// <returns>The shell of the application.</returns>
-        protected abstract IAvaloniaObject CreateShell();
-
-        /// <summary>
-        /// Initializes the shell.
-        /// </summary>
-        protected virtual void InitializeShell(AvaloniaObject shell)
+        [Fact]
+        public void BootstrapperShouldCallConfigureDefaultRegionBehaviors()
         {
-            Shell = shell;
+            Assert.True(bootstrapper.ConfigureDefaultRegionBehaviorsCalled);
         }
 
-        /// <summary>
-        /// Contains actions that should occur last.
-        /// </summary>
-        protected virtual void OnInitialized()
+        [Fact]
+        public void BootstrapperShouldCallConfigureRegionAdapterMappings()
         {
-            if (Shell is Window window)
-                window.Show();
+            Assert.True(bootstrapper.ConfigureRegionAdapterMappingsCalled);
         }
 
-        /// <summary>
-        /// Configures the <see cref="IModuleCatalog"/> used by Prism.
-        /// </summary>
-        protected virtual void ConfigureModuleCatalog(IModuleCatalog moduleCatalog) { }
-
-        /// <summary>
-        /// Initializes the modules.
-        /// </summary>
-        protected virtual void InitializeModules()
+        [Fact]
+        public void BootstrapperShouldCallRegisterFrameworkExceptionTypes()
         {
-            PrismInitializationExtensions.RunModuleManager(Container);
+            Assert.True(bootstrapper.RegisterFrameworkExceptionTypesCalled);
+        }
+
+        [Fact]
+        public void BootstrapperShouldCallCreateShell()
+        {
+            Assert.True(bootstrapper.CreateShellWasCalled);
+        }
+
+        [Fact]
+        public void BootstrapperShouldCallInitializeShell()
+        {
+            //in our mock Shell is null, so this INitializeShell should not be called by the bootstrapper
+            Assert.False(bootstrapper.InitializeShellWasCalled);
+        }
+
+        [Fact]
+        public void BootstrapperShouldCallOnInitialized()
+        {
+            Assert.True(bootstrapper.OnInitializedWasCalled);
+        }
+
+        [Fact]
+        public void BootstrapperShouldCallConfigureModuleCatalog()
+        {
+            Assert.True(bootstrapper.ConfigureModuleCatalogCalled);
+        }
+
+        [Fact]
+        public void BootstrapperShouldCallInitializeModules()
+        {
+            Assert.True(bootstrapper.InitializeModulesCalled);
+        }
+
+        [Fact]
+        public void CreateModuleCatalogShouldReturnDefaultModuleCatalog()
+        {
+            Assert.NotNull(bootstrapper.DefaultModuleCatalog);
+        }
+
+        [Fact]
+        public void ConfigureRegionAdapterMappingsShouldRegisterItemsControlMapping()
+        {
+            Assert.NotNull(bootstrapper.DefaultRegionAdapterMappings);
+            Assert.NotNull(bootstrapper.DefaultRegionAdapterMappings.GetMapping(typeof(ItemsControl)));
+        }
+
+        ////[Fact]
+        ////public void ConfigureRegionAdapterMappingsShouldRegisterSelectorMapping()
+        ////{
+        ////    Assert.NotNull(bootstrapper.DefaultRegionAdapterMappings);
+        ////    Assert.NotNull(bootstrapper.DefaultRegionAdapterMappings.GetMapping(typeof(Selector)));
+        ////}
+
+        [Fact]
+        public void ConfigureRegionAdapterMappingsShouldRegisterContentControlMapping()
+        {
+            Assert.NotNull(bootstrapper.DefaultRegionAdapterMappings);
+            Assert.NotNull(bootstrapper.DefaultRegionAdapterMappings.GetMapping(typeof(ContentControl)));
+        }
+
+        [Fact]
+        public void ConfigureDefaultRegionBehaviorsShouldAddAutoPopulateRegionBehavior()
+        {
+            Assert.True(bootstrapper.DefaultRegionBehaviorTypes.ContainsKey(AutoPopulateRegionBehavior.BehaviorKey));
+        }
+
+        [Fact]
+        public void ConfigureDefaultRegionBehaviorsShouldBindRegionContextToDependencyObjectBehavior()
+        {
+            Assert.True(bootstrapper.DefaultRegionBehaviorTypes.ContainsKey(BindRegionContextToAvaloniaObjectBehavior.BehaviorKey));
+        }
+
+        [Fact]
+        public void ConfigureDefaultRegionBehaviorsShouldAddRegionActiveAwareBehavior()
+        {
+            Assert.True(bootstrapper.DefaultRegionBehaviorTypes.ContainsKey(RegionActiveAwareBehavior.BehaviorKey));
+        }
+
+        [Fact]
+        public void ConfigureDefaultRegionBehaviorsShouldAddSyncRegionContextWithHostBehavior()
+        {
+            Assert.True(bootstrapper.DefaultRegionBehaviorTypes.ContainsKey(SyncRegionContextWithHostBehavior.BehaviorKey));
+        }
+
+        [Fact]
+        public void ConfigureDefaultRegionBehaviorsShouldAddRegionManagerRegistrationBehavior()
+        {
+            Assert.True(bootstrapper.DefaultRegionBehaviorTypes.ContainsKey(RegionManagerRegistrationBehavior.BehaviorKey));
+        }
+
+        [Fact]
+        public void ConfigureDefaultRegionBehaviorsShouldAddRegionLifetimeBehavior()
+        {
+            Assert.True(bootstrapper.DefaultRegionBehaviorTypes.ContainsKey(RegionMemberLifetimeBehavior.BehaviorKey));
+        }
+
+        [Fact]
+        public void RequiredTypesAreRegistered()
+        {
+            bootstrapper.MockContainer.Verify(x => x.RegisterInstance(typeof(IModuleCatalog), It.IsAny<IModuleCatalog>()), Times.Once);
+
+            bootstrapper.MockContainer.Verify(x => x.RegisterSingleton(typeof(IDialogService), typeof(DialogService)), Times.Once);
+            bootstrapper.MockContainer.Verify(x => x.RegisterSingleton(typeof(IModuleInitializer), typeof(ModuleInitializer)), Times.Once);
+            bootstrapper.MockContainer.Verify(x => x.RegisterSingleton(typeof(IModuleManager), typeof(ModuleManager)), Times.Once);
+            bootstrapper.MockContainer.Verify(x => x.RegisterSingleton(typeof(RegionAdapterMappings), typeof(RegionAdapterMappings)), Times.Once);
+            bootstrapper.MockContainer.Verify(x => x.RegisterSingleton(typeof(IRegionManager), typeof(RegionManager)), Times.Once);
+            bootstrapper.MockContainer.Verify(x => x.RegisterSingleton(typeof(IRegionNavigationContentLoader), typeof(RegionNavigationContentLoader)), Times.Once);
+            bootstrapper.MockContainer.Verify(x => x.RegisterSingleton(typeof(IEventAggregator), typeof(EventAggregator)), Times.Once);
+            bootstrapper.MockContainer.Verify(x => x.RegisterSingleton(typeof(IRegionViewRegistry), typeof(RegionViewRegistry)), Times.Once);
+            bootstrapper.MockContainer.Verify(x => x.RegisterSingleton(typeof(IRegionBehaviorFactory), typeof(RegionBehaviorFactory)), Times.Once);
+
+            bootstrapper.MockContainer.Verify(x => x.Register(typeof(IRegionNavigationJournalEntry), typeof(RegionNavigationJournalEntry)), Times.Once);
+            bootstrapper.MockContainer.Verify(x => x.Register(typeof(IRegionNavigationJournal), typeof(RegionNavigationJournal)), Times.Once);
+            bootstrapper.MockContainer.Verify(x => x.Register(typeof(IRegionNavigationService), typeof(RegionNavigationService)), Times.Once);
+            bootstrapper.MockContainer.Verify(x => x.Register(typeof(IDialogWindow), typeof(DialogWindow)), Times.Once);
+        }
+    }
+
+    public class PrismBootstrapper : PrismBootstrapperBase
+    {
+        public Mock<IContainerExtension> MockContainer { get; private set; }
+
+        public IModuleCatalog DefaultModuleCatalog => Container.Resolve<IModuleCatalog>();
+
+        public IRegionBehaviorFactory DefaultRegionBehaviorTypes => Container.Resolve<IRegionBehaviorFactory>();
+
+        public RegionAdapterMappings DefaultRegionAdapterMappings => Container.Resolve<RegionAdapterMappings>();
+
+        public bool ConfigureViewModelLocatorWasCalled { get; set; }
+        public bool CreateShellWasCalled { get; set; }
+        public bool InitializeShellWasCalled { get; set; }
+        public bool OnInitializedWasCalled { get; set; }
+        public bool RegisterTypesWasCalled { get; set; }
+        public bool InitializeModulesCalled { get; internal set; }
+        public bool ConfigureModuleCatalogCalled { get; internal set; }
+        public bool RegisterFrameworkExceptionTypesCalled { get; internal set; }
+        public bool ConfigureRegionAdapterMappingsCalled { get; internal set; }
+        public bool ConfigureDefaultRegionBehaviorsCalled { get; internal set; }
+        public bool RegisterRequiredTypesCalled { get; internal set; }
+        public bool CreateModuleCatalogCalled { get; internal set; }
+        public bool CreateContainerExtensionCalled { get; internal set; }
+        public bool InitializeCalled { get; internal set; }
+
+        protected override void Initialize()
+        {
+            InitializeCalled = true;
+
+            ContainerLocator.ResetContainer();
+            MockContainer = new Mock<IContainerExtension>();
+
+            base.Initialize();
+        }
+
+        protected override IContainerExtension CreateContainerExtension()
+        {
+            CreateContainerExtensionCalled = true;
+            return MockContainer.Object;
+        }
+
+        protected override void ConfigureViewModelLocator()
+        {
+            ConfigureViewModelLocatorWasCalled = true;
+            //setting this breaks other tests using VML. 
+            //We need to revist those tests to ensure it is being reset each time.
+            //base.ConfigureViewModelLocator();
+        }
+
+        protected override IModuleCatalog CreateModuleCatalog()
+        {
+            CreateModuleCatalogCalled = true;
+
+            var moduleCatalog = base.CreateModuleCatalog();
+            MockContainer.Setup(x => x.Resolve(typeof(IModuleCatalog))).Returns(moduleCatalog);
+            return moduleCatalog;
+        }
+
+        protected override AvaloniaObject CreateShell()
+        {
+            CreateShellWasCalled = true;
+            return null;
+        }
+
+        protected override void InitializeShell(AvaloniaObject shell)
+        {
+            InitializeShellWasCalled = false;
+        }
+
+        protected override void RegisterRequiredTypes(IContainerRegistry containerRegistry)
+        {
+            RegisterRequiredTypesCalled = true;
+
+            base.RegisterRequiredTypes(containerRegistry);
+
+            var moduleInitializer = new ModuleInitializer(MockContainer.Object);
+            MockContainer.Setup(x => x.Resolve(typeof(IModuleInitializer))).Returns(moduleInitializer);
+            MockContainer.Setup(x => x.Resolve(typeof(IModuleManager))).Returns(new ModuleManager(moduleInitializer, DefaultModuleCatalog));
+            MockContainer.Setup(x => x.Resolve(typeof(IRegionBehaviorFactory))).Returns(new RegionBehaviorFactory(MockContainer.Object));
+
+            var regionBehaviorFactory = new RegionBehaviorFactory(MockContainer.Object);
+            MockContainer.Setup(x => x.Resolve(typeof(IRegionBehaviorFactory))).Returns(regionBehaviorFactory);
+
+            MockContainer.Setup(x => x.Resolve(typeof(RegionAdapterMappings))).Returns(new RegionAdapterMappings());
+            //// TODO: MockContainer.Setup(x => x.Resolve(typeof(SelectorRegionAdapter))).Returns(new SelectorRegionAdapter(regionBehaviorFactory));
+            MockContainer.Setup(x => x.Resolve(typeof(ItemsControlRegionAdapter))).Returns(new ItemsControlRegionAdapter(regionBehaviorFactory));
+            MockContainer.Setup(x => x.Resolve(typeof(ContentControlRegionAdapter))).Returns(new ContentControlRegionAdapter(regionBehaviorFactory));
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            RegisterTypesWasCalled = true;
+        }
+
+        protected override void OnInitialized()
+        {
+            OnInitializedWasCalled = true;
+        }
+
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+        {
+            ConfigureModuleCatalogCalled = true;
+            base.ConfigureModuleCatalog(moduleCatalog);
+        }
+
+        protected override void InitializeModules()
+        {
+            InitializeModulesCalled = true;
+            base.InitializeModules();
+        }
+
+        protected override void RegisterFrameworkExceptionTypes()
+        {
+            RegisterFrameworkExceptionTypesCalled = true;
+            base.RegisterFrameworkExceptionTypes();
+        }
+
+        protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
+        {
+            ConfigureRegionAdapterMappingsCalled = true;
+            base.ConfigureRegionAdapterMappings(regionAdapterMappings);
+        }
+
+        protected override void ConfigureDefaultRegionBehaviors(IRegionBehaviorFactory regionBehaviors)
+        {
+            ConfigureDefaultRegionBehaviorsCalled = true;
+            base.ConfigureDefaultRegionBehaviors(regionBehaviors);
         }
     }
 }

@@ -16,6 +16,13 @@ using Xunit;
 
 namespace Prism.Avalonia.Tests
 {
+    /// <summary>Application Base Fixture</summary>
+    /// <remarks>
+    ///   TODO:
+    ///     - Application.CallOnStartup();
+    ///     - Application.Shutdown();
+    ///     - Implement, public void CallOnStartup()
+    /// </remarks>
     public class PrismApplicationSetup : IDisposable
     {
         public PrismApplication Application { get; set; }
@@ -30,7 +37,7 @@ namespace Prism.Avalonia.Tests
         public void Dispose()
         {
             ContainerLocator.ResetContainer();
-            Application.Shutdown();
+            //// WPF: Application.Shutdown();
         }
     }
 
@@ -164,7 +171,7 @@ namespace Prism.Avalonia.Tests
         [Fact]
         public void ConfigureDefaultRegionBehaviorsShouldBindRegionContextToDependencyObjectBehavior()
         {
-            Assert.True(application.DefaultRegionBehaviorTypes.ContainsKey(BindRegionContextToDependencyObjectBehavior.BehaviorKey));
+            Assert.True(application.DefaultRegionBehaviorTypes.ContainsKey(BindRegionContextToAvaloniaObjectBehavior.BehaviorKey));
         }
 
         [Fact]
@@ -238,11 +245,10 @@ namespace Prism.Avalonia.Tests
         public bool CreateContainerExtensionCalled { get; internal set; }
         public bool InitializeCalled { get; internal set; }
 
-        // WPF stuff.. Avalonia uses, base.Initialize()
-        ////public void CallOnStartup()
-        ////{
-        ////    base.OnStartup(null);
-        ////}
+        public void CallOnStartup()
+        {
+            // WPF: base.OnStartup(null);
+        }
 
         public override void Initialize()
         {

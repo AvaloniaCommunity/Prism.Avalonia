@@ -14,14 +14,17 @@
 
 ## Action Items
 
-* [ ] Upgrade Prism.Avalonia
+* [X] Upgrade Prism.Avalonia
 * [X] Upgrade Prism.DryIoc
-* [ ] Upgrade Prism.Unity
 * [X] Remove IOCs not supported by Prism v8.1
+* [X] Add Unit Tests, matching PrismLibrary
+* [X] Upgrade Samples
+
+### Out of Scope
+
+* [ ] Upgrade Prism.Unity
 * [ ] Add Prism Dialogs for Avalonia
-* [ ] Upgrade Samples
 * [ ] Restructure folders to match PrismLibrary
-* [ ] Add Unit Tests, matching PrismLibrary
 
 ## Upgrade Progress
 
@@ -82,7 +85,7 @@
 | Modularity\ModulesConfigurationSection.Desktop.cs             | :heavy_check_mark:
 | Modularity\ModuleTypeLoaderNotFoundException.cs               | :heavy_check_mark:
 | Modularity\ModuleTypeLoaderNotFoundException.Desktop.cs       | :heavy_check_mark:
-| Modularity\XamlModuleCatalog.cs                               | :warning: :new: | _disabled; only used by WPF, not XF, Maui or UNO._
+| Modularity\XamlModuleCatalog.cs                               | :white_square_button: :new: | _disabled; only used by WPF, not XF, Maui or UNO._
 | Mvvm\ViewModuleLocator.cs                                     | :heavy_check_mark:
 | Properties\AssemblyInfo                                       | :heavy_check_mark:
 | Properties\Resources.resx                                     | :heavy_check_mark:
@@ -90,7 +93,7 @@
 | Properties\Settings.Designer.cs                               | :heavy_check_mark:
 | Properties\Settings.settings                                  | :heavy_check_mark:
 | Regions\Behaviors\AutoPopulateRegionBehavior.cs               | :heavy_check_mark:
-| Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs  | :warning:   | Needs reviewed; Equivilant, `BindRegionContextToDependencyObjectBehavior`
+| Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs | :heavy_check_mark:   | Equivilant, `BindRegionContextToDependencyObjectBehavior`
 | Regions\Behaviors\ClearChildViewsRegionBehavior.cs            | :heavy_check_mark:
 | Regions\Behaviors\DelayedRegionCreationBehavior.cs            | :warning:     | Needs Avalonia equivilant of `FrameworkContentElement += Loaded`
 | Regions\Behaviors\DestructibleRegionBehavior.cs               | :heavy_check_mark: :new:
@@ -98,12 +101,12 @@
 | Regions\Behaviors\RegionActiveAwareBehavior.cs                | :heavy_check_mark:
 | Regions\Behaviors\RegionCreationException.cs                  | :heavy_check_mark:
 | Regions\Behaviors\RegionCreationException.Desktop.cs          | :heavy_check_mark:
-| Regions\Behaviors\RegionManagerRegistrationBehavior.cs        | :heavy_check_mark: :warning: | Needs reviewed
+| Regions\Behaviors\RegionManagerRegistrationBehavior.cs        | :heavy_check_mark:
 | Regions\Behaviors\RegionMemberLifetimeBehavior.cs             | :heavy_check_mark:
 | Regions\Behaviors\SelectorItemsSourceSyncBehavior.cs          | :white_square_button: :warning: | Needs attention
 | Regions\Behaviors\SyncRegionContextWithHostBehavior.cs        | :heavy_check_mark:
 | Regions\AllActiveRegion.cs                    | :heavy_check_mark:
-| Regions\ContentControlRegionAdapter.cs        | :white_square_button: :warning: | Needs attention
+| Regions\ContentControlRegionAdapter.cs        | :heavy_check_mark:
 | Regions\DefaultRegionManagerAccessor.cs       | :heavy_check_mark:
 | Regions\IConfirmNavigationRequest.cs          | :heavy_check_mark:
 | Regions\IJournalAware.cs                      | :heavy_check_mark:
