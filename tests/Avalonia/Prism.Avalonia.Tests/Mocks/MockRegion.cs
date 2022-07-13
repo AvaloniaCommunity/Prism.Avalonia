@@ -1,6 +1,3 @@
-
-
-using System;
 using System.ComponentModel;
 using Prism.Regions;
 
@@ -9,6 +6,7 @@ namespace Prism.Avalonia.Tests.Mocks
     internal class MockRegion : IRegion
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         public Func<string, object> GetViewStringDelegate { get; set; }
 
         private MockViewsCollection views = new MockViewsCollection();
@@ -85,7 +83,6 @@ namespace Prism.Avalonia.Tests.Mocks
             throw new System.NotImplementedException();
         }
 
-
         public void RequestNavigate(System.Uri target, System.Action<NavigationResult> navigationCallback)
         {
             throw new System.NotImplementedException();
@@ -107,17 +104,10 @@ namespace Prism.Avalonia.Tests.Mocks
             set { throw new System.NotImplementedException(); }
         }
 
-
         public System.Comparison<object> SortComparison
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            get { throw new System.NotImplementedException(); }
+            set { throw new System.NotImplementedException(); }
         }
     }
 }

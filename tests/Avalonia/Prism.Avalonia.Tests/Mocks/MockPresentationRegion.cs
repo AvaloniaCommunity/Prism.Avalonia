@@ -1,6 +1,3 @@
-
-
-using System;
 using System.ComponentModel;
 using Prism.Regions;
 

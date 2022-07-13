@@ -1,42 +1,38 @@
-
-
 using System;
 using System.Collections.Specialized;
 using System.Linq;
-using CommonServiceLocator;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Prism.Ioc;
 using Prism.Regions;
 using Prism.Avalonia.Tests.Mocks;
+using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
 {
-    [TestClass]
     public class RegionFixture
     {
-        [TestMethod]
+        [Fact]
         public void WhenRegionConstructed_SortComparisonIsDefault()
         {
             IRegion region = new Region();
 
-            Assert.IsNotNull(region.SortComparison);
-            Assert.AreEqual(region.SortComparison, Region.DefaultSortComparison);
+            Assert.NotNull(region.SortComparison);
+            Assert.Equal(region.SortComparison, Region.DefaultSortComparison);
         }
 
-        [TestMethod]
+        [Fact]
         public void CanAddContentToRegion()
         {
             IRegion region = new Region();
 
-            Assert.AreEqual(0, region.Views.Cast<object>().Count());
+            Assert.Empty(region.Views.Cast<object>());
 
             region.Add(new object());
 
-            Assert.AreEqual(1, region.Views.Cast<object>().Count());
+            Assert.Single(region.Views.Cast<object>());
         }
 
-
-        [TestMethod]
+        [Fact]
         public void CanRemoveContentFromRegion()
         {
             IRegion region = new Region();
@@ -45,22 +41,25 @@ namespace Prism.Avalonia.Tests.Regions
             region.Add(view);
             region.Remove(view);
 
-            Assert.AreEqual(0, region.Views.Cast<object>().Count());
+            Assert.Empty(region.Views.Cast<object>());
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void RemoveInexistentViewThrows()
         {
-            IRegion region = new Region();
-            object view = new object();
+            var ex = Assert.Throws<ArgumentException>(() =>
+            {
+                IRegion region = new Region();
+                object view = new object();
 
-            region.Remove(view);
+                region.Remove(view);
 
-            Assert.AreEqual(0, region.Views.Cast<object>().Count());
+                Assert.Empty(region.Views.Cast<object>());
+            });
+
         }
 
-        [TestMethod]
+        [Fact]
         public void RegionExposesCollectionOfContainedViews()
         {
             IRegion region = new Region();
@@ -71,12 +70,12 @@ namespace Prism.Avalonia.Tests.Regions
 
             var views = region.Views;
 
-            Assert.IsNotNull(views);
-            Assert.AreEqual(1, views.Cast<object>().Count());
-            Assert.AreSame(view, views.Cast<object>().ElementAt(0));
+            Assert.NotNull(views);
+            Assert.Single(views.Cast<object>());
+            Assert.Same(view, views.Cast<object>().ElementAt(0));
         }
 
-        [TestMethod]
+        [Fact]
         public void CanAddAndRetrieveNamedViewInstance()
         {
             IRegion region = new Region();
@@ -84,21 +83,24 @@ namespace Prism.Avalonia.Tests.Regions
             region.Add(myView, "MyView");
             object returnedView = region.GetView("MyView");
 
-            Assert.IsNotNull(returnedView);
-            Assert.AreSame(returnedView, myView);
+            Assert.NotNull(returnedView);
+            Assert.Same(returnedView, myView);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [Fact]
         public void AddingDuplicateNamedViewThrows()
         {
-            IRegion region = new Region();
+            var ex = Assert.Throws<InvalidOperationException>(() =>
+            {
+                IRegion region = new Region();
 
-            region.Add(new object(), "MyView");
-            region.Add(new object(), "MyView");
+                region.Add(new object(), "MyView");
+                region.Add(new object(), "MyView");
+            });
+
         }
 
-        [TestMethod]
+        [Fact]
         public void AddNamedViewIsAlsoListedInViewsCollection()
         {
             IRegion region = new Region();
@@ -106,38 +108,43 @@ namespace Prism.Avalonia.Tests.Regions
 
             region.Add(myView, "MyView");
 
-            Assert.AreEqual(1, region.Views.Cast<object>().Count());
-            Assert.AreSame(myView, region.Views.Cast<object>().ElementAt(0));
+            Assert.Single(region.Views.Cast<object>());
+            Assert.Same(myView, region.Views.Cast<object>().ElementAt(0));
         }
 
-        [TestMethod]
+        [Fact]
         public void GetViewReturnsNullWhenViewDoesNotExistInRegion()
         {
             IRegion region = new Region();
 
-            Assert.IsNull(region.GetView("InexistentView"));
+            Assert.Null(region.GetView("InexistentView"));
         }
 
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void GetViewWithNullOrEmptyStringThrows()
         {
-            IRegion region = new Region();
+            var ex = Assert.Throws<ArgumentException>(() =>
+            {
+                IRegion region = new Region();
 
-            region.GetView(string.Empty);
+                region.GetView(string.Empty);
+            });
+
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void AddNamedViewWithNullOrEmptyStringNameThrows()
         {
-            IRegion region = new Region();
+            var ex = Assert.Throws<ArgumentException>(() =>
+            {
+                IRegion region = new Region();
 
-            region.Add(new object(), string.Empty);
+                region.Add(new object(), string.Empty);
+            });
+
         }
 
-        [TestMethod]
+        [Fact]
         public void GetViewReturnsNullAfterRemovingViewFromRegion()
         {
             IRegion region = new Region();
@@ -145,10 +152,10 @@ namespace Prism.Avalonia.Tests.Regions
             region.Add(myView, "MyView");
             region.Remove(myView);
 
-            Assert.IsNull(region.GetView("MyView"));
+            Assert.Null(region.GetView("MyView"));
         }
 
-        [TestMethod]
+        [Fact]
         public void AddViewPassesSameScopeByDefaultToView()
         {
             var regionManager = new MockRegionManager();
@@ -158,10 +165,10 @@ namespace Prism.Avalonia.Tests.Regions
 
             region.Add(myView);
 
-            Assert.AreSame(regionManager, myView.GetValue(RegionManager.RegionManagerProperty));
+            Assert.Same(regionManager, myView.GetValue(RegionManager.RegionManagerProperty));
         }
 
-        [TestMethod]
+        [Fact]
         public void AddViewPassesSameScopeByDefaultToNamedView()
         {
             var regionManager = new MockRegionManager();
@@ -171,10 +178,10 @@ namespace Prism.Avalonia.Tests.Regions
 
             region.Add(myView, "MyView");
 
-            Assert.AreSame(regionManager, myView.GetValue(RegionManager.RegionManagerProperty));
+            Assert.Same(regionManager, myView.GetValue(RegionManager.RegionManagerProperty));
         }
 
-        [TestMethod]
+        [Fact]
         public void AddViewPassesDiferentScopeWhenAdding()
         {
             var regionManager = new MockRegionManager();
@@ -184,10 +191,10 @@ namespace Prism.Avalonia.Tests.Regions
 
             region.Add(myView, "MyView", true);
 
-            Assert.AreNotSame(regionManager, myView.GetValue(RegionManager.RegionManagerProperty));
+            Assert.NotSame(regionManager, myView.GetValue(RegionManager.RegionManagerProperty));
         }
 
-        [TestMethod]
+        [Fact]
         public void CreatingNewScopesAsksTheRegionManagerForNewInstance()
         {
             var regionManager = new MockRegionManager();
@@ -197,10 +204,10 @@ namespace Prism.Avalonia.Tests.Regions
 
             region.Add(myView, "MyView", true);
 
-            Assert.IsTrue(regionManager.CreateRegionManagerCalled);
+            Assert.True(regionManager.CreateRegionManagerCalled);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddViewReturnsExistingRegionManager()
         {
             var regionManager = new MockRegionManager();
@@ -210,10 +217,10 @@ namespace Prism.Avalonia.Tests.Regions
 
             var returnedRegionManager = region.Add(myView, "MyView", false);
 
-            Assert.AreSame(regionManager, returnedRegionManager);
+            Assert.Same(regionManager, returnedRegionManager);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddViewReturnsNewRegionManager()
         {
             var regionManager = new MockRegionManager();
@@ -223,10 +230,10 @@ namespace Prism.Avalonia.Tests.Regions
 
             var returnedRegionManager = region.Add(myView, "MyView", true);
 
-            Assert.AreNotSame(regionManager, returnedRegionManager);
+            Assert.NotSame(regionManager, returnedRegionManager);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddingNonDependencyObjectToRegionDoesNotThrow()
         {
             IRegion region = new Region();
@@ -234,81 +241,90 @@ namespace Prism.Avalonia.Tests.Regions
 
             region.Add(model);
 
-            Assert.AreEqual(1, region.Views.Cast<object>().Count());
+            Assert.Single(region.Views.Cast<object>());
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void ActivateNonAddedViewThrows()
         {
-            IRegion region = new Region();
+            var ex = Assert.Throws<ArgumentException>(() =>
+            {
+                IRegion region = new Region();
 
-            object nonAddedView = new object();
+                object nonAddedView = new object();
 
-            region.Activate(nonAddedView);
+                region.Activate(nonAddedView);
+            });
+
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void DeactivateNonAddedViewThrows()
         {
-            IRegion region = new Region();
+            var ex = Assert.Throws<ArgumentException>(() =>
+            {
+                IRegion region = new Region();
 
-            object nonAddedView = new object();
+                object nonAddedView = new object();
 
-            region.Deactivate(nonAddedView);
+                region.Deactivate(nonAddedView);
+            });
+
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void ActivateNullViewThrows()
         {
-            IRegion region = new Region();
+            var ex = Assert.Throws<ArgumentNullException>(() =>
+            {
+                IRegion region = new Region();
 
-            region.Activate(null);
+                region.Activate(null);
+            });
+
         }
 
-        [TestMethod]
+        [Fact]
         public void AddViewRaisesCollectionViewEvent()
         {
             bool viewAddedCalled = false;
 
             IRegion region = new Region();
             region.Views.CollectionChanged += (sender, e) =>
-                                                  {
-                                                      if (e.Action == NotifyCollectionChangedAction.Add)
-                                                          viewAddedCalled = true;
-                                                  };
+            {
+                if (e.Action == NotifyCollectionChangedAction.Add)
+                    viewAddedCalled = true;
+            };
 
             object model = new object();
-            Assert.IsFalse(viewAddedCalled);
+            Assert.False(viewAddedCalled);
             region.Add(model);
 
-            Assert.IsTrue(viewAddedCalled);
+            Assert.True(viewAddedCalled);
         }
 
-        [TestMethod]
+        [Fact]
         public void ViewAddedEventPassesTheViewAddedInTheEventArgs()
         {
             object viewAdded = null;
 
             IRegion region = new Region();
             region.Views.CollectionChanged += (sender, e) =>
-                                                  {
-                                                      if (e.Action == NotifyCollectionChangedAction.Add)
-                                                      {
-                                                          viewAdded = e.NewItems[0];
-                                                      }
-                                                  };
+            {
+                if (e.Action == NotifyCollectionChangedAction.Add)
+                {
+                    viewAdded = e.NewItems[0];
+                }
+            };
             object model = new object();
-            Assert.IsNull(viewAdded);
+            Assert.Null(viewAdded);
             region.Add(model);
 
-            Assert.IsNotNull(viewAdded);
-            Assert.AreSame(model, viewAdded);
+            Assert.NotNull(viewAdded);
+            Assert.Same(model, viewAdded);
         }
 
-        [TestMethod]
+        [Fact]
         public void RemoveViewFiresViewRemovedEvent()
         {
             bool viewRemoved = false;
@@ -316,40 +332,40 @@ namespace Prism.Avalonia.Tests.Regions
             IRegion region = new Region();
             object model = new object();
             region.Views.CollectionChanged += (sender, e) =>
-                                                  {
-                                                      if (e.Action == NotifyCollectionChangedAction.Remove)
-                                                          viewRemoved = true;
-                                                  };
+            {
+                if (e.Action == NotifyCollectionChangedAction.Remove)
+                    viewRemoved = true;
+            };
 
             region.Add(model);
-            Assert.IsFalse(viewRemoved);
+            Assert.False(viewRemoved);
 
             region.Remove(model);
 
-            Assert.IsTrue(viewRemoved);
+            Assert.True(viewRemoved);
         }
 
-        [TestMethod]
+        [Fact]
         public void ViewRemovedEventPassesTheViewRemovedInTheEventArgs()
         {
             object removedView = null;
 
             IRegion region = new Region();
             region.Views.CollectionChanged += (sender, e) =>
-                                                  {
-                                                      if (e.Action == NotifyCollectionChangedAction.Remove)
-                                                          removedView = e.OldItems[0];
-                                                  };
+            {
+                if (e.Action == NotifyCollectionChangedAction.Remove)
+                    removedView = e.OldItems[0];
+            };
             object model = new object();
             region.Add(model);
-            Assert.IsNull(removedView);
+            Assert.Null(removedView);
 
             region.Remove(model);
 
-            Assert.AreSame(model, removedView);
+            Assert.Same(model, removedView);
         }
 
-        [TestMethod]
+        [Fact]
         public void ShowViewFiresViewShowedEvent()
         {
             bool viewActivated = false;
@@ -357,19 +373,19 @@ namespace Prism.Avalonia.Tests.Regions
             IRegion region = new Region();
             object model = new object();
             region.ActiveViews.CollectionChanged += (o, e) =>
-                                                        {
-                                                            if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems.Contains(model))
-                                                                viewActivated = true;
-                                                        };
+            {
+                if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems.Contains(model))
+                    viewActivated = true;
+            };
             region.Add(model);
-            Assert.IsFalse(viewActivated);
+            Assert.False(viewActivated);
 
             region.Activate(model);
 
-            Assert.IsTrue(viewActivated);
+            Assert.True(viewActivated);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddingSameViewTwiceThrows()
         {
             object view = new object();
@@ -379,33 +395,33 @@ namespace Prism.Avalonia.Tests.Regions
             try
             {
                 region.Add(view);
-                Assert.Fail();
+                //Assert.Fail();
             }
             catch (InvalidOperationException ex)
             {
-                Assert.AreEqual("View already exists in region.", ex.Message);
+                Assert.Equal("View already exists in region.", ex.Message);
             }
             catch
             {
-                Assert.Fail();
+                //Assert.Fail();
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void RemovingViewAlsoRemovesItFromActiveViews()
         {
             IRegion region = new Region();
             object model = new object();
             region.Add(model);
             region.Activate(model);
-            Assert.IsTrue(region.ActiveViews.Contains(model));
+            Assert.True(region.ActiveViews.Contains(model));
 
             region.Remove(model);
 
-            Assert.IsFalse(region.ActiveViews.Contains(model));
+            Assert.False(region.ActiveViews.Contains(model));
         }
 
-        [TestMethod]
+        [Fact]
         public void ShouldGetNotificationWhenContextChanges()
         {
             IRegion region = new Region();
@@ -414,17 +430,22 @@ namespace Prism.Avalonia.Tests.Regions
 
             region.Context = "MyNewContext";
 
-            Assert.IsTrue(contextChanged);
+            Assert.True(contextChanged);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [Fact]
         public void ChangingNameOnceItIsSetThrows()
         {
-            var region = new Region();
-            region.Name = "MyRegion";
+            var ex = Assert.Throws<InvalidOperationException>(() =>
+            {
+                var region = new Region
+                {
+                    Name = "MyRegion"
+                };
 
-            region.Name = "ChangedRegionName";
+                region.Name = "ChangedRegionName";
+            });
+
         }
 
         private class MockRegionManager : IRegionManager
@@ -506,9 +527,19 @@ namespace Prism.Avalonia.Tests.Regions
             {
                 throw new NotImplementedException();
             }
+
+            public IRegionManager AddToRegion(string regionName, string viewName)
+            {
+                throw new NotImplementedException();
+            }
+
+            public IRegionManager RegisterViewWithRegion(string regionName, string viewName)
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        [TestMethod]
+        [Fact]
         public void NavigateDelegatesToIRegionNavigationService()
         {
             try
@@ -526,9 +557,10 @@ namespace Prism.Avalonia.Tests.Regions
                 Mock<IRegionNavigationService> mockRegionNavigationService = new Mock<IRegionNavigationService>();
                 mockRegionNavigationService.Setup(x => x.RequestNavigate(uri, navigationCallback, navigationParameters)).Verifiable();
 
-                Mock<IServiceLocator> mockServiceLocator = new Mock<IServiceLocator>();
-                mockServiceLocator.Setup(x => x.GetInstance<IRegionNavigationService>()).Returns(mockRegionNavigationService.Object);
-                ServiceLocator.SetLocatorProvider(() => mockServiceLocator.Object);
+                var containerMock = new Mock<IContainerExtension>();
+                containerMock.Setup(x => x.Resolve(typeof(IRegionNavigationService))).Returns(mockRegionNavigationService.Object);
+                ContainerLocator.ResetContainer();
+                ContainerLocator.SetContainerExtension(() => containerMock.Object);
 
                 // Act
                 region.RequestNavigate(uri, navigationCallback, navigationParameters);
@@ -538,11 +570,11 @@ namespace Prism.Avalonia.Tests.Regions
             }
             finally
             {
-                ServiceLocator.SetLocatorProvider(() => null);
+                ContainerLocator.ResetContainer();
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void WhenViewsWithSortHintsAdded_RegionSortsViews()
         {
             IRegion region = new Region();
@@ -555,13 +587,13 @@ namespace Prism.Avalonia.Tests.Regions
             region.Add(view2);
             region.Add(view3);
 
-            Assert.AreEqual(3, region.Views.Count());
-            Assert.AreSame(view2, region.Views.ElementAt(0));
-            Assert.AreSame(view3, region.Views.ElementAt(1));
-            Assert.AreSame(view1, region.Views.ElementAt(2));
+            Assert.Equal(3, region.Views.Count());
+            Assert.Same(view2, region.Views.ElementAt(0));
+            Assert.Same(view3, region.Views.ElementAt(1));
+            Assert.Same(view1, region.Views.ElementAt(2));
         }
 
-        [TestMethod]
+        [StaFact]
         public void WhenViewHasBeenRemovedAndRegionManagerPropertyCleared_ThenItCanBeAddedAgainToARegion()
         {
             IRegion region = new Region { RegionManager = new MockRegionManager() };
@@ -570,19 +602,19 @@ namespace Prism.Avalonia.Tests.Regions
 
             var scopedRegionManager = region.Add(view, null, true);
 
-            Assert.AreEqual(view, region.Views.First());
+            Assert.Equal(view, region.Views.First());
 
             region.Remove(view);
 
             view.ClearValue(RegionManager.RegionManagerProperty);
 
-            Assert.AreEqual(0, region.Views.Cast<object>().Count());
+            Assert.Empty(region.Views.Cast<object>());
 
             var newScopedRegion = region.Add(view, null, true);
 
-            Assert.AreEqual(view, region.Views.First());
+            Assert.Equal(view, region.Views.First());
 
-            Assert.AreSame(newScopedRegion, view.GetValue(RegionManager.RegionManagerProperty));
+            Assert.Same(newScopedRegion, view.GetValue(RegionManager.RegionManagerProperty));
         }
 
         [ViewSortHint("C")]

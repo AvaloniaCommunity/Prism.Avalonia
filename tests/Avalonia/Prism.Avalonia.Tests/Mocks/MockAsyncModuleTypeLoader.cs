@@ -1,7 +1,3 @@
-
-
-using System;
-using System.Threading;
 using Prism.Modularity;
 
 namespace Prism.Avalonia.Tests.Mocks
@@ -36,7 +32,6 @@ namespace Prism.Avalonia.Tests.Mocks
             retrieverThread.Start();
         }
 
-        
         public event EventHandler<ModuleDownloadProgressChangedEventArgs> ModuleDownloadProgressChanged;
 
         private void RaiseLoadModuleProgressChanged(ModuleDownloadProgressChangedEventArgs e)

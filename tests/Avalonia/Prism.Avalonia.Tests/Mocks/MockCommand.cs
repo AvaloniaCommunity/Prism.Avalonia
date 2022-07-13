@@ -1,6 +1,3 @@
-
-
-using System;
 using System.Windows.Input;
 
 namespace Prism.Avalonia.Tests.Mocks

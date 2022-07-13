@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace Prism.Wpf.Tests
+namespace Prism.Avalonia.Tests
 {
     public class ExceptionExtensionsFixture
     {

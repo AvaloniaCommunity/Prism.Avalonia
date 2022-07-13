@@ -9,7 +9,7 @@ using Prism.Ioc;
 using Prism.Modularity;
 using Xunit;
 
-namespace Prism.Wpf.Tests
+namespace Prism.Avalonia.Tests
 {
     public class CompilerHelper
     {

@@ -1,13 +1,9 @@
-
-
-using System;
-using System.Collections.Generic;
 using Prism.Modularity;
 
 namespace Prism.Avalonia.Tests.Mocks
 {
     public class MockModuleTypeLoader : IModuleTypeLoader
-    {        
+    {
         public List<IModuleInfo> LoadedModules = new List<IModuleInfo>();
         public bool canLoadModuleTypeReturnValue = true;
         public Exception LoadCompletedError;

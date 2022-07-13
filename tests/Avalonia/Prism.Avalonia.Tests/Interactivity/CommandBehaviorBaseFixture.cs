@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Prism.Interactivity;
 using Xunit;
 
-namespace Prism.Wpf.Tests.Interactivity
+namespace Prism.Avalonia.Tests.Interactivity
 {
 
     public class CommandBehaviorBaseFixture

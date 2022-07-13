@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Prism.Regions;
-using Prism.Wpf.Tests.Mocks;
+using Prism.Avalonia.Tests.Mocks;
 using Xunit;
 
 

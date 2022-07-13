@@ -14,7 +14,7 @@ using Prism.Regions.Behaviors;
 using Prism.Services.Dialogs;
 using Xunit;
 
-namespace Prism.Wpf.Tests
+namespace Prism.Avalonia.Tests
 {
     public class PrismApplicationSetup : IDisposable
     {

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xunit;
 
-namespace Prism.Wpf.Tests
+namespace Prism.Avalonia.Tests
 {
 
     public class CollectionExtensionsFixture

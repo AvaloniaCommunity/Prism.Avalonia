@@ -1,8 +1,4 @@
-
-
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Prism.Regions;
 
 namespace Prism.Avalonia.Tests.Mocks
@@ -86,6 +82,16 @@ namespace Prism.Avalonia.Tests.Mocks
         public bool Navigate(System.Uri source)
         {
             throw new System.NotImplementedException();
+        }
+
+        public IRegionManager AddToRegion(string regionName, string viewName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IRegionManager RegisterViewWithRegion(string regionName, string viewName)
+        {
+            throw new NotImplementedException();
         }
     }
 

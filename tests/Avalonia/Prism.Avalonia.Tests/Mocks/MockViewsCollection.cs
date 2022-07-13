@@ -1,5 +1,3 @@
-
-
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,7 +12,7 @@ namespace Prism.Avalonia.Tests.Mocks
 
         public void Add(object view)
         {
-            this.Items.Add(view);
+            Items.Add(view);
         }
 
         public bool Contains(object value)

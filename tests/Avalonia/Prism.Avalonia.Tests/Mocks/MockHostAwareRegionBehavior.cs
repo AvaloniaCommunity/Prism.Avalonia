@@ -1,6 +1,4 @@
-
-
-using System.Windows;
+using Avalonia;
 using Prism.Regions;
 using Prism.Regions.Behaviors;
 
@@ -12,9 +10,9 @@ namespace Prism.Avalonia.Tests.Mocks
 
         public void Attach()
         {
-            
+
         }
 
-        public DependencyObject HostControl { get; set; }
+        public AvaloniaObject HostControl { get; set; }
     }
 }

@@ -33,4 +33,10 @@
     <ProjectReference Include="..\..\..\src\Prism.Avalonia\Prism.Avalonia.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Modularity\ModuleCatalogXaml\InvalidDependencyModuleCatalog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
 </Project>

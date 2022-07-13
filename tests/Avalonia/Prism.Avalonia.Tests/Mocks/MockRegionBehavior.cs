@@ -1,6 +1,3 @@
-
-
-using System;
 using Prism.Regions;
 
 namespace Prism.Avalonia.Tests.Mocks
@@ -18,7 +15,7 @@ namespace Prism.Avalonia.Tests.Mocks
         {
             if (OnAttach != null)
                 OnAttach();
-            
+
         }
     }
 }

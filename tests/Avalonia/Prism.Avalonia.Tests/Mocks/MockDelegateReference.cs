@@ -1,6 +1,3 @@
-
-
-using System;
 using Prism.Events;
 
 namespace Prism.Avalonia.Tests.Mocks
@@ -11,7 +8,6 @@ namespace Prism.Avalonia.Tests.Mocks
 
         public MockDelegateReference()
         {
-
         }
 
         public MockDelegateReference(Delegate target)

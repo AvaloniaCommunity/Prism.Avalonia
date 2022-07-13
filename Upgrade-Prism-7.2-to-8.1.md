@@ -248,15 +248,47 @@ Test writted to [Prism.WPF specs](https://github.com/PrismLibrary/Prism/tree/mas
 | Mocks\Modules\MockModuleReferencingAssembly.cs    | :heavy_check_mark:
 | Mocks\Modules\MockModuleReferencingOtherModule.cs | :heavy_check_mark:
 | Mocks\Modules\MockModuleThrowingException.cs      | :heavy_check_mark:
+| Mocks\MockAsyncModuleTypeLoader.cs                | :heavy_check_mark:
+| Mocks\MockClickableObject.cs                      | :heavy_check_mark:
+| Mocks\MockCommand.cs                              | :heavy_check_mark:
+| Mocks\MockConfigurationStore.Desktop.cs           | :heavy_check_mark:
+| Mocks\MockContainerAdapter.cs                     | :heavy_check_mark:
+| Mocks\MockDelegateReference.cs                    | :heavy_check_mark:
+| Mocks\MockDependencyObject.cs                     | :heavy_check_mark:
+| Mocks\MockFrameworkContentElement.cs              | :heavy_check_mark: :warning: |  [https://github.com/AvaloniaUI/Avalonia/pull/8277]
+| Mocks\MockFrameworkElement.cs                     | :heavy_check_mark: :warning:
+| Mocks\MockHostAwareRegionBehavior.cs              | :heavy_check_mark:
+| Mocks\MockPresentationRegion.cs                   | :heavy_check_mark:
+| Mocks\MockRegion.cs                               | :heavy_check_mark:
+| Mocks\MockRegionAdapter.cs                        | :heavy_check_mark:
+| Mocks\MockRegionBehavior.cs                       | :heavy_check_mark:
+| Mocks\MockRegionBehaviorCollection.cs             | :heavy_check_mark:
+| Mocks\MockRegionManager.cs                        | :heavy_check_mark:
+| Mocks\MockRegionManagerAccessor.cs                | :heavy_check_mark:
+| Mocks\MockSortableViews.cs                        | :heavy_check_mark:
+| Mocks\MockViewsCollection.cs                      | :heavy_check_mark:
 | ViewModels\MockOptOutViewModel.cs                 | :heavy_check_mark:
 | ViewModels\MockViewModel.cs                       | :heavy_check_mark:
 | Views\Mock.cs                                     | :heavy_check_mark:
 | Views\MockOptOut.cs                               | :heavy_check_mark:
 | Views\MockView.cs                                 | :heavy_check_mark:
-| Modularity\ ...                                   | :white_square_button:
-| ...                                               | :white_square_button:
-| Modularity\ModuleCatalogXml\ ...                  | :white_square_button:
-| ...                                               | :white_square_button:
+| Modularity\AssemblyResolverFixture.Desktop.cs     | :heavy_check_mark:
+| Modularity\ConfigurationModuleCatalogFixture.cs   | :heavy_check_mark:
+| Modularity\ConfigurationStoreFixture.cs           | :heavy_check_mark:
+| Modularity\DirectoryModuleCatalogFixture.cs       | :white_square_button: :warning:
+| Modularity\FileModuleTypeLoaderFixture.Desktop.cs | :heavy_check_mark:
+| Modularity\ModuleAttributeFixture.Desktop.cs      | :heavy_check_mark:
+| Modularity\ModuleCatalogFixture.cs                | :heavy_check_mark:
+| Modularity\ModuleDependencySolverFixture.cs       | :heavy_check_mark:
+| Modularity\ModuleInfoGroupExtensionsFixture.cs    | :heavy_check_mark:
+| Modularity\ModuleInfoGroupFixture.cs              | :heavy_check_mark:
+| Modularity\ModuleInitializerFixture.cs            | :heavy_check_mark:
+| Modularity\ModuleManagerExtensionsFixture.cs      | :heavy_check_mark:
+| Modularity\ModuleManagerFixture.cs                | :heavy_check_mark:
+| Modularity\XamlModuleCatalogFixture.txt.dll       | :heavy_check_mark:
+| Modularity\DirectoryModuleCatalogFixture.cs       | :heavy_check_mark:
+| Modularity\ModuleCatalogXml\InvalidDependencyModuleCatalog.xaml | :heavy_check_mark:
+| Modularity\ModuleCatalogXml\SimpleModuleCatalog.xaml            | :heavy_check_mark:
 | Mvvm\ViewModelLocatorFixture.cs                   | :heavy_check_mark:
 | Regions\AllActiveRegionFixture.cs                 | :heavy_check_mark:
 | Regions\ContentControlRegionAdapterFixture.cs     | :white_square_button: :warning:
