@@ -53,6 +53,7 @@ namespace Prism.Regions.Behaviors
                 {
                     throw new InvalidOperationException(Resources.HostControlCannotBeSetAfterAttach);
                 }
+
                 this.hostControl = value;
             }
         }

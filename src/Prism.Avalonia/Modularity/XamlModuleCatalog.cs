@@ -1,4 +1,6 @@
-﻿/*
+﻿// TODO: This feature is currently disabled temporally
+// NOTE: This is only used by Prism.WPF and not Prism.UNO, Prism.Forms, or Prism.MAUI
+/*
 using System;
 using System.IO;
 using Avalonia.Markup.Xaml;

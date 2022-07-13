@@ -14,14 +14,17 @@
 
 ## Action Items
 
-* [ ] Upgrade Prism.Avalonia
+* [X] Upgrade Prism.Avalonia
 * [X] Upgrade Prism.DryIoc
-* [ ] Upgrade Prism.Unity
 * [X] Remove IOCs not supported by Prism v8.1
+* [X] Add Unit Tests, matching PrismLibrary
+* [X] Upgrade Samples
+
+### Out of Scope
+
+* [ ] Upgrade Prism.Unity
 * [ ] Add Prism Dialogs for Avalonia
-* [ ] Upgrade Samples
 * [ ] Restructure folders to match PrismLibrary
-* [ ] Add Unit Tests, matching PrismLibrary
 
 ## Upgrade Progress
 
@@ -82,7 +85,7 @@
 | Modularity\ModulesConfigurationSection.Desktop.cs             | :heavy_check_mark:
 | Modularity\ModuleTypeLoaderNotFoundException.cs               | :heavy_check_mark:
 | Modularity\ModuleTypeLoaderNotFoundException.Desktop.cs       | :heavy_check_mark:
-| Modularity\XamlModuleCatalog.cs                               | :warning: :new: | _disabled; only used by WPF, not XF, Maui or UNO._
+| Modularity\XamlModuleCatalog.cs                               | :white_square_button: :new: | _disabled; only used by WPF, not XF, Maui or UNO._
 | Mvvm\ViewModuleLocator.cs                                     | :heavy_check_mark:
 | Properties\AssemblyInfo                                       | :heavy_check_mark:
 | Properties\Resources.resx                                     | :heavy_check_mark:
@@ -90,7 +93,7 @@
 | Properties\Settings.Designer.cs                               | :heavy_check_mark:
 | Properties\Settings.settings                                  | :heavy_check_mark:
 | Regions\Behaviors\AutoPopulateRegionBehavior.cs               | :heavy_check_mark:
-| Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs  | :warning:   | Needs reviewed; Equivilant, `BindRegionContextToDependencyObjectBehavior`
+| Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs | :heavy_check_mark:   | Equivilant, `BindRegionContextToDependencyObjectBehavior`
 | Regions\Behaviors\ClearChildViewsRegionBehavior.cs            | :heavy_check_mark:
 | Regions\Behaviors\DelayedRegionCreationBehavior.cs            | :warning:     | Needs Avalonia equivilant of `FrameworkContentElement += Loaded`
 | Regions\Behaviors\DestructibleRegionBehavior.cs               | :heavy_check_mark: :new:
@@ -98,12 +101,12 @@
 | Regions\Behaviors\RegionActiveAwareBehavior.cs                | :heavy_check_mark:
 | Regions\Behaviors\RegionCreationException.cs                  | :heavy_check_mark:
 | Regions\Behaviors\RegionCreationException.Desktop.cs          | :heavy_check_mark:
-| Regions\Behaviors\RegionManagerRegistrationBehavior.cs        | :heavy_check_mark: :warning: | Needs reviewed
+| Regions\Behaviors\RegionManagerRegistrationBehavior.cs        | :heavy_check_mark:
 | Regions\Behaviors\RegionMemberLifetimeBehavior.cs             | :heavy_check_mark:
 | Regions\Behaviors\SelectorItemsSourceSyncBehavior.cs          | :white_square_button: :warning: | Needs attention
 | Regions\Behaviors\SyncRegionContextWithHostBehavior.cs        | :heavy_check_mark:
 | Regions\AllActiveRegion.cs                    | :heavy_check_mark:
-| Regions\ContentControlRegionAdapter.cs        | :white_square_button: :warning: | Needs attention
+| Regions\ContentControlRegionAdapter.cs        | :heavy_check_mark:
 | Regions\DefaultRegionManagerAccessor.cs       | :heavy_check_mark:
 | Regions\IConfirmNavigationRequest.cs          | :heavy_check_mark:
 | Regions\IJournalAware.cs                      | :heavy_check_mark:
@@ -220,6 +223,132 @@ Containers is a :new: Folder
 | Properties\Resources.resx                     | :white_square_button:
 | Regions\UnityRegionNavigationContentLoader.cs | :white_square_button:
 
+### Tests - Prism.Avalonia.Tests
+
+Test writted to [Prism.WPF specs](https://github.com/PrismLibrary/Prism/tree/master/tests/Wpf/Prism.Wpf.Tests).
+
+| File                                              | Status  |  Notes |
+|---------------------------------------------------|---------|--------|
+| Prism.Avalonia.Tests.csproj                       | :heavy_check_mark: | Upgraded to .NET 6 (_Prism v8.1.97 uses .NET v4.7.1_)
+| CollectionChangedTracker.cs                       | :heavy_check_mark:
+| CollectionExtensionsFixture.cs                    | :heavy_check_mark:
+| CompilerHelper.Desktop.cs                         | :heavy_check_mark:
+| ExceptionAssert.cs                                | :heavy_check_mark:
+| ListDictionaryFixture.cs                          | :heavy_check_mark:
+| CollectionChangedTracker.cs                       | :heavy_check_mark:
+| PrismApplicationBaseFixture.cs                    | :white_square_button: :warning:
+| PrismBootstrapperBaseFixture.cs                   | :white_square_button: | Throwing, _"protection level errors."_
+| Logging\ ...                                      | :x:
+| Interactivity\CommandBehaviorBaseFixture.cs       | :heavy_check_mark:
+| Interactivity\InvokeCommandActionFixture.cs       | :heavy_check_mark:
+| Mocks\Modules\MockAbstractModule.cs               | :heavy_check_mark:
+| Mocks\Modules\MockAttributedModule.cs             | :heavy_check_mark:
+| Mocks\Modules\MockDependantModule.cs              | :heavy_check_mark:
+| Mocks\Modules\MockDependencyModule.cs             | :heavy_check_mark:
+| Mocks\Modules\MockExposingTypeFromGacAssemblyModule.cs | :heavy_check_mark:
+| Mocks\Modules\MockModuleA.cs                      | :heavy_check_mark:
+| Mocks\Modules\MockModuleReferencedAssembly.cs     | :heavy_check_mark:
+| Mocks\Modules\MockModuleReferencingAssembly.cs    | :heavy_check_mark:
+| Mocks\Modules\MockModuleReferencingOtherModule.cs | :heavy_check_mark:
+| Mocks\Modules\MockModuleThrowingException.cs      | :heavy_check_mark:
+| Mocks\MockAsyncModuleTypeLoader.cs                | :heavy_check_mark:
+| Mocks\MockClickableObject.cs                      | :heavy_check_mark:
+| Mocks\MockCommand.cs                              | :heavy_check_mark:
+| Mocks\MockConfigurationStore.Desktop.cs           | :heavy_check_mark:
+| Mocks\MockContainerAdapter.cs                     | :heavy_check_mark:
+| Mocks\MockDelegateReference.cs                    | :heavy_check_mark:
+| Mocks\MockDependencyObject.cs                     | :heavy_check_mark:
+| Mocks\MockFrameworkContentElement.cs              | :heavy_check_mark: :warning: |  [https://github.com/AvaloniaUI/Avalonia/pull/8277]
+| Mocks\MockFrameworkElement.cs                     | :heavy_check_mark: :warning:
+| Mocks\MockHostAwareRegionBehavior.cs              | :heavy_check_mark:
+| Mocks\MockPresentationRegion.cs                   | :heavy_check_mark:
+| Mocks\MockRegion.cs                               | :heavy_check_mark:
+| Mocks\MockRegionAdapter.cs                        | :heavy_check_mark:
+| Mocks\MockRegionBehavior.cs                       | :heavy_check_mark:
+| Mocks\MockRegionBehaviorCollection.cs             | :heavy_check_mark:
+| Mocks\MockRegionManager.cs                        | :heavy_check_mark:
+| Mocks\MockRegionManagerAccessor.cs                | :heavy_check_mark:
+| Mocks\MockSortableViews.cs                        | :heavy_check_mark:
+| Mocks\MockViewsCollection.cs                      | :heavy_check_mark:
+| ViewModels\MockOptOutViewModel.cs                 | :heavy_check_mark:
+| ViewModels\MockViewModel.cs                       | :heavy_check_mark:
+| Views\Mock.cs                                     | :heavy_check_mark:
+| Views\MockOptOut.cs                               | :heavy_check_mark:
+| Views\MockView.cs                                 | :heavy_check_mark:
+| Modularity\AssemblyResolverFixture.Desktop.cs     | :heavy_check_mark:
+| Modularity\ConfigurationModuleCatalogFixture.cs   | :heavy_check_mark:
+| Modularity\ConfigurationStoreFixture.cs           | :heavy_check_mark:
+| Modularity\DirectoryModuleCatalogFixture.cs       | :white_square_button: :warning:
+| Modularity\FileModuleTypeLoaderFixture.Desktop.cs | :heavy_check_mark:
+| Modularity\ModuleAttributeFixture.Desktop.cs      | :heavy_check_mark:
+| Modularity\ModuleCatalogFixture.cs                | :heavy_check_mark:
+| Modularity\ModuleDependencySolverFixture.cs       | :heavy_check_mark:
+| Modularity\ModuleInfoGroupExtensionsFixture.cs    | :heavy_check_mark:
+| Modularity\ModuleInfoGroupFixture.cs              | :heavy_check_mark:
+| Modularity\ModuleInitializerFixture.cs            | :heavy_check_mark:
+| Modularity\ModuleManagerExtensionsFixture.cs      | :heavy_check_mark:
+| Modularity\ModuleManagerFixture.cs                | :heavy_check_mark:
+| Modularity\XamlModuleCatalogFixture.txt.dll       | :heavy_check_mark:
+| Modularity\DirectoryModuleCatalogFixture.cs       | :heavy_check_mark:
+| Modularity\ModuleCatalogXml\InvalidDependencyModuleCatalog.xaml | :heavy_check_mark:
+| Modularity\ModuleCatalogXml\SimpleModuleCatalog.xaml            | :heavy_check_mark:
+| Mvvm\ViewModelLocatorFixture.cs                   | :heavy_check_mark:
+| Regions\AllActiveRegionFixture.cs                 | :heavy_check_mark:
+| Regions\ContentControlRegionAdapterFixture.cs     | :white_square_button: :warning:
+| Regions\ItemsControlRegionAdapterFixture.cs       | :white_square_button: :warning: [https://github.com/AvaloniaUI/Avalonia/issues/7553]
+| Regions\LocatorNavigationTargetHandlerFixture.cs  | :heavy_check_mark:
+| Regions\NavigationAsyncExtensionsFixture.cs       | :heavy_check_mark:
+| Regions\NavigationContextFixture.cs               | :heavy_check_mark:
+| Regions\NavigationParametersFixture.cs            | :heavy_check_mark:
+| Regions\RegionAdapterBaseFixture.cs               | :heavy_check_mark:
+| Regions\RegionAdapterMappingsFixture.cs           | :heavy_check_mark:
+| Regions\RegionBehaviorCollectionFixture.cs        | :heavy_check_mark:
+| Regions\RegionBehaviorFactoryFixture.cs           | :heavy_check_mark:
+| Regions\RegionBehaviorFixture.cs                  | :heavy_check_mark:
+| Regions\RegionFixture.cs                          | :heavy_check_mark:
+| Regions\RegionManagerFixture.cs                   | :heavy_check_mark:
+| Regions\RegionManagerRequestNavigateFixture.cs    | :heavy_check_mark:
+| Regions\RegionNavigationJournalFixture.cs         | :heavy_check_mark:
+| Regions\RegionNavigationServiceFixture.new.cs     | :heavy_check_mark:
+| Regions\RegionViewRegistryFixture.cs              | :heavy_check_mark:
+| Regions\SelectorRegionAdapterFixture.cs           | :white_square_button: :new: :warning:
+| Regions\SingleActiveRegionFixture.cs              | :heavy_check_mark:
+| Regions\ViewsCollectionFixture.cs                 | :heavy_check_mark:
+| Regions\Behaviors\AutoPopulateRegionBehaviorFixture.cs                    | :heavy_check_mark:
+| Regions\Behaviors\BindRegionContextToDependencyObjectBehaviorFixture.cs   | :heavy_check_mark:
+| Regions\Behaviors\ClearChildViewsRegionBehaviorFixture.cs                 | :heavy_check_mark:
+| Regions\Behaviors\DelayedRegionCreationBehaviorFixture.cs                 | :heavy_check_mark:
+| Regions\Behaviors\RegionActiveAwareBehaviorFixture.cs                     | :heavy_check_mark:
+| Regions\Behaviors\RegionManagerRegistrationBehaviorFixture.cs             | :heavy_check_mark:
+| Regions\Behaviors\RegionMemberLifetimeBehaviorFixture.cs                  | :heavy_check_mark:
+| Regions\Behaviors\SelectorItemsSourceSyncRegionBehaviorFixture.cs         | :white_square_button: :warning:
+| Regions\Behaviors\SyncRegionContextWithHostBehaviorFixture.cs             | :heavy_check_mark:
+
+### Tests - Prism.Container.Avalonia.Shared
+
+| File                                          | Status  |  Notes |
+|-----------------------------------------------|---------|--------|
+| Fixtures\ContainerExtensionCollection.cs      | :heavy_check_mark: |
+| Mocks\NullModuleCatalogBootstrapper.cs        | :heavy_check_mark: |
+
+### Tests - Prism.DryIoc.Avalonia.Tests
+
+**_TBD_**
+
+| File                                          | Status  |  Notes |
+|-----------------------------------------------|---------|--------|
+
+### Tests - Prism.Unity.Avalonia.Tests
+
+**_TBD_**
+
+| File                                          | Status  |  Notes |
+|-----------------------------------------------|---------|--------|
+
+### Tests - Prism.AutoFac.Avalonia.Tests
+
+**_Deprecated_**
+
 ## Prism Upgrade Comparison
 
 As we all know, not everything is straight forward between these two XAML technologies. However, it's a good reminder to document the differences and 'got-yas'.
@@ -232,12 +361,13 @@ As we all know, not everything is straight forward between these two XAML techno
 
 [https://docs.avaloniaui.net/misc/wpf/Control-frameworkelement-and-control]
 
-| WPF                                     | Avalonia | Reference |
-|-----------------------------------------|----------|-----------|
+| WPF                                       | Avalonia | Reference |
+|-------------------------------------------|----------|-----------|
 | `System.Windows`                          | `Avalonia`
 | `System.Windows.FrameworkElement`         | `Avalonia.Controls.Control` | [Reference](https://docs.avaloniaui.net/misc/wpf/uielement-frameworkelement-and-control)
 | `System.WIndows.FrameworkContentElement`  | `Avalonia.Controls.Control`
 | `UIElement`                               | `Avalonia.Controls.Control`
+| `ItemsControl.ItemsSource`                | `Avalonia.Controls.ItemsControl.ItemsSource` | [Naming Convention](https://github.com/AvaloniaUI/Avalonia/issues/7553#issuecomment-1032714913)
 | `System.Windows.Markup.MarkupExtension`   | `Avalonia.Markup.Xaml.MarkupExtension` | [Reference](http://reference.avaloniaui.net/api/Avalonia.Markup.Xaml/MarkupExtension/)
 | `System.Windows.Markup.ContentPropertyAttribute.ContentProperty` | `Avalonia.Metadata.Content` | [https://github.com/AvaloniaUI/Avalonia/pull/1126]
 | `System.Windows.Markup`                   | `Avalonia.Markup.Xaml`

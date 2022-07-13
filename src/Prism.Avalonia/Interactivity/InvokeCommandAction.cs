@@ -1,7 +1,11 @@
-////
-//// Reference:
-//// https://github.com/wieslawsoltes/AvaloniaBehaviors/blob/master/src/Avalonia.Xaml.Interactions/Core/InvokeCommandAction.cs
-////
+//  TODO - 2022-07-12
+//  * Updated the public StyleProperty fields for Avalonia
+//  * Needs:
+//      - Methods updated and verified - OnAttached, OnDetatching, , etc.
+//
+// Reference:
+// https://github.com/wieslawsoltes/AvaloniaBehaviors/blob/master/src/Avalonia.Xaml.Interactions/Core/InvokeCommandAction.cs
+//
 ////using System.Reflection;
 ////using System.Windows.Input;
 ////using Avalonia;
@@ -21,9 +25,11 @@
 ////        /// <summary>
 ////        /// Dependency property identifying if the associated element should automatically be enabled or disabled based on the result of the Command's CanExecute
 ////        /// </summary>
-////        public static readonly StyledProperty AutoEnableProperty =
-////            StyledProperty.Register("AutoEnable", typeof(bool), typeof(InvokeCommandAction),
-////                new PropertyMetadata(true, (d, e) => ((InvokeCommandAction)d).OnAllowDisableChanged((bool)e.NewValue)));
+////        public static readonly StyledProperty<bool> AutoEnableProperty =
+////            AvaloniaProperty.Register<InvokeCommandAction, bool>(nameof(AutoEnable));
+////        ////public static readonly StyledProperty AutoEnableProperty =
+////        ////    StyledProperty.Register("AutoEnable", typeof(bool), typeof(InvokeCommandAction),
+////        ////        new PropertyMetadata(true, (d, e) => ((InvokeCommandAction)d).OnAllowDisableChanged((bool)e.NewValue)));
 ////
 ////        /// <summary>
 ////        /// Gets or sets whether or not the associated element will automatically be enabled or disabled based on the result of the commands CanExecute
@@ -44,9 +50,11 @@
 ////        /// <summary>
 ////        /// Dependency property identifying the command to execute when invoked.
 ////        /// </summary>
-////        public static readonly StyledProperty CommandProperty =
-////            StyledProperty.Register("Command", typeof(ICommand), typeof(InvokeCommandAction),
-////                new PropertyMetadata(null, (d, e) => ((InvokeCommandAction)d).OnCommandChanged((ICommand)e.NewValue)));
+////        public static readonly StyledProperty<ICommand?> CommandProperty =
+////            AvaloniaProperty.Register<InvokeCommandAction, ICommand?>(nameof(Command));
+////        ////public static readonly StyledProperty CommandProperty =
+////        ////    StyledProperty.Register("Command", typeof(ICommand), typeof(InvokeCommandAction),
+////        ////        new PropertyMetadata(null, (d, e) => ((InvokeCommandAction)d).OnCommandChanged((ICommand)e.NewValue)));
 ////
 ////        /// <summary>
 ////        /// Gets or sets the command to execute when invoked.
@@ -67,9 +75,11 @@
 ////        /// <summary>
 ////        /// Dependency property identifying the command parameter to supply on command execution.
 ////        /// </summary>
-////        public static readonly StyledProperty CommandParameterProperty =
-////            StyledProperty.Register("CommandParameter", typeof(object), typeof(InvokeCommandAction),
-////                new PropertyMetadata(null, (d, e) => ((InvokeCommandAction)d).OnCommandParameterChanged(e.NewValue)));
+////        public static readonly StyledProperty<object?> CommandParameterProperty =
+////            AvaloniaProperty.Register<InvokeCommandAction, object?>(nameof(CommandParameter));
+////        ////public static readonly StyledProperty CommandParameterProperty =
+////        ////    StyledProperty.Register("CommandParameter", typeof(object), typeof(InvokeCommandAction),
+////        ////        new PropertyMetadata(null, (d, e) => ((InvokeCommandAction)d).OnCommandParameterChanged(e.NewValue)));
 ////
 ////        /// <summary>
 ////        /// Gets or sets the command parameter to supply on command execution.
@@ -90,9 +100,11 @@
 ////        /// <summary>
 ////        /// Dependency property identifying the TriggerParameterPath to be parsed to identify the child property of the trigger parameter to be used as the command parameter.
 ////        /// </summary>
-////        public static readonly StyledProperty TriggerParameterPathProperty =
-////            StyledProperty.Register("TriggerParameterPath", typeof(string), typeof(InvokeCommandAction),
-////                new PropertyMetadata(null, (d, e) => { }));
+////        public static readonly StyledProperty<string> TriggerParameterPathProperty =
+////            AvaloniaProperty.Register<InvokeCommandAction, string>(nameof(TriggerParameterPath));
+////        ////public static readonly StyledProperty TriggerParameterPathProperty =
+////        ////    StyledProperty.Register("TriggerParameterPath", typeof(string), typeof(InvokeCommandAction),
+////        ////        new PropertyMetadata(null, (d, e) => { }));
 ////
 ////        /// <summary>
 ////        /// Gets or sets the TriggerParameterPath value.
