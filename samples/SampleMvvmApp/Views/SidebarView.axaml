@@ -6,7 +6,7 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="150"
              Width="{Binding FlyoutWidth}"
-             x:Class="BasicMvvmApp.Views.SidebarView">
+             x:Class="SampleMvvmApp.Views.SidebarView">
   <UserControl.Styles>
     <Style Selector="Button">
       <Setter Property="HorizontalAlignment" Value="Stretch" />

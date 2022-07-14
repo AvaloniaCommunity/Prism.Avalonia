@@ -1,4 +1,4 @@
-﻿namespace BasicMvvmApp
+﻿namespace SampleMvvmApp
 {
     public static class RegionNames
     {

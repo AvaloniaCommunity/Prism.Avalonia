@@ -1,10 +1,10 @@
 ﻿<Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="BasicMvvmApp.App">
+             x:Class="SampleMvvmApp.App">
   <Application.Styles>
     <FluentTheme Mode="Light" />
 
     <!-- Custom SVG glyphs -->
-    <StyleInclude Source="avares://BasicMvvmApp/Styles/Icons.axaml" />
+    <StyleInclude Source="avares://SampleMvvmApp/Styles/Icons.axaml" />
   </Application.Styles>
 </Application>

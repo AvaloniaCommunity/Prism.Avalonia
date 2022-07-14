@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace BasicMvvmApp.Views
+namespace SampleMvvmApp.Views
 {
     public partial class SidebarView : UserControl
     {
