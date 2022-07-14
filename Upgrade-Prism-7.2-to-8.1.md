@@ -379,6 +379,7 @@ As we all know, not everything is straight forward between these two XAML techno
 | `System.Windows.DependencyPropertyChangedEventArgs` | `Avalonia.AvaloniaPropertyChangedEventArgs`
 | `System.ComponentModel.DesignerProperties.GetIsInDesignMode(DependencyObject element);` | `Avalonia.Controls.Design.IsDesignMode;`
 | `System.Windows.Controls.Primitives.Selector` | ?? | _used by `SelectorRegionAdapter.cs` and `PrismInitializationExtensions.cs`_
+| `RoutedEventHandler`                      | _Not Implemented_
 
 ### AvaloniaProperty vs DependencyProperty
 
@@ -440,16 +441,23 @@ public class ItemMetadata : AvaloniaObject
 
 ### Property
 
-Note, Avalonia places WPF's `propertyType` as part of `TValue` in `<THost, TValue>`
+Note
+* Avalonia places WPF's `propertyType` as part of `TValue` in `<THost, TValue>`
+* The `THost` object type is what is used in the Get and Set methods.
 
 ```cs
-// Avalonia:
+// Avalonia ------------
 private static readonly AvaloniaProperty ObservableRegionContextProperty =
     AvaloniaProperty.RegisterAttached<Visual, ObservableObject<object>>(
         name: "ObservableRegionContext",
         ownerType: typeof(RegionContext));
 
-// WPF:
+static RegionContext()
+{
+    ObservableRegionContextProperty.Changed.Subscribe(args => GetObservableContext(args?.Sender as Visual));
+}
+
+// WPF -----------------
 private static readonly DependencyProperty ObservableRegionContextProperty =
     DependencyProperty.RegisterAttached(
         name: "ObservableRegionContext",
@@ -468,7 +476,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Styling;
 
-// Avalonia:
+// Avalonia ------------------
 static ClassConstructor()
 {
     RegionNameProperty.Changed.Subscribe(args => OnSetRegionNameCallback(args?.Sender, args));
@@ -478,7 +486,7 @@ public static readonly AvaloniaProperty RegionNameProperty = AvaloniaProperty.Re
     name: "RegionName",
     ownerType: typeof(RegionManager));
 
-// WPF:
+// WPF -----------------------
 public static readonly DependencyProperty RegionNameProperty = DependencyProperty.RegisterAttached(
     name: "RegionName",
     propertyType: typeof(string),

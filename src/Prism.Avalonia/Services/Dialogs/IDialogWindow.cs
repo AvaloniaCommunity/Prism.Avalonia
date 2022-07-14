@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Windows;
+using Avalonia.Controls;
+using Avalonia.Styling;
 
 namespace Prism.Services.Dialogs
 {
@@ -19,10 +20,10 @@ namespace Prism.Services.Dialogs
         /// </summary>
         void Close();
 
-        ////        /// <summary>
-        ////        /// The window's owner.
-        ////        /// </summary>
-        ////        Window Owner { get; set; }
+        /////// <summary>
+        /////// The window's owner.
+        /////// </summary>
+        ////Window Owner { get; set; }
 
         /// <summary>
         /// Show a non-modal dialog.
@@ -63,9 +64,9 @@ namespace Prism.Services.Dialogs
         /// </summary>
         IDialogResult Result { get; set; }
 
-        ////        /// <summary>
-        ////        /// The window style.
-        ////        /// </summary>
-        ////        Style Style { get; set; }
+        /////// <summary>
+        /////// The window style.
+        /////// </summary>
+        ////Style Style { get; set; }
     }
 }
