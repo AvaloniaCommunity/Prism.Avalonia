@@ -1,13 +1,13 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.Markup.Xaml;
-using BasicMvvmApp.ViewModels;
-using BasicMvvmApp.Views;
+using SampleMvvmApp.ViewModels;
+using SampleMvvmApp.Views;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Regions;
 
-namespace BasicMvvmApp
+namespace SampleMvvmApp
 {
     /// <summary>
     ///   Application entry point.

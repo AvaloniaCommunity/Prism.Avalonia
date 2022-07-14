@@ -19,12 +19,13 @@
 * [X] Remove IOCs not supported by Prism v8.1
 * [X] Add Unit Tests, matching PrismLibrary
 * [X] Upgrade Samples
+* [X] Upgrade to .NET 6
 
 ### Out of Scope
 
-* [ ] Upgrade Prism.Unity
-* [ ] Add Prism Dialogs for Avalonia
-* [ ] Restructure folders to match PrismLibrary
+* Upgrade Prism.Unity
+* Add Prism Dialogs for Avalonia
+* Restructure folders to match PrismLibrary
 
 ## Upgrade Progress
 

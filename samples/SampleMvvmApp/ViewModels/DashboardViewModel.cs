@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using Prism.Commands;
 using Prism.Regions;
 
-namespace BasicMvvmApp.ViewModels
+namespace SampleMvvmApp.ViewModels
 {
     public class DashboardViewModel : ViewModelBase
     {

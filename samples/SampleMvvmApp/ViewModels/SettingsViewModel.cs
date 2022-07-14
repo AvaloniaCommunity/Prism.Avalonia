@@ -1,8 +1,8 @@
-﻿using BasicMvvmApp.Views;
+﻿using SampleMvvmApp.Views;
 using Prism.Commands;
 using Prism.Regions;
 
-namespace BasicMvvmApp.ViewModels
+namespace SampleMvvmApp.ViewModels
 {
     public class SettingsViewModel : ViewModelBase
     {

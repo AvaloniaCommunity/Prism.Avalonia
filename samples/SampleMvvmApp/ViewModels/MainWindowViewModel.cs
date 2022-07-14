@@ -1,6 +1,6 @@
 ﻿using Prism.Regions;
 
-namespace BasicMvvmApp.ViewModels
+namespace SampleMvvmApp.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
