@@ -7,10 +7,11 @@
 
   <PropertyGroup>
     <RootNamespace>Prism.Unity</RootNamespace>
+    <TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Unity" Version="5.11.1" />
+    <PackageReference Include="Unity" Version="5.11.10" />
   </ItemGroup>
 
   <ItemGroup>
