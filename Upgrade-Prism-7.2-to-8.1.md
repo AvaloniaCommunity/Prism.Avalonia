@@ -16,6 +16,7 @@
 
 * [X] Upgrade Prism.Avalonia
 * [X] Upgrade Prism.DryIoc
+* [X] Upgrade Prism.Unity
 * [X] Remove IOCs not supported by Prism v8.1
 * [X] Add Unit Tests, matching PrismLibrary
 * [X] Upgrade Samples
@@ -23,8 +24,8 @@
 
 ### Out of Scope
 
-* Upgrade Prism.Unity
 * Add Prism Dialogs for Avalonia
+  * This requires Avalonia v0.11 and [PR #8277](https://github.com/AvaloniaUI/Avalonia/pull/8277) as per [Issue 7908](https://github.com/AvaloniaUI/Avalonia/issues/7908).
 * Restructure folders to match PrismLibrary
 
 ## Upgrade Progress
@@ -379,6 +380,28 @@ As we all know, not everything is straight forward between these two XAML techno
 | `System.ComponentModel.DesignerProperties.GetIsInDesignMode(DependencyObject element);` | `Avalonia.Controls.Design.IsDesignMode;`
 | `System.Windows.Controls.Primitives.Selector` | ?? | _used by `SelectorRegionAdapter.cs` and `PrismInitializationExtensions.cs`_
 
+### AvaloniaProperty vs DependencyProperty
+
+Note, Avalonia places the `propertyType` as part of `TValue` in its `..<THost, TValue>(...)`.
+
+```cs
+// Avalonia
+public static AvaloniaProperty AutoWireViewModelProperty =
+    AvaloniaProperty.RegisterAttached<Control, bool>(
+        name: "AutoWireViewModel",
+        ownerType: typeof(ViewModelLocator),
+        defaultValue: false);
+
+// WPF
+public static DependencyProperty AutoWireViewModelProperty =
+    DependencyProperty.RegisterAttached(
+        name: "AutoWireViewModel",
+        propertyType: typeof(bool?),
+        ownerType: typeof(ViewModelLocator),
+        defaultMetaData: new PropertyMetadata(defaultValue: null, propertyChangedCallback: AutoWireViewModelChanged));
+
+```
+
 ### Behaviors and Triggers
 
 In order to use Behaviors in Avalonia, you must download the [Avalonia XAML Behaviors](https://github.com/wieslawsoltes/AvaloniaBehaviors) [NuGet](https://www.nuget.org/packages/Avalonia.Xaml.Behaviors).
@@ -387,9 +410,8 @@ For example, [InvokeCommandActionView.axaml](https://github.com/wieslawsoltes/Av
 
 ### Inheriting WPF DependencyObject in Avalonia
 
-WPF:
-
 ```cs
+// WPF:
 public partial class ItemMetadata : DependencyObject
 {
     ...
@@ -401,11 +423,8 @@ public partial class ItemMetadata : DependencyObject
             itemMetadata.InvokeMetadataChanged();
         }
     }
-```
 
-Avalonia
-
-```cs
+// Avalonia:
 public class ItemMetadata : AvaloniaObject
 {
     ...
@@ -421,42 +440,48 @@ public class ItemMetadata : AvaloniaObject
 
 ### Property
 
-WPF:
+Note, Avalonia places WPF's `propertyType` as part of `TValue` in `<THost, TValue>`
 
 ```cs
-private static readonly DependencyProperty ObservableRegionContextProperty =
-    DependencyProperty.RegisterAttached("ObservableRegionContext", typeof(ObservableObject<object>), typeof(RegionContext), null);
-```
-
-Avalonia:
-
-```cs
+// Avalonia:
 private static readonly AvaloniaProperty ObservableRegionContextProperty =
-    AvaloniaProperty.RegisterAttached<Visual, ObservableObject<object>>("ObservableRegionContext", typeof(RegionContext));
+    AvaloniaProperty.RegisterAttached<Visual, ObservableObject<object>>(
+        name: "ObservableRegionContext",
+        ownerType: typeof(RegionContext));
 
+// WPF:
+private static readonly DependencyProperty ObservableRegionContextProperty =
+    DependencyProperty.RegisterAttached(
+        name: "ObservableRegionContext",
+        propertyType: typeof(ObservableObject<object>),
+        ownerType: typeof(RegionContext),
+        defaultMetadata: null);
 ```
 
 ### Property with Callback
 
-WPF:
+Make sure to include, `using System;` or else `.Subscribe(..)` will throw an error.
 
 ```cs
-public static readonly DependencyProperty RegionNameProperty = DependencyProperty.RegisterAttached(
-    "RegionName",
-    typeof(string),
-    typeof(RegionManager),
-    new PropertyMetadata(defaultValue: null, propertyChangedCallback: OnSetRegionNameCallback));
-```
+using System;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Styling;
 
-Avalonia:
-
-```cs
+// Avalonia:
 static ClassConstructor()
 {
     RegionNameProperty.Changed.Subscribe(args => OnSetRegionNameCallback(args?.Sender, args));
 }
 
 public static readonly AvaloniaProperty RegionNameProperty = AvaloniaProperty.RegisterAttached<AvaloniaObject, string>(
-    "RegionName",
-    typeof(RegionManager));
+    name: "RegionName",
+    ownerType: typeof(RegionManager));
+
+// WPF:
+public static readonly DependencyProperty RegionNameProperty = DependencyProperty.RegisterAttached(
+    name: "RegionName",
+    propertyType: typeof(string),
+    ownerType: typeof(RegionManager),
+    defaultMetadata: new PropertyMetadata(defaultValue: null, propertyChangedCallback: OnSetRegionNameCallback));
 ```
