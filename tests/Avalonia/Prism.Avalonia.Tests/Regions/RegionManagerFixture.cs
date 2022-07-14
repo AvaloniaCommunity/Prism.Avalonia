@@ -156,6 +156,7 @@ namespace Prism.Avalonia.Tests.Regions
             var region = new MockPresentationRegion();
             var view = new MockDependencyObject();
 
+            // NOTE: AvaloniaObject performs `Dispatcher.UIThread.VerifyAccess()`, if it's FALSE the InheritanceParent returns NULL.
             var observableObject = RegionContext.GetObservableContext(view);
 
             bool propertyChangedCalled = false;

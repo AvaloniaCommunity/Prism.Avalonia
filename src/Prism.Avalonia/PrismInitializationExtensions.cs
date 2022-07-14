@@ -41,8 +41,7 @@ namespace Prism
 
         internal static void RegisterDefaultRegionBehaviors(this IRegionBehaviorFactory regionBehaviors)
         {
-            //// WPF: regionBehaviors.AddIfMissing<BindRegionContextToDependencyObjectBehavior>(BindRegionContextToDependencyObjectBehavior.BehaviorKey);
-            //// Avalonia Equivilant: BindRegionContextToAvaloniaObjectBehavior
+            //// Avalonia to WPF Equivilant: BindRegionContextToAvaloniaObjectBehavior == BindRegionContextToDependencyObjectBehavior
             regionBehaviors.AddIfMissing<BindRegionContextToAvaloniaObjectBehavior>(BindRegionContextToAvaloniaObjectBehavior.BehaviorKey);
             regionBehaviors.AddIfMissing<RegionActiveAwareBehavior>(RegionActiveAwareBehavior.BehaviorKey);
             regionBehaviors.AddIfMissing<SyncRegionContextWithHostBehavior>(SyncRegionContextWithHostBehavior.BehaviorKey);

@@ -4,7 +4,7 @@ using Avalonia.Controls;
 using Prism.Avalonia.Tests.Mocks;
 using Xunit;
 
-namespace Prism.Avalonia.Tests.Logging
+namespace Prism.Avalonia.Tests.Interactivity
 {
     // Override Prism.Interactivity.InvokeCommandAction until it can be implemented.
     //// Reference:

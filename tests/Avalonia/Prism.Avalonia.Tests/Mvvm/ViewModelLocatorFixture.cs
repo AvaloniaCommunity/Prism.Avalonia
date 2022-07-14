@@ -12,6 +12,7 @@ namespace Prism.Avalonia.Tests.Mvvm
         [StaFact]
         public void ShouldLocateViewModelWithDefaultSettings()
         {
+            // Warning: flaky test. This runs by itself but not as a whole.
             ResetViewModelLocationProvider();
 
             Mock view = new Mock();

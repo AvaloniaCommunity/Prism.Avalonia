@@ -4,9 +4,6 @@ using System;
 using Avalonia;
 using Avalonia.Controls;
 
-#if NETFX_CORE
-using Windows.UI.Xaml;
-#endif
 namespace Prism.Mvvm
 {
     /// <summary>
