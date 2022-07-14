@@ -4,9 +4,6 @@ using System;
 using Avalonia;
 using Avalonia.Controls;
 
-#if NETFX_CORE
-using Windows.UI.Xaml;
-#endif
 namespace Prism.Mvvm
 {
     /// <summary>
@@ -14,16 +11,33 @@ namespace Prism.Mvvm
     /// </summary>
     public static class ViewModelLocator
     {
+        static ViewModelLocator()
+        {
+            // Bind AutoWireViewModelProperty.Changed to its callback
+            AutoWireViewModelProperty.Changed.Subscribe(args => AutoWireViewModelChanged(args?.Sender, args));
+        }
+
         /// <summary>
         /// The AutoWireViewModel attached property.
         /// </summary>
         public static AvaloniaProperty AutoWireViewModelProperty =
             AvaloniaProperty.RegisterAttached<Control, bool>(name: "AutoWireViewModel", ownerType: typeof(ViewModelLocator), defaultValue: false);
-        public static bool GetAutoWireViewModel(IAvaloniaObject obj)
+
+        /// <summary>
+        /// Gets the value for the <see cref="AutoWireViewModelProperty"/> attached property.
+        /// </summary>
+        /// <param name="obj">The target element.</param>
+        /// <returns>The <see cref="AutoWireViewModelProperty"/> attached to the <paramref name="obj"/> element.</returns>
+        public static bool? GetAutoWireViewModel(IAvaloniaObject obj)
         {
-            return (bool)obj.GetValue(AutoWireViewModelProperty);
+            return (bool?)obj.GetValue(AutoWireViewModelProperty);
         }
 
+        /// <summary>
+        /// Sets the <see cref="AutoWireViewModelProperty"/> attached property.
+        /// </summary>
+        /// <param name="obj">The target element.</param>
+        /// <param name="value">The value to attach.</param>
         public static void SetAutoWireViewModel(IAvaloniaObject obj, bool value)
         {
             obj.SetValue(AutoWireViewModelProperty, value);
@@ -31,7 +45,8 @@ namespace Prism.Mvvm
 
         private static void AutoWireViewModelChanged(IAvaloniaObject d, AvaloniaPropertyChangedEventArgs e)
         {
-            if ((bool)e.NewValue)
+            var value = (bool?)e.NewValue;
+            if (value.HasValue && value.Value)
             {
                 ViewModelLocationProvider.AutoWireViewModelChanged(d, Bind);
             }
@@ -44,15 +59,8 @@ namespace Prism.Mvvm
         /// <param name="viewModel">The object to use as the DataContext for the View</param>
         static void Bind(object view, object viewModel)
         {
-            Control element = view as Control;
-            if (element != null)
+            if (view is Avalonia.Controls.Control element)
                 element.DataContext = viewModel;
-        }
-
-        static ViewModelLocator()
-        {
-            // Bind AutoWireViewModelProperty.Changed to its callback
-            AutoWireViewModelProperty.Changed.Subscribe(args => AutoWireViewModelChanged(args?.Sender, args));
         }
     }
 }

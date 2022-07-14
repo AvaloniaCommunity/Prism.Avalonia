@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Temp disabled
+//  - Prism.Logging has been deprecated and Prism.Logging.Serilog is out of date.
+//  - https://github.com/augustoproiete/prism-logging-serilog/issues/3
+/*
+using System;
 using System.Collections.Generic;
 using Prism.Logging;
 
@@ -57,3 +61,4 @@ namespace ModulesSample
         #endregion
     }
 }
+*/

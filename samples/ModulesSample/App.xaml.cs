@@ -5,19 +5,22 @@ using Prism.Avalonia.Infrastructure;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;
-using Serilog;
+////using Serilog;
 using Avalonia.LinuxFramebuffer;
 using System.Linq;
 using System;
 using System.Globalization;
 using System.Threading;
 using Avalonia.Dialogs;
+using ModulesSample.Infrastructure;
+using static System.Net.WebRequestMethods;
+using System.Security.Policy;
 
 namespace ModulesSample
 {
     public class App : PrismApplication
     {
-        public CallbackLogger CallbackLogger { get; } = new CallbackLogger();
+        ////public CallbackLogger CallbackLogger { get; } = new CallbackLogger();
 
         public static AppBuilder BuildAvaloniaApp()
         {
@@ -26,12 +29,12 @@ namespace ModulesSample
                 .With(new X11PlatformOptions
                 {
                     EnableMultiTouch = true,
-                    UseDBusMenu = true
+                    UseDBusMenu = true,
                 })
                 .With(new Win32PlatformOptions
                 {
                     EnableMultitouch = true,
-                    AllowEglInitialization = true
+                    AllowEglInitialization = true,
                 })
                 .UseSkia()
                 .UseManagedSystemDialogs();
@@ -60,6 +63,7 @@ namespace ModulesSample
                 if (idx != 0 && args.Length > idx + 1 &&
                     double.TryParse(args[idx + 1], NumberStyles.Any, CultureInfo.InvariantCulture, out var scaling))
                     return scaling;
+
                 return 1;
             }
 
@@ -86,12 +90,17 @@ namespace ModulesSample
                 while (true)
                     Console.ReadKey(true);
             })
-            { IsBackground = true }.Start();
+            {
+                IsBackground = true,
+            }.Start();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterInstance(CallbackLogger);
+            // Temp disabled logging:
+            // - Prism.Logging has been moved and `ILoggerFacade` is deprecated.Prism.Logging.Serilog is out of date.
+            // - https://github.com/augustoproiete/prism-logging-serilog/issues/3
+            ////containerRegistry.RegisterInstance(CallbackLogger);
             containerRegistry.RegisterSingleton<IModuleTracker, ModuleTracker>();
         }
 
@@ -107,7 +116,7 @@ namespace ModulesSample
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            moduleCatalog.AddModule<DummyModule.DummyModule>();
+            moduleCatalog.AddModule<DummyModule.DummyModule1>();
             moduleCatalog.AddModule<DummyModule2.DummyModule2>();
 
             base.ConfigureModuleCatalog(moduleCatalog);

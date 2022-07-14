@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -143,7 +141,7 @@ namespace Prism.Regions
         }
 
         /// <summary>
-        /// Adds handler to monitor the MetadatItem and adds it to our monitoring list.
+        /// Adds handler to monitor the MetadataItem and adds it to our monitoring list.
         /// </summary>
         /// <param name="itemMetadata"></param>
         /// <param name="isInList"></param>
@@ -153,9 +151,9 @@ namespace Prism.Regions
             this.monitoredItems.Add(
                 itemMetadata,
                 new MonitorInfo
-                    {
-                        IsInList = isInList
-                    });
+                {
+                    IsInList = isInList
+                });
         }
 
         /// <summary>
@@ -175,7 +173,7 @@ namespace Prism.Regions
         /// <param name="e"></param>
         private void OnItemMetadataChanged(object sender, EventArgs e)
         {
-            ItemMetadata itemMetadata = (ItemMetadata) sender;
+            ItemMetadata itemMetadata = (ItemMetadata)sender;
 
             // Our monitored item may have been removed during another event before
             // our OnItemMetadataChanged got called back, so it's not unexpected
@@ -228,7 +226,7 @@ namespace Prism.Regions
                     }
 
                     // If we're sorting we can't predict how
-                    // the collection has changed on an add so we 
+                    // the collection has changed on an add so we
                     // resort to a reset notification.
                     if (this.sort != null)
                     {
@@ -263,7 +261,7 @@ namespace Prism.Regions
             int newIndex = this.filteredItems.IndexOf(item);
             this.NotifyAdd(new[] { item }, newIndex);
         }
-        
+
         private void RemoveFromFilteredList(object item)
         {
             int index = this.filteredItems.IndexOf(item);
@@ -276,7 +274,7 @@ namespace Prism.Regions
             this.filteredItems = this.subjectCollection.Where(i => this.filter(i)).Select(i => i.Item)
                 .OrderBy<object, object>(o => o, new RegionItemComparer(this.SortComparison)).ToList();
         }
-        
+
         private class MonitorInfo
         {
             public bool IsInList { get; set; }

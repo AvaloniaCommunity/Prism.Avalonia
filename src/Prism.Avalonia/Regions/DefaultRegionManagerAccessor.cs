@@ -1,8 +1,5 @@
-
-
-using Avalonia;
 using System;
-using System.Windows;
+using Avalonia;
 
 namespace Prism.Regions
 {

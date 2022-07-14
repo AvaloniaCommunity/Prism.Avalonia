@@ -3,13 +3,18 @@
   <Import Project="../../build/Library.props" />
   <Import Project="../../build/AvaloniaDependency.props" />
   <Import Project="../../build/PrismDependency.props" />
+  <Import Project="../Containers/Prism.DryIoc.Shared/Prism.DryIoc.Shared.projitems" Label="Shared" />
 
   <PropertyGroup>
     <RootNamespace>Prism.DryIoc</RootNamespace>
+    <TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+    <Description>Use these extensions to build Prism applications based on DryIoc.</Description>
+    <Authors>Omid Mafakher, Damian Suess, various contributiors</Authors>
+    <Copyright>Copyright (c) 2022 Avalonia Community</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DryIoc.dll" Version="4.0.7" />
+    <PackageReference Include="DryIoc.dll" Version="4.7.7" />
   </ItemGroup>
 
   <ItemGroup>

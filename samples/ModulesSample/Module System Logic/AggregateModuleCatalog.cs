@@ -89,6 +89,5 @@ namespace ModulesSample.Module_System_Logic
         {
             return this.catalogs[0].AddModule(moduleInfo);
         }
-
     }
 }

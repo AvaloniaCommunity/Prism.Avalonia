@@ -1,19 +1,11 @@
-﻿using Avalonia;
+﻿using System;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Markup.Xaml;
-using Avalonia.Styling;
-using CommonServiceLocator;
-using Prism.Events;
+using Prism.Common;
 using Prism.Ioc;
-using Prism.Logging;
 using Prism.Modularity;
-using Prism.Mvvm;
 using Prism.Regions;
-using Prism.Regions.Behaviors;
-using System;
-using System.Linq;
-using System.Windows;
 
 namespace Prism
 {
@@ -25,9 +17,10 @@ namespace Prism
     /// </remarks>
     public abstract class PrismApplicationBase : Application
     {
-        IContainerExtension _containerExtension;
-        IModuleCatalog _moduleCatalog;
+        private IContainerExtension _containerExtension;
+        private IModuleCatalog _moduleCatalog;
 
+        // FROM Prism.Avalonia7.1.2
         public IAvaloniaObject MainWindow { get; private set; }
 
         /// <summary>
@@ -40,10 +33,7 @@ namespace Prism
         /// </summary>
         protected virtual void ConfigureViewModelLocator()
         {
-            ViewModelLocationProvider.SetDefaultViewModelFactory((view, type) =>
-            {
-                return Container.Resolve(type);
-            });
+            PrismInitializationExtensions.ConfigureViewModelLocator();
         }
 
         /// <summary>
@@ -54,19 +44,18 @@ namespace Prism
             base.Initialize();
 
             ConfigureViewModelLocator();
-            
-            _containerExtension = CreateContainerExtension();
+
+            ContainerLocator.SetContainerExtension(CreateContainerExtension);
+            _containerExtension = ContainerLocator.Current;
             _moduleCatalog = CreateModuleCatalog();
             RegisterRequiredTypes(_containerExtension);
             RegisterTypes(_containerExtension);
             _containerExtension.FinalizeExtension();
 
-            ConfigureServiceLocator();
-
             ConfigureModuleCatalog(_moduleCatalog);
 
-            var regionAdapterMappins = _containerExtension.Resolve<RegionAdapterMappings>();
-            ConfigureRegionAdapterMappings(regionAdapterMappins);
+            var regionAdapterMappings = _containerExtension.Resolve<RegionAdapterMappings>();
+            ConfigureRegionAdapterMappings(regionAdapterMappings);
 
             var defaultRegionBehaviors = _containerExtension.Resolve<IRegionBehaviorFactory>();
             ConfigureDefaultRegionBehaviors(defaultRegionBehaviors);
@@ -76,11 +65,13 @@ namespace Prism
             var shell = CreateShell();
             if (shell != null)
             {
+                MvvmHelpers.AutowireViewModel(shell);
                 RegionManager.SetRegionManager(shell, _containerExtension.Resolve<IRegionManager>());
                 RegionManager.UpdateRegions();
                 InitializeShell(shell);
-                InitializeModules();
             }
+
+            InitializeModules();
 
             OnInitialized();
         }
@@ -118,19 +109,7 @@ namespace Prism
         /// <param name="containerRegistry"></param>
         protected virtual void RegisterRequiredTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterInstance(_containerExtension);
-            containerRegistry.RegisterInstance(_moduleCatalog);
-            containerRegistry.RegisterSingleton<ILoggerFacade, TextLogger>();
-            containerRegistry.RegisterSingleton<IModuleInitializer, ModuleInitializer>();
-            containerRegistry.RegisterSingleton<IModuleManager, ModuleManager>();
-            containerRegistry.RegisterSingleton<RegionAdapterMappings>();
-            containerRegistry.RegisterSingleton<IRegionManager, RegionManager>();
-            containerRegistry.RegisterSingleton<IEventAggregator, EventAggregator>();
-            containerRegistry.RegisterSingleton<IRegionViewRegistry, RegionViewRegistry>();
-            containerRegistry.RegisterSingleton<IRegionBehaviorFactory, RegionBehaviorFactory>();
-            containerRegistry.Register<IRegionNavigationJournalEntry, RegionNavigationJournalEntry>();
-            containerRegistry.Register<IRegionNavigationJournal, RegionNavigationJournal>();
-            containerRegistry.Register<IRegionNavigationService, RegionNavigationService>();
+            containerRegistry.RegisterRequiredTypes(_moduleCatalog);
         }
 
         /// <summary>
@@ -139,21 +118,12 @@ namespace Prism
         protected abstract void RegisterTypes(IContainerRegistry containerRegistry);
 
         /// <summary>
-        /// Configures the <see cref="IRegionBehaviorFactory"/>. 
-        /// This will be the list of default behaviors that will be added to a region. 
+        /// Configures the <see cref="IRegionBehaviorFactory"/>.
+        /// This will be the list of default behaviors that will be added to a region.
         /// </summary>
         protected virtual void ConfigureDefaultRegionBehaviors(IRegionBehaviorFactory regionBehaviors)
         {
-            if (regionBehaviors != null)
-            {
-                regionBehaviors.AddIfMissing(BindRegionContextToAvaloniaObjectBehavior.BehaviorKey, typeof(BindRegionContextToAvaloniaObjectBehavior));
-                regionBehaviors.AddIfMissing(RegionActiveAwareBehavior.BehaviorKey, typeof(RegionActiveAwareBehavior));
-                regionBehaviors.AddIfMissing(SyncRegionContextWithHostBehavior.BehaviorKey, typeof(SyncRegionContextWithHostBehavior));
-                regionBehaviors.AddIfMissing(RegionManagerRegistrationBehavior.BehaviorKey, typeof(RegionManagerRegistrationBehavior));
-                regionBehaviors.AddIfMissing(RegionMemberLifetimeBehavior.BehaviorKey, typeof(RegionMemberLifetimeBehavior));
-                regionBehaviors.AddIfMissing(ClearChildViewsRegionBehavior.BehaviorKey, typeof(ClearChildViewsRegionBehavior));
-                regionBehaviors.AddIfMissing(AutoPopulateRegionBehavior.BehaviorKey, typeof(AutoPopulateRegionBehavior));
-            }
+            regionBehaviors?.RegisterDefaultRegionBehaviors();
         }
 
         /// <summary>
@@ -164,29 +134,22 @@ namespace Prism
         /// <returns>The <see cref="RegionAdapterMappings"/> instance containing all the mappings.</returns>
         protected virtual void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
         {
-            if (regionAdapterMappings != null)
-            {
-                //TODO: Do we have something similar to Selector in Avalonia?
-                //regionAdapterMappings.RegisterMapping(typeof(Selector), _containerExtension.Resolve<SelectorRegionAdapter>());
-                regionAdapterMappings.RegisterMapping(typeof(ItemsControl), _containerExtension.Resolve<ItemsControlRegionAdapter>());
-                regionAdapterMappings.RegisterMapping(typeof(ContentControl), _containerExtension.Resolve<ContentControlRegionAdapter>());
-            }
+            regionAdapterMappings?.RegisterDefaultRegionAdapterMappings();
         }
 
         /// <summary>
-        /// Registers the <see cref="Type"/>s of the Exceptions that are not considered 
+        /// Registers the <see cref="Type"/>s of the Exceptions that are not considered
         /// root exceptions by the <see cref="ExceptionExtensions"/>.
         /// </summary>
         protected virtual void RegisterFrameworkExceptionTypes()
         {
-            ExceptionExtensions.RegisterFrameworkExceptionType(typeof(ActivationException));
         }
 
         /// <summary>
         /// Creates the shell or main window of the application.
         /// </summary>
         /// <returns>The shell of the application.</returns>
-        protected abstract IAvaloniaObject CreateShell();
+        protected abstract IAvaloniaObject CreateShell(); //// Window CreateShell();
 
         /// <summary>
         /// Initializes the shell.
@@ -214,16 +177,7 @@ namespace Prism
         /// </summary>
         protected virtual void InitializeModules()
         {
-            IModuleManager manager = _containerExtension.Resolve<IModuleManager>();
-            manager.Run();
-        }
-
-        /// <summary>
-        /// Configures the LocatorProvider for the <see cref="Microsoft.Practices.ServiceLocation.ServiceLocator" />.
-        /// </summary>
-        protected virtual void ConfigureServiceLocator()
-        {
-            ServiceLocator.SetLocatorProvider(() => _containerExtension.Resolve<IServiceLocator>());
+            PrismInitializationExtensions.RunModuleManager(Container);
         }
     }
 }

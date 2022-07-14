@@ -1,10 +1,3 @@
-
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace Prism.Regions
 {
     /// <summary>
@@ -24,7 +17,7 @@ namespace Prism.Regions
         /// Gets a value that indicates whether there is at least one entry in the forward navigation history.
         /// </summary>
         /// <value>
-        /// 	<c>true</c> if this instance can go forward; otherwise, <c>false</c>.
+        /// <c>true</c> if this instance can go forward; otherwise, <c>false</c>.
         /// </value>
         bool CanGoForward { get; }
 
@@ -32,7 +25,7 @@ namespace Prism.Regions
         /// Gets the current navigation entry of the content that is currently displayed.
         /// </summary>
         /// <value>The current entry.</value>
-        IRegionNavigationJournalEntry CurrentEntry {get;}
+        IRegionNavigationJournalEntry CurrentEntry { get; }
 
         /// <summary>
         /// Gets or sets the target that implements INavigateAsync.
@@ -57,6 +50,7 @@ namespace Prism.Regions
         /// Records the navigation to the entry..
         /// </summary>
         /// <param name="entry">The entry to record.</param>
+        /// <param name="persistInHistory">Keep Navigation object in memory when OnNavigationFrom is called</param>
         void RecordNavigation(IRegionNavigationJournalEntry entry, bool persistInHistory);
 
         /// <summary>

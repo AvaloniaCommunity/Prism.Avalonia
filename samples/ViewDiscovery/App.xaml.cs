@@ -1,56 +1,32 @@
-﻿using System;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Diagnostics;
-using Avalonia.Themes.Default;
+﻿using Avalonia;
 using Avalonia.Markup.Xaml;
-using Serilog;
 using Prism.DryIoc;
 using Prism.Ioc;
 using ViewDiscovery.Views;
-using System.Threading;
 
 namespace ViewDiscovery
 {
-    class App : PrismApplication
+    public partial class App : PrismApplication
     {
-        public static AppBuilder BuildAvaloniaApp()
+        /// <summary>App entry point.</summary>
+        public App()
         {
-            var builder = AppBuilder
-                .Configure<App>()
-                .UsePlatformDetect();
-#if DEBUG
-            builder.LogToTrace();
-#endif
-            return builder;
         }
 
-
+        // Prism v8.1 has WPF's `PrismApplicationBase.Initialize()` as a protected virtual void, not public. Should we too?
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
             base.Initialize();
         }
 
-        static void Main(string[] args)
-        {
-            BuildAvaloniaApp().Start(AppMain, args);
-        }
-
-        // Application entry point. Avalonia is completely initialized.
-        static void AppMain(Application app, string[] args)
-        {
-            // A cancellation token source that will be used to stop the main loop
-            var cts = new CancellationTokenSource();
-
-            // Start the main loop
-            app.Run(cts.Token);
-        }
-
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // Wire-up services and navigation Views here.
         }
 
+        /// <summary>User interface entry point, called after Register and ConfigureModules.</summary>
+        /// <returns>Startup View.</returns>
         protected override IAvaloniaObject CreateShell()
         {
             return Container.Resolve<MainWindow>();

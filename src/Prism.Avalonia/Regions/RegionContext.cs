@@ -1,14 +1,11 @@
-
-
+using System;
 using Avalonia;
 using Prism.Common;
-using System;
-using System.Windows;
 
 namespace Prism.Regions
 {
     /// <summary>
-    /// Class that holds methods to Set and Get the RegionContext from a DependencyObject.
+    /// Class that holds methods to Set and Get the RegionContext from a <seealso cref="AvaloniaObject"/>.
     ///
     /// RegionContext allows sharing of contextual information between the view that's hosting a <see cref="IRegion"/>
     /// and any views that are inside the Region.
@@ -33,7 +30,7 @@ namespace Prism.Regions
         /// notify when the value is set for the first time.
         /// </summary>
         /// <param name="view">Any view that hold the RegionContext value. </param>
-        /// <returns>Wrapper around the Regioncontext value. </returns>
+        /// <returns>Wrapper around the <see cref="RegionContext"/> value. </returns>
         public static ObservableObject<object> GetObservableContext(AvaloniaObject view)
         {
             if (view == null)
@@ -49,6 +46,5 @@ namespace Prism.Regions
 
             return context;
         }
-
     }
 }

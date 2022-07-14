@@ -1,4 +1,4 @@
-﻿using Prism.Avalonia.Infrastructure;
+﻿using ModulesSample.Infrastructure;
 using Prism.Modularity;
 using Prism.Mvvm;
 

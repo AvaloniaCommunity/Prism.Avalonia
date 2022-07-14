@@ -1,9 +1,6 @@
-
-
 using Avalonia;
 using Avalonia.Controls;
 using System;
-using System.Windows;
 
 namespace Prism.Regions.Behaviors
 {
@@ -29,7 +26,7 @@ namespace Prism.Regions.Behaviors
             AvaloniaProperty.RegisterAttached<Control, bool>("ClearChildViews", typeof(ClearChildViewsRegionBehavior));
 
         /// <summary>
-        /// Gets the ClearChildViews attached property from a DependencyObject.
+        /// Gets the ClearChildViews attached property from an <seealso cref="AvaloniaObject"/>.
         /// </summary>
         /// <param name="target">The object from which to get the value.</param>
         /// <returns>The value of the ClearChildViews attached property in the target specified.</returns>
@@ -42,7 +39,7 @@ namespace Prism.Regions.Behaviors
         }
 
         /// <summary>
-        /// Sets the ClearChildViews attached property in a DependencyObject.
+        /// Sets the ClearChildViews attached property in a <seealso cref="DependencyObject"/>.
         /// </summary>
         /// <param name="target">The object in which to set the value.</param>
         /// <param name="value">The value of to set in the target object's ClearChildViews attached property.</param>

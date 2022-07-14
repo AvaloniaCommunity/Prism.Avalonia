@@ -1,6 +1,6 @@
-using Prism.Common;
 using System;
 using System.Collections.Generic;
+using Prism.Common;
 
 namespace Prism.Regions
 {
@@ -10,7 +10,7 @@ namespace Prism.Regions
     public class NavigationContext
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NavigationContext"/> class for a region name and a 
+        /// Initializes a new instance of the <see cref="NavigationContext"/> class for a region name and a
         /// <see cref="Uri"/>.
         /// </summary>
         /// <param name="navigationService">The navigation service.</param>
@@ -20,7 +20,7 @@ namespace Prism.Regions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NavigationContext"/> class for a region name and a 
+        /// Initializes a new instance of the <see cref="NavigationContext"/> class for a region name and a
         /// <see cref="Uri"/>.
         /// </summary>
         /// <param name="navigationService">The navigation service.</param>

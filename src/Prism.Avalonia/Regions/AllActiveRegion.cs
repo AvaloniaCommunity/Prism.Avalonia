@@ -1,5 +1,3 @@
-
-
 using System;
 using Prism.Properties;
 
@@ -14,13 +12,10 @@ namespace Prism.Regions
         /// Gets a readonly view of the collection of all the active views in the region. These are all the added views.
         /// </summary>
         /// <value>An <see cref="IViewsCollection"/> of all the active views.</value>
-        public override IViewsCollection ActiveViews
-        {
-            get { return Views; }
-        }
+        public override IViewsCollection ActiveViews => Views;
 
         /// <summary>
-        /// Deactive is not valid in this Region. This method will always throw <see cref="InvalidOperationException"/>.
+        /// Deactivate is not valid in this Region. This method will always throw <see cref="InvalidOperationException"/>.
         /// </summary>
         /// <param name="view">The view to deactivate.</param>
         /// <exception cref="InvalidOperationException">Every time this method is called.</exception>

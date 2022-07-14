@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,7 +49,7 @@ namespace Prism.Regions
                 throw new ArgumentNullException(nameof(regionBehavior));
 
             if (this.behaviors.ContainsKey(key))
-                throw new  ArgumentException("Could not add duplicate behavior with same key.", nameof(key));
+                throw new ArgumentException("Could not add duplicate behavior with same key.", nameof(key));
 
             this.behaviors.Add(key, regionBehavior);
             regionBehavior.Region = this.region;

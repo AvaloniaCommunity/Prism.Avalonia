@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections.Generic;
 
@@ -34,7 +32,7 @@ namespace Prism.Regions
         void RegisterViewWithRegion(string regionName, Type viewType);
 
         /// <summary>
-        /// Registers a delegate that can be used to retrieve the content associated with a region name. 
+        /// Registers a delegate that can be used to retrieve the content associated with a region name.
         /// </summary>
         /// <param name="regionName">Region name to which the <paramref name="getContentDelegate"/> will be registered.</param>
         /// <param name="getContentDelegate">Delegate used to retrieve the content associated with the <paramref name="regionName"/>.</param>

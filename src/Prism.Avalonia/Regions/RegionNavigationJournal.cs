@@ -1,12 +1,10 @@
-
-
 using System;
 using System.Collections.Generic;
 
 namespace Prism.Regions
 {
     /// <summary>
-    /// Provides journaling of current, back, and forward navigation within regions.    
+    /// Provides journaling of current, back, and forward navigation within regions.
     /// </summary>
     public class RegionNavigationJournal : IRegionNavigationJournal
     {
@@ -117,13 +115,17 @@ namespace Prism.Regions
         {
             if (!this.isNavigatingInternal)
             {
-                if (this.CurrentEntry != null && persistInHistory)
+                if (this.CurrentEntry != null)
                 {
                     this.backStack.Push(this.CurrentEntry);
                 }
 
                 this.forwardStack.Clear();
-                this.CurrentEntry = entry;
+
+                if (persistInHistory)
+                    CurrentEntry = entry;
+                else
+                    CurrentEntry = null;
             }
         }
 

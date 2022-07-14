@@ -1,14 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp2.0;net5.0</TargetFrameworks>
+    <TargetFrameworks>net5.0</TargetFrameworks>
   </PropertyGroup>
 
   <Import Project="../../build/SampleApp.props" />
 
+  <!--
+  <ItemGroup>
+    <PackageReference Include="Prism.Plugin.Logging.Abstractions" Version="8.1.16" />
+    <PackageReference Include="Serilog.Sinks.Trace" Version="3.0.0" />
+  </ItemGroup>
+  -->
+
   <ItemGroup>
     <ProjectReference Include="..\DummyModule2\DummyModule2.csproj" />
-    <ProjectReference Include="..\DummyModule\DummyModule.csproj" />
+    <ProjectReference Include="..\DummyModule1\DummyModule1.csproj" />
   </ItemGroup>
 
 </Project>

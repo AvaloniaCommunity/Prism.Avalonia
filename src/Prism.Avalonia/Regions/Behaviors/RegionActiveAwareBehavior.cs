@@ -1,13 +1,9 @@
-
-
 using System;
 using System.Collections.Specialized;
-using System.Windows;
 using System.Linq;
-using System.Reflection;
-using Prism.Common;
 using Avalonia;
 using Avalonia.Controls;
+using Prism.Common;
 
 namespace Prism.Regions.Behaviors
 {
@@ -56,7 +52,7 @@ namespace Prism.Regions.Behaviors
                 collection.CollectionChanged -= OnCollectionChanged;
             }
         }
-        
+
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
@@ -85,13 +81,13 @@ namespace Prism.Regions.Behaviors
 
         private void InvokeOnSynchronizedActiveAwareChildren(object item, Action<IActiveAware> invocation)
         {
-            var AvaloniaObjectView = item as AvaloniaObject;
+            var dependencyObjectView = item as AvaloniaObject;
 
-            if (AvaloniaObjectView != null)
+            if (dependencyObjectView != null)
             {
                 // We are assuming that any scoped region managers are attached directly to the 
                 // view.
-                var regionManager = RegionManager.GetRegionManager(AvaloniaObjectView);
+                var regionManager = RegionManager.GetRegionManager(dependencyObjectView);
 
                 // If the view's RegionManager attached property is different from the region's RegionManager,
                 // then the view's region manager is a scoped region manager.
@@ -115,11 +111,11 @@ namespace Prism.Regions.Behaviors
                 return true;
             }
 
-            var viewAsControl = view as Control;
+            var viewAsFrameworkElement = view as Control;
 
-            if (viewAsControl != null)
+            if (viewAsFrameworkElement != null)
             {
-                var viewModel = viewAsControl.DataContext;
+                var viewModel = viewAsFrameworkElement.DataContext;
 
                 return viewModel != null && Attribute.IsDefined(viewModel.GetType(), typeof(SyncActiveStateAttribute));
             }

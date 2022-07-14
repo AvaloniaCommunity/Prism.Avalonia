@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--<TargetFramework>netstandard2.0</TargetFramework>-->
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+ 
+  <ItemGroup>
+    <ProjectReference Include="..\ModulesSample.Infrastructure\ModulesSample.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\DummyModuleView.axaml.cs">
+      <DependentUpon>DummyModuleView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <Import Project="../../build/SampleApp.props" />
+
+</Project>

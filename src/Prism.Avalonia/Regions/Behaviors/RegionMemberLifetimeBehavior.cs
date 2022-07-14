@@ -1,11 +1,9 @@
-
-
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Collections.Specialized;
-using Prism.Common;
+using System.Linq;
 using Avalonia.Controls;
+using Prism.Common;
 
 namespace Prism.Regions.Behaviors
 {
@@ -15,10 +13,10 @@ namespace Prism.Regions.Behaviors
     /// </summary>
     /// <remarks>
     /// The <see cref="RegionMemberLifetimeBehavior"/> monitors the <see cref="IRegion.ActiveViews"/>
-    /// collection to discover items that transition into a deactivated state.  
+    /// collection to discover items that transition into a deactivated state.
     /// <p/>
     /// The behavior checks the removed items for either the <see cref="IRegionMemberLifetime"/>
-    /// or the <see cref="RegionMemberLifetimeAttribute"/> (in that order) to determine if it should be kept 
+    /// or the <see cref="RegionMemberLifetimeAttribute"/> (in that order) to determine if it should be kept
     /// alive on removal.
     /// <p/>
     /// If the item in the collection is a <see cref="System.Windows.Control"/>, it will

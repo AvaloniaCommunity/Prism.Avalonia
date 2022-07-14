@@ -1,5 +1,3 @@
-
-
 using System.Configuration;
 
 namespace Prism.Modularity
@@ -26,9 +24,9 @@ namespace Prism.Modularity
         }
 
         /// <summary>
-        /// Gets or sets the name of a module antoher module depends on.
+        /// Gets or sets the name of a module another module depends on.
         /// </summary>
-        /// <value>The name of a module antoher module depends on.</value>
+        /// <value>The name of a module another module depends on.</value>
         [ConfigurationProperty("moduleName", IsRequired = true, IsKey = true)]
         public string ModuleName
         {

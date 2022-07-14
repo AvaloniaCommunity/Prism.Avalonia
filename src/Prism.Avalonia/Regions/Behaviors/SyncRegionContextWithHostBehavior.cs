@@ -1,19 +1,16 @@
-
-
 using System;
-using System.Windows;
-using Prism.Properties;
-using Prism.Common;
 using Avalonia;
+using Prism.Common;
+using Prism.Properties;
 
 namespace Prism.Regions.Behaviors
 {
     /// <summary>
-    /// Behavior that synchronizes the <see cref="IRegion.Context"/> property of a <see cref="IRegion"/> with 
-    /// the control that hosts the Region. It does this by setting the <see cref="RegionManager.RegionContextProperty"/> 
+    /// Behavior that synchronizes the <see cref="IRegion.Context"/> property of a <see cref="IRegion"/> with
+    /// the control that hosts the Region. It does this by setting the <see cref="RegionManager.RegionContextProperty"/>
     /// Dependency Property on the host control.
-    /// 
-    /// This behavior allows the usage of two way databinding of the RegionContext from XAML. 
+    ///
+    /// This behavior allows the usage of two way databinding of the RegionContext from XAML.
     /// </summary>
     public class SyncRegionContextWithHostBehavior : RegionBehavior, IHostAwareRegionBehavior
     {
@@ -21,7 +18,7 @@ namespace Prism.Regions.Behaviors
         private AvaloniaObject hostControl;
 
         /// <summary>
-        /// Name that identifies the SyncRegionContextWithHostBehavior behavior in a collection of RegionsBehaviors. 
+        /// Name that identifies the SyncRegionContextWithHostBehavior behavior in a collection of RegionsBehaviors.
         /// </summary>
         public static readonly string BehaviorKey = "SyncRegionContextWithHost";
 
@@ -34,10 +31,10 @@ namespace Prism.Regions.Behaviors
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="DependencyObject"/> that the <see cref="IRegion"/> is attached to.
+        /// Gets or sets the <see cref="AvaloniaObject"/> that the <see cref="IRegion"/> is attached to.
         /// </summary>
         /// <value>
-        /// A <see cref="DependencyObject"/> that the <see cref="IRegion"/> is attached to.
+        /// A <see cref="AvaloniaObject"/> that the <see cref="IRegion"/> is attached to.
         /// This is usually a <see cref="Control"/> that is part of the tree.
         /// </value>
         public AvaloniaObject HostControl
@@ -63,7 +60,7 @@ namespace Prism.Regions.Behaviors
         {
             if (this.HostControl != null)
             {
-                // Sync values initially. 
+                // Sync values initially.
                 SynchronizeRegionContext();
 
                 // Now register for events to keep them in sync
@@ -72,7 +69,7 @@ namespace Prism.Regions.Behaviors
             }
         }
 
-        void Region_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Region_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == RegionContextPropertyName)
             {
@@ -85,7 +82,7 @@ namespace Prism.Regions.Behaviors
             }
         }
 
-        void RegionContextObservableObject_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void RegionContextObservableObject_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Value")
             {

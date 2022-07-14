@@ -2,6 +2,7 @@
 
   <Import Project="../../build/Library.props" />
   <Import Project="../../build/AvaloniaDependency.props" />
+  <Import Project="..\Containers\Prism.Unity.Shared\Prism.Unity.Shared.projitems" Label="Shared" />
   <Import Project="../../build/PrismDependency.props" />
 
   <PropertyGroup>

@@ -1,41 +1,42 @@
 # Prism.Avalonia
-Prism (https://github.com/PrismLibrary/Prism) framework support for Avalonia UI.
 
-This library actually copies functionality of Prism for WPF implementation, which can be found here:
-https://github.com/PrismLibrary/Prism/tree/master/Source/Wpf
-  
-Logic and approach for development of your applications remained the same as it was for Prism.Wpf library. 
+[Prism framework](https://github.com/PrismLibrary/Prism) support for Avalonia UI.
 
-### Install
+[![Prism.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.Avalonia?dWidth=70&includePreReleases=true)](https://www.nuget.org/packages/Prism.Avalonia/)
+
+Prism.Avalonia's logic and development approach is similar to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/tree/master/Source/Wpf) so you can get started right away with Prism for Avalonia!
+
+## Upgrade to Prism 8.1 Progress
+
+Check out [Upgrade-Prism-7.2-to-8.1.md](https://github.com/AvaloniaCommunity/Prism.Avalonia/blob/feature-Prism8197/Upgrade-Prism-7.2-to-8.1.md) for the latest progress.
+
+## Install
+
 Add package from nuget to your project:
 
-```
-Install-Package Prism.Avalonia -Version 7.2.0.1429
+```powershell
+Install-Package Prism.Avalonia -Version 8.1.0.97
 ```
 
 DryIoc:
-```
-Install-Package Prism.DryIoc.Avalonia -Version 7.2.0.1429
+
+```powershell
+Install-Package Prism.DryIoc.Avalonia -Version 8.1.0.97
 ```
 
 Unity:
-```
-Install-Package Prism.Unity.Avalonia -Version 7.2.0.1429
+
+```powershell
+Install-Package Prism.Unity.Avalonia -Version 8.1.0.97
 ```
 
-Autofac (Not updating for the moment):
-```
-Install-Package Prism.Autofac.Avalonia -Version 7.1.0.431
-```
+## How to use
 
-### How to use
-
-** App.xaml.cs: **
+### App.xaml.cs
 
 ```csharp
 public class App : PrismApplication
 {
-
     public static bool IsSingleViewLifetime =>
         Environment.GetCommandLineArgs()
             .Any(a => a == "--fbdev" || a == "--drm");
@@ -51,13 +52,6 @@ public class App : PrismApplication
         base.Initialize();
     }
 
-    protected override void RegisterTypes(IContainerRegistry containerRegistry)
-    {
-        // TODO: Register services here
-
-        moduleCatalog.Register<IMainService, MainService>();
-    }
-
     protected override IAvaloniaObject CreateShell()
     {
         if (IsSingleViewLifetime)
@@ -68,22 +62,43 @@ public class App : PrismApplication
 
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
     {
-        // TODO: Register modules
-
+        // Register modules
         moduleCatalog.AddModule<Module1.Module>();
         moduleCatalog.AddModule<Module2.Module>();
         moduleCatalog.AddModule<Module3.Module>();
-	}
+    }
 
+    /// <summary>Called after <seealso cref="Initialize"/>.</summary>
+    protected override void OnInitialized()
+    {
+      // Register initial Views to Region.
+      var regionManager = Container.Resolve<IRegionManager>();
+      regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(DashboardView));
+      regionManager.RegisterViewWithRegion(RegionNames.SidebarRegion, typeof(SidebarView));
+    }
+
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
+    {
+        // Register Services
+        containerRegistry.Register<IRestService, RestService>();
+
+        // Views - Generic
+        containerRegistry.Register<MainWindow>();
+
+        // Views - Region Navigation
+        containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
+        containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
+        containerRegistry.RegisterForNavigation<SidebarView, SidebarViewModel>();
+    }
 }
 ```
 
-** Program.cs: **
+### Program.cs
+
 ```csharp
 public static class Program
 {
-
-    public static AppBuilder BuildAvaloniaApp() => 
+    public static AppBuilder BuildAvaloniaApp() =>
         AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .With(new X11PlatformOptions
