@@ -58,6 +58,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.Container.Avalonia.Sh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Avalonia.Tests", "tests\Avalonia\Prism.Avalonia.Tests\Prism.Avalonia.Tests.csproj", "{DAFC499B-E379-4453-BDCE-2EC30E1290C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleDialogApp", "Samples\SampleDialogApp\SampleDialogApp.csproj", "{97F8C6D3-308C-40BD-B181-5CDFCF101CBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{DAFC499B-E379-4453-BDCE-2EC30E1290C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAFC499B-E379-4453-BDCE-2EC30E1290C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAFC499B-E379-4453-BDCE-2EC30E1290C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97F8C6D3-308C-40BD-B181-5CDFCF101CBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97F8C6D3-308C-40BD-B181-5CDFCF101CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97F8C6D3-308C-40BD-B181-5CDFCF101CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97F8C6D3-308C-40BD-B181-5CDFCF101CBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,6 +132,7 @@ Global
 		{AD4FDFF7-8F44-41AD-809B-C96A5AF2BC57} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
 		{340538B6-0781-470E-8BD1-7B7735FDC554} = {AD4FDFF7-8F44-41AD-809B-C96A5AF2BC57}
 		{DAFC499B-E379-4453-BDCE-2EC30E1290C8} = {AD4FDFF7-8F44-41AD-809B-C96A5AF2BC57}
+		{97F8C6D3-308C-40BD-B181-5CDFCF101CBF} = {5F8D330E-F611-4E17-8217-F2D6CDB8E1F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D260344D-8648-441D-B85B-9D280005F098}

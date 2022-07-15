@@ -54,7 +54,8 @@ namespace Prism.Services.Dialogs
         /// <param name="name">The name of the dialog to show.</param>
         /// <param name="parameters">The parameters to pass to the dialog.</param>
         /// <param name="callback">The action to perform when the dialog is closed.</param>
-        public void ShowDialog(Window owner, string name, IDialogParameters parameters, Action<IDialogResult> callback)
+        //// public void ShowDialog(Window owner, string name, IDialogParameters parameters, Action<IDialogResult> callback)
+        public void ShowDialog(string name, IDialogParameters parameters, Action<IDialogResult> callback)
         {
             ShowDialogInternal(name, parameters, callback, true);
         }
@@ -66,7 +67,8 @@ namespace Prism.Services.Dialogs
         /// <param name="parameters">The parameters to pass to the dialog.</param>
         /// <param name="callback">The action to perform when the dialog is closed.</param>
         /// <param name="windowName">The name of the hosting window registered with the IContainerRegistry.</param>
-        public void ShowDialog(Window owner, string name, IDialogParameters parameters, Action<IDialogResult> callback, string windowName)
+        ////public void ShowDialog(Window owner, string name, IDialogParameters parameters, Action<IDialogResult> callback, string windowName)
+        public void ShowDialog(string name, IDialogParameters parameters, Action<IDialogResult> callback, string windowName)
         {
             ShowDialogInternal(name, parameters, callback, true, windowName);
         }

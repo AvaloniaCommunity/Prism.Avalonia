@@ -7,6 +7,7 @@
     <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.16" />
     <PackageReference Include="Avalonia.Desktop" Version="0.10.16" />
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.16" />
+    <!--<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.16" />-->
     <PackageReference Include="Avalonia.LinuxFramebuffer" Version="0.10.16" />
     <PackageReference Include="Avalonia.Markup.Xaml.Loader" Version="0.10.16" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.16" />
