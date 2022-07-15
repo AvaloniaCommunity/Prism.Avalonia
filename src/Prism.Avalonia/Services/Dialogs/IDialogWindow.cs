@@ -61,7 +61,9 @@ namespace Prism.Services.Dialogs
         /// <summary>
         /// Called when the window is closing.
         /// </summary>
-        event CancelEventHandler Closing;
+        // WPF: event CancelEventHandler Closing;
+        // Ava: ...
+        event EventHandler<CancelEventArgs> Closing;
 
         /// <summary>
         /// The result of the dialog.

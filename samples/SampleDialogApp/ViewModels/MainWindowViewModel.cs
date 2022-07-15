@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using Avalonia.Controls;
+using System.Drawing;
+using Prism.Commands;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 
@@ -7,6 +9,7 @@ namespace SampleDialogApp.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private readonly IDialogService _dialogService;
+        private string _returnedResult;
 
         public MainWindowViewModel(IRegionManager regionManager, IDialogService dialogService)
         {
@@ -25,10 +28,32 @@ namespace SampleDialogApp.ViewModels
 
         public DelegateCommand CmdShowDialog => new DelegateCommand(() =>
         {
+            // Sample from MessageBox.Avalonia
+            //// Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
+            //// {
+            ////     var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager
+            ////         .GetMessageBoxStandardWindow(new MessageBoxStandardParams
+            ////         {
+            ////             ContentTitle = "Scan",
+            ////             ContentMessage = "No devices detected",
+            ////             ButtonDefinitions = ButtonEnum.Ok,
+            ////             SizeToContent = SizeToContent.Manual,
+            ////             Width = 300,
+            ////             Height = 150,
+            ////             ShowInCenter = true,
+            ////             Icon = Icon.Error,
+            ////         });
+            //// 
+            ////     messageBoxStandardWindow.Show();
+            //// }).Wait();
+
             var message = "This is a message that should be shown in the dialog.";
             //using the dialog service as-is
             _dialogService.ShowDialog("NotificationDialogView", new DialogParameters($"message={message}"), r =>
             {
+                if (r is not null)
+                    ReturnedResult = r.ToString();
+
                 if (r.Result == ButtonResult.None)
                     Title = "Result is None";
                 else if (r.Result == ButtonResult.OK)
@@ -44,6 +69,9 @@ namespace SampleDialogApp.ViewModels
         {
             _dialogService.Show("NotificationDialogView", r =>
             {
+                if (r is not null)
+                    ReturnedResult = r.ToString();
+
                 if (r.Result == ButtonResult.None)
                     Title = "Result is None";
                 else if (r.Result == ButtonResult.OK)
@@ -54,5 +82,11 @@ namespace SampleDialogApp.ViewModels
                     Title = "I Don't know what you did!?";
             });
         });
+
+        public string ReturnedResult
+        {
+            get => _returnedResult;
+            set => SetProperty(ref _returnedResult, value);
+        }
     }
 }

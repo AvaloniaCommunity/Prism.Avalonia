@@ -5,13 +5,21 @@
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         x:Class="SampleDialogApp.Views.MainWindow"
-        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200"
+        mc:Ignorable="d" d:DesignHeight="350" d:DesignWidth="450"
+        Height="200" Width="400"
+        Background="LightGray"
         Title="{Binding Title}">
   <Panel>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
       <Label Content="Click to show a dialog window" />
       <Button Content="Show as Dialog" Command="{Binding CmdShowDialog}" />
       <Button Content="Show without parent" Command="{Binding CmdShowRegular}" />
+
+      <StackPanel Orientation="Horizontal">
+        <Label Content="Result:" />
+        <Label Content="{Binding ReturnedResult}" />
+      </StackPanel>
+
     </StackPanel>
   </Panel>
 </Window>

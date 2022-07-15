@@ -31,12 +31,6 @@ namespace Prism.Services.Dialogs
             AvaloniaXamlLoader.Load(this);
         }
 
-        event CancelEventHandler IDialogWindow.Closing
-        {
-            add => throw new System.NotImplementedException();
-            remove => throw new System.NotImplementedException();
-        }
-
         ////public new Task ShowDialog(Window ownerWindow)
         ////{
         ////    throw new System.NotImplementedException();

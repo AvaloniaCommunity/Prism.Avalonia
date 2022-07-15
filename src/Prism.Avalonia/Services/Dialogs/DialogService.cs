@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Prism.Common;
 using Prism.Ioc;
 
@@ -73,7 +75,7 @@ namespace Prism.Services.Dialogs
             ShowDialogInternal(name, parameters, callback, true, windowName);
         }
 
-        void ShowDialogInternal(string name, IDialogParameters parameters, Action<IDialogResult> callback, bool isModal, string windowName = null, Window owner = null)
+        void ShowDialogInternal(string name, IDialogParameters parameters, Action<IDialogResult> callback, bool isModal, string windowName = null)
         {
             if (parameters == null)
                 parameters = new DialogParameters();
@@ -82,7 +84,7 @@ namespace Prism.Services.Dialogs
             ConfigureDialogWindowEvents(dialogWindow, callback);
             ConfigureDialogWindowContent(name, dialogWindow, parameters);
 
-            ShowDialogWindow(dialogWindow, isModal, owner);
+            ShowDialogWindow(dialogWindow, isModal);
         }
 
         /// <summary>
@@ -90,12 +92,16 @@ namespace Prism.Services.Dialogs
         /// </summary>
         /// <param name="dialogWindow">The dialog window to show.</param>
         /// <param name="isModal">If true; dialog is shown as a modal</param>
-        protected virtual void ShowDialogWindow(IDialogWindow dialogWindow, bool isModal, Window owner = null)
+        protected virtual void ShowDialogWindow(IDialogWindow dialogWindow, bool isModal)
         {
-            if (isModal)
+            if (isModal && 
+                Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime deskLifetime)
             {
-                // TODO: Attach owner here via - dialogWindow.ShowDialog(ownerWindow);
-                dialogWindow.ShowDialog(owner);
+                // Ref:
+                //  - https://docs.avaloniaui.net/docs/controls/window#show-a-window-as-a-dialog
+                //  - https://github.com/AvaloniaUI/Avalonia/discussions/7924
+                // (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
+                dialogWindow.ShowDialog(deskLifetime.MainWindow);
             }
             else
             {
@@ -164,7 +170,7 @@ namespace Prism.Services.Dialogs
             dialogWindow.Opened += loadedHandler;
             //// WPF: dialogWindow.Loaded += loadedHandler;
 
-            CancelEventHandler closingHandler = null;
+            EventHandler<CancelEventArgs> closingHandler = null;
             closingHandler = (o, e) =>
             {
                 if (!dialogWindow.GetDialogViewModel().CanCloseDialog())
@@ -214,16 +220,16 @@ namespace Prism.Services.Dialogs
             ////if (window.Owner is null)
             ////    window.Owner = 
 
-            throw new NotImplementedException();
-            ////            var windowStyle = Dialog.GetWindowStyle(dialogContent);
-            ////            if (windowStyle != null)
-            ////                window.Style = windowStyle;
+            // OG Code
+            //// var windowStyle = Dialog.GetWindowStyle(dialogContent);
+            //// if (windowStyle != null)
+            ////     window.Style = windowStyle;
             ////
-            ////            window.Content = dialogContent;
-            ////            window.DataContext = viewModel; //we want the host window and the dialog to share the same data context
+            //// window.Content = dialogContent;
+            //// window.DataContext = viewModel; //we want the host window and the dialog to share the same data context
             ////
-            ////            if (window.Owner == null)
-            ////                window.Owner = Application.Current?.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
+            //// if (window.Owner == null)
+            ////     window.Owner = Application.Current?.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
         }
     }
 }

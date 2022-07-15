@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
-             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="350"
+             mc:Ignorable="d" d:DesignHeight="200" d:DesignWidth="400"
+             Height="200" Width="400"
              x:Class="SampleDialogApp.Views.NotificationDialogView">
   <StackPanel HorizontalAlignment="Center">
     <Label Content="{Binding Title}" FontWeight="Bold" />
@@ -14,13 +15,19 @@
       <Label Content="{Binding CustomMessage}" />
     </StackPanel>
 
-    <Button Content="None" Command="{Binding CmdResult}" CommandParameter="0" />
-    <Button Content="OK" Command="{Binding CmdResult}" CommandParameter="1" />
-    <Button Content="Cancel" Command="{Binding CmdResult}" CommandParameter="2" />
-    <Button Content="Abort" Command="{Binding CmdResult}" CommandParameter="3" />
-    <Button Content="Retry" Command="{Binding CmdResult}" CommandParameter="4" />
-    <Button Content="Ignore" Command="{Binding CmdResult}" CommandParameter="5" />
-    <Button Content="Yes" Command="{Binding CmdResult}" CommandParameter="6" />
-    <Button Content="No" Command="{Binding CmdResult}" CommandParameter="7" />
+    <StackPanel Orientation="Horizontal">
+        <Button Content="None" Command="{Binding CmdResult}" CommandParameter="0" />
+        <Button Content="OK" Command="{Binding CmdResult}" CommandParameter="1" />
+        <Button Content="Cancel" Command="{Binding CmdResult}" CommandParameter="2" />
+      </StackPanel>
+      <StackPanel Orientation="Horizontal">
+        <Button Content="Abort" Command="{Binding CmdResult}" CommandParameter="3" />
+        <Button Content="Retry" Command="{Binding CmdResult}" CommandParameter="4" />
+        <Button Content="Ignore" Command="{Binding CmdResult}" CommandParameter="5" />
+      </StackPanel>
+      <StackPanel Orientation="Horizontal">
+        <Button Content="Yes" Command="{Binding CmdResult}" CommandParameter="6" />
+        <Button Content="No" Command="{Binding CmdResult}" CommandParameter="7" />
+      </StackPanel>
   </StackPanel>
 </UserControl>
