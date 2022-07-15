@@ -53,14 +53,14 @@ namespace SampleDialogApp.ViewModels
 
                 ReturnedResult = r.Result.ToString();
 
-                if (r.Result == ButtonResult.None)
-                    Title = "Result is None";
-                else if (r.Result == ButtonResult.OK)
-                    Title = "Result is OK";
-                else if (r.Result == ButtonResult.Cancel)
-                    Title = "Result is Cancel";
-                else
-                    Title = "I Don't know what you did!?";
+                // Same as if-statements, just a switch-expression.
+                Title = r.Result switch
+                {
+                    ButtonResult.None => "Result is None",
+                    ButtonResult.OK => "Result is OK",
+                    ButtonResult.Cancel => "Result is Cancel",
+                    _ => "I Don't know what you did!?",
+                };
             });
         });
 

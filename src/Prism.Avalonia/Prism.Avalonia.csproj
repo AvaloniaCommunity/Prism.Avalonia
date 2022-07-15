@@ -35,10 +35,6 @@ Prism.Wpf helps you more easily design and build rich, flexible, and easy to mai
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Dialogs\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="PresentationFramework" />
   </ItemGroup>
 
