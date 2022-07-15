@@ -15,10 +15,9 @@ namespace SampleDialogApp.Views
         }
 
         // When referencing Avalonia package, XamlNameReferenceGenerator
-        // we may not need this method
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
-        }
+        ////private void InitializeComponent()
+        ////{
+        ////    AvaloniaXamlLoader.Load(this);
+        ////}
     }
 }

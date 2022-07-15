@@ -5,11 +5,9 @@
         x:Class="Prism.Services.Dialogs.DialogWindow"
         Title="{Binding Title}"
         WindowStartupLocation="CenterOwner">
-  <!--
-  <Window.Style>
-    <Style TargetType="{x:Type Window}">
+  <Window.Styles>
+    <Style Selector="Window">
       <Setter Property="SizeToContent" Value="WidthAndHeight" />
     </Style>
-  </Window.Style>
-  -->
+  </Window.Styles>
 </Window>

@@ -206,21 +206,14 @@ namespace Prism.Services.Dialogs
         /// <param name="viewModel">The dialog's ViewModel.</param>
         protected virtual void ConfigureDialogWindowProperties(IDialogWindow window, Avalonia.Controls.Control dialogContent, IDialogAware viewModel)
         {
-            // TODO: Set breakpoint there to see what 'WindowStyle' returns.
+            // Avalonia returns 'null' for Dialog.GetWindowStyle(dialogContent);
             // WPF: Window > ContentControl > FrameworkElement
             // Ava: Window > WindowBase > TopLevel > Control > InputElement > Interactive > Layoutable > Visual > StyledElement.Styles (collection)
-            var windowStyle = Dialog.GetWindowStyle(dialogContent);
-            ////if (windowStyle is not null)
-            ////
 
             window.Content = dialogContent;
             window.DataContext = viewModel;
 
-            // TODO: Avalonia's Window.Owner property has a 'protective set'
-            ////if (window.Owner is null)
-            ////    window.Owner = 
-
-            // OG Code
+            // WPF
             //// var windowStyle = Dialog.GetWindowStyle(dialogContent);
             //// if (windowStyle != null)
             ////     window.Style = windowStyle;

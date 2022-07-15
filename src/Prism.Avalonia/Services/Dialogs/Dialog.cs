@@ -21,7 +21,6 @@ namespace Prism.Services.Dialogs
             AvaloniaProperty.RegisterAttached<AvaloniaObject, WindowStartupLocation>(
                 name: "WindowStartupLocation",
                 ownerType: typeof(Dialog));
-        //// WPF:  DependencyProperty.RegisterAttached("WindowStartupLocation", typeof(WindowStartupLocation), typeof(Dialog), new UIPropertyMetadata(OnWindowStartupLocationChanged));
 
         public Dialog()
         {

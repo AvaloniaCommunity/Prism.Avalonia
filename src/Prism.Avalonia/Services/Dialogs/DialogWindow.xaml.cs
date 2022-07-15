@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Threading.Tasks;
-using Avalonia;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
 namespace Prism.Services.Dialogs
@@ -30,10 +27,5 @@ namespace Prism.Services.Dialogs
         {
             AvaloniaXamlLoader.Load(this);
         }
-
-        ////public new Task ShowDialog(Window ownerWindow)
-        ////{
-        ////    throw new System.NotImplementedException();
-        ////}
     }
 }

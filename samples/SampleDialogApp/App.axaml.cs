@@ -1,6 +1,5 @@
 using System;
 using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Prism.DryIoc;
 using Prism.Ioc;
@@ -15,16 +14,6 @@ namespace SampleDialogApp
         {
             AvaloniaXamlLoader.Load(this);
             base.Initialize();
-        }
-
-        public override void OnFrameworkInitializationCompleted()
-        {
-            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            {
-                desktop.MainWindow = new MainWindow();
-            }
-
-            base.OnFrameworkInitializationCompleted();
         }
 
         protected override IAvaloniaObject CreateShell()

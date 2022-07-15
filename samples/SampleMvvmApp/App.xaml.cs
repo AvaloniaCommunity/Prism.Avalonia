@@ -30,13 +30,15 @@ namespace SampleMvvmApp
         {
             Console.WriteLine("Initialize()");
             AvaloniaXamlLoader.Load(this);
+
+            // DON'T FORGET TO CALL THIS
             base.Initialize();
         }
 
         /// <summary>Called after Initialize.</summary>
         protected override void OnInitialized()
         {
-            // Register Views to Region it will appear in. Don't register them in the ViewModel.
+            // Register Views to the Region it will appear in. Don't register them in the ViewModel.
             var regionManager = Container.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(DashboardView));
             regionManager.RegisterViewWithRegion(RegionNames.SidebarRegion, typeof(SidebarView));

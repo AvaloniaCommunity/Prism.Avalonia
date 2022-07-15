@@ -1,13 +1,11 @@
-﻿using Prism.Events;
+﻿using Avalonia.Controls;
+using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Regions.Behaviors;
 using Prism.Services.Dialogs;
-using Avalonia.Styling;
-using Avalonia;
-using Avalonia.Controls;
 
 namespace Prism
 {
