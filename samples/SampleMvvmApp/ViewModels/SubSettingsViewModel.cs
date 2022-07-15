@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BasicMvvmApp.Views;
+using SampleMvvmApp.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
-namespace BasicMvvmApp.ViewModels
+namespace SampleMvvmApp.ViewModels
 {
     public class SubSettingsViewModel : ViewModelBase
     {

@@ -1,6 +1,8 @@
-﻿using Avalonia;
+﻿using System.Diagnostics.CodeAnalysis;
+using Avalonia;
+using Avalonia.Logging;
 
-namespace BasicMvvmApp
+namespace SampleMvvmApp
 {
     public class Program
     {
@@ -15,11 +17,15 @@ namespace BasicMvvmApp
                 // .UseReactiveUI();
 
 #if DEBUG
-            builder.LogToTrace();
+            builder.LogToTrace(LogEventLevel.Debug, LogArea.Property, LogArea.Layout, LogArea.Binding);
 #endif
             return builder;
         }
 
+        // Initialization code. Don't use any Avalonia, third-party APIs or any
+        // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
+        // yet and stuff might break.
+        [ExcludeFromCodeCoverage]
         static void Main(string[] args) => BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
     }
 }

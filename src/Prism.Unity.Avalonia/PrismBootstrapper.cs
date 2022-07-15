@@ -5,9 +5,9 @@ using Unity;
 namespace Prism.Unity
 {
     /// <summary>
-    /// Base application class that uses <see cref="UnityContainerExtension"/> as it's container.
+    /// Base bootstrapper class that uses <see cref="UnityContainerExtension"/> as it's container.
     /// </summary>
-    public abstract class PrismApplication : PrismApplicationBase
+    public abstract class PrismBootstrapper : PrismBootstrapperBase
     {
         /// <summary>
         /// Create a new <see cref="UnityContainerExtension"/> used by Prism.

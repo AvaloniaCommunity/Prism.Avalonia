@@ -4,7 +4,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
-namespace BasicMvvmApp.ViewModels
+namespace SampleMvvmApp.ViewModels
 {
 
     public class ViewModelBase : BindableBase, INavigationAware

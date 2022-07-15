@@ -4,7 +4,7 @@
 
 [![Prism.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.Avalonia?dWidth=70&includePreReleases=true)](https://www.nuget.org/packages/Prism.Avalonia/)
 
-Prism.Avalonia's logic and development approach is similar to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/tree/master/Source/Wpf) so you can get started right away with Prism for Avalonia!
+Prism.Avalonia's logic and development approach is similar to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/) so you can get started right away with Prism for Avalonia!
 
 ## Upgrade to Prism 8.1 Progress
 
