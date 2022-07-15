@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Styling;
 
@@ -20,10 +21,9 @@ namespace Prism.Services.Dialogs
         /// </summary>
         void Close();
 
-        /////// <summary>
-        /////// The window's owner.
-        /////// </summary>
-        ////Window Owner { get; set; }
+        /// <summary>The window's owner.</summary>
+        /// <remarks>Avalonia's WindowBase.Owner's property access is { get; protected set; }.</remarks>
+        WindowBase Owner { get; }
 
         /// <summary>
         /// Show a non-modal dialog.
@@ -34,7 +34,7 @@ namespace Prism.Services.Dialogs
         /// Show a modal dialog.
         /// </summary>
         /// <returns></returns>
-        bool? ShowDialog();
+        Task ShowDialog(Window owner);
 
         /// <summary>
         /// The data context of the window.
@@ -44,10 +44,14 @@ namespace Prism.Services.Dialogs
         /// </remarks>
         object DataContext { get; set; }
 
-        /////// <summary>
-        /////// Called when the window is loaded.
-        /////// </summary>
-        ////event RoutedEventHandler Loaded;
+        /// <summary>Called when the window is loaded.</summary>
+        /// <remarks>
+        ///     Avalonia currently doesn't implement the Loaded event like WPF.
+        ///     Window > WindowBase > TopLevel.Opened
+        ///     Window > WindowBase > TopLevel > Control > InputElement > Interactive > layout > Visual > StyledElement.Initialized
+        /// </remarks>
+        //// WPF: event RoutedEventHandler Loaded;
+        event EventHandler Opened;
 
         /// <summary>
         /// Called when the window is closed.
@@ -64,9 +68,11 @@ namespace Prism.Services.Dialogs
         /// </summary>
         IDialogResult Result { get; set; }
 
-        /////// <summary>
-        /////// The window style.
-        /////// </summary>
-        ////Style Style { get; set; }
+        /// <summary>
+        /// The window style.
+        /// </summary>
+        // WPF: Window > ContentControl > FrameworkElement
+        // Ava: Window > WindowBase > TopLevel > ContentControl > TemplatedControl > Control
+        //Style Style { get; set; }
     }
 }
