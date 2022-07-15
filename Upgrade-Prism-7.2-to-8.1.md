@@ -43,7 +43,7 @@
 | PrismApplicationBase.cs                   | :heavy_check_mark:
 | Bootstrapper.cs                           | :heavy_check_mark: :x:        | Renamed to `PrismBootstrapperBase.cs`
 | PrismBootstrapperBase.cs                  | :heavy_check_mark: :new:      | Replaces `Boostrapper.cs`
-| PrismInitializationExtensions.cs          | :white_square_button: :warning: :new: | Needs, `SelectorRegionAdapter.cs`. Register container, Behavior, and Adapter goodies.
+| PrismInitializationExtensions.cs          | :heavy_check_mark: :warning: :new: | Needs, `SelectorRegionAdapter.cs`. Register container, Behavior, and Adapter goodies.
 | Common\MvvmHelpers.cs                     | :heavy_check_mark:
 | Common\ObservableObject.cs                | :heavy_check_mark: | Needs verified
 | Common\UriParsingHelper.cs                | :heavy_check_mark:
@@ -97,7 +97,7 @@
 | Regions\Behaviors\AutoPopulateRegionBehavior.cs               | :heavy_check_mark:
 | Regions\Behaviors\BindRegionContextToAvaloniaObjectBehavior.cs | :heavy_check_mark:   | Equivilant, `BindRegionContextToDependencyObjectBehavior`
 | Regions\Behaviors\ClearChildViewsRegionBehavior.cs            | :heavy_check_mark:
-| Regions\Behaviors\DelayedRegionCreationBehavior.cs            | :warning:     | Needs Avalonia equivilant of `FrameworkContentElement += Loaded`
+| Regions\Behaviors\DelayedRegionCreationBehavior.cs            | :heavy_check_mark: :warning:     | Needs Avalonia equivilant of `FrameworkContentElement += Loaded`
 | Regions\Behaviors\DestructibleRegionBehavior.cs               | :heavy_check_mark: :new:
 | Regions\Behaviors\IHostAwareRegionBehavior.cs                 | :heavy_check_mark:
 | Regions\Behaviors\RegionActiveAwareBehavior.cs                | :heavy_check_mark:
@@ -164,19 +164,19 @@
 | Regions\ViewSortHintAttribute.cs              | :heavy_check_mark:
 | Regions\ViewsCollection.cs                    | :heavy_check_mark:
 | Services\Dialogs\ButtonResult.cs              | :new: :heavy_check_mark:
-| Services\Dialogs\Dialog.cs                    | :new: :warning:           | Temp Disabled!
+| Services\Dialogs\Dialog.cs                    | :new: :heavy_check_mark:
 | Services\Dialogs\DialogParameters.cs          | :new: :heavy_check_mark:
 | Services\Dialogs\DialogResult.cs              | :new: :heavy_check_mark:
-| Services\Dialogs\DialogService.cs             | :new: :warning:           | Temp Disabled!
-| Services\Dialogs\DialogWindow.xaml            | :new: :warning:           | Needs renamed to `axml`
-| Services\Dialogs\DialogWindow.xaml.cs         | :new: :warning:           | Has error, needs converted to Avalonia
+| Services\Dialogs\DialogService.cs             | :new: :heavy_check_mark:
+| Services\Dialogs\DialogWindow.xaml            | :new: :heavy_check_mark:
+| Services\Dialogs\DialogWindow.xaml.cs         | :new: :heavy_check_mark:
 | Services\Dialogs\IDialogAware.cs              | :new: :heavy_check_mark:
 | Services\Dialogs\IDialogParameters.cs         | :new: :heavy_check_mark:
 | Services\Dialogs\IDialogResult.cs             | :new: :heavy_check_mark:
-| Services\Dialogs\IDialogService.cs            | :new: :warning:           | Needs multiplatform verification
-| Services\Dialogs\IDialogServiceExtensions.cs  | :new: :warning:           | Needs multiplatform verification
-| Services\Dialogs\IDialogWindow.cs             | :new: :warning:           | Temp Disabled!
-| Services\Dialogs\IDialogWindowExtensions.cs   | :new: :warning:           | Temp Disabled!
+| Services\Dialogs\IDialogService.cs            | :new: :heavy_check_mark:
+| Services\Dialogs\IDialogServiceExtensions.cs  | :new: :heavy_check_mark:
+| Services\Dialogs\IDialogWindow.cs             | :new: :heavy_check_mark:
+| Services\Dialogs\IDialogWindowExtensions.cs   | :new: :heavy_check_mark:
 
 ### Containers
 
@@ -199,31 +199,24 @@ Containers is a :new: Folder
 |-------------------------------------|---------|--------|
 | Prism.DryIoc.Avalonia.csproj.cs     | :heavy_check_mark:      | Updated to DryIoc v4.8.1
 | DryIocServiceLocatorAdapter.cs      | :x:
-| GlobalSuppressions.cs               | :white_square_button:
+| GlobalSuppressions.cs               | :heavy_check_mark:
 | PrismApplication.cs                 | :heavy_check_mark:
 | PrismBootstrapper.cs                | :new:
 | Ioc\DryIocContainerExtension.cs     | :x:                     | Moved to `Containers`
 | Ioc\PrismIocExtensions.cs           | :x:                     | Moved to `Containers`
-| Legacy\DryIocBootstrapper.cs        | :white_square_button:
-| Legacy\DryIocExtensions.cs          | :white_square_button:
+| Legacy\DryIocBootstrapper.cs        | :x:
+| Legacy\DryIocExtensions.cs          | :x:
 | Properties\AssemblyInfo             | :new:
 | Properties\Resources.Designer.resx  | :white_square_button:
 | Properties\Resources.resx           | :white_square_button:
 
 ### Prism.Unity.Avalonia
 
-| File                                          | Status  |  Notes |
-|-----------------------------------------------|---------|--------|
-| PrismApplication.cs                           | :white_square_button:
-| UnityServiceLocatorApplication.cs             | :white_square_button:
-| Ioc\PrismIocExtensions.cs                     | :x:                   | Moved to `Containers`
-| Ioc\UnityContainerExtension.cs                | :x:                   | Moved to `Containers`
-| Legacy\UnityBootstrapper.cs                   | :white_square_button:
-| Legacy\UnityContainerHelper.cs                | :white_square_button:
-| Legacy\UnityExtensions.cs                     | :white_square_button:
-| Properties\Resources.Designer.resx            | :white_square_button:
-| Properties\Resources.resx                     | :white_square_button:
-| Regions\UnityRegionNavigationContentLoader.cs | :white_square_button:
+| File                                | Status  |  Notes |
+|-------------------------------------|---------|--------|
+| PrismApplication.cs                 | :heavy_check_mark:
+| PrismBootstrapper.cs                | :heavy_check_mark:
+| GlobalSuppressions.cs               | :heavy_check_mark:
 
 ### Tests - Prism.Avalonia.Tests
 
@@ -238,8 +231,8 @@ Test writted to [Prism.WPF specs](https://github.com/PrismLibrary/Prism/tree/mas
 | ExceptionAssert.cs                                | :heavy_check_mark:
 | ListDictionaryFixture.cs                          | :heavy_check_mark:
 | CollectionChangedTracker.cs                       | :heavy_check_mark:
-| PrismApplicationBaseFixture.cs                    | :white_square_button: :warning:
-| PrismBootstrapperBaseFixture.cs                   | :white_square_button: | Throwing, _"protection level errors."_
+| PrismApplicationBaseFixture.cs                    | :heavy_check_mark: :warning:
+| PrismBootstrapperBaseFixture.cs                   | :heavy_check_mark: | Throwing, _"protection level errors."_
 | Logging\ ...                                      | :x:
 | Interactivity\CommandBehaviorBaseFixture.cs       | :heavy_check_mark:
 | Interactivity\InvokeCommandActionFixture.cs       | :heavy_check_mark:
@@ -296,7 +289,7 @@ Test writted to [Prism.WPF specs](https://github.com/PrismLibrary/Prism/tree/mas
 | Modularity\ModuleCatalogXml\SimpleModuleCatalog.xaml            | :heavy_check_mark:
 | Mvvm\ViewModelLocatorFixture.cs                   | :heavy_check_mark:
 | Regions\AllActiveRegionFixture.cs                 | :heavy_check_mark:
-| Regions\ContentControlRegionAdapterFixture.cs     | :white_square_button: :warning:
+| Regions\ContentControlRegionAdapterFixture.cs     | :heavy_check_mark: :warning:
 | Regions\ItemsControlRegionAdapterFixture.cs       | :white_square_button: :warning: [https://github.com/AvaloniaUI/Avalonia/issues/7553]
 | Regions\LocatorNavigationTargetHandlerFixture.cs  | :heavy_check_mark:
 | Regions\NavigationAsyncExtensionsFixture.cs       | :heavy_check_mark:
@@ -339,17 +332,6 @@ Test writted to [Prism.WPF specs](https://github.com/PrismLibrary/Prism/tree/mas
 
 | File                                          | Status  |  Notes |
 |-----------------------------------------------|---------|--------|
-
-### Tests - Prism.Unity.Avalonia.Tests
-
-**_TBD_**
-
-| File                                          | Status  |  Notes |
-|-----------------------------------------------|---------|--------|
-
-### Tests - Prism.AutoFac.Avalonia.Tests
-
-**_Deprecated_**
 
 ## Prism Upgrade Comparison
 

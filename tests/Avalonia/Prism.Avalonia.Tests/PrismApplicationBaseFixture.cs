@@ -203,8 +203,7 @@ namespace Prism.Avalonia.Tests
         {
             application.MockContainer.Verify(x => x.RegisterInstance(typeof(IModuleCatalog), It.IsAny<IModuleCatalog>()), Times.Once);
 
-            // TODO: IDialogService is not implemented
-            //// application.MockContainer.Verify(x => x.RegisterSingleton(typeof(IDialogService), typeof(DialogService)), Times.Once);
+            application.MockContainer.Verify(x => x.RegisterSingleton(typeof(IDialogService), typeof(DialogService)), Times.Once);
             application.MockContainer.Verify(x => x.RegisterSingleton(typeof(IModuleInitializer), typeof(ModuleInitializer)), Times.Once);
             application.MockContainer.Verify(x => x.RegisterSingleton(typeof(IModuleManager), typeof(ModuleManager)), Times.Once);
             application.MockContainer.Verify(x => x.RegisterSingleton(typeof(RegionAdapterMappings), typeof(RegionAdapterMappings)), Times.Once);
@@ -217,8 +216,7 @@ namespace Prism.Avalonia.Tests
             application.MockContainer.Verify(x => x.Register(typeof(IRegionNavigationJournalEntry), typeof(RegionNavigationJournalEntry)), Times.Once);
             application.MockContainer.Verify(x => x.Register(typeof(IRegionNavigationJournal), typeof(RegionNavigationJournal)), Times.Once);
             application.MockContainer.Verify(x => x.Register(typeof(IRegionNavigationService), typeof(RegionNavigationService)), Times.Once);
-            // TODO: IDialogService is not implemented
-            //// application.MockContainer.Verify(x => x.Register(typeof(IDialogWindow), typeof(DialogWindow)), Times.Once);
+            application.MockContainer.Verify(x => x.Register(typeof(IDialogWindow), typeof(DialogWindow)), Times.Once);
         }
     }
 
