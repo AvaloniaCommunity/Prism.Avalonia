@@ -1,4 +1,5 @@
 ﻿using System;
+using Avalonia.Controls;
 
 namespace Prism.Services.Dialogs
 {
@@ -31,6 +32,7 @@ namespace Prism.Services.Dialogs
         /// Shows a modal dialog.
         /// </summary>
         /// <param name="dialogService">The DialogService</param>
+        /// <param name="owner">The parent window of the dialog.</param>
         /// <param name="name">The name of the dialog to show.</param>
         public static void ShowDialog(this IDialogService dialogService, string name)
         {
@@ -41,6 +43,7 @@ namespace Prism.Services.Dialogs
         /// Shows a modal dialog.
         /// </summary>
         /// <param name="dialogService">The DialogService</param>
+        /// <param name="owner">The parent window of the dialog.</param>
         /// <param name="name">The name of the dialog to show.</param>
         /// <param name="callback">The action to perform when the dialog is closed.</param>
         public static void ShowDialog(this IDialogService dialogService, string name, Action<IDialogResult> callback)

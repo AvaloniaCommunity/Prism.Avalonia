@@ -1,0 +1,25 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        x:Class="SampleDialogApp.Views.MainWindow"
+        mc:Ignorable="d" d:DesignHeight="350" d:DesignWidth="450"
+        Height="200" Width="400"
+        Background="LightGray"
+        Title="{Binding Title}">
+  <Panel>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+      <Label Content="Click to show a dialog window" />
+      <Button Content="Show as Dialog" Command="{Binding CmdShowDialog}" />
+      <Button Content="Show without parent" Command="{Binding CmdShowRegular}" />
+
+      <StackPanel Orientation="Horizontal">
+        <Label Content="Result:" />
+        <Label Content="{Binding ReturnedResult}" />
+      </StackPanel>
+
+    </StackPanel>
+  </Panel>
+</Window>

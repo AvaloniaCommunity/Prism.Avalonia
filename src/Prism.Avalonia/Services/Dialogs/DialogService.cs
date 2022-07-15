@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Windows;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Prism.Common;
 using Prism.Ioc;
 
@@ -55,6 +56,7 @@ namespace Prism.Services.Dialogs
         /// <param name="name">The name of the dialog to show.</param>
         /// <param name="parameters">The parameters to pass to the dialog.</param>
         /// <param name="callback">The action to perform when the dialog is closed.</param>
+        //// public void ShowDialog(Window owner, string name, IDialogParameters parameters, Action<IDialogResult> callback)
         public void ShowDialog(string name, IDialogParameters parameters, Action<IDialogResult> callback)
         {
             ShowDialogInternal(name, parameters, callback, true);
@@ -67,6 +69,7 @@ namespace Prism.Services.Dialogs
         /// <param name="parameters">The parameters to pass to the dialog.</param>
         /// <param name="callback">The action to perform when the dialog is closed.</param>
         /// <param name="windowName">The name of the hosting window registered with the IContainerRegistry.</param>
+        ////public void ShowDialog(Window owner, string name, IDialogParameters parameters, Action<IDialogResult> callback, string windowName)
         public void ShowDialog(string name, IDialogParameters parameters, Action<IDialogResult> callback, string windowName)
         {
             ShowDialogInternal(name, parameters, callback, true, windowName);
@@ -91,10 +94,19 @@ namespace Prism.Services.Dialogs
         /// <param name="isModal">If true; dialog is shown as a modal</param>
         protected virtual void ShowDialogWindow(IDialogWindow dialogWindow, bool isModal)
         {
-            if (isModal)
-                dialogWindow.ShowDialog();
+            if (isModal && 
+                Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime deskLifetime)
+            {
+                // Ref:
+                //  - https://docs.avaloniaui.net/docs/controls/window#show-a-window-as-a-dialog
+                //  - https://github.com/AvaloniaUI/Avalonia/discussions/7924
+                // (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
+                dialogWindow.ShowDialog(deskLifetime.MainWindow);
+            }
             else
+            {
                 dialogWindow.Show();
+            }
         }
 
         /// <summary>
@@ -139,48 +151,51 @@ namespace Prism.Services.Dialogs
         /// <param name="callback">The action to perform when the dialog is closed.</param>
         protected virtual void ConfigureDialogWindowEvents(IDialogWindow dialogWindow, Action<IDialogResult> callback)
         {
-            throw new NotImplementedException();
-////            Action<IDialogResult> requestCloseHandler = null;
-////            requestCloseHandler = (o) =>
-////            {
-////                dialogWindow.Result = o;
-////                dialogWindow.Close();
-////            };
-////
-////            RoutedEventHandler loadedHandler = null;
-////            loadedHandler = (o, e) =>
-////            {
-////                dialogWindow.Loaded -= loadedHandler;
-////                dialogWindow.GetDialogViewModel().RequestClose += requestCloseHandler;
-////            };
-////            dialogWindow.Loaded += loadedHandler;
-////
-////            CancelEventHandler closingHandler = null;
-////            closingHandler = (o, e) =>
-////            {
-////                if (!dialogWindow.GetDialogViewModel().CanCloseDialog())
-////                    e.Cancel = true;
-////            };
-////            dialogWindow.Closing += closingHandler;
-////
-////            EventHandler closedHandler = null;
-////            closedHandler = (o, e) =>
-////                {
-////                    dialogWindow.Closed -= closedHandler;
-////                    dialogWindow.Closing -= closingHandler;
-////                    dialogWindow.GetDialogViewModel().RequestClose -= requestCloseHandler;
-////
-////                    dialogWindow.GetDialogViewModel().OnDialogClosed();
-////
-////                    if (dialogWindow.Result == null)
-////                        dialogWindow.Result = new DialogResult();
-////
-////                    callback?.Invoke(dialogWindow.Result);
-////
-////                    dialogWindow.DataContext = null;
-////                    dialogWindow.Content = null;
-////                };
-////            dialogWindow.Closed += closedHandler;
+            Action<IDialogResult> requestCloseHandler = null;
+            requestCloseHandler = (o) =>
+            {
+                dialogWindow.Result = o;
+                dialogWindow.Close();
+            };
+
+            // WPF: RoutedEventHandler loadedHandler = null;
+            EventHandler loadedHandler = null;
+
+            loadedHandler = (o, e) =>
+            {
+                // WPF: dialogWindow.Loaded -= loadedHandler;
+                dialogWindow.Opened -= loadedHandler;
+                dialogWindow.GetDialogViewModel().RequestClose += requestCloseHandler;
+            };
+            dialogWindow.Opened += loadedHandler;
+            //// WPF: dialogWindow.Loaded += loadedHandler;
+
+            EventHandler<CancelEventArgs> closingHandler = null;
+            closingHandler = (o, e) =>
+            {
+                if (!dialogWindow.GetDialogViewModel().CanCloseDialog())
+                    e.Cancel = true;
+            };
+            dialogWindow.Closing += closingHandler;
+
+            EventHandler closedHandler = null;
+            closedHandler = (o, e) =>
+            {
+                dialogWindow.Closed -= closedHandler;
+                dialogWindow.Closing -= closingHandler;
+                dialogWindow.GetDialogViewModel().RequestClose -= requestCloseHandler;
+
+                dialogWindow.GetDialogViewModel().OnDialogClosed();
+
+                if (dialogWindow.Result == null)
+                    dialogWindow.Result = new DialogResult();
+
+                callback?.Invoke(dialogWindow.Result);
+
+                dialogWindow.DataContext = null;
+                dialogWindow.Content = null;
+            };
+            dialogWindow.Closed += closedHandler;
         }
 
         /// <summary>
@@ -191,16 +206,23 @@ namespace Prism.Services.Dialogs
         /// <param name="viewModel">The dialog's ViewModel.</param>
         protected virtual void ConfigureDialogWindowProperties(IDialogWindow window, Avalonia.Controls.Control dialogContent, IDialogAware viewModel)
         {
-            throw new NotImplementedException();
-////            var windowStyle = Dialog.GetWindowStyle(dialogContent);
-////            if (windowStyle != null)
-////                window.Style = windowStyle;
-////
-////            window.Content = dialogContent;
-////            window.DataContext = viewModel; //we want the host window and the dialog to share the same data context
-////
-////            if (window.Owner == null)
-////                window.Owner = Application.Current?.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
+            // Avalonia returns 'null' for Dialog.GetWindowStyle(dialogContent);
+            // WPF: Window > ContentControl > FrameworkElement
+            // Ava: Window > WindowBase > TopLevel > Control > InputElement > Interactive > Layoutable > Visual > StyledElement.Styles (collection)
+
+            window.Content = dialogContent;
+            window.DataContext = viewModel;
+
+            // WPF
+            //// var windowStyle = Dialog.GetWindowStyle(dialogContent);
+            //// if (windowStyle != null)
+            ////     window.Style = windowStyle;
+            ////
+            //// window.Content = dialogContent;
+            //// window.DataContext = viewModel; //we want the host window and the dialog to share the same data context
+            ////
+            //// if (window.Owner == null)
+            ////     window.Owner = Application.Current?.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
         }
     }
 }

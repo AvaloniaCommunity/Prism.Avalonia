@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using Avalonia;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
 namespace Prism.Services.Dialogs
@@ -28,17 +26,6 @@ namespace Prism.Services.Dialogs
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
-        }
-
-        event CancelEventHandler IDialogWindow.Closing
-        {
-            add => throw new System.NotImplementedException();
-            remove => throw new System.NotImplementedException();
-        }
-
-        public bool? ShowDialog()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
