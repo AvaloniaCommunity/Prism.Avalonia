@@ -6,10 +6,6 @@
 
 Prism.Avalonia's logic and development approach is similar to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/) so you can get started right away with Prism for Avalonia!
 
-## Upgrade to Prism 8.1 Progress
-
-Check out [Upgrade-Prism-7.2-to-8.1.md](https://github.com/AvaloniaCommunity/Prism.Avalonia/blob/feature-Prism8197/Upgrade-Prism-7.2-to-8.1.md) for the latest progress.
-
 ## Install
 
 Add package from nuget to your project:
@@ -154,3 +150,7 @@ public static class Program
     }
 }
 ```
+
+## Upgrade to Prism v8.1 Roadmap
+
+Check out [Upgrade-Prism-7.2-to-8.1.md](https://github.com/AvaloniaCommunity/Prism.Avalonia/blob/feature-Prism8197/Upgrade-Prism-7.2-to-8.1.md) for the latest progress.
