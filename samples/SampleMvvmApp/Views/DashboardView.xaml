@@ -29,6 +29,7 @@
       <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
         <Button Content="Add Item" Command="{Binding CmdAddItem}" />
         <Button Content="Clear" Command="{Binding CmdClearItems}" />
+        <Button Content="Notification Pop-up" Command="{Binding CmdNotification}" />
       </StackPanel>
 
       <StackPanel Orientation="Horizontal">
