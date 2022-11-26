@@ -1,3 +1,5 @@
+using System;
+using System.Threading;
 using Prism.Modularity;
 
 namespace Prism.Avalonia.Tests.Mocks

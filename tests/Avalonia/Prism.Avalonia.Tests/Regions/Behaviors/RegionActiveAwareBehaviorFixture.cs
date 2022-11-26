@@ -1,3 +1,6 @@
+using System;
+using Avalonia;
+using Avalonia.Controls;
 using Moq;
 using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
@@ -38,7 +41,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
 
             ActiveAwareFrameworkElement activeAwareObject = new ActiveAwareFrameworkElement();
 
-            var frameworkElementMock = new Mock<FrameworkElement>();
+            var frameworkElementMock = new Mock<Control>();
             var frameworkElement = frameworkElementMock.Object;
             frameworkElement.DataContext = activeAwareObject;
 
@@ -63,7 +66,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             activeAwareMock.SetupProperty(o => o.IsActive);
             var activeAwareObject = activeAwareMock.Object;
 
-            var frameworkElementMock = new Mock<FrameworkElement>();
+            var frameworkElementMock = new Mock<Control>();
             frameworkElementMock.As<IActiveAware>().SetupProperty(o => o.IsActive);
             var frameworkElement = frameworkElementMock.Object;
             frameworkElement.DataContext = activeAwareObject;
@@ -114,7 +117,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             behavior.Attach();
             var collection = region.MockActiveViews.Items;
 
-            var frameworkElementMock = new Mock<FrameworkElement>();
+            var frameworkElementMock = new Mock<Control>();
             var frameworkElement = frameworkElementMock.Object;
             frameworkElement.DataContext = new object();
 
@@ -306,7 +309,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             public event EventHandler IsActiveChanged;
         }
 
-        class ActiveAwareFrameworkElement : FrameworkElement, IActiveAware
+        class ActiveAwareFrameworkElement : Visual, IActiveAware
         {
             public bool IsActive { get; set; }
             public event EventHandler IsActiveChanged;

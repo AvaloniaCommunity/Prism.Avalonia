@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Styling;
 using Moq;
@@ -283,7 +284,7 @@ namespace Prism.Avalonia.Tests
             return moduleCatalog;
         }
 
-        protected override Window CreateShell()
+        protected override IAvaloniaObject CreateShell()
         {
             CreateShellWasCalled = true;
             return null;

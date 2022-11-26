@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Prism.Avalonia.Tests.Mocks;
 using Prism.Common;

@@ -17,7 +17,7 @@ namespace Prism
     ///     - public void ConfigureRegionAdapterMappingsShouldRegisterSelectorMapping() ...
     ///     - MockContainer.Setup(x => x.Resolve(typeof(SelectorRegionAdapter...
     /// </remarks>
-    public class PrismBootstapperSetup : IDisposable
+    public class PrismBootstapperSetup : System.IDisposable
     {
         public PrismBootstrapper Bootstrapper { get; set; }
 

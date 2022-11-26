@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
 using Xunit;

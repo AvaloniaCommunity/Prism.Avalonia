@@ -1,6 +1,7 @@
 using Prism.Regions;
 using Prism.Avalonia.Tests.Mocks;
 using Xunit;
+using System;
 
 namespace Prism.Avalonia.Tests.Regions
 {

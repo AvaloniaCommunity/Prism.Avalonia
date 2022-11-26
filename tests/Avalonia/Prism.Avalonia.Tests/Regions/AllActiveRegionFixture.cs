@@ -1,3 +1,4 @@
+using System;
 using Prism.Regions;
 using Xunit;
 

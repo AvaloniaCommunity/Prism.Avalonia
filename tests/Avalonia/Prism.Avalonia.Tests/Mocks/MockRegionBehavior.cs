@@ -1,3 +1,4 @@
+using System;
 using Prism.Regions;
 
 namespace Prism.Avalonia.Tests.Mocks

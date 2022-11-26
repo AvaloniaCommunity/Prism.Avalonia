@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
 using Prism.Regions.Behaviors;

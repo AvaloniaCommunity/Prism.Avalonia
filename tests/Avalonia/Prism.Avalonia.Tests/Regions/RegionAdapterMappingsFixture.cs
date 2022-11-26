@@ -4,6 +4,8 @@ using Avalonia.Controls;
 using Moq;
 using Prism.Ioc;
 using Xunit;
+using System;
+using System.Collections.Generic;
 
 namespace Prism.Avalonia.Tests.Regions
 {

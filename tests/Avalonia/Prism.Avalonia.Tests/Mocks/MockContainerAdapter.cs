@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Prism.Ioc;
 
 namespace Prism.Avalonia.Tests.Mocks

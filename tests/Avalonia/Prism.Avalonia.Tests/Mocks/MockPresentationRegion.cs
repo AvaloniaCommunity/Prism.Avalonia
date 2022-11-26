@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using Prism.Regions;
 
@@ -127,7 +128,6 @@ namespace Prism.Avalonia.Tests.Mocks
             get { throw new NotImplementedException(); }
             set { throw new System.NotImplementedException(); }
         }
-
 
         public Comparison<object> SortComparison
         {

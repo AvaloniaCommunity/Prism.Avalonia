@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+using Avalonia.Controls;
 using Moq;
 using Prism.Avalonia.Tests.Mvvm;
 using Prism.Ioc;
@@ -125,7 +128,7 @@ namespace Prism.Avalonia.Tests.Regions
             Assert.NotNull(result);
             Assert.Single(result);
 
-            var view = result.ElementAt(0) as FrameworkElement;
+            var view = result.ElementAt(0) as Control;
             Assert.IsType<Mocks.Views.Mock>(view);
             Assert.NotNull(view.DataContext);
             Assert.IsType<Mocks.ViewModels.MockViewModel>(view.DataContext);
@@ -147,7 +150,7 @@ namespace Prism.Avalonia.Tests.Regions
             Assert.NotNull(result);
             Assert.Single(result);
 
-            var view = result.ElementAt(0) as FrameworkElement;
+            var view = result.ElementAt(0) as Control; // Was, FrameworkElement. Should it be Control or Visual? Control sits higher.
             Assert.IsType<Mocks.Views.MockOptOut>(view);
             Assert.Null(view.DataContext);
         }

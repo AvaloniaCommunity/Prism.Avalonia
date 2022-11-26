@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using Avalonia.Controls;
 using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
