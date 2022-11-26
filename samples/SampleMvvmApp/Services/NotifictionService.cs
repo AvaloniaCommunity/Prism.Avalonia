@@ -2,7 +2,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
-using Avalonia.Threading;
 
 namespace SampleMvvmApp.Services
 {
@@ -42,18 +41,13 @@ namespace SampleMvvmApp.Services
         {
             if (_notificationManager is { } nm)
             {
-                // Alt method:
-                //// RxApp.MainThreadScheduler.Schedule(() =>
-                Dispatcher.UIThread.InvokeAsync(() =>
-                {
-                    nm.Show(
-                      new Notification(
-                        title,
-                        message,
-                        NotificationType.Information,
-                        TimeSpan.FromSeconds(_notificationTimeout),
-                        onClick));
-                });
+                nm.Show(
+                    new Notification(
+                    title,
+                    message,
+                    NotificationType.Information,
+                    TimeSpan.FromSeconds(_notificationTimeout),
+                    onClick));
             }
         }
     }
