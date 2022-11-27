@@ -3,9 +3,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
+             x:Class="SampleMvvmApp.Views.DashboardView"
+             d:DesignHeight="350"
+             d:DesignWidth="500"
              prism:ViewModelLocator.AutoWireViewModel="True"
-             mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="350"
-             x:Class="SampleMvvmApp.Views.DashboardView">
+             mc:Ignorable="d">
 
   <UserControl.Styles>
     <!--<Style Selector="Button.cmdBtn">-->
@@ -20,35 +22,39 @@
     </Style>
   </UserControl.Styles>
 
-  <StackPanel>
-    <Label Content="Welcome to the Dashboard!" FontSize="32" />
+  <ScrollViewer>
+    <StackPanel>
+      <Label Content="Welcome to the Dashboard!" FontSize="32" />
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-      <Button Content="Add Item" Command="{Binding CmdAddItem}" />
-      <Button Content="Clear" Command="{Binding CmdClearItems}" />
-    </StackPanel>
+      <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+        <Button Content="Add Item" Command="{Binding CmdAddItem}" />
+        <Button Content="Clear" Command="{Binding CmdClearItems}" />
+        <Button Content="Notification Pop-up" Command="{Binding CmdNotification}" />
+      </StackPanel>
 
-    <StackPanel Orientation="Horizontal">
-      <Label Content="Selected Index:"  FontWeight="Bold" />
-      <Label Content="{Binding ListItemSelected}" />
-    <StackPanel Orientation="Horizontal">
-    </StackPanel>
-      <Label Content="Selected Text:" FontWeight="Bold" />
-      <Label Content="{Binding ListItemText}" />
-    </StackPanel>
+      <StackPanel Orientation="Horizontal">
+        <Label Content="Selected Index:" FontWeight="Bold" />
+        <Label Content="{Binding ListItemSelected}" />
+        <StackPanel Orientation="Horizontal" />
+        <Label Content="Selected Text:" FontWeight="Bold" />
+        <Label Content="{Binding ListItemText}" />
+      </StackPanel>
 
-    <ListBox Items="{Binding ListItems}"
-             SelectionMode="Single"
-             SelectedIndex="{Binding ListItemSelected}"
-             ScrollViewer.VerticalScrollBarVisibility="Visible"
-             ScrollViewer.HorizontalScrollBarVisibility="Visible"
-             VerticalAlignment="Bottom"
-             Margin="2">
-      <ListBox.DataTemplates>
-        <DataTemplate>
-          <TextBlock Text="{Binding .}" FontSize="10" TextWrapping="NoWrap" />
-        </DataTemplate>
-      </ListBox.DataTemplates>
-    </ListBox>
-  </StackPanel>
+      <ListBox Margin="2"
+               VerticalAlignment="Bottom"
+               Items="{Binding ListItems}"
+               ScrollViewer.HorizontalScrollBarVisibility="Visible"
+               ScrollViewer.VerticalScrollBarVisibility="Visible"
+               SelectedIndex="{Binding ListItemSelected}"
+               SelectionMode="Single">
+        <ListBox.DataTemplates>
+          <DataTemplate>
+            <TextBlock Text="{Binding .}"
+                       FontSize="10"
+                       TextWrapping="NoWrap" />
+          </DataTemplate>
+        </ListBox.DataTemplates>
+      </ListBox>
+    </StackPanel>
+  </ScrollViewer>
 </UserControl>

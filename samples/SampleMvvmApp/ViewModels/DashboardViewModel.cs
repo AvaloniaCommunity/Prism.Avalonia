@@ -1,33 +1,48 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Avalonia.Threading;
 using Prism.Commands;
 using Prism.Regions;
+using SampleMvvmApp.Services;
 
 namespace SampleMvvmApp.ViewModels
 {
     public class DashboardViewModel : ViewModelBase
     {
+        private readonly INotificationService _notification;
         private int _counter = 0;
         private int _listItemSelected = -1;
         private ObservableCollection<string> _listItems = new();
         private string _listItemText;
 
-        public DashboardViewModel(IRegionManager regionManager)
+        public DashboardViewModel(IRegionManager regionManager, INotificationService notifyService)
         {
+            _notification = notifyService;
         }
 
-        public DelegateCommand CmdAddItem => new DelegateCommand(() =>
+        public DelegateCommand CmdAddItem => new(() =>
         {
             _counter++;
             ListItems.Add($"Item Number: {_counter}");
 
-            // Optionall use, `Insert(0, ..)` to insert items at the top
+            // Optionally use, `Insert(0, ..)` to insert items at the top
             //ListItems.Insert(0, entry);
         });
 
-        public DelegateCommand CmdClearItems => new DelegateCommand(() =>
+        public DelegateCommand CmdClearItems => new(() =>
         {
             ListItems.Clear();
+        });
+
+        public DelegateCommand CmdNotification => new(() =>
+        {
+            _notification.Show("Hello Prism!", "Notification Pop-up Message.");
+
+            // Alternate OnClick action
+            ////_notification.Show("Hello Prism!", "Notification Pop-up Message.", () =>
+            ////{
+            ////    // Action to perform
+            ////});
         });
 
         public int ListItemSelected
