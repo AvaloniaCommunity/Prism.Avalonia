@@ -7,6 +7,15 @@ using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions.Behaviors
 {
+    /// <summary>
+    /// Region Manager Registration Behavior Fixture tests.
+    /// </summary>
+    /// <remarks>
+    ///   The MockFrameworkElement depends on the following:
+    ///   Avalonia.Control's LoadedEvent and UnloadedEvent wont arrive until Avalonia v0.11.0.
+    ///   Discussion: https://github.com/AvaloniaUI/Avalonia/issues/7908
+    ///   PR: https://github.com/AvaloniaUI/Avalonia/pull/8277
+    /// </remarks>
     public class RegionManagerRegistrationBehaviorFixture
     {
         [StaFact]
