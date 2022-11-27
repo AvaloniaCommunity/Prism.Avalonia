@@ -15,8 +15,6 @@ namespace Prism.Regions
         private static readonly AvaloniaProperty ObservableRegionContextProperty =
             AvaloniaProperty.RegisterAttached<Visual, ObservableObject<object>>("ObservableRegionContext", typeof(RegionContext));
 
-        // Notes: Removed 2022-11-26. This should not be needed according to Avalonia documentaiton.
-        //  https://docs.avaloniaui.net/docs/authoring-controls/defining-properties
         static RegionContext()
         {
             ObservableRegionContextProperty.Changed.Subscribe(args => GetObservableContext(args?.Sender as Visual));
