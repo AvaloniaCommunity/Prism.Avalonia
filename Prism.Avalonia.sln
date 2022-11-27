@@ -50,15 +50,21 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.DryIoc.Shared", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleMvvmApp", "samples\SampleMvvmApp\SampleMvvmApp.csproj", "{7AF14280-214B-4A96-AFE8-CF063E2B6CA4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{966DDDE9-D31A-404B-9F24-5378DE8A12C8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Avalonia", "Avalonia", "{AD4FDFF7-8F44-41AD-809B-C96A5AF2BC57}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{966DDDE9-D31A-404B-9F24-5378DE8A12C8}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.Container.Avalonia.Shared", "tests\Avalonia\Prism.Container.Avalonia.Shared\Prism.Container.Avalonia.Shared.shproj", "{340538B6-0781-470E-8BD1-7B7735FDC554}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Avalonia.Tests", "tests\Avalonia\Prism.Avalonia.Tests\Prism.Avalonia.Tests.csproj", "{DAFC499B-E379-4453-BDCE-2EC30E1290C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleDialogApp", "Samples\SampleDialogApp\SampleDialogApp.csproj", "{97F8C6D3-308C-40BD-B181-5CDFCF101CBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleDialogApp", "Samples\SampleDialogApp\SampleDialogApp.csproj", "{97F8C6D3-308C-40BD-B181-5CDFCF101CBF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{39083B0B-55F9-47D5-9683-ACAB6D5D1358}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		README.md = README.md
+		Settings.XamlStyler = Settings.XamlStyler
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,9 +135,8 @@ Global
 		{366415D3-E0ED-449C-99E2-A258F6A566F6} = {70B9D432-E8BD-4EB9-9CA8-E63E2C804F3F}
 		{6E7EC81D-DA39-4C4F-A898-0148558C34F4} = {366415D3-E0ED-449C-99E2-A258F6A566F6}
 		{7AF14280-214B-4A96-AFE8-CF063E2B6CA4} = {5F8D330E-F611-4E17-8217-F2D6CDB8E1F7}
-		{AD4FDFF7-8F44-41AD-809B-C96A5AF2BC57} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
-		{340538B6-0781-470E-8BD1-7B7735FDC554} = {AD4FDFF7-8F44-41AD-809B-C96A5AF2BC57}
-		{DAFC499B-E379-4453-BDCE-2EC30E1290C8} = {AD4FDFF7-8F44-41AD-809B-C96A5AF2BC57}
+		{340538B6-0781-470E-8BD1-7B7735FDC554} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
+		{DAFC499B-E379-4453-BDCE-2EC30E1290C8} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
 		{97F8C6D3-308C-40BD-B181-5CDFCF101CBF} = {5F8D330E-F611-4E17-8217-F2D6CDB8E1F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

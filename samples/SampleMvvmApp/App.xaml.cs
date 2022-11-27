@@ -6,6 +6,7 @@ using SampleMvvmApp.Views;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Regions;
+using SampleMvvmApp.Services;
 
 namespace SampleMvvmApp
 {
@@ -52,7 +53,7 @@ namespace SampleMvvmApp
             Console.WriteLine("RegisterTypes()");
 
             // Services
-            //// containerRegistry.RegisterSingleton<ILogService, LogService>();
+            containerRegistry.RegisterSingleton<INotificationService, NotificationService>();
 
             // Views - Generic
             containerRegistry.Register<SidebarView>();

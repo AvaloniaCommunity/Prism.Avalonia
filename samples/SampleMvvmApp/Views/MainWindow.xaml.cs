@@ -1,6 +1,8 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Prism.Ioc;
+using SampleMvvmApp.Services;
 
 namespace SampleMvvmApp.Views
 {
@@ -12,6 +14,10 @@ namespace SampleMvvmApp.Views
 #if DEBUG
             this.AttachDevTools();
 #endif
+
+            // Initialize the WindowNotificationManager with the MainWindow
+            var notifyService = ContainerLocator.Current.Resolve<INotificationService>();
+            notifyService.SetHostWindow(this);
         }
 
         private void InitializeComponent()
