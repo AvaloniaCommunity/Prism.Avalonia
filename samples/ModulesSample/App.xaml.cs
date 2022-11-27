@@ -33,7 +33,7 @@ namespace ModulesSample
                 })
                 .With(new Win32PlatformOptions
                 {
-                    EnableMultitouch = true,
+                    //// EnableMultitouch = true,  // Not supported in Avalonia v11.0.0-preview4
                     AllowEglInitialization = true,
                 })
                 .UseSkia()

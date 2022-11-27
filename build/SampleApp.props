@@ -6,6 +6,7 @@
   <Import Project="AvaloniaDependency.props" />
 
   <ItemGroup>
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview4" />
     <ProjectReference Include="$(MSBuildThisFileDirectory)..\src\Prism.DryIoc.Avalonia\Prism.DryIoc.Avalonia.csproj" />
   </ItemGroup>
 

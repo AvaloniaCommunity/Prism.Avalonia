@@ -2,7 +2,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Diagnostics;
-using Avalonia.Themes.Default;
 using Avalonia.Markup.Xaml;
 using CommonServiceLocator;
 using DryIoc;
