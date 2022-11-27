@@ -13,7 +13,7 @@ namespace ViewDiscovery
                 .UsePlatformDetect();
             // from personal project
             ////.With(new X11PlatformOptions { EnableMultiTouch = true, UseDBusMenu = true })
-            ////.With(new Win32PlatformOptions { EnableMultitouch = true, AllowEglInitialization = true })
+            ////.With(new Win32PlatformOptions { AllowEglInitialization = true })
             ////.UseSkia()
             ////.UseReactiveUI()
             ////.LogToTrace();

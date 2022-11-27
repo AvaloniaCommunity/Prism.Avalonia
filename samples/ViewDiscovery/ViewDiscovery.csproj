@@ -5,4 +5,8 @@
   </PropertyGroup>
 
   <Import Project="../../build/SampleApp.props" />
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.0-preview4" />
+  </ItemGroup>
 </Project>
