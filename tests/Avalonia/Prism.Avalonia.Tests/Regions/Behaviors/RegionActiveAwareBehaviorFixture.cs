@@ -1,6 +1,7 @@
 using System;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Moq;
 using Prism.Avalonia.Tests.Mocks;
 using Prism.Regions;
@@ -309,7 +310,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             public event EventHandler IsActiveChanged;
         }
 
-        class ActiveAwareFrameworkElement : Visual, IActiveAware
+        class ActiveAwareFrameworkElement : Control, IActiveAware
         {
             public bool IsActive { get; set; }
             public event EventHandler IsActiveChanged;

@@ -124,6 +124,7 @@ namespace Prism.Avalonia.Tests.Regions
 
             registry.RegisterViewWithRegion("MyRegion", typeof(Mocks.Views.Mock));
 
+            // TODO: AutowireViewModel is not kicking off.
             var result = registry.GetContents("MyRegion");
             Assert.NotNull(result);
             Assert.Single(result);
@@ -150,7 +151,7 @@ namespace Prism.Avalonia.Tests.Regions
             Assert.NotNull(result);
             Assert.Single(result);
 
-            var view = result.ElementAt(0) as Control; // Was, FrameworkElement. Should it be Control or Visual? Control sits higher.
+            var view = result.ElementAt(0) as Control;
             Assert.IsType<Mocks.Views.MockOptOut>(view);
             Assert.Null(view.DataContext);
         }

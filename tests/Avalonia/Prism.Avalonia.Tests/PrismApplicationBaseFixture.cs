@@ -20,9 +20,7 @@ namespace Prism.Avalonia.Tests
     /// <summary>Application Base Fixture</summary>
     /// <remarks>
     ///   TODO:
-    ///     - Application.CallOnStartup();
     ///     - Application.Shutdown();
-    ///     - Implement, public void CallOnStartup()
     /// </remarks>
     public class PrismApplicationSetup : IDisposable
     {
@@ -32,7 +30,7 @@ namespace Prism.Avalonia.Tests
         {
             ContainerLocator.ResetContainer();
             Application = new PrismApplication();
-            Application.CallOnStartup();
+            Application.Initialize();
         }
 
         public void Dispose()
@@ -245,11 +243,6 @@ namespace Prism.Avalonia.Tests
         public bool CreateModuleCatalogCalled { get; internal set; }
         public bool CreateContainerExtensionCalled { get; internal set; }
         public bool InitializeCalled { get; internal set; }
-
-        public void CallOnStartup()
-        {
-            // WPF: base.OnStartup(null);
-        }
 
         public override void Initialize()
         {

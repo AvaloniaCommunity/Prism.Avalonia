@@ -39,6 +39,11 @@ namespace Prism
         /// <summary>
         /// Runs the initialization sequence to configure the Prism application.
         /// </summary>
+        /// <remarks>
+        ///   Though, Prism.WPF v8.1 uses, `protected virtual void Initialize()`
+        ///   Avalonia's AppBuilderBase.cs calls, `.Setup() { ... Instance.Initialize(); ... }`
+        ///   Therefore, we need this as a `public override void` in PrismApplicationBase.cs
+        /// </remarks>
         public override void Initialize()
         {
             base.Initialize();

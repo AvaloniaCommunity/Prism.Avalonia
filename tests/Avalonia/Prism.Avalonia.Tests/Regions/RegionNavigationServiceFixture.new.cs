@@ -191,7 +191,7 @@ namespace Prism.Avalonia.Tests.Regions
             // Prepare
             var region = new Region();
 
-            Mock<Visual> mockFrameworkElement = new Mock<Visual>(); // TODO: Was, FrameworkElement. Should it be Control or Visual?
+            Mock<Control> mockFrameworkElement = new Mock<Control>();
             Mock<INavigationAware> mockINavigationAwareDataContext = new Mock<INavigationAware>();
             mockINavigationAwareDataContext.Setup(ina => ina.IsNavigationTarget(It.IsAny<NavigationContext>())).Returns(true);
             mockFrameworkElement.Object.DataContext = mockINavigationAwareDataContext.Object;
@@ -226,7 +226,7 @@ namespace Prism.Avalonia.Tests.Regions
             // Prepare
             var region = new Region();
 
-            Mock<Visual> mockFrameworkElement = new Mock<Visual>();     // TODO: Was: FrameworkElement, should it be Visual or Control?
+            Mock<Control> mockFrameworkElement = new Mock<Control>();
             Mock<INavigationAware> mockINavigationAwareView = mockFrameworkElement.As<INavigationAware>();
             mockINavigationAwareView.Setup(ina => ina.IsNavigationTarget(It.IsAny<NavigationContext>())).Returns(true);
 
@@ -498,7 +498,7 @@ namespace Prism.Avalonia.Tests.Regions
                 .Setup(ina => ina.ConfirmNavigationRequest(It.IsAny<NavigationContext>(), It.IsAny<Action<bool>>()))
                 .Verifiable();
 
-            var viewMock = new Mock<Visual>();    // TODO: Was: FrameworkElement, should it be Visual or Control?
+            var viewMock = new Mock<Control>();
 
             var view = viewMock.Object;
             view.DataContext = viewModelMock.Object;
@@ -539,7 +539,7 @@ namespace Prism.Avalonia.Tests.Regions
                 .Callback<NavigationContext, Action<bool>>((nc, c) => c(true))
                 .Verifiable();
 
-            var view1Mock = new Mock<Control>();   // Was, FrameworkElement. Should it be Control or Visual? Control sits higher.
+            var view1Mock = new Mock<Control>();
             var view1 = view1Mock.Object;
             view1.DataContext = view1DataContextMock.Object;
 
@@ -586,7 +586,7 @@ namespace Prism.Avalonia.Tests.Regions
                 .Callback<NavigationContext, Action<bool>>((nc, c) => c(false))
                 .Verifiable();
 
-            var view1Mock = new Mock<Control>();       // // Was, FrameworkElement. Should it be Control or Visual? Control sits higher.
+            var view1Mock = new Mock<Control>();
             var view1 = view1Mock.Object;
             view1.DataContext = view1DataContextMock.Object;
 
@@ -680,7 +680,7 @@ namespace Prism.Avalonia.Tests.Regions
 
             var viewModelMock = new Mock<IConfirmNavigationRequest>();
 
-            var viewMock = new Mock<Control>();    // Was, FrameworkElement. Should it be Control or Visual? Control sits higher.
+            var viewMock = new Mock<Control>();
             var view = viewMock.Object;
             view.DataContext = viewModelMock.Object;
 
@@ -937,7 +937,7 @@ namespace Prism.Avalonia.Tests.Regions
 
             var mockDataContext = new Mock<INavigationAware>();
 
-            var view1Mock = new Mock<Control>();   // Was, FrameworkElement. Should it be Control or Visual? Control sits higher.
+            var view1Mock = new Mock<Control>();
             var view1 = view1Mock.Object;
             view1.DataContext = mockDataContext.Object;
 
@@ -1140,7 +1140,7 @@ namespace Prism.Avalonia.Tests.Regions
                 .Callback<NavigationContext, Action<bool>>((nc, c) => c(false))
                 .Verifiable();
 
-            var view1Mock = new Mock<Control>();   // Was, FrameworkElement. Should it be Control or Visual? Control sits higher.
+            var view1Mock = new Mock<Control>();
             var view1 = view1Mock.Object;
             view1.DataContext = viewModel1Mock.Object;
 

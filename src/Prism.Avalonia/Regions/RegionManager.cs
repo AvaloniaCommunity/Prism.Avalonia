@@ -164,9 +164,9 @@ namespace Prism.Regions
 
         private static void OnRegionContextChanged(IAvaloniaObject depObj, AvaloniaPropertyChangedEventArgs e)
         {
-            if (RegionContext.GetObservableContext(depObj as Visual).Value != e.NewValue)
+            if (RegionContext.GetObservableContext(depObj as AvaloniaObject).Value != e.NewValue)
             {
-                RegionContext.GetObservableContext(depObj as Visual).Value = e.NewValue;
+                RegionContext.GetObservableContext(depObj as AvaloniaObject).Value = e.NewValue;
             }
         }
 

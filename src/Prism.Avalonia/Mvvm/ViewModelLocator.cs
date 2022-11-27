@@ -21,10 +21,10 @@ namespace Prism.Mvvm
         /// The AutoWireViewModel attached property.
         /// </summary>
         public static AvaloniaProperty AutoWireViewModelProperty =
-            AvaloniaProperty.RegisterAttached<Control, bool>(
+            AvaloniaProperty.RegisterAttached<Control, bool?>(
                 name: "AutoWireViewModel",
                 ownerType: typeof(ViewModelLocator),
-                defaultValue: false);
+                defaultValue: null);
 
         /// <summary>
         /// Gets the value for the <see cref="AutoWireViewModelProperty"/> attached property.
