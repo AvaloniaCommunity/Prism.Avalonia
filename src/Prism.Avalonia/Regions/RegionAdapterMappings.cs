@@ -75,8 +75,10 @@ namespace Prism.Regions
                 {
                     return mappings[currentType];
                 }
+
                 currentType = currentType.BaseType;
             }
+
             throw new KeyNotFoundException(string.Format(CultureInfo.CurrentCulture, Resources.NoRegionAdapterException, controlType));
         }
 
