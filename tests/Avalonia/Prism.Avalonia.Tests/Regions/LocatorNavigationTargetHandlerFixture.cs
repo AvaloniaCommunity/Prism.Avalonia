@@ -6,8 +6,6 @@ using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
 {
-    public class FrameworkElement : Control { }
-
     public class LocatorNavigationTargetHandlerFixture
     {
         [Fact]
@@ -124,7 +122,7 @@ namespace Prism.Avalonia.Tests.Regions
                 .Setup(v => v.IsNavigationTarget(It.IsAny<NavigationContext>()))
                 .Returns(true)
                 .Verifiable();
-            var viewMock = new Mock<FrameworkElement>();
+            var viewMock = new Mock<Control>();
             viewMock.Object.DataContext = dataContextMock.Object;
 
             region.Add(viewMock.Object);
@@ -212,7 +210,7 @@ namespace Prism.Avalonia.Tests.Regions
                 .Returns(false)
                 .Verifiable();
 
-            var viewMock = new Mock<FrameworkElement>();
+            var viewMock = new Mock<Control>();
             viewMock.Object.DataContext = dataContextMock.Object;
 
             region.Add(viewMock.Object);
