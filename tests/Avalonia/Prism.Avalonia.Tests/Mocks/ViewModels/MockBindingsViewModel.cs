@@ -1,10 +1,14 @@
-﻿using Prism.Mvvm;
+﻿using System.Collections.ObjectModel;
+using Prism.Mvvm;
 
 namespace Prism.Avalonia.Tests.Mocks.ViewModels
 {
     internal class MockBindingsViewModel : BindableBase
     {
         private int _mockProperty;
+        private int _listItemSelected;
+        private string _listItemText = string.Empty;
+        private ObservableCollection<string> _listItems = new();
 
         public int MockProperty
         {
@@ -12,9 +16,30 @@ namespace Prism.Avalonia.Tests.Mocks.ViewModels
             set => SetProperty(ref _mockProperty, value);
         }
 
-        internal void InvokeOnPropertyChanged()
+        public int ListItemSelected
         {
-            RaisePropertyChanged(nameof(MockProperty));
+            get => _listItemSelected;
+            set
+            {
+                SetProperty(ref _listItemSelected, value);
+
+                if (value == -1)
+                    return;
+
+                ListItemText = ListItems[ListItemSelected];
+            }
+        }
+
+        public string ListItemText
+        {
+            get => _listItemText;
+            set => SetProperty(ref _listItemText, value);
+        }
+
+        public ObservableCollection<string> ListItems
+        {
+            get => _listItems;
+            set => SetProperty(ref _listItems, value);
         }
     }
 }

@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Moq;
+using Prism.Avalonia.Tests.Mocks.Views;
 using Prism.Avalonia.Tests.Mvvm;
 using Prism.Ioc;
 using Prism.Regions;
@@ -9,6 +10,22 @@ namespace Prism.Avalonia.Tests.Regions
 {
     public class RegionViewRegistryFixture
     {
+        [Fact]
+        public void CanRegisterXamlContentWithMissingDataTemplateDataType()
+        {
+            // Created for Avalonia v11.0.0-pre4
+            var containerMock = new Mock<IContainerExtension>();
+            containerMock.Setup(c => c.Resolve(typeof(MockBindingsView))).Returns(new MockBindingsView());
+            var registry = new RegionViewRegistry(containerMock.Object);
+
+            registry.RegisterViewWithRegion("MyRegion", typeof(MockBindingsView));
+            var result = registry.GetContents("MyRegion");
+
+            Assert.NotNull(result);
+            Assert.Single(result);
+            Assert.IsType<MockBindingsView>(result.ElementAt(0));
+        }
+
         [Fact]
         public void CanRegisterContentAndRetrieveIt()
         {

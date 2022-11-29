@@ -146,7 +146,7 @@ namespace Prism.Avalonia.Tests
             Assert.NotNull(application.DefaultRegionAdapterMappings.GetMapping(typeof(ItemsControl)));
         }
 
-        [Fact]
+        [Fact(Skip = "Selector is currently not implemented.")]
         public void ConfigureRegionAdapterMappingsShouldRegisterSelectorMapping()
         {
             Assert.NotNull(application.DefaultRegionAdapterMappings);
