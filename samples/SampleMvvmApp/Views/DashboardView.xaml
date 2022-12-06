@@ -48,14 +48,18 @@
                ScrollViewer.VerticalScrollBarVisibility="Visible"
                SelectedIndex="{Binding ListItemSelected}"
                SelectionMode="Single">
-        <ListBox.DataTemplates>
-          <!--<DataTemplate>-->
+        <ListBox.ItemTemplate>
+          <!--
+          OLD: <DataTemplate>
+          NEW: <DataTemplate DataType="{x:Type system:String}">
+          https://github.com/AvaloniaUI/Avalonia/pull/8221
+          -->
             <DataTemplate DataType="{x:Type system:String}">
             <TextBlock Text="{Binding .}"
                        FontSize="10"
                        TextWrapping="NoWrap" />
           </DataTemplate>
-        </ListBox.DataTemplates>
+        </ListBox.ItemTemplate>
       </ListBox>
     </StackPanel>
   </ScrollViewer>
