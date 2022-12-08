@@ -154,7 +154,7 @@ namespace Prism
         /// Creates the shell or main window of the application.
         /// </summary>
         /// <returns>The shell of the application.</returns>
-        protected abstract IAvaloniaObject CreateShell(); //// Window CreateShell();
+        protected abstract IAvaloniaObject CreateShell();
 
         /// <summary>
         /// Initializes the shell.

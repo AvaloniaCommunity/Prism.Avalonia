@@ -20,16 +20,28 @@ namespace ViewDiscovery.Views
             this.InitializeComponent();
             this.AttachDevTools();
 
-            regionManager.RegisterViewWithRegion("ContentRegion", typeof(ViewA));
-            regionManager.RegisterViewWithRegion("ContentRegion", typeof(ViewB));
+            // This is the wrong approach
+            regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewA));
+            regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewB));
             Test();
         }
 
         private async void Test()
         {
-            await Task.Delay(2000);
+            //// await Task.Delay(2000);
+
+            if (!_regionManager.Regions.ContainsRegionWithName(RegionNames.ContentRegion))
+            {
+                System.Diagnostics.Debugger.Break();
+                return;
+            }
 
             var region = _regionManager.Regions["ContentRegion"];
+
+            //// var viewA = container.Resolve<ViewA>();
+            //// region.Add(viewA, nameof(ViewA));
+            //// region.Activate(viewA);
+
             var viewA = region.Views.FirstOrDefault();
             var viewB = region.Views.Skip(1).FirstOrDefault();
 

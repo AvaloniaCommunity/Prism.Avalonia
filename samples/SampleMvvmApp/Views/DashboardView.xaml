@@ -4,12 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:vm="using:SampleMvvmApp.ViewModels"
              x:Class="SampleMvvmApp.Views.DashboardView"
-             x:CompileBindings="False"
-             d:DesignHeight="350"
-             d:DesignWidth="500"
-             prism:ViewModelLocator.AutoWireViewModel="True"
-             mc:Ignorable="d">
+             x:CompileBindings="True"
+             x:DataType="vm:DashboardViewModel"
+             d:DesignHeight="350" d:DesignWidth="500" mc:Ignorable="d">
 
   <UserControl.Styles>
     <Style Selector="Button">
