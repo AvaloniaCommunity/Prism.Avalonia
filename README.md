@@ -1,6 +1,6 @@
 # Prism.Avalonia
 
-[Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your Avalonia apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can navigate and perform dependency injection easier than before.
+[Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can navigate and perform dependency injection easier than before.
 
 | Package | NuGet |
 |-|-|
@@ -14,7 +14,7 @@ Prism.Avalonia's logic and development approach is similar to that of [Prism for
 Add the DryIoc package to your project:
 
 ```powershell
-Install-Package Prism.DryIoc.Avalonia -Version 8.1.97
+Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.1
 ```
 
 ## How to use
