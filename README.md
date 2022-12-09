@@ -1,6 +1,6 @@
 # Prism.Avalonia
 
-[Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your Avalonia apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can navigate and perform dependency injection easier than before.
+[Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can navigate and perform dependency injection easier than before.
 
 | Package | NuGet |
 |-|-|
@@ -14,7 +14,7 @@ Prism.Avalonia's logic and development approach is similar to that of [Prism for
 Add the DryIoc package to your project:
 
 ```powershell
-Install-Package Prism.DryIoc.Avalonia -Version 8.1.97
+Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.2
 ```
 
 ## How to use
@@ -36,7 +36,21 @@ public class App : PrismApplication
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
-        base.Initialize();
+        base.Initialize();              // <-- Required
+    }
+
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
+    {
+        // Register Services
+        containerRegistry.Register<IRestService, RestService>();
+
+        // Views - Generic
+        containerRegistry.Register<MainWindow>();
+
+        // Views - Region Navigation
+        containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
+        containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
+        containerRegistry.RegisterForNavigation<SidebarView, SidebarViewModel>();
     }
 
     protected override IAvaloniaObject CreateShell()
@@ -62,20 +76,6 @@ public class App : PrismApplication
       var regionManager = Container.Resolve<IRegionManager>();
       regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(DashboardView));
       regionManager.RegisterViewWithRegion(RegionNames.SidebarRegion, typeof(SidebarView));
-    }
-
-    protected override void RegisterTypes(IContainerRegistry containerRegistry)
-    {
-        // Register Services
-        containerRegistry.Register<IRestService, RestService>();
-
-        // Views - Generic
-        containerRegistry.Register<MainWindow>();
-
-        // Views - Region Navigation
-        containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
-        containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
-        containerRegistry.RegisterForNavigation<SidebarView, SidebarViewModel>();
     }
 }
 ```
@@ -141,7 +141,3 @@ public static class Program
     }
 }
 ```
-
-## Upgrade to Prism v8.1 Roadmap
-
-Check out [Upgrade-Prism-7.2-to-8.1.md](https://github.com/AvaloniaCommunity/Prism.Avalonia/blob/feature-Prism8197/Upgrade-Prism-7.2-to-8.1.md) for the latest progress.
