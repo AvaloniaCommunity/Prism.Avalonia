@@ -15,6 +15,11 @@ Prism.Avalonia helps you more easily design and build rich, flexible, and easy t
     <PackageTags>prism;mvvm;xaml;avalonia</PackageTags>
     <Copyright>Copyright (c) 2022 Avalonia Community</Copyright>
     <Authors>Omid Mafakher, Damian Suess, various contributors</Authors>
+    <Title>Prism.Avalonia</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>* Upgraded to Avalonia v11.0.0-preview4
+</PackageReleaseNotes>
+    <PackageIcon>Prism.Avalonia.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
@@ -26,6 +31,17 @@ Prism.Avalonia helps you more easily design and build rich, flexible, and easy t
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netcore')) OR $(TargetFramework.StartsWith('net6'))">
     <Compile Remove="**\*.net45.cs" />
     <None Include="**\*.net45.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\logo\Prism.Avalonia.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
