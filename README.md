@@ -36,7 +36,21 @@ public class App : PrismApplication
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
-        base.Initialize();
+        base.Initialize();              // <-- Required
+    }
+
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
+    {
+        // Register Services
+        containerRegistry.Register<IRestService, RestService>();
+
+        // Views - Generic
+        containerRegistry.Register<MainWindow>();
+
+        // Views - Region Navigation
+        containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
+        containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
+        containerRegistry.RegisterForNavigation<SidebarView, SidebarViewModel>();
     }
 
     protected override IAvaloniaObject CreateShell()
@@ -62,20 +76,6 @@ public class App : PrismApplication
       var regionManager = Container.Resolve<IRegionManager>();
       regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(DashboardView));
       regionManager.RegisterViewWithRegion(RegionNames.SidebarRegion, typeof(SidebarView));
-    }
-
-    protected override void RegisterTypes(IContainerRegistry containerRegistry)
-    {
-        // Register Services
-        containerRegistry.Register<IRestService, RestService>();
-
-        // Views - Generic
-        containerRegistry.Register<MainWindow>();
-
-        // Views - Region Navigation
-        containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
-        containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
-        containerRegistry.RegisterForNavigation<SidebarView, SidebarViewModel>();
     }
 }
 ```
@@ -141,7 +141,3 @@ public static class Program
     }
 }
 ```
-
-## Upgrade to Prism v8.1 Roadmap
-
-Check out [Upgrade-Prism-7.2-to-8.1.md](https://github.com/AvaloniaCommunity/Prism.Avalonia/blob/feature-Prism8197/Upgrade-Prism-7.2-to-8.1.md) for the latest progress.
