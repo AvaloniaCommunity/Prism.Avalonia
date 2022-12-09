@@ -14,7 +14,7 @@ Prism.Avalonia's logic and development approach is similar to that of [Prism for
 Add the DryIoc package to your project:
 
 ```powershell
-Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.1
+Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.2
 ```
 
 ## How to use
