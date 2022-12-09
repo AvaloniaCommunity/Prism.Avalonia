@@ -6,7 +6,6 @@
              x:Class="SampleMvvmApp.Views.DashboardView"
              d:DesignHeight="350"
              d:DesignWidth="500"
-             prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d">
 
   <UserControl.Styles>
