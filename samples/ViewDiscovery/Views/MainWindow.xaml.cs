@@ -28,10 +28,9 @@ namespace ViewDiscovery.Views
 
         private async void Test()
         {
-            //// await Task.Delay(2000);
-
             if (!_regionManager.Regions.ContainsRegionWithName(RegionNames.ContentRegion))
             {
+                // ISSUE: Avalonia v11-prev4 can't find the region - With v0.10.x this does not happen.
                 System.Diagnostics.Debugger.Break();
                 return;
             }
