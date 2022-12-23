@@ -2,7 +2,7 @@
 name: Issue
 about: Create a report to help us improve
 title: "[Issue] "
-labels: ''
+labels: enhancement
 assignees: ''
 
 ---
