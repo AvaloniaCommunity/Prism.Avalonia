@@ -1,16 +1,21 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.Markup.Xaml;
-using Microsoft.CodeAnalysis;
 using Prism.DryIoc;
 using Prism.Ioc;
+using Prism.Regions;
+using ViewDiscovery.ViewModels;
 using ViewDiscovery.Views;
 
 namespace ViewDiscovery;
 
-public partial class App : PrismApplication
+public class App : PrismApplication
 {
-    // Prism v8.1 has WPF's `PrismApplicationBase.Initialize()` as a protected virtual void, not public. Should we too?
+    public App()
+    {
+        Console.WriteLine("Constructor()");
+    }
+
     public override void Initialize()
     {
         System.Diagnostics.Debug.WriteLine("Initialize()");
@@ -22,6 +27,9 @@ public partial class App : PrismApplication
     {
         // Wire-up services and navigation Views here.
         System.Diagnostics.Debug.WriteLine("RegisterTypes()");
+        containerRegistry.RegisterForNavigation<ViewA, ViewAViewModel>();
+        containerRegistry.RegisterForNavigation<ViewB, ViewBViewModel>();
+
     }
 
     /// <summary>User interface entry point, called after Register and ConfigureModules.</summary>
@@ -35,5 +43,9 @@ public partial class App : PrismApplication
     protected override void OnInitialized()
     {
         System.Diagnostics.Debug.WriteLine("OnInitialized()");
+
+        var regionManager = Container.Resolve<IRegionManager>();
+        regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewA));
+        regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewB));
     }
 }

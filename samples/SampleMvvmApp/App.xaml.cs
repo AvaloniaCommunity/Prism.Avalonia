@@ -78,8 +78,9 @@ public class App : PrismApplication
         // Register Views to the Region it will appear in. Don't register them in the ViewModel.
         var regionManager = Container.Resolve<IRegionManager>();
 
-        // Prism v11.0.0-prev4 - Throws an error on XAML.
-        // Error: DataTemplate inside of DataTemplates must have a DataType set
+        // WARNING: Prism v11.0.0-prev4
+        // - DataTemplates MUST define a DataType or else an XAML error will be thrown
+        // - Error: DataTemplate inside of DataTemplates must have a DataType set
         regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(DashboardView));
         regionManager.RegisterViewWithRegion(RegionNames.SidebarRegion, typeof(SidebarView));
 

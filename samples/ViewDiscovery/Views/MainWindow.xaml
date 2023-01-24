@@ -1,7 +1,14 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
-        xmlns:prism="clr-namespace:Prism.Regions;assembly=Prism.Avalonia"
-        Title="Shell" Height="350" Width="525"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
+        Title="Shell" Height="350" Width="525"
+        x:CompileBindings="True"
         x:Class="ViewDiscovery.Views.MainWindow">
-  <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+  <Panel>
+    <Grid>
+      <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+    </Grid>
+  </Panel>
 </Window>

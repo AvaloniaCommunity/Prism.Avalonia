@@ -2,34 +2,34 @@
 using Avalonia;
 using Avalonia.Logging;
 
-namespace SampleMvvmApp
+namespace SampleMvvmApp;
+
+public class Program
 {
-    public class Program
+    public static AppBuilder BuildAvaloniaApp()
     {
-        public static AppBuilder BuildAvaloniaApp()
-        {
-            var builder = AppBuilder
-                .Configure<App>()
-                .UsePlatformDetect()
-                .With(new X11PlatformOptions { EnableMultiTouch = true, UseDBusMenu = true, })
-                .With(new Win32PlatformOptions
-                {
-                    //// EnableMultitouch = true, // Not supported in Avalonia v11.0.0-preview4
-                    AllowEglInitialization = true,
-                })
-                .UseSkia();
-                // .UseReactiveUI();
+        var builder = AppBuilder
+            .Configure<App>()
+            .UsePlatformDetect()
+            .With(new X11PlatformOptions { EnableMultiTouch = true, UseDBusMenu = true, })
+            .With(new Win32PlatformOptions
+            {
+                //// EnableMultitouch = true, // In Avalonia v11 this is always enabled
+                AllowEglInitialization = true,
+            })
+            .UseSkia();
+            // .UseReactiveUI();
 
 #if DEBUG
-            builder.LogToTrace(LogEventLevel.Debug, LogArea.Property, LogArea.Layout, LogArea.Binding);
+        builder.LogToTrace(LogEventLevel.Debug, LogArea.Property, LogArea.Layout, LogArea.Binding);
 #endif
-            return builder;
-        }
-
-        // Initialization code. Don't use any Avalonia, third-party APIs or any
-        // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
-        // yet and stuff might break.
-        [ExcludeFromCodeCoverage]
-        static void Main(string[] args) => BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+        return builder;
     }
+
+    // Initialization code. Don't use any Avalonia, third-party APIs or any
+    // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
+    // yet and stuff might break.
+    [ExcludeFromCodeCoverage]
+    static void Main(string[] args) =>
+        BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 }

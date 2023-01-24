@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Prism.Regions;
+using Prism.Ioc;
 
 namespace ViewDiscovery.Views
 {
@@ -12,14 +13,25 @@ namespace ViewDiscovery.Views
     {
         private readonly IRegionManager _regionManager;
 
-        public MainWindow() { }
+        public MainWindow()
+        {
+            this.InitializeComponent();
+#if DEBUG
+            this.AttachDevTools();
+#endif
 
+            Test();
+        }
+
+        // Issue Avalonia-v11-preview4:
+        // In this example, ideally we want to use this constructor to register
+        // the views with the Region. However, the 'ContentRegion' did not get registered yet.
         public MainWindow(IRegionManager regionManager)
         {
             _regionManager = regionManager;
             this.InitializeComponent();
             this.AttachDevTools();
-
+        
             // This is the wrong approach
             regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewA));
             regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewB));
@@ -28,6 +40,8 @@ namespace ViewDiscovery.Views
 
         private async void Test()
         {
+            //// var regionManager = ContainerLocator.Current.Resolve<IRegionManager>();
+
             if (!_regionManager.Regions.ContainsRegionWithName(RegionNames.ContentRegion))
             {
                 // ISSUE: Avalonia v11-prev4 can't find the region - With v0.10.x this does not happen.

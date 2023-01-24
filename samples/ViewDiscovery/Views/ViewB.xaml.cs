@@ -9,7 +9,11 @@ namespace ViewDiscovery.Views
     /// </summary>
     public partial class ViewB : UserControl
     {
-        public ViewB() { }
+        public ViewB()
+        {
+            this.InitializeComponent();
+        }
+
         public ViewB(ViewA subView)
         {
             this.InitializeComponent();
