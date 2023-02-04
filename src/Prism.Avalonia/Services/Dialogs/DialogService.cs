@@ -170,7 +170,7 @@ namespace Prism.Services.Dialogs
             dialogWindow.Opened += loadedHandler;
             //// WPF: dialogWindow.Loaded += loadedHandler;
 
-            EventHandler<CancelEventArgs> closingHandler = null;
+            EventHandler<WindowClosingEventArgs> closingHandler = null;
             closingHandler = (o, e) =>
             {
                 if (!dialogWindow.GetDialogViewModel().CanCloseDialog())
