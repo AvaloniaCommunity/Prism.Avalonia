@@ -100,7 +100,7 @@ namespace Prism.Regions
             return regionWrapper;
         }
 
-        private static void OnSetRegionNameCallback(IAvaloniaObject element, AvaloniaPropertyChangedEventArgs args)
+        private static void OnSetRegionNameCallback(AvaloniaObject element, AvaloniaPropertyChangedEventArgs args)
         {
             if (!IsInDesignMode(element))
             {
@@ -108,7 +108,7 @@ namespace Prism.Regions
             }
         }
 
-        private static void CreateRegion(IAvaloniaObject element)
+        private static void CreateRegion(AvaloniaObject element)
         {
             var container = ContainerLocator.Container;
             DelayedRegionCreationBehavior regionCreationBehavior = container.Resolve<DelayedRegionCreationBehavior>();
@@ -135,7 +135,7 @@ namespace Prism.Regions
         /// </summary>
         /// <param name="target">The target element.</param>
         /// <returns>The <see cref="IRegionManager"/> attached to the <paramref name="target"/> element.</returns>
-        public static IRegionManager GetRegionManager(IAvaloniaObject target)
+        public static IRegionManager GetRegionManager(AvaloniaObject target)
         {
             if (target == null)
                 throw new ArgumentNullException(nameof(target));
@@ -148,7 +148,7 @@ namespace Prism.Regions
         /// </summary>
         /// <param name="target">The target element.</param>
         /// <param name="value">The value.</param>
-        public static void SetRegionManager(IAvaloniaObject target, IRegionManager value)
+        public static void SetRegionManager(AvaloniaObject target, IRegionManager value)
         {
             if (target == null)
                 throw new ArgumentNullException(nameof(target));
@@ -162,7 +162,7 @@ namespace Prism.Regions
         public static readonly AvaloniaProperty RegionContextProperty =
             AvaloniaProperty.RegisterAttached<AvaloniaObject, object>("RegionContext", typeof(RegionManager));
 
-        private static void OnRegionContextChanged(IAvaloniaObject depObj, AvaloniaPropertyChangedEventArgs e)
+        private static void OnRegionContextChanged(AvaloniaObject depObj, AvaloniaPropertyChangedEventArgs e)
         {
             if (RegionContext.GetObservableContext(depObj as AvaloniaObject).Value != e.NewValue)
             {
@@ -229,7 +229,7 @@ namespace Prism.Regions
             }
         }
 
-        private static bool IsInDesignMode(IAvaloniaObject element)
+        private static bool IsInDesignMode(AvaloniaObject element)
         {
             return Design.IsDesignMode;
         }

@@ -66,7 +66,7 @@ public class App : PrismApplication
 
     /// <summary>User interface entry point, called after Register and ConfigureModules.</summary>
     /// <returns>Startup View.</returns>
-    protected override IAvaloniaObject CreateShell()
+    protected override AvaloniaObject CreateShell()
     {
         Console.WriteLine("CreateShell()");
         return Container.Resolve<MainWindow>();

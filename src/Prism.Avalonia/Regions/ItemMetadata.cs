@@ -75,7 +75,7 @@ namespace Prism.Regions
             if (metadataChangedHandler != null) metadataChangedHandler(this, EventArgs.Empty);
         }
 
-        private static void StyledPropertyChanged(IAvaloniaObject dependencyObject, AvaloniaPropertyChangedEventArgs args)
+        private static void StyledPropertyChanged(AvaloniaObject dependencyObject, AvaloniaPropertyChangedEventArgs args)
         {
             ItemMetadata itemMetadata = dependencyObject as ItemMetadata;
             if (itemMetadata != null)

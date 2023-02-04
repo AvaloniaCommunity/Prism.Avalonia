@@ -16,7 +16,7 @@ namespace SampleDialogApp
             base.Initialize();
         }
 
-        protected override IAvaloniaObject CreateShell()
+        protected override AvaloniaObject CreateShell()
         {
             Console.WriteLine("CreateShell()");
             return Container.Resolve<MainWindow>();

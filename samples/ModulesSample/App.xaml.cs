@@ -104,7 +104,7 @@ namespace ModulesSample
             containerRegistry.RegisterSingleton<IModuleTracker, ModuleTracker>();
         }
 
-        protected override IAvaloniaObject CreateShell()
+        protected override AvaloniaObject CreateShell()
         {
             return Container.Resolve<MainWindow>();
         }

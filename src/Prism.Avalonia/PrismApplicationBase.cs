@@ -21,7 +21,7 @@ namespace Prism
         private IModuleCatalog _moduleCatalog;
 
         // FROM Prism.Avalonia7.1.2
-        public IAvaloniaObject MainWindow { get; private set; }
+        public AvaloniaObject MainWindow { get; private set; }
 
         /// <summary>
         /// The dependency injection container used to resolve objects
@@ -154,12 +154,12 @@ namespace Prism
         /// Creates the shell or main window of the application.
         /// </summary>
         /// <returns>The shell of the application.</returns>
-        protected abstract IAvaloniaObject CreateShell();
+        protected abstract AvaloniaObject CreateShell();
 
         /// <summary>
         /// Initializes the shell.
         /// </summary>
-        protected virtual void InitializeShell(IAvaloniaObject shell)
+        protected virtual void InitializeShell(AvaloniaObject shell)
         {
             MainWindow = shell;
         }

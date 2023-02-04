@@ -136,7 +136,7 @@ namespace Prism.Regions.Behaviors
             }
 
             //TODO: this is should be ok in Avalonia. I have to test it
-            AvaloniaObject parent = ((dependencyObject as IVisual)?.GetVisualParent() ?? null) as AvaloniaObject;
+            AvaloniaObject parent = ((dependencyObject as Visual)?.GetVisualParent() ?? null) as AvaloniaObject;
             if (parent != null)
             {
                 return this.FindRegionManager(parent);

@@ -53,7 +53,7 @@ public class App : PrismApplication
         containerRegistry.RegisterForNavigation<SidebarView, SidebarViewModel>();
     }
 
-    protected override IAvaloniaObject CreateShell()
+    protected override AvaloniaObject CreateShell()
     {
         if (IsSingleViewLifetime)
             return Container.Resolve<MainControl>(); // For Linux Framebuffer or DRM
