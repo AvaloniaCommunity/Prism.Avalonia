@@ -87,6 +87,7 @@ namespace Prism.Regions
 
         private void OnContentRegistered(ViewRegisteredEventArgs e)
         {
+            // TODO (2022-11-28): Consider returning an object with Success(bool) and Exception(ex)
             try
             {
                 _contentRegisteredListeners.Raise(this, e);
@@ -103,6 +104,7 @@ namespace Prism.Regions
                     rootException = ex.GetRootException();
                 }
 
+                // TODO (2022-11-28): Consider safely informing user of XAML error when encountered
                 throw new ViewRegistrationException(string.Format(CultureInfo.CurrentCulture,
                     Resources.OnViewRegisteredException, e.RegionName, rootException), ex.InnerException);
             }

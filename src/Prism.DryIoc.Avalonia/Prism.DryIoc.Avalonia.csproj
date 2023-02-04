@@ -7,16 +7,13 @@
 
   <PropertyGroup>
     <RootNamespace>Prism.DryIoc</RootNamespace>
-    <TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
-    <Description>Use these extensions to build Prism applications based on DryIoc.</Description>
-    <Authors>Omid Mafakher, Damian Suess, various contributors</Authors>
-    <Copyright>Copyright (c) 2022 Avalonia Community</Copyright>
+    <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
+    <Description>This extension is used to build Prism.Avalonia applications based on DryIoc. Users must install the Prism.Avalonia NuGet package as well.</Description>
+    <Authors>Damian Suess, Omid Mafakher, various contributors</Authors>
+    <Copyright>Copyright (c) 2023 Avalonia Community</Copyright>
     <Title>Prism.DryIoc.Avalonia</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>* Fixed: Automatically performs `AutoWireViewModel`
-    * No longer need to device `prism:ViewModelLocator.AutoWireViewModel="True"` in View
-* Updated DryIoc to v4.8.0
-* Updated to Avalonia v0.10.18</PackageReleaseNotes>
+    <PackageReleaseNotes>* Upgraded to Avalonia v11.0.0-preview4</PackageReleaseNotes>
     <PackageTags>prism;mvvm;xaml;avalonia;dryioc;dependencyinjection;navigation;</PackageTags>
     <PackageIcon>Prism.Avalonia.png</PackageIcon>
   </PropertyGroup>

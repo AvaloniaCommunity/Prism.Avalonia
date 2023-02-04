@@ -16,7 +16,11 @@ namespace SampleDialogApp
             AppBuilder.Configure<App>()
                       .UsePlatformDetect()
                       .With(new X11PlatformOptions { EnableMultiTouch = true, UseDBusMenu = true, })
-                      .With(new Win32PlatformOptions { EnableMultitouch = true, AllowEglInitialization = true, })
+                      .With(new Win32PlatformOptions
+                      {
+                          // EnableMultitouch = true,  // Not supported in Avalonia v11.0.0-preview4
+                          AllowEglInitialization = true,
+                      })
                       .UseSkia()
                       .LogToTrace();
     }
