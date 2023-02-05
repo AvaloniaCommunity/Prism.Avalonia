@@ -12,6 +12,33 @@ Check out Avalonia's [Breaking Changes](https://github.com/AvaloniaUI/Avalonia/w
 * Avalonia.ReactiveUI.Events. See, [PR #5423](https://github.com/AvaloniaUI/Avalonia/pull/5423)
 * Themes: Both Avalonia.Themes.Fluent and Avalonia.Themes.Simple (formally, Default) are not a part of the main Avalonia nuget package anymore. You need to add a PackageReference to include either of these packages or both. For more details, see #5593
 
+### Known Issues
+
+* [WindowNotificationManager Pop-Ups are no longer working in 11 Preview 5](https://github.com/AvaloniaUI/Avalonia/issues/10216)
+* Themes in sample are showing up cloudy
+* Selected ListView item still appears after clearing the List
+  * **STATUS:** _Needs reported_
+  * **Reproduce:**
+    * Add items to ListView to fill 2+ pages
+    * Scroll down to select item
+    * Clear list
+    * Resize window to show area previous now shown
+  * **Result:**
+    * Selected item still appears in list despite items removed from collection
+
+### Themes
+
+When using Fluent theme, you no longer has a `Mode` attribute.
+
+```xml
+  <!-- New -->
+  <FluentTheme />
+
+  <!-- Old -->
+  <FluentTheme Mode="Light" />
+```
+
+
 ## 11.0 Preview 4
 
 ### DataTemplates

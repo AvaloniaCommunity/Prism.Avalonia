@@ -12,7 +12,7 @@
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent">
   <Panel>
-    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+    <ExperimentalAcrylicBorder IsHitTestVisible="true">
       <ExperimentalAcrylicBorder.Material>
         <ExperimentalAcrylicMaterial BackgroundSource="Digger"
                                      TintColor="LightGray"
@@ -25,13 +25,11 @@
       <!-- Sidebar -->
       <Panel Grid.Row="0" Grid.Column="0" Background="LightGray">
 
-        <views:SidebarView />
         <!--
-          Rendered SidebarView without a region on purpose to show it in designer mode.
-
-          Optionall use:
+          The SidebarView is not using a region on purpose, so it shows in designer mode
           <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.SidebarRegion}" />
         -->
+        <views:SidebarView />
       </Panel>
 
       <!-- Main Content -->

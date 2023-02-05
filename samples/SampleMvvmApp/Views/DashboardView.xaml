@@ -20,45 +20,42 @@
       <Setter Property="Margin" Value="10" />
     </Style>
   </UserControl.Styles>
+  <Grid RowDefinitions="auto,auto,auto,*">
+    <Label Content="Welcome to the Dashboard!" FontSize="32" />
 
-  <ScrollViewer>
-    <StackPanel>
-      <Label Content="Welcome to the Dashboard!" FontSize="32" />
+    <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+      <Button Content="Add Item" Command="{Binding CmdAddItem}" />
+      <Button Content="Clear" Command="{Binding CmdClearItems}" />
+      <Button Content="Notification Pop-up" Command="{Binding CmdNotification}" />
+    </StackPanel>
 
-      <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-        <Button Content="Add Item" Command="{Binding CmdAddItem}" />
-        <Button Content="Clear" Command="{Binding CmdClearItems}" />
-        <Button Content="Notification Pop-up" Command="{Binding CmdNotification}" />
-      </StackPanel>
+    <StackPanel Grid.Row="2" Orientation="Horizontal">
+      <Label Content="Selected Index:" FontWeight="Bold" />
+      <Label Content="{Binding ListItemSelected}" />
+      <StackPanel Orientation="Horizontal" />
+      <Label Content="Selected Text:" FontWeight="Bold" />
+      <Label Content="{Binding ListItemText}" />
+    </StackPanel>
 
-      <StackPanel Orientation="Horizontal">
-        <Label Content="Selected Index:" FontWeight="Bold" />
-        <Label Content="{Binding ListItemSelected}" />
-        <StackPanel Orientation="Horizontal" />
-        <Label Content="Selected Text:" FontWeight="Bold" />
-        <Label Content="{Binding ListItemText}" />
-      </StackPanel>
-
-      <ListBox Margin="2"
-               VerticalAlignment="Bottom"
-               Items="{Binding ListItems}"
-               ScrollViewer.HorizontalScrollBarVisibility="Visible"
-               ScrollViewer.VerticalScrollBarVisibility="Visible"
-               SelectedIndex="{Binding ListItemSelected}"
-               SelectionMode="Single">
-        <ListBox.ItemTemplate>
-          <!--
+    <ListBox Grid.Row="3"
+             Margin="2"
+             Items="{Binding ListItems}"
+             ScrollViewer.HorizontalScrollBarVisibility="Visible"
+             ScrollViewer.VerticalScrollBarVisibility="Visible"
+             SelectedIndex="{Binding ListItemSelected}"
+             SelectionMode="Single">
+      <ListBox.ItemTemplate>
+        <!--
           OLD: <DataTemplate>
           NEW: <DataTemplate DataType="{x:Type system:String}">
           https://github.com/AvaloniaUI/Avalonia/pull/8221
           -->
-            <DataTemplate DataType="{x:Type system:String}">
-            <TextBlock Text="{Binding .}"
-                       FontSize="10"
-                       TextWrapping="NoWrap" />
-          </DataTemplate>
-        </ListBox.ItemTemplate>
-      </ListBox>
-    </StackPanel>
-  </ScrollViewer>
+        <DataTemplate DataType="{x:Type system:String}">
+          <TextBlock Text="{Binding .}"
+                     FontSize="10"
+                     TextWrapping="NoWrap" />
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </Grid>
 </UserControl>
