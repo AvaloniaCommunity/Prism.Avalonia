@@ -10,7 +10,8 @@
   <Panel>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="5">
       <Label Content="Click to show a dialog window" />
-      <Button Command="{Binding CmdShowDialog}" Content="Modal Dialog" />
+      <Button Command="{Binding CmdShowMsgBox}" Content="Simple MessageBox Dialog" />
+      <Button Command="{Binding CmdShowDialog}" Content="Custom Modal Dialog" />
       <Button Command="{Binding CmdShowRegular}" Content="Non-Modal Dialog (Without Parent)" />
 
       <StackPanel Orientation="Horizontal">

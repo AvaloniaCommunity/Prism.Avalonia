@@ -20,9 +20,4 @@
     <TrimmableAssembly Include="Avalonia.Themes.Fluent" />
     <TrimmableAssembly Include="Avalonia.Themes.Default" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Views\DialogView.axaml.cs">
-      <DependentUpon>DialogView.axaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
 </Project>

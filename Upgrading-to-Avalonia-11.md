@@ -6,10 +6,14 @@ Check out Avalonia's [Breaking Changes](https://github.com/AvaloniaUI/Avalonia/w
 
 ## 11.0 Preview 5
 
-* NEW: Window now implements `public event EventHandler<WindowClosingEventArgs>? Closing;`
-* Deprecation of redundant interfaces. See, [PR #9553](https://github.com/AvaloniaUI/Avalonia/pull/9553)
+* NEW: IDialogWindow now implements `WindowClosingEventArgs`.
+  * See, [Issue #9524](https://github.com/AvaloniaUI/Avalonia/issues/9524), [PR #9715](https://github.com/AvaloniaUI/Avalonia/pull/9715)
+  * This affects `IDialogWindow` implementation of `public event EventHandler<WindowClosingEventArgs>? Closing;`
+* Deprecation of redundant interfaces.
+  * See, [PR #9553](https://github.com/AvaloniaUI/Avalonia/pull/9553)
   * I.E. `IAvaloniaObject` -> `AvalonObject`, and more.
-* Avalonia.ReactiveUI.Events. See, [PR #5423](https://github.com/AvaloniaUI/Avalonia/pull/5423)
+* Avalonia.ReactiveUI.Events.
+  * See, [PR #5423](https://github.com/AvaloniaUI/Avalonia/pull/5423)
 * Themes: Both Avalonia.Themes.Fluent and Avalonia.Themes.Simple (formally, Default) are not a part of the main Avalonia nuget package anymore. You need to add a PackageReference to include either of these packages or both. For more details, see #5593
 
 ### Known Issues

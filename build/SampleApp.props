@@ -6,19 +6,12 @@
   <Import Project="AvaloniaDependency.props" />
 
   <ItemGroup>
-    <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="11.0.0-preview5" />
+    <!--<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview5" />-->
+    <PackageReference Include="Avalonia.LinuxFramebuffer" Version="11.0.0-preview5" />
     <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.0-preview5" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview5" />
+    <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
     <ProjectReference Include="$(MSBuildThisFileDirectory)..\src\Prism.DryIoc.Avalonia\Prism.DryIoc.Avalonia.csproj" />
   </ItemGroup>
-
-  <!--
-  <ItemGroup>
-    <PackageReference Include="Serilog.Sinks.Trace" Version="2.1.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-  -->
-
 </Project>
