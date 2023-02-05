@@ -1,35 +1,33 @@
-﻿using System.Globalization;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Prism.Avalonia.Infrastructure.Events;
 using Prism.Events;
+
 ////using Prism.Logging;
 
 namespace ModulesSample
 {
-    public class MainWindow : Window
+    public partial class MainWindow : Window
     {
         ////private readonly CallbackLogger logger;
         private readonly IEventAggregator eventAggregator;
 
-        private TextBox logTextBox;
-        private ListBox itemsControl;
+        private TextBox _logTextBox;
+        private ListBox _itemsControl;
 
         public MainWindow()
         {
-            
         }
 
         public MainWindow(IEventAggregator eventAggregator)
         ////public MainWindow(CallbackLogger logger, IEventAggregator eventAggregator)
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.AttachDevTools();
 
-            this.logTextBox = this.FindControl<TextBox>("LogTextBox");
-            this.itemsControl = this.FindControl<ListBox>("ItemsControl1");
+            _logTextBox = this.FindControl<TextBox>("LogTextBox");
+            _itemsControl = this.FindControl<ListBox>("ItemsControl1");
 
             ////this.logger = logger;
             ////this.logger.Callback = this.Log;
@@ -40,16 +38,11 @@ namespace ModulesSample
             {
                 Dispatcher.UIThread.InvokeAsync(() =>
                 {
-                    logTextBox.Text += "EventAggregator DummyEvent triggered \r\n";
+                    _logTextBox.Text += "EventAggregator DummyEvent triggered \r\n";
                 });
             });
 
-            this.DataContext = this;
-        }
-
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
+            DataContext = this;
         }
 
         ////private void Log(string message, Category category, Priority priority)

@@ -1,7 +1,5 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using Prism.Ioc;
-using SampleMvvmApp.Services;
 
 namespace SampleMvvmApp.Views;
 

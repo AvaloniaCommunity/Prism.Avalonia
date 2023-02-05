@@ -1,5 +1,4 @@
 ﻿using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using ModulesSample.Infrastructure;
 using Prism.Avalonia.Infrastructure.Events;
@@ -8,7 +7,7 @@ using Prism.Regions;
 
 namespace DummyModule2.View
 {
-    public class DummyModuleView2 : UserControl
+    public partial class DummyModuleView2 : UserControl
     {
         private readonly IEventAggregator _eventAggregator;
         private TextBox _regionViewTextBox;
@@ -35,11 +34,6 @@ namespace DummyModule2.View
                     //_regionViewTextBox.Text += "\n EventAggregator DummyEvent triggered for DummyModule2 \r\n";
                 });
             });
-        }
-
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
         }
     }
 }

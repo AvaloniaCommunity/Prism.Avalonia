@@ -29,7 +29,6 @@ public class App : PrismApplication
         System.Diagnostics.Debug.WriteLine("RegisterTypes()");
         containerRegistry.RegisterForNavigation<ViewA, ViewAViewModel>();
         containerRegistry.RegisterForNavigation<ViewB, ViewBViewModel>();
-
     }
 
     /// <summary>User interface entry point, called after Register and ConfigureModules.</summary>

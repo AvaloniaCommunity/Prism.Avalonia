@@ -2,10 +2,10 @@
 
 Change log history for Prism.Avalonia
 
-## v8.1.97.3-preview.11.5 (2022-02-??)
+## v8.1.97.4-preview.11.5 (2022-02-??)
 
 * New: Support for Avalonia v11.0 Preview 5
-* New: Document [Upgrading-to-Avalonia-11.md]
+* New: Document [Upgrading-to-Avalonia-11.md](Upgrading-to-Avalonia-11.md)
 * Update: IDialogWindow implements `WindowClosingEventArgs`. See, [Issue #9524](https://github.com/AvaloniaUI/Avalonia/issues/9524), [PR #9715](https://github.com/AvaloniaUI/Avalonia/pull/9715)
 * Update: Avalonia interface objects deprecated - [PR #9553](https://github.com/AvaloniaUI/Avalonia/pull/9553)
 * Removed: Reduced the package references
@@ -18,7 +18,9 @@ Change log history for Prism.Avalonia
 ## v8.1.97.3-preview.11.4 (2022-02-03)
 
 * Added support for Avalonia v11.0 Preview 4
-* Upgraded sample projects to support latest Avalonia version
+* Samples
+  * Upgraded projects to support latest Avalonia version
+  *
 
 ## v8.1.97.1 - 2022-12-08
 
