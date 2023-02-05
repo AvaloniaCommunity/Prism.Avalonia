@@ -51,7 +51,7 @@ namespace BootstrapperShellSample
         {
         }
 
-        protected override IAvaloniaObject CreateShell()
+        protected override AvaloniaObject CreateShell()
         {
             return Container.Resolve<MainWindow>();
         }

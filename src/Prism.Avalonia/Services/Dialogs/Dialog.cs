@@ -67,7 +67,7 @@ namespace Prism.Services.Dialogs
             obj.SetValue(WindowStartupLocationProperty, value);
         }
 
-        private static void OnWindowStartupLocationChanged(IAvaloniaObject sender, AvaloniaPropertyChangedEventArgs e)
+        private static void OnWindowStartupLocationChanged(AvaloniaObject sender, AvaloniaPropertyChangedEventArgs e)
         {
             if (sender is Window window)
                 window.WindowStartupLocation = (WindowStartupLocation)e.NewValue;

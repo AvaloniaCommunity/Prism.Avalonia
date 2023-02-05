@@ -31,7 +31,7 @@ namespace Prism.Mvvm
         /// </summary>
         /// <param name="obj">The target element.</param>
         /// <returns>The <see cref="AutoWireViewModelProperty"/> attached to the <paramref name="obj"/> element.</returns>
-        public static bool? GetAutoWireViewModel(IAvaloniaObject obj)
+        public static bool? GetAutoWireViewModel(AvaloniaObject obj)
         {
             return (bool?)obj.GetValue(AutoWireViewModelProperty);
         }
@@ -41,12 +41,12 @@ namespace Prism.Mvvm
         /// </summary>
         /// <param name="obj">The target element.</param>
         /// <param name="value">The value to attach.</param>
-        public static void SetAutoWireViewModel(IAvaloniaObject obj, bool value)
+        public static void SetAutoWireViewModel(AvaloniaObject obj, bool value)
         {
             obj.SetValue(AutoWireViewModelProperty, value);
         }
 
-        private static void AutoWireViewModelChanged(IAvaloniaObject d, AvaloniaPropertyChangedEventArgs e)
+        private static void AutoWireViewModelChanged(AvaloniaObject d, AvaloniaPropertyChangedEventArgs e)
         {
             var value = (bool?)e.NewValue;
             if (value.HasValue && value.Value)

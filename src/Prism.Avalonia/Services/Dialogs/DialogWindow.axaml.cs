@@ -1,4 +1,6 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using System.ComponentModel;
+using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
 namespace Prism.Services.Dialogs

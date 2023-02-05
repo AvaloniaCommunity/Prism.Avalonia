@@ -1,12 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
   </PropertyGroup>
 
   <Import Project="../../build/SampleApp.props" />
-
-  <!--<ItemGroup>
-    <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.0-preview4" />
-  </ItemGroup>-->
 </Project>
