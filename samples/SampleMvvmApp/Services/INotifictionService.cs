@@ -7,7 +7,7 @@ namespace SampleMvvmApp.Services
     {
         int NotificationTimeout { get; set; }
 
-        void SetHostWindow(Window window);
+        void SetHostWindow(TopLevel window);
 
         void Show(string title, string message, Action? onClick = null);
     }

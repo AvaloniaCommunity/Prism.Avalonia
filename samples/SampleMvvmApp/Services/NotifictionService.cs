@@ -21,7 +21,7 @@ namespace SampleMvvmApp.Services
 
         /// <summary>Set the host window.</summary>
         /// <param name="hostWindow">Parent window.</param>
-        public void SetHostWindow(Window hostWindow)
+        public void SetHostWindow(TopLevel hostWindow)
         {
             var notificationManager = new WindowNotificationManager(hostWindow)
             {

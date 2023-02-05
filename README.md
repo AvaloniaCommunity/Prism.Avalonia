@@ -1,6 +1,6 @@
 # Prism.Avalonia
 
-[Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can navigate and perform dependency injection easier than before.
+[Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can navigate and perform dependency injection easier than before.  You will need both packages installed to get started.
 
 | Package | Stable | Preview
 |-|-|-|
@@ -8,8 +8,7 @@
 | Prism.DryIoc.Avalonia | [![Prism.DryIoc.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.DryIoc.Avalonia?dWidth=70&includePreReleases=false)](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/) | [![Prism.DryIoc.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.DryIoc.Avalonia?dWidth=70&includePreReleases=true)](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/)
 
 
-
-Prism.Avalonia's logic and development approach is similar to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/) so you can get started right away with Prism for Avalonia!
+Prism.Avalonia's logic and development approach is **similar** to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/) so you can get started right away with Prism for Avalonia! Keep in mind, they are **similar** and not 1-to-1.
 
 ## Changes
 
