@@ -4,13 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="{Binding Title}"
-        Width="400"
-        Height="200"
-        d:DesignHeight="450"
-        d:DesignWidth="550"
+        Height="350" Width="550"
+        d:DesignHeight="350" d:DesignWidth="550"
         mc:Ignorable="d">
   <Panel>
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="5">
       <Label Content="Click to show a dialog window" />
       <Button Command="{Binding CmdShowDialog}" Content="Modal Dialog" />
       <Button Command="{Binding CmdShowRegular}" Content="Non-Modal Dialog (Without Parent)" />

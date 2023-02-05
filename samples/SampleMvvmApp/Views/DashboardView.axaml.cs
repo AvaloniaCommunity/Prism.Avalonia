@@ -8,11 +8,6 @@ public partial class DashboardView : UserControl
 {
     public DashboardView()
     {
-        this.InitializeComponent();
+        InitializeComponent();
     }
-
-    ////private void InitializeComponent()
-    ////{
-    ////    AvaloniaXamlLoader.Load(this);
-    ////}
 }

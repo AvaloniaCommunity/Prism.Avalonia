@@ -7,7 +7,7 @@
              mc:Ignorable="d" d:DesignHeight="200" d:DesignWidth="400"
              Height="200" Width="400"
              x:Class="SampleDialogApp.Views.DialogView">
-  <StackPanel HorizontalAlignment="Center">
+  <StackPanel HorizontalAlignment="Center" Spacing=" 5">
     <Label Content="{Binding Title}" FontWeight="Bold" />
 
     <StackPanel Orientation="Horizontal">
@@ -15,17 +15,17 @@
       <Label Content="{Binding CustomMessage}" />
     </StackPanel>
 
-    <StackPanel Orientation="Horizontal">
+    <StackPanel Orientation="Horizontal" Spacing="5">
         <Button Content="None" Command="{Binding CmdResult}" CommandParameter="0" />
         <Button Content="OK" Command="{Binding CmdResult}" CommandParameter="1" />
         <Button Content="Cancel" Command="{Binding CmdResult}" CommandParameter="2" />
       </StackPanel>
-      <StackPanel Orientation="Horizontal">
+      <StackPanel Orientation="Horizontal" Spacing="5">
         <Button Content="Abort" Command="{Binding CmdResult}" CommandParameter="3" />
         <Button Content="Retry" Command="{Binding CmdResult}" CommandParameter="4" />
         <Button Content="Ignore" Command="{Binding CmdResult}" CommandParameter="5" />
       </StackPanel>
-      <StackPanel Orientation="Horizontal">
+      <StackPanel Orientation="Horizontal" Spacing="5">
         <Button Content="Yes" Command="{Binding CmdResult}" CommandParameter="6" />
         <Button Content="No" Command="{Binding CmdResult}" CommandParameter="7" />
       </StackPanel>

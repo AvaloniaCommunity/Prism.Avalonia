@@ -1,18 +1,12 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace SampleMvvmApp.Views
-{
-    public partial class SidebarView : UserControl
-    {
-        public SidebarView()
-        {
-            InitializeComponent();
-        }
+namespace SampleMvvmApp.Views;
 
-        //private void InitializeComponent()
-        //{
-        //    AvaloniaXamlLoader.Load(this);
-        //}
+public partial class SidebarView : UserControl
+{
+    public SidebarView()
+    {
+        InitializeComponent();
     }
 }
