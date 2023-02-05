@@ -6,6 +6,7 @@
   <Import Project="AvaloniaDependency.props" />
 
   <ItemGroup>
+    <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
     <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.0-preview5" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview5" />
     <ProjectReference Include="$(MSBuildThisFileDirectory)..\src\Prism.DryIoc.Avalonia\Prism.DryIoc.Avalonia.csproj" />

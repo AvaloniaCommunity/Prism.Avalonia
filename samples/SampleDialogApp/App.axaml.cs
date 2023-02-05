@@ -25,7 +25,7 @@ namespace SampleDialogApp
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<MainWindow>();
-            containerRegistry.RegisterDialog<NotificationDialogView, NotificationDialogViewModel>();
+            containerRegistry.RegisterDialog<DialogView, DialogViewModel>();
         }
     }
 }

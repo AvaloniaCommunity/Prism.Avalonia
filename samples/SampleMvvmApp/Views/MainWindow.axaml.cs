@@ -20,9 +20,9 @@ namespace SampleMvvmApp.Views
             notifyService.SetHostWindow(this);
         }
 
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
-        }
+        ////private void InitializeComponent()
+        ////{
+        ////    AvaloniaXamlLoader.Load(this);
+        ////}
     }
 }

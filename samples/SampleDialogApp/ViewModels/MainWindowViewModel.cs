@@ -1,15 +1,15 @@
 ﻿using Prism.Commands;
-using Prism.Regions;
 using Prism.Services.Dialogs;
+using SampleDialogApp.Views;
 
 namespace SampleDialogApp.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
         private readonly IDialogService _dialogService;
-        private string _returnedResult;
+        private string _returnedResult = "";
 
-        public MainWindowViewModel(IRegionManager regionManager, IDialogService dialogService)
+        public MainWindowViewModel(IDialogService dialogService)
         {
             _dialogService = dialogService;
 
@@ -20,7 +20,8 @@ namespace SampleDialogApp.ViewModels
         {
             var message = "This is a message that should be shown in the dialog.";
 
-            _dialogService.ShowDialog("NotificationDialogView", new DialogParameters($"message={message}"), r =>
+            // PRO TIP: Use `nameof(DialogView)` instead of "DialogView" to catch errors early on
+            _dialogService.ShowDialog(nameof(DialogView), new DialogParameters($"message={message}"), r =>
             {
                 if (r is null)
                 {
@@ -43,7 +44,7 @@ namespace SampleDialogApp.ViewModels
 
         public DelegateCommand CmdShowRegular => new DelegateCommand(() =>
         {
-            _dialogService.Show("NotificationDialogView", r =>
+            _dialogService.Show(nameof(DialogView), r =>
             {
                 if (r is null)
                 {

@@ -9,14 +9,11 @@
   <Import Project="../../build/SampleApp.props" />
 
   <ItemGroup>
-    <!--<PackageReference Include="Avalonia.Themes.Simple" Version="11.0.0-preview5" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview5" />-->
-
-    <Compile Update="Views\DashboardView.xaml.cs">
-      <DependentUpon>DashboardView.xaml</DependentUpon>
+    <Compile Update="Views\DashboardView.axaml.cs">
+      <DependentUpon>DashboardView.axaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\SettingsView.xaml.cs">
-      <DependentUpon>SettingsView.xaml</DependentUpon>
+    <Compile Update="Views\SettingsView.axaml.cs">
+      <DependentUpon>SettingsView.axaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

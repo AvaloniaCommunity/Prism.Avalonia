@@ -1,11 +1,11 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace SampleMvvmApp.Views
+namespace SampleDialogApp.Views
 {
-    public partial class SubSettingsView : UserControl
+    public partial class DialogView : UserControl
     {
-        public SubSettingsView()
+        public DialogView()
         {
             InitializeComponent();
         }

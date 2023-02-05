@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
@@ -19,11 +19,10 @@
 	https://github.com/AvaloniaUI/Avalonia/issues/5593 -->
     <TrimmableAssembly Include="Avalonia.Themes.Fluent" />
     <TrimmableAssembly Include="Avalonia.Themes.Default" />
-    <PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\NotificationDialogView.axaml.cs">
-      <DependentUpon>NotificationDialogView.axaml</DependentUpon>
+    <Compile Update="Views\DialogView.axaml.cs">
+      <DependentUpon>DialogView.axaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>
