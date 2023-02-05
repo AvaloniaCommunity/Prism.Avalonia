@@ -15,9 +15,11 @@ public partial class MainWindow : Window
 #endif
 
         // Avalonia v11-Preview 5 Breaking Change:
-        //  Previously, users had to set the HostWindow inside the main shell Window
-        //  as you see below. Now, users can define this from any UserControl view
-        //  by simply providing `notifyService.SetHostWindow(TopLevel.GetTopLevel(this))`
+        //  This code has moved to 'DashboardView.axaml.cs
+        //
+        //  In v0.10.x, users set the HostWindow inside the main shell Window passing 'this'
+        //  As of v11, the initialization no longer works from MainWindow and must be defined
+        //  in the UserControl by providing `notifyService.SetHostWindow(TopLevel.GetTopLevel(this))`
         //  in the view's .axaml.cs `override void OnAttachedToVisualTree(..)` method.
         //
         // OLD: Avalonia v0.10.18
