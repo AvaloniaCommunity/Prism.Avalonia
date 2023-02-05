@@ -7,14 +7,14 @@
 
   <PropertyGroup>
     <RootNamespace>Prism.DryIoc</RootNamespace>
-    <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;net6.0;net7.0</TargetFrameworks>
     <Description>This extension is used to build Prism.Avalonia applications based on DryIoc. Users must install the Prism.Avalonia NuGet package as well.</Description>
     <Authors>Damian Suess, Omid Mafakher, various contributors</Authors>
     <Copyright>Copyright (c) 2023 Avalonia Community</Copyright>
     <Title>Prism.DryIoc.Avalonia</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>* Upgraded to Avalonia v11.0.0-preview4</PackageReleaseNotes>
-    <PackageTags>prism;mvvm;xaml;avalonia;dryioc;dependencyinjection;navigation;</PackageTags>
+    <PackageReleaseNotes>* Upgraded to support Avalonia v11.0.0-preview5</PackageReleaseNotes>
+    <PackageTags>prism;mvvm;xaml;avalonia;dryioc;dependencyinjection;navigation;dialog;prismavalonia;</PackageTags>
     <PackageIcon>Prism.Avalonia.png</PackageIcon>
   </PropertyGroup>
 

@@ -7,13 +7,4 @@
   </PropertyGroup>
 
   <Import Project="../../build/SampleApp.props" />
-
-  <ItemGroup>
-    <Compile Update="Views\DashboardView.axaml.cs">
-      <DependentUpon>DashboardView.axaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\SettingsView.axaml.cs">
-      <DependentUpon>SettingsView.axaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
 </Project>
