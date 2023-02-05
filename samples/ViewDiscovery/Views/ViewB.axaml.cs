@@ -1,6 +1,4 @@
-﻿using System;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Controls;
 
 namespace ViewDiscovery.Views
 {
@@ -11,18 +9,13 @@ namespace ViewDiscovery.Views
     {
         public ViewB()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         public ViewB(ViewA subView)
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.FindControl<ContentControl>("Test").Content = subView;
-        }
-
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
         }
     }
 }

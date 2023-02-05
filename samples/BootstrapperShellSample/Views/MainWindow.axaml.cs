@@ -14,10 +14,5 @@ namespace BootstrapperShellSample.Views
             this.InitializeComponent();
             this.AttachDevTools();
         }
-
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
-        }
     }
 }

@@ -17,15 +17,19 @@ Check out Avalonia's [Breaking Changes](https://github.com/AvaloniaUI/Avalonia/w
 
 [Breaking Changes](https://github.com/AvaloniaUI/Avalonia/wiki/Breaking-Changes) wiki
 
-* Deprecation of redundant interfaces.
+* Interface Deprecation
   * See, [PR #9553](https://github.com/AvaloniaUI/Avalonia/pull/9553)
   * I.E. `IAvaloniaObject` -> `AvalonObject`, and more.
 * [WindowNotificationManager Pop-Ups are no longer working in 11 Preview 5](https://github.com/AvaloniaUI/Avalonia/issues/10216)
-  * See, [PR #9277](https://github.com/AvaloniaUI/Avalonia/pull/9277)
-  * **Example below**
-  * The call to make the case was for "_single view platforms_" and not just Desktops which have a `Window` object. Example of the new implementation below.
+  * See, [PR #9277](https://github.com/AvaloniaUI/Avalonia/pull/9277) and [example](https://github.com/AvaloniaUI/Avalonia/blob/master/samples/ControlCatalog/Pages/NotificationsPage.xaml.cs)
+  * **Implementation example below**
+  * The case was for "_single view platforms_" and not just Desktops which have a `Window` object.
 * Themes:
-  * Both Avalonia.Themes.Fluent and Avalonia.Themes.Simple (formally, Default) are not a part of the main Avalonia nuget package anymore. You need to add a PackageReference to include either of these packages or both. For more details, see #5593
+  * Themes must be download as part of a separate package and `App.axaml` implementation has changed.
+  * See, [PR# 8148](https://github.com/AvaloniaUI/Avalonia/pull/8166), [PR #8166](https://github.com/AvaloniaUI/Avalonia/pull/8166), [Issue #5593](https://github.com/AvaloniaUI/Avalonia/issues/5593)
+  * NEW: `<SimpleTheme />`
+  * OLD: `<SimpleTheme Mode="Light" />`
+  * Both Avalonia.Themes.Fluent and Avalonia.Themes.Simple (formally, Default) are not a part of the main Avalonia nuget package anymore. You need to add a PackageReference to include either of these packages or both.
   * Its been observed that when setting a background image in your control or window, all of the controls will appear cloudy.  _Upgrade or defect?_
 
 ### Updates

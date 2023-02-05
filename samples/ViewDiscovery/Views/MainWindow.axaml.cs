@@ -2,14 +2,12 @@
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Prism.Regions;
-using Prism.Ioc;
 
 namespace ViewDiscovery.Views
 {
-    public class MainWindow : Window
+    public partial class MainWindow : Window
     {
         private readonly IRegionManager _regionManager;
 
@@ -31,7 +29,7 @@ namespace ViewDiscovery.Views
             _regionManager = regionManager;
             this.InitializeComponent();
             this.AttachDevTools();
-        
+
             // This is the wrong approach
             regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewA));
             regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewB));
@@ -73,11 +71,6 @@ namespace ViewDiscovery.Views
                     region.Activate(viewA);
                 });
             }
-        }
-
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
         }
     }
 }

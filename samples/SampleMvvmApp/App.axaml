@@ -1,10 +1,11 @@
 ﻿<Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="SampleMvvmApp.App">
+             x:Class="SampleMvvmApp.App"
+             RequestedThemeVariant="Light">
   <Application.Styles>
-    <!-- OLD: <FluentTheme Mode="Light" /> -->
     <FluentTheme />
-   
+    <!-- Avalonia v0.10: <FluentTheme Mode="Light" /> -->
+
     <!-- Custom SVG glyphs -->
     <StyleInclude Source="avares://SampleMvvmApp/Styles/Icons.axaml" />
   </Application.Styles>
