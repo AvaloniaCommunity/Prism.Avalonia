@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Avalonia.Controls;
 using Avalonia.Threading;
 using Prism.Commands;
 using Prism.Regions;
