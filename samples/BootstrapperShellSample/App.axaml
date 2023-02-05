@@ -1,7 +1,9 @@
 ﻿<Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="BootstrapperShellSample.App">
+             x:Class="BootstrapperShellSample.App"
+             RequestedThemeVariant="Light">
   <Application.Styles>
+    <FluentTheme />
     <!--<StyleInclude Source="resm:Avalonia.Themes.Default.DefaultTheme.xaml?assembly=Avalonia.Themes.Default"/>
     <StyleInclude Source="resm:Avalonia.Themes.Default.Accents.BaseLight.xaml?assembly=Avalonia.Themes.Default"/>-->
   </Application.Styles>
