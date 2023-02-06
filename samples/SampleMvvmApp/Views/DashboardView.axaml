@@ -27,6 +27,18 @@
       <Button Content="Add Item" Command="{Binding CmdAddItem}" />
       <Button Content="Clear" Command="{Binding CmdClearItems}" />
       <Button Content="Notification Pop-up" Command="{Binding CmdNotification}" />
+
+      <ComboBox VerticalAlignment="Center"
+                HorizontalAlignment="Stretch"
+                Items="{Binding ThemeStyles}"
+                SelectedItem="{Binding ThemeSelected}">
+        <!--SelectedIndex="{Binding ThemeSelectedIndex}" >-->
+        <ComboBox.ItemTemplate>
+          <DataTemplate x:DataType="x:String">
+            <TextBlock Text="{Binding TargetNullValue=Unset}" />
+          </DataTemplate>
+        </ComboBox.ItemTemplate>
+      </ComboBox>
     </StackPanel>
 
     <StackPanel Grid.Row="2" Orientation="Horizontal">
