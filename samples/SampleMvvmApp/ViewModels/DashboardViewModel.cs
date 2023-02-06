@@ -1,6 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Avalonia;
+using Avalonia.Styling;
 using Prism.Commands;
-using Prism.Regions;
 using SampleMvvmApp.Services;
 
 namespace SampleMvvmApp.ViewModels
@@ -12,10 +14,14 @@ namespace SampleMvvmApp.ViewModels
         private int _listItemSelected = -1;
         private ObservableCollection<string> _listItems = new();
         private string _listItemText;
+        private ThemeVariant _themeSelected;
+        private int _themeSelectedIndex = 0;
 
-        public DashboardViewModel(IRegionManager regionManager, INotificationService notifyService)
+        public DashboardViewModel(INotificationService notifyService)
         {
             _notification = notifyService;
+
+            ThemeSelected = Application.Current!.RequestedThemeVariant;
         }
 
         public DelegateCommand CmdAddItem => new(() =>
@@ -68,5 +74,22 @@ namespace SampleMvvmApp.ViewModels
             get => _listItems;
             set => SetProperty(ref _listItems, value);
         }
+
+        public ThemeVariant ThemeSelected
+        {
+            get => _themeSelected;
+            set
+            {
+                SetProperty(ref _themeSelected, value);
+                Application.Current!.RequestedThemeVariant = _themeSelected;
+            }
+        }
+
+        public List<ThemeVariant> ThemeStyles => new()
+        {
+            ThemeVariant.Default,
+            ThemeVariant.Dark,
+            ThemeVariant.Light,
+        };
     }
 }

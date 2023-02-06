@@ -13,8 +13,6 @@ using System.Globalization;
 using System.Threading;
 using Avalonia.Dialogs;
 using ModulesSample.Infrastructure;
-using static System.Net.WebRequestMethods;
-using System.Security.Policy;
 
 namespace ModulesSample
 {

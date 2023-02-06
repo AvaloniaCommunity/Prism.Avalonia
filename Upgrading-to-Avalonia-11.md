@@ -26,6 +26,7 @@ Check out Avalonia's [Breaking Changes](https://github.com/AvaloniaUI/Avalonia/w
   * The case was for "_single view platforms_" and not just Desktops which have a `Window` object.
 * Themes:
   * Themes must be download as part of a separate package and `App.axaml` implementation has changed.
+  * User MUST set a theme in `App.axaml`, otherwise the window's contents may be transparent
   * See, [PR# 8148](https://github.com/AvaloniaUI/Avalonia/pull/8166), [PR #8166](https://github.com/AvaloniaUI/Avalonia/pull/8166), [Issue #5593](https://github.com/AvaloniaUI/Avalonia/issues/5593)
   * NEW: `<SimpleTheme />`
   * OLD: `<SimpleTheme Mode="Light" />`
