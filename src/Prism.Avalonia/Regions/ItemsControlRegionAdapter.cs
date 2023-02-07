@@ -49,10 +49,8 @@ namespace Prism.Regions
                 }
             }
 
-            // ISSUE: Avalonia v11-Preview5 Throws an error here (ModulesSampleApp)
-            // ERROR: ...
-            // FIX: ?? IRegion needs to implement IList (what change in v11-preview would cause this?)
-            regionTarget.Items = region.Views;
+            // Avalonia v11-Preview5 needs IRegion implement IList. Enforcing it to return AvaloniaList<object> fixes this.
+            regionTarget.Items = region.Views as Avalonia.Collections.AvaloniaList<object>;
         }
 
         /// <summary>
