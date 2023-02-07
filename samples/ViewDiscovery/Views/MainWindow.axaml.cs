@@ -13,12 +13,6 @@ namespace ViewDiscovery.Views
 
         public MainWindow()
         {
-            this.InitializeComponent();
-#if DEBUG
-            this.AttachDevTools();
-#endif
-
-            Test();
         }
 
         // Issue Avalonia-v11-preview4:
@@ -26,42 +20,49 @@ namespace ViewDiscovery.Views
         // the views with the Region. However, the 'ContentRegion' did not get registered yet.
         public MainWindow(IRegionManager regionManager)
         {
-            _regionManager = regionManager;
             this.InitializeComponent();
             this.AttachDevTools();
 
-            // This is the wrong approach
+            _regionManager = regionManager;
             regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewA));
             regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewB));
+
+            // BREAKING CHANGE:
+            //
+            //  Due to changes in Avalonia v11-preview4(?) App.axaml.cs the MainWindow is
+            //  being initialized before the RegionManager can register the "ContentRegion"
+            //  The "Test()" method has been moved into "Show()" to give the system time to react.
+            //
+            // Test();
+        }
+
+        public override void Show()
+        {
+            base.Show();
             Test();
         }
 
         private async void Test()
         {
-            //// var regionManager = ContainerLocator.Current.Resolve<IRegionManager>();
-
-            if (!_regionManager.Regions.ContainsRegionWithName(RegionNames.ContentRegion))
-            {
-                // ISSUE: Avalonia v11-prev4 can't find the region
-                // With v0.10.x this does not happen.
-                System.Diagnostics.Debugger.Break();
-                return;
-            }
-
-            var region = _regionManager.Regions["ContentRegion"];
-
-            //// var viewA = container.Resolve<ViewA>();
-            //// region.Add(viewA, nameof(ViewA));
-            //// region.Activate(viewA);
-
-            var viewA = region.Views.FirstOrDefault();
-            var viewB = region.Views.Skip(1).FirstOrDefault();
-
             while (true)
             {
+                if (!_regionManager.Regions.ContainsRegionWithName(RegionNames.ContentRegion))
+                {
+                    // Catch error caused by framework changes
+                    System.Diagnostics.Debugger.Break();
+                    return;
+                }
+
+                var region = _regionManager.Regions["ContentRegion"];
+                var viewA = region.Views.FirstOrDefault();
+                var viewB = region.Views.Skip(1).FirstOrDefault();
+
                 await Task.Delay(2000);
                 await Dispatcher.UIThread.InvokeAsync(() =>
                 {
+                    // NOTE TO DEV:
+                    //  If your view is not registered with the region
+                    //  the following line will throw an error.
                     region.Activate(viewB);
                 });
 

@@ -3,8 +3,6 @@ using Avalonia;
 using Avalonia.Markup.Xaml;
 using Prism.DryIoc;
 using Prism.Ioc;
-using Prism.Regions;
-using ViewDiscovery.ViewModels;
 using ViewDiscovery.Views;
 
 namespace ViewDiscovery;
@@ -13,7 +11,7 @@ public class App : PrismApplication
 {
     public App()
     {
-        Console.WriteLine("Constructor()");
+        System.Diagnostics.Debug.WriteLine("App.Constructor()");
     }
 
     public override void Initialize()
@@ -25,10 +23,8 @@ public class App : PrismApplication
 
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
+        System.Diagnostics.Debug.WriteLine("RegisterTypes(...)");
         // Wire-up services and navigation Views here.
-        System.Diagnostics.Debug.WriteLine("RegisterTypes()");
-        containerRegistry.RegisterForNavigation<ViewA, ViewAViewModel>();
-        containerRegistry.RegisterForNavigation<ViewB, ViewBViewModel>();
     }
 
     /// <summary>User interface entry point, called after Register and ConfigureModules.</summary>
@@ -43,8 +39,13 @@ public class App : PrismApplication
     {
         System.Diagnostics.Debug.WriteLine("OnInitialized()");
 
-        var regionManager = Container.Resolve<IRegionManager>();
-        regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewA));
-        regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewB));
+        // Alternative Approach:
+        //  Instead of registering the Views in the MainWindow (as this samples does),
+        //  you can register them here in OnInitialized(), or CreateShell(), or RegisterTypes(..)
+        //  by resolving the `IRegionManager` from the container.
+        //
+        ////var regionManager = Container.Resolve<IRegionManager>();
+        ////regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewA));
+        ////regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewB));
     }
 }

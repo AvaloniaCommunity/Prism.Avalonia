@@ -49,7 +49,8 @@ namespace Prism.Regions
                 }
             }
 
-            regionTarget.Items = region.Views;
+            // Avalonia v11-Preview5 needs IRegion implement IList. Enforcing it to return AvaloniaList<object> fixes this.
+            regionTarget.Items = region.Views as Avalonia.Collections.AvaloniaList<object>;
         }
 
         /// <summary>
