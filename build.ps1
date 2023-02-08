@@ -1,9 +1,13 @@
 # Build script for generating NuGet packages
 
+if (Test-Path -Path "bin")
+{
+  Remove-Item bin\* -Recurse -Force
+}
+
 # Clean both debug and release
 dotnet clean
 dotnet clean --configuration Release
-
 
 # build package for release
 dotnet build --configuration Release
