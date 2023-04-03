@@ -17,7 +17,8 @@ Choose the NuGet package version that matches your Avalonia version.
 |-|-|
 | 0.10.x          | 8.1.97.2
 | 11.0 Preview 4  | 8.1.97.3-preview.11.4
-| 11.0 Preview 5  | 8.1.97.4-preview.11.5 (_COMING SOON_)
+| 11.0 Preview 5  | 8.1.97.4-preview.11.5)
+| 11.0 Preview 6  | 8.1.97.5-preview.11.6 (_COMING SOON_)
 
 Be sure to check out the [ChangeLog.md](ChangeLog.md) and [Upgrading-to-Avalonia-11.md](Upgrading-to-Avalonia-11.md) when upgrading your NuGet packages
 
