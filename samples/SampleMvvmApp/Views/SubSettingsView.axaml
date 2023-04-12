@@ -9,7 +9,7 @@
   <DockPanel>
     <StackPanel DockPanel.Dock="Top" Spacing="5">
       <Grid Background="LightGray" ColumnDefinitions="Auto, *">
-        <Button Content="Back" Command="{Binding CmdNavigateBack}" CornerRadius="10">
+        <Button Command="{Binding CmdNavigateBack}" CornerRadius="10">
           <PathIcon Data="{StaticResource arrow_reply_regular}" />
         </Button>
         <TextBlock Grid.Column="1" Text="{Binding Title}" FontWeight="Bold" Margin="5"  VerticalAlignment="Center" />
