@@ -27,8 +27,13 @@ Be sure to check out the [ChangeLog.md](ChangeLog.md) and [Upgrading-to-Avalonia
 Add the Prism.Avalonia and its DryIoc packages to your project:
 
 ```powershell
+# Avalonia v0.10.18
 Install-Package Prism.Avalonia -Version 8.1.97.2
 Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.2
+
+# Avalonia v11-preview5
+Install-Package Prism.Avalonia -Version 8.1.97.4-preview.11.5
+Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.4-preview.11.5
 ```
 
 ## How to use
