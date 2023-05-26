@@ -5,6 +5,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>* Upgraded to support Avalonia v11.0.0-preview8</PackageReleaseNotes>
   </PropertyGroup>
   
 </Project>

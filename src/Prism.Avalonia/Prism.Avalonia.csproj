@@ -17,8 +17,6 @@ Prism.Avalonia helps you more easily design and build rich, flexible, and easy t
     <Authors>Damian Suess, Omid Mafakher, various contributors</Authors>
     <Title>Prism.Avalonia</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>* Upgraded to support Avalonia v11.0.0-preview5
-</PackageReleaseNotes>
     <PackageIcon>Prism.Avalonia.png</PackageIcon>
   </PropertyGroup>
 

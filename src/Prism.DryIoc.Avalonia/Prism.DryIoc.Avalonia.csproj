@@ -13,7 +13,6 @@
     <Copyright>Copyright (c) 2023 Avalonia Community</Copyright>
     <Title>Prism.DryIoc.Avalonia</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>* Upgraded to support Avalonia v11.0.0-preview5</PackageReleaseNotes>
     <PackageTags>prism;mvvm;xaml;avalonia;dryioc;dependencyinjection;navigation;dialog;prismavalonia;</PackageTags>
     <PackageIcon>Prism.Avalonia.png</PackageIcon>
   </PropertyGroup>
