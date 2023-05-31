@@ -10,7 +10,7 @@
   <StackPanel>
     <ListBox Margin="2"
            VerticalAlignment="Bottom"
-           Items="{Binding ListItems}"
+           ItemsSource="{Binding ListItems}"
            ScrollViewer.HorizontalScrollBarVisibility="Visible"
            ScrollViewer.VerticalScrollBarVisibility="Visible"
            SelectedIndex="{Binding ListItemSelected}"

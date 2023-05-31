@@ -30,7 +30,7 @@
 
       <ComboBox VerticalAlignment="Center"
                 HorizontalAlignment="Stretch"
-                Items="{Binding ThemeStyles}"
+                ItemsSource="{Binding ThemeStyles}"
                 SelectedItem="{Binding ThemeSelected}">
         <!--SelectedIndex="{Binding ThemeSelectedIndex}" >-->
         <ComboBox.ItemTemplate>
@@ -51,7 +51,7 @@
 
     <ListBox Grid.Row="3"
              Margin="2"
-             Items="{Binding ListItems}"
+             ItemsSource="{Binding ListItems}"
              ScrollViewer.HorizontalScrollBarVisibility="Visible"
              ScrollViewer.VerticalScrollBarVisibility="Visible"
              SelectedIndex="{Binding ListItemSelected}"

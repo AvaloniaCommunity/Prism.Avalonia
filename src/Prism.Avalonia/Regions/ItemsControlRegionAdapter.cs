@@ -50,12 +50,9 @@ namespace Prism.Regions
             }
 
             // Avalonia v11-Preview5 needs IRegion implement IList. Enforcing it to return AvaloniaList<object> fixes this.
-            // Avalonia v11-Preview8 ItemsControl.Items is readonly.
+            // Avalonia v11-Preview8 ItemsControl.Items is readonly (#10827).
             ////regionTarget.Items = region.Views as Avalonia.Collections.AvaloniaList<object>;
-            foreach (var item in region.Views as Avalonia.Collections.AvaloniaList<object>)
-            {
-                regionTarget.Items.Add(item);
-            }
+            regionTarget.ItemsSource = region.Views as Avalonia.Collections.AvaloniaList<object>;
         }
 
         /// <summary>
