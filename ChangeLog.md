@@ -2,6 +2,11 @@
 
 Change log history for Prism.Avalonia
 
+## v8.1.97.11-preview.11.8 (2023-05-31)
+
+* Update: Converted ItemsControlRegionAdapter to use `ItemsSource` instead of `Items`
+  * As of Avalonia PR [#10827](https://github.com/AvaloniaUI/Avalonia/pull/10827), `ItemsControl.Items` is readonly and should use `ItemsControls.ItemsSource` (PR [#10590](https://github.com/AvaloniaUI/Avalonia/pull/10590))
+
 ## v8.1.97.4-preview.11.5 (2022-02-??)
 
 * New: Support for Avalonia v11.0 Preview 5
