@@ -4,10 +4,20 @@ This document outlines the path to upgrading your projects from Avalonia v0.10.1
 
 Check out Avalonia's [Breaking Changes](https://github.com/AvaloniaUI/Avalonia/wiki/Breaking-Changes) wiki page for more information
 
-* https://github.com/AvaloniaUI/Avalonia/compare/release/11.0.0-preview4...release/11.0.0-preview5
+* https://github.com/AvaloniaUI/Avalonia/compare/release/11.0.0-preview7...release/11.0.0-preview8 (_198 commits, 279 file changes_)
+* https://github.com/AvaloniaUI/Avalonia/compare/release/11.0.0-preview6...release/11.0.0-preview7  (_437 commits, 581 file changes_)
+* https://github.com/AvaloniaUI/Avalonia/compare/release/11.0.0-preview5...release/11.0.0-preview6 (_970 commits, 1,088 file changes_)
+* https://github.com/AvaloniaUI/Avalonia/compare/11.0.0-preview4...11.0.0-preview5
 * https://github.com/AvaloniaUI/Avalonia/compare/11.0.0-preview3...11.0.0-preview4
 * https://github.com/AvaloniaUI/Avalonia/compare/11.0.0-preview2...11.0.0-preview3
 * https://github.com/AvaloniaUI/Avalonia/compare/11.0.0-preview1...11.0.0-preview2
+
+## 11.0 Preview 8
+
+### Breaking Changes
+
+* Converted ItemsControlRegionAdapter to use ItemsSource.
+  * As of Avalonia PR [#10827](https://github.com/AvaloniaUI/Avalonia/pull/10827), `ItemsControl.Items` is readonly and should use `ItemsControls.ItemsSource` (PR [#10590](https://github.com/AvaloniaUI/Avalonia/pull/10590))
 
 ## 11.0 Preview 5
 
@@ -91,7 +101,6 @@ When using Fluent theme, you no longer has a `Mode` attribute.
   <FluentTheme Mode="Light" />
 ```
 
-
 ## 11.0 Preview 4
 
 ### DataTemplates
@@ -99,4 +108,3 @@ When using Fluent theme, you no longer has a `Mode` attribute.
 DataTemplates now require a `DataType` to be defined. This actually improves intellisense of your XAML and loading times with MVVM.
 
 As a workaround for ListViews, you can use the `ItemTemplate` which does not require the definition of a `DataType`.
-

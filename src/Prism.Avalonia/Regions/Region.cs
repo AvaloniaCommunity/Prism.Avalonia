@@ -369,6 +369,7 @@ namespace Prism.Regions
                 {
                     throw new InvalidOperationException(String.Format(CultureInfo.InvariantCulture, Resources.RegionViewNameExistsException, viewName));
                 }
+
                 itemMetadata.Name = viewName;
             }
 
