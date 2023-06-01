@@ -49,7 +49,8 @@ namespace ViewDiscovery.Views
                 if (!_regionManager.Regions.ContainsRegionWithName(RegionNames.ContentRegion))
                 {
                     // Catch error caused by framework changes
-                    System.Diagnostics.Debugger.Break();
+                    ////System.Diagnostics.Debugger.Break();
+                    System.Diagnostics.Debug.WriteLine($"Caught missing region: '{RegionNames.ContentRegion}'");
                     return;
                 }
 
