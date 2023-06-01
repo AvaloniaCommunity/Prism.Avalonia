@@ -5,6 +5,7 @@ Change log history for Prism.Avalonia
 ## v8.1.97.1021
 
 * NEW: Version numbering schema to denote Avalonia v0.10.21 (_1021_)
+* Upgraded to support .NET 7, dropping .NET 5 support
 * Upgraded to support Avalonia v0.10.21
 * Updated sample projects and code cleanlyness
 * Synced core components with latest develop
