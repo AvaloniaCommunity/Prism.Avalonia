@@ -5,7 +5,7 @@
         Width="525"
         x:Class="BootstrapperShellSample.Views.MainWindow">
   <Grid>
-    <TextBlock Text="Hello, Prism on Avalonia!"
+    <TextBlock Text="Hello, from Prism.Avalonia!"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                FontSize="17"
