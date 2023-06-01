@@ -9,13 +9,12 @@
     <ProjectReference Include="$(MSBuildThisFileDirectory)..\src\Prism.DryIoc.Avalonia\Prism.DryIoc.Avalonia.csproj" />
   </ItemGroup>
 
-  <!--
   <ItemGroup>
-    <PackageReference Include="Serilog.Sinks.Trace" Version="2.1.0" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="0.10.21" />
+    <!-- <PackageReference Include="Avalonia.Desktop" Version="0.10.21" /> -->
+    <!-- <PackageReference Include="Avalonia.LinuxFramebuffer" Version="0.10.21" /> -->
+    <!-- <PackageReference Include="Avalonia.Themes.Simple" Version="0.10.21" /> -->
+    <!-- <PackageReference Include="Avalonia.Themes.Fluent" Version="0.10.21" /> -->
+    <!-- <ProjectReference Include="$(MSBuildThisFileDirectory)..\src\Prism.DryIoc.Avalonia\Prism.DryIoc.Avalonia.csproj" /> -->
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-  -->
-
 </Project>
