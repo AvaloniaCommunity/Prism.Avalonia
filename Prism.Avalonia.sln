@@ -20,7 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewDiscovery", "samples\Vi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DummyModules", "DummyModules", "{E03DB670-BFA9-4E7B-A69C-D1E6B8E1691F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModulesSample", "samples\ModulesSample\ModulesSample.csproj", "{DCC68F88-29C9-44EF-90E3-685666AFD6AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModulesSampleApp", "samples\ModulesSample\ModulesSampleApp.csproj", "{DCC68F88-29C9-44EF-90E3-685666AFD6AD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyModule1", "samples\DummyModule1\DummyModule1.csproj", "{2B315287-FDAE-4092-9A80-7DA07D934BF1}"
 EndProject
@@ -62,6 +62,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
+		ChangeLog.md = ChangeLog.md
 		README.md = README.md
 		Settings.XamlStyler = Settings.XamlStyler
 	EndProjectSection

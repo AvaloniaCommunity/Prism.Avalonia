@@ -1,12 +1,12 @@
 ﻿<Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="SampleMvvmApp.App">
+             x:Class="ModulesSample.App">
   <Application.Styles>
     <!-- Avalonia v11 <FluentTheme /> -->
     <!-- Avalonia v0.10.x -->
     <FluentTheme Mode="Light" />
 
-    <!-- Custom SVG glyphs -->
-    <StyleInclude Source="avares://SampleMvvmApp/Styles/Icons.axaml" />
+    <!--<StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>-->
+    <!--<StyleInclude Source="avares://Avalonia.Themes.Default/Accents/BaseLight.xaml"/>-->
   </Application.Styles>
 </Application>

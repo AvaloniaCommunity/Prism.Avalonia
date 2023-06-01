@@ -6,13 +6,13 @@ using Prism.Services.Dialogs;
 
 namespace SampleDialogApp.ViewModels
 {
-    public class NotificationDialogViewModel : BindableBase, IDialogAware
+    public class DialogViewModel : BindableBase, IDialogAware
     {
         private readonly IDialogService _dialog;
         private string _customMessage;
         private string _title = "Notification";
 
-        public NotificationDialogViewModel()
+        public DialogViewModel()
         {
             // Since this is a basic ShellWindow, there's nothing
             // to do here.

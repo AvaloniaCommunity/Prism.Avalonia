@@ -3,13 +3,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:vm="using:SampleMvvmApp.ViewModels"
              x:Class="SampleMvvmApp.Views.DashboardView"
-             d:DesignHeight="350"
-             d:DesignWidth="500"
-             mc:Ignorable="d">
-
+             x:CompileBindings="True"
+             x:DataType="vm:DashboardViewModel"
+             d:DesignHeight="350" d:DesignWidth="500" mc:Ignorable="d">
   <UserControl.Styles>
-    <!--<Style Selector="Button.cmdBtn">-->
     <Style Selector="Button">
       <Setter Property="Padding" Value="10" />
       <Setter Property="Margin" Value="5" />
@@ -20,40 +20,55 @@
       <Setter Property="Margin" Value="10" />
     </Style>
   </UserControl.Styles>
+  <Grid RowDefinitions="auto,auto,auto,*">
+    <Label Content="Welcome to the Dashboard!" FontSize="32" />
 
-  <ScrollViewer>
-    <StackPanel>
-      <Label Content="Welcome to the Dashboard!" FontSize="32" />
+    <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+      <Button Content="Add Item" Command="{Binding CmdAddItem}" />
+      <Button Content="Clear" Command="{Binding CmdClearItems}" />
+      <Button Content="Notification Pop-up" Command="{Binding CmdNotification}" />
 
-      <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-        <Button Content="Add Item" Command="{Binding CmdAddItem}" />
-        <Button Content="Clear" Command="{Binding CmdClearItems}" />
-        <Button Content="Notification Pop-up" Command="{Binding CmdNotification}" />
-      </StackPanel>
-
-      <StackPanel Orientation="Horizontal">
-        <Label Content="Selected Index:" FontWeight="Bold" />
-        <Label Content="{Binding ListItemSelected}" />
-        <StackPanel Orientation="Horizontal" />
-        <Label Content="Selected Text:" FontWeight="Bold" />
-        <Label Content="{Binding ListItemText}" />
-      </StackPanel>
-
-      <ListBox Margin="2"
-               VerticalAlignment="Bottom"
-               Items="{Binding ListItems}"
-               ScrollViewer.HorizontalScrollBarVisibility="Visible"
-               ScrollViewer.VerticalScrollBarVisibility="Visible"
-               SelectedIndex="{Binding ListItemSelected}"
-               SelectionMode="Single">
-        <ListBox.DataTemplates>
-          <DataTemplate>
-            <TextBlock Text="{Binding .}"
-                       FontSize="10"
-                       TextWrapping="NoWrap" />
+      <!--<ComboBox VerticalAlignment="Center"
+                HorizontalAlignment="Stretch"
+                ItemsSource="{Binding ThemeStyles}"
+                SelectedItem="{Binding ThemeSelected}">
+        SelectedIndex="{Binding ThemeSelectedIndex}" >
+        <ComboBox.ItemTemplate>
+          <DataTemplate x:DataType="x:String">
+            <TextBlock Text="{Binding TargetNullValue=Unset}" />
           </DataTemplate>
-        </ListBox.DataTemplates>
-      </ListBox>
+        </ComboBox.ItemTemplate>
+      </ComboBox>-->
     </StackPanel>
-  </ScrollViewer>
+
+    <StackPanel Grid.Row="2" Orientation="Horizontal">
+      <Label Content="Selected Index:" FontWeight="Bold" />
+      <Label Content="{Binding ListItemSelected}" />
+      <StackPanel Orientation="Horizontal" />
+      <Label Content="Selected Text:" FontWeight="Bold" />
+      <Label Content="{Binding ListItemText}" />
+    </StackPanel>
+
+    <!--Avalonia v11 uses: ItemsSource="{Binding ListItems}"-->
+    <ListBox Grid.Row="3"
+             Margin="2"
+             Items="{Binding ListItems}"
+             ScrollViewer.HorizontalScrollBarVisibility="Visible"
+             ScrollViewer.VerticalScrollBarVisibility="Visible"
+             SelectedIndex="{Binding ListItemSelected}"
+             SelectionMode="Single">
+      <ListBox.ItemTemplate>
+        <!--
+          OLD: <DataTemplate>
+          NEW: <DataTemplate DataType="{x:Type system:String}">
+          https://github.com/AvaloniaUI/Avalonia/pull/8221
+          -->
+        <DataTemplate DataType="{x:Type system:String}">
+          <TextBlock Text="{Binding .}"
+                     FontSize="10"
+                     TextWrapping="NoWrap" />
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </Grid>
 </UserControl>

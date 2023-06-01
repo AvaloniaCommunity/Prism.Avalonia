@@ -1,18 +1,11 @@
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 
-namespace SampleMvvmApp.Views
+namespace SampleMvvmApp.Views;
+
+public partial class SubSettingsView : UserControl
 {
-    public partial class SubSettingsView : UserControl
+    public SubSettingsView()
     {
-        public SubSettingsView()
-        {
-            InitializeComponent();
-        }
-
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
-        }
+        InitializeComponent();
     }
 }

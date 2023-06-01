@@ -13,8 +13,6 @@ using System.Globalization;
 using System.Threading;
 using Avalonia.Dialogs;
 using ModulesSample.Infrastructure;
-using static System.Net.WebRequestMethods;
-using System.Security.Policy;
 
 namespace ModulesSample
 {
@@ -33,7 +31,7 @@ namespace ModulesSample
                 })
                 .With(new Win32PlatformOptions
                 {
-                    EnableMultitouch = true,
+                    //// EnableMultitouch = true,  // Not supported in Avalonia v11.0.0-preview4
                     AllowEglInitialization = true,
                 })
                 .UseSkia()
@@ -104,7 +102,7 @@ namespace ModulesSample
             containerRegistry.RegisterSingleton<IModuleTracker, ModuleTracker>();
         }
 
-        protected override IAvaloniaObject CreateShell()
+        protected override AvaloniaObject CreateShell()
         {
             return Container.Resolve<MainWindow>();
         }

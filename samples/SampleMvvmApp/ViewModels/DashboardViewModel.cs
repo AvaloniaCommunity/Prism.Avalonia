@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using Avalonia.Threading;
 using Prism.Commands;
-using Prism.Regions;
 using SampleMvvmApp.Services;
 
 namespace SampleMvvmApp.ViewModels
@@ -15,7 +14,7 @@ namespace SampleMvvmApp.ViewModels
         private ObservableCollection<string> _listItems = new();
         private string _listItemText;
 
-        public DashboardViewModel(IRegionManager regionManager, INotificationService notifyService)
+        public DashboardViewModel(INotificationService notifyService)
         {
             _notification = notifyService;
         }
@@ -70,5 +69,5 @@ namespace SampleMvvmApp.ViewModels
             get => _listItems;
             set => SetProperty(ref _listItems, value);
         }
-    }
+   }
 }
