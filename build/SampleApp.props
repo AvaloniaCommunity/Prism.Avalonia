@@ -9,9 +9,8 @@
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.21" />
     <PackageReference Include="Avalonia.Desktop" Version="0.10.21" />
     <PackageReference Include="Avalonia.LinuxFramebuffer" Version="0.10.21" />
-    <!--<PackageReference Include="Avalonia.Themes.Simple" Version="0.10.21" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="0.10.21" />-->
     <!--<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.21" />-->
     <ProjectReference Include="$(MSBuildThisFileDirectory)..\src\Prism.DryIoc.Avalonia\Prism.DryIoc.Avalonia.csproj" />
+    <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
   </ItemGroup>
 </Project>

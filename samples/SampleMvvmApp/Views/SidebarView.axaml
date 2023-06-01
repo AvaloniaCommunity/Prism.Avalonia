@@ -34,7 +34,7 @@
     <Button DockPanel.Dock="Bottom" Command="{Binding CmdSettings}" ToolTip.Tip="Settings">
       <StackPanel Orientation="Horizontal">
         <PathIcon Data="{StaticResource settings_regular}" />
-        <TextBlock Text="Settings" />
+        <TextBlock Text="Navigation Sample" />
       </StackPanel>
     </Button>
 

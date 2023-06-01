@@ -1,0 +1,60 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             MaxHeight="{Binding MaxHeight}"
+             MaxWidth="{Binding MaxWidth}"
+             mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="150"
+             x:Class="SampleDialogApp.Views.MessageBoxView">
+  <UserControl.Styles>
+    <Style Selector="TextBox">
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Margin" Value="15" />
+      <Setter Property="TextWrapping" Value="Wrap" />
+      <Setter Property="AcceptsReturn" Value="True" />
+      <Setter Property="IsReadOnly" Value="True" />
+      <Setter Property="CaretBrush" Value="Transparent" />
+      <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+      <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+    </Style>
+    <Style Selector="TextBox:pointerover /template/ Border#border">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="TextBox:focus /template/ Border#border">
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="TextBox.header">
+      <Setter Property="FontWeight" Value="Bold" />
+      <Setter Property="Margin" Value="0,0,0,10" />
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+      <Setter Property="Margin" Value="15" />
+      <Setter Property="MinHeight" Value="24" />
+      <Setter Property="MinWidth" Value="75" />
+    </Style>
+  </UserControl.Styles>
+  <Grid ColumnDefinitions="Auto,*" RowDefinitions="*,15,Auto">
+    <TextBox Grid.Row="0"
+             Grid.Column="1"
+             Text="{Binding CustomMessage}" />
+
+    <!-- ButtonResult 1=OK -->
+    <Button Content="OK"
+            Command="{Binding CmdResult}"
+            CommandParameter="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Grid.Row="2"
+            HorizontalAlignment="Right"/>
+  </Grid>
+</UserControl>
