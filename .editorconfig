@@ -1,16 +1,26 @@
-; This file is for unifying the coding style for different editors and IDEs.
-; More information at http://editorconfig.org
+# Copyright 2023 Xeno Innovations, Inc.
+# https://github.com/xenoinc/CodeDevOps
+# Revision: 6.2
+#
+# This EditorConfig file provides consistant coding styles and formatting
+# structures for your team's projects while preserving your personal defaults.
+#
+# Revision Log
+# 6.2 2023-06-11 - Updated ruls for Prism.Avalonia
+# 6.1 2022-01-21 - Updated rules to include StyleCopAnalyzers. Added Static Readonly PascalCase from _camelCase.
+# 6.0 2022-01-10 - Included defaults from Microsoft to override custom settings
 
 # This file is the top-most EditorConfig file
 root = true
 
-##########################################
-# Common Settings
-##########################################
-
 [*]
 indent_style = space
 end_of_line = crlf
+
+# VSSPELL: Spell checker settings from VSSpellChecker.vsspell
+vsspell_section_id = ee1633d6de0d4194b6f41cc64766a43b
+vsspell_ignored_xml_elements_ee1633d6de0d4194b6f41cc64766a43b = clear_inherited
+vsspell_spell_checked_xml_attributes_ee1633d6de0d4194b6f41cc64766a43b = clear_inherited
 
 ##########################################
 # File Extension Settings
@@ -56,12 +66,48 @@ end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.cs]
-indent_size = 4
+[*.{cs,csx}]
 indent_style = space
+indent_size = 4
+tab_width = 4
+charset = utf-8-bom
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+[*.{xml,xaml,axml,axaml}]
+indent_style = space
+indent_size = 2
+charset = utf-8-bom
+trim_trailing_whitespace = true
+
+# VSSpell
+[*.{cs}]
+# VSSPELL: Ignored C# language-specific keywords
+vsspell_section_id = 1A9CD7DD3DAB4A7DB21EDCFB6351977A
+vsspell_ignored_keywords_1A9CD7DD3DAB4A7DB21EDCFB6351977A = abstract|add|alias|and|args|as|ascending|async|await|base|bool|break|by|byte|case|catch|char|checked|class|const|continue|decimal|default|delegate|descending|do|double|dynamic|else|enum|equals|event|explicit|extern|false|file|finally|fixed|float|for|foreach|from|get|global|goto|group|if|implicit|in|init|int|interface|internal|into|is|join|let|lock|long|managed|nameof|namespace|new|nint|not|notnull|nuint|null|object|on|operator|or|orderby|out|override|params|partial|private|protected|public|readonly|record|ref|remove|required|return|sbyte|scoped|sealed|select|set|short|sizeof|stackalloc|static|string|struct|switch|this|throw|true|try|typeof|uint|ulong|unchecked|unmanaged|unsafe|ushort|using|value|var|virtual|void|volatile|when|where|while|with|yield
+
+[*.{cs,ps,ps1}]
+# VSSPELL: Ignored common programming identifiers/prefixes/suffixes
+vsspell_section_id = C448172CBC8E41ABA3F82B9B052F9E78
+vsspell_ignored_keywords_C448172CBC8E41ABA3F82B9B052F9E78 = addr|alloc|asm|arg|args|attr|bn|btn|by|byte|cb|cbl|cbo|cch|char|chk|cmd|cmds|cms|config|configs|cr|cref|csv|ctor|ctx|cur|curr|cx|decl|desc|dg|dgv|dl|dlg|dll|dn|ds|dtp|dtor|dw|dword|ep|eval|ex|exp|expr|flp|fn|fsw|func|grd|grp|guid|handle|hdc|hinstance|hkey|hmenu|hwnd|idx|il|int|lb|lbl|li|ll|lnk|long|lp|lparam|lpcb|lpcw|lpstr|lpsz|lptstr|lpvoid|lst|lv|max|mi|min|mnu|ms|nbr|ndx|nil|ns|nul|null|num|param|pb|pbstr|pbyte|pdword|pfn|phk|pg|pg|pnl|pos|ppbyte|ppdword|ppsz|ppqword|ppword|ppunk|pqword|prev|proc|psz|ptr|pv|pword|qword|rb|rb|rect|regex|rtb|sb|sc|sdk|short|si|src|str|sz|tab|tb|tchar|tm|tmr|ts|ts|tsb|tsc|tsc|tsl|tss|tstr|tt|tv|tv|txt|uc|ucb|udp|ui|ul|uli|url|urls|wb|wnd|wndproc|word|wparam|wpf|xaml|xpath
+
+[*.{cs,markdown,md}]
+# VSSPELL: Ignored Doxygen-specific keywords
+vsspell_section_id = FAEC2371F6C847FC8F04F026B92BA001
+vsspell_ignored_keywords_FAEC2371F6C847FC8F04F026B92BA001 = \addindex|\addtogroup|\anchor|\arg|\attention|\author|\authors|\brief|\bug|callergraph|callgraph|category|cite|class|code|concept|cond|copybrief|copydetails|copydoc|copyright|date|def|defgroup|deprecated|details|diafile|dir|docbookinclude|docbookonly|dontinclude|dot|dotfile|else|elseif|em|emoji|endcode|endcond|enddocbookonly|enddot|endhtmlonly|endif|endinternal|endlatexonly|endlink|endmanonly|endmsc|endparblock|endrtfonly|endsecreflist|enduml|endverbatim|endxmlonly|enum|example|exception|extends|\file|\fileinfo|\fn|headerfile|hidecallergraph|hidecallgraph|hideinitializer|hiderefby|hiderefs|htmlinclude|htmlonly|idlexcept|if|ifnot|image|implements|include|includedoc|includelineno|ingroup|interface|internal|invariant|latexinclude|latexonly|li|line|lineinfo|link|mainpage|maninclude|manonly|memberof|msc|mscfile|\name|\namespace|\noop|\nosubgrouping|\note|overload|package|page|par|paragraph|param|parblock|post|pre|private|privatesection|property|protected|protectedsection|protocol|public|publicsection|pure|qualifier|\raisewarning|\ref|\refitem|\related|\relatedalso|\relates|\relatesalso|\remark|\remarks|\result|\return|\returns|\retval|\rtfinclude|\rtfonly|sa|secreflist|section|see|short|showdate|showinitializer|showrefby|showrefs|since|skip|skipline|snippet|snippetdoc|snippetlineno|startuml|static|struct|subpage|subsection|subsubsection|\tableofcontents|\test|\throw|\throws|\todo|\tparam|\typedef|union|until|\var|\verbatim|\verbinclude|\version|\vhdlflow|warning|weakgroup|xmlinclude|xmlonly|xrefitem
+
+[*.{cs}]
+vsspell_section_id = CUSTOMIGNORE
+vsspell_ignored_keywords_CUSTOMIGNORE = metadata|Flyout
+
+
+[*.{ps,ps1}]
+# VSSPELL: Ignored PowerShell language-specific keywords
+vsspell_section_id = 5C2EC7F983864DC695FE8B3A3A583864
+vsspell_ignored_keywords_5C2EC7F983864DC695FE8B3A3A583864 = begin|break|catch|class|continue|data|define|do|dynamicparam|else|elseif|end|enum|exit|filter|finally|for|foreach|from|function|hidden|if|in|inlinescript|parallel|param|process|return|sequence|static|switch|throw|trap|try|until|using|var|while|workflow
+
+# C# Ruleset
+[*.{cs,csx}]
 # Sort using and Import directives with System.* appearing first
 dotnet_sort_system_directives_first = true
 # Avoid "this." and "Me." if not necessary
@@ -76,3 +122,18 @@ dotnet_style_collection_initializer = true:suggestion
 dotnet_style_coalesce_expression = true:suggestion
 dotnet_style_null_propagation = true:suggestion
 dotnet_style_explicit_tuple_names = true:suggestion
+
+# VSSpell001: Spell Check
+dotnet_diagnostic.VSSpell001.severity = none
+
+# CS3003: Type is not CLS-compliant
+dotnet_diagnostic.CS3003.severity = none
+# CS3001: Argument type is not CLS-compliant
+dotnet_diagnostic.CS3001.severity = none
+# CS3009: Base type is not CLS-compliant
+dotnet_diagnostic.CS3009.severity = none
+# CS3024: Constraint type is not CLS-compliant
+dotnet_diagnostic.CS3024.severity = none
+
+# SYSLIB0018: Type or member is obsolete
+dotnet_diagnostic.SYSLIB0018.severity = none

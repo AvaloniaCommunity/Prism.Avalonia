@@ -7,8 +7,6 @@ namespace DummyModule.View
     {
         private readonly IEventAggregator _eventAggregator;
 
-        private TextBox _logTextBox;
-
         public DummyModuleView()
         {
             InitializeComponent();

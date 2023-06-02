@@ -9,7 +9,7 @@ namespace SampleMvvmApp.ViewModels
         private const int Collapsed = 40;
         private const int Expanded = 200;
 
-        private readonly IRegionNavigationJournal? _journal;
+        private readonly IRegionNavigationJournal _journal;
         private readonly IRegionManager _regionManager;
         private int _flyoutWidth;
 
@@ -20,22 +20,19 @@ namespace SampleMvvmApp.ViewModels
             FlyoutWidth = Expanded;
         }
 
-        public DelegateCommand CmdDashboard => new DelegateCommand(() =>
+        public DelegateCommand CmdDashboard => new(() =>
         {
             //// _journal.Clear();
             _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(DashboardView));
         });
 
-        public DelegateCommand CmdFlyoutMenu => new DelegateCommand(() =>
+        public DelegateCommand CmdFlyoutMenu => new(() =>
         {
             var isExpanded = FlyoutWidth == Expanded;
             FlyoutWidth = isExpanded ? Collapsed : Expanded;
         });
 
-        public DelegateCommand CmdSettings => new DelegateCommand(() =>
-        {
-            _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(SettingsView));
-        });
+        public DelegateCommand CmdSettings => new(() => _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(SettingsView)));
 
         public int FlyoutWidth
         {
