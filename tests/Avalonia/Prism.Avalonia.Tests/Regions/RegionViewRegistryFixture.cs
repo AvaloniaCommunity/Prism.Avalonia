@@ -1,4 +1,4 @@
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Moq;
 using Prism.Avalonia.Tests.Mocks.Views;
@@ -131,7 +131,7 @@ namespace Prism.Avalonia.Tests.Regions
             {
                 Assert.Contains("Dont do this", ex.Message);
                 Assert.Contains("R1", ex.Message);
-                Assert.Equal("Dont do this", ex.InnerException.Message);
+                Assert.Equal("Dont do this", ex.InnerException?.Message);
             }
             catch (Exception)
             {
