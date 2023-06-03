@@ -1,81 +1,98 @@
 ﻿using System;
+using Avalonia.Controls;
 using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Regions;
 using Prism.Services.Dialogs;
+using SampleDialogApp.Views;
 
-namespace SampleDialogApp.ViewModels
+namespace SampleDialogApp.ViewModels;
+
+public class DialogViewModel : BindableBase, IDialogAware
 {
-    public class DialogViewModel : BindableBase, IDialogAware
+    private readonly IDialogService _dialogService;
+    private string _customMessage = string.Empty;
+    private string _title = "Notification";
+    private Window? _parentWindow = null;
+
+    public DialogViewModel(IDialogService dialogService)
     {
-        private readonly IDialogService _dialog;
-        private string _customMessage;
-        private string _title = "Notification";
+        _dialogService = dialogService;
 
-        public DialogViewModel()
-        {
-            // Since this is a basic ShellWindow, there's nothing
-            // to do here.
-            // For enterprise apps, you could register up subscriptions
-            // or other startup background tasks so that they get triggered
-            // on startup, rather than putting them in the DashboardViewModel.
-            //
-            // For example, initiate the pulling of News Feeds, etc.
+        // This is a ViewModel of a pop-up dialog,
+        // the Title is pre-binded to Prism.Avalonia's DialogService
+        Title = "I'm a Sample Dialog!";
+    }
 
-            Title = "Sample Dialog!";
-        }
+    public string Title
+    {
+        get => _title;
+        set => SetProperty(ref _title, value);
+    }
 
-        public string Title
-        {
-            get => _title;
-            set => SetProperty(ref _title, value);
-        }
+    /// <summary>Gets or sets the optional parent window of this Dialog pop-up.</summary>
+    public Window? ParentWindow
+    {
+        get => _parentWindow;
+        set => SetProperty(ref _parentWindow, value);
+    }
 
-        public DelegateCommand<string> CmdResult => new DelegateCommand<string>((param) =>
-        {
-            // None = 0
-            // OK = 1
-            // Cancel = 2
-            // Abort = 3
-            // Retry = 4
-            // Ignore = 5
-            // Yes = 6
-            // No = 7
-            ButtonResult result = ButtonResult.None;
+    public DelegateCommand CmdModalDialog => new(() =>
+    {
+        var title = "MessageBox Title Here";
+        var message = "Hello, I am a modal MessageBox window.\n\n" +
+                      $"I {(ParentWindow == null ? "dont" : "do")} have a parent.";
 
-            if (int.TryParse(param, out int intResult))
-                result = (ButtonResult)intResult;
+        _dialogService.ShowDialog(
+            ParentWindow,
+            nameof(MessageBoxView),
+            new DialogParameters($"title={title}&message={message}"),
+            r => { });
+    });
 
-            RaiseRequestClose(new DialogResult(result));
-        });
+    public DelegateCommand<string> CmdResult => new DelegateCommand<string>((param) =>
+    {
+        // None = 0
+        // OK = 1
+        // Cancel = 2
+        // Abort = 3
+        // Retry = 4
+        // Ignore = 5
+        // Yes = 6
+        // No = 7
+        ButtonResult result = ButtonResult.None;
 
-        public string CustomMessage
-        {
-            get => _customMessage;
-            set => SetProperty(ref _customMessage, value);
-        }
+        if (int.TryParse(param, out int intResult))
+            result = (ButtonResult)intResult;
 
-        public event Action<IDialogResult> RequestClose;
+        RaiseRequestClose(new DialogResult(result));
+    });
 
-        public virtual bool CanCloseDialog()
-        {
-            // Allow the dialog to close
-            return true;
-        }
+    public string CustomMessage
+    {
+        get => _customMessage;
+        set => SetProperty(ref _customMessage, value);
+    }
 
-        public virtual void OnDialogClosed()
-        {
-            // Detatch custom eventhandlers here, etc.
-        }
+    public event Action<IDialogResult>? RequestClose;
 
-        public void OnDialogOpened(IDialogParameters parameters)
-        {
-            CustomMessage = parameters.GetValue<string>("message");
-        }
+    public virtual bool CanCloseDialog()
+    {
+        // Allow the dialog to close
+        return true;
+    }
 
-        public virtual void RaiseRequestClose(IDialogResult dialogResult)
-        {
-            RequestClose?.Invoke(dialogResult);
-        }
+    public virtual void OnDialogClosed()
+    {
+        System.Diagnostics.Debug.WriteLine("Detach custom event handlers here, etc.");
+    }
+
+    public void OnDialogOpened(IDialogParameters parameters)
+    {
+        CustomMessage = parameters.GetValue<string>("message");
+    }
+
+    public virtual void RaiseRequestClose(IDialogResult dialogResult)
+    {
+        RequestClose?.Invoke(dialogResult);
     }
 }
