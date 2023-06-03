@@ -75,7 +75,13 @@ namespace Prism.Services.Dialogs
             ShowDialogInternal(name, parameters, callback, true, windowName);
         }
 
-        void ShowDialogInternal(string name, IDialogParameters parameters, Action<IDialogResult> callback, bool isModal, string windowName = null)
+        /// <inheritdoc/>
+        public void ShowDialog(Window owner, string name, IDialogParameters parameters, Action<IDialogResult> callback)
+        {
+            ShowDialogInternal(name, parameters, callback, true, parentWindow: owner);
+        }
+
+        private void ShowDialogInternal(string name, IDialogParameters parameters, Action<IDialogResult> callback, bool isModal, string windowName = null, Window parentWindow = null)
         {
             if (parameters == null)
                 parameters = new DialogParameters();
@@ -84,7 +90,7 @@ namespace Prism.Services.Dialogs
             ConfigureDialogWindowEvents(dialogWindow, callback);
             ConfigureDialogWindowContent(name, dialogWindow, parameters);
 
-            ShowDialogWindow(dialogWindow, isModal);
+            ShowDialogWindow(dialogWindow, isModal, parentWindow);
         }
 
         /// <summary>
@@ -92,16 +98,21 @@ namespace Prism.Services.Dialogs
         /// </summary>
         /// <param name="dialogWindow">The dialog window to show.</param>
         /// <param name="isModal">If true; dialog is shown as a modal</param>
-        protected virtual void ShowDialogWindow(IDialogWindow dialogWindow, bool isModal)
+        /// <param name="owner">Optional host window of the dialog.</param>
+        protected virtual void ShowDialogWindow(IDialogWindow dialogWindow, bool isModal, Window owner = null)
         {
-            if (isModal && 
+            if (isModal &&
                 Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime deskLifetime)
             {
                 // Ref:
                 //  - https://docs.avaloniaui.net/docs/controls/window#show-a-window-as-a-dialog
                 //  - https://github.com/AvaloniaUI/Avalonia/discussions/7924
                 // (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
-                dialogWindow.ShowDialog(deskLifetime.MainWindow);
+
+                if (owner != null)
+                    dialogWindow.ShowDialog(owner);
+                else
+                    dialogWindow.ShowDialog(deskLifetime.MainWindow);
             }
             else
             {
@@ -149,7 +160,7 @@ namespace Prism.Services.Dialogs
         /// </summary>
         /// <param name="dialogWindow">The hosting window.</param>
         /// <param name="callback">The action to perform when the dialog is closed.</param>
-        protected virtual void ConfigureDialogWindowEvents(IDialogWindow dialogWindow, Action<IDialogResult> callback)
+        protected virtual void ConfigureDialogWindowEvents(IDialogWindow dialogWindow, Action<IDialogResult>? callback)
         {
             Action<IDialogResult> requestCloseHandler = null;
             requestCloseHandler = (o) =>
@@ -167,6 +178,7 @@ namespace Prism.Services.Dialogs
                 dialogWindow.Opened -= loadedHandler;
                 dialogWindow.GetDialogViewModel().RequestClose += requestCloseHandler;
             };
+
             dialogWindow.Opened += loadedHandler;
             //// WPF: dialogWindow.Loaded += loadedHandler;
 
@@ -176,6 +188,7 @@ namespace Prism.Services.Dialogs
                 if (!dialogWindow.GetDialogViewModel().CanCloseDialog())
                     e.Cancel = true;
             };
+
             dialogWindow.Closing += closingHandler;
 
             EventHandler closedHandler = null;
@@ -195,6 +208,7 @@ namespace Prism.Services.Dialogs
                 dialogWindow.DataContext = null;
                 dialogWindow.Content = null;
             };
+
             dialogWindow.Closed += closedHandler;
         }
 
