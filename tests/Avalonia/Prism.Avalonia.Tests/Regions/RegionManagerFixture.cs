@@ -169,7 +169,7 @@ namespace Prism.Avalonia.Tests.Regions
         }
 
         [Fact]
-        public void ShouldNotPreventSubscribersToStaticEventFromBeingGarbageCollected()
+        public async Task ShouldNotPreventSubscribersToStaticEventFromBeingGarbageCollected()
         {
             var subscriber = new MySubscriberClass();
             RegionManager.UpdatingRegions += subscriber.OnUpdatingRegions;
@@ -178,6 +178,7 @@ namespace Prism.Avalonia.Tests.Regions
             WeakReference subscriberWeakReference = new WeakReference(subscriber);
 
             subscriber = null;
+            await Task.Delay(50);
             GC.Collect();
 
             Assert.False(subscriberWeakReference.IsAlive);

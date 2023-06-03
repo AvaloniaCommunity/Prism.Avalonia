@@ -26,7 +26,8 @@ Prism.Avalonia helps you more easily design and build rich, flexible, and easy t
     <Reference Include="System.Configuration" />
   </ItemGroup>
 
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('netcore')) OR $(TargetFramework.StartsWith('net5')) OR $(TargetFramework.StartsWith('net6')) OR $(TargetFramework.StartsWith('net7'))">
+  <!--<ItemGroup Condition=" $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' ">-->
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('netcore')) OR $(TargetFramework.StartsWith('net6')) OR $(TargetFramework.StartsWith('net7'))">
     <Compile Remove="**\*.net45.cs" />
     <None Include="**\*.net45.cs" />
   </ItemGroup>

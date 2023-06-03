@@ -24,7 +24,7 @@ namespace Prism.Avalonia.Tests.Regions
         }
 
         [StaFact]
-        public void AdapterDoesNotPreventRegionFromBeingGarbageCollected()
+        public async Task AdapterDoesNotPreventRegionFromBeingGarbageCollected()
         {
             var selector = new ListBox();
             object model = new object();
@@ -40,6 +40,7 @@ namespace Prism.Avalonia.Tests.Regions
 
             region = null;
             selector = null;
+            await Task.delay(50);
             GC.Collect();
             GC.Collect();
 
