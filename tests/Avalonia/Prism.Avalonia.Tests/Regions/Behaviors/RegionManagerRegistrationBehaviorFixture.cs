@@ -189,7 +189,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         }
 
         [StaFact]
-        public void BehaviorDoesNotPreventRegionManagerFromBeingGarbageCollected()
+        public async Task BehaviorDoesNotPreventRegionManagerFromBeingGarbageCollected()
         {
             var control = new MockFrameworkElement();
             var regionManager = new MockRegionManager();
@@ -207,12 +207,14 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
                 Region = new MockPresentationRegion(),
                 HostControl = control
             };
+
             behavior.Attach();
 
             Assert.True(regionManagerWeakReference.IsAlive);
             GC.KeepAlive(regionManager);
 
             regionManager = null;
+            await Task.Delay(50);
 
             GC.Collect();
 
