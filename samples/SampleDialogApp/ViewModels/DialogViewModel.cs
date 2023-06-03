@@ -1,4 +1,5 @@
 ﻿using System;
+using Avalonia.Controls;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -11,12 +12,15 @@ public class DialogViewModel : BindableBase, IDialogAware
     private readonly IDialogService _dialogService;
     private string _customMessage = string.Empty;
     private string _title = "Notification";
+    private Window? _parentWindow = null;
 
     public DialogViewModel(IDialogService dialogService)
     {
         _dialogService = dialogService;
 
-        Title = "Sample Dialog!";
+        // This is a ViewModel of a pop-up dialog,
+        // the Title is pre-binded to Prism.Avalonia's DialogService
+        Title = "I'm a Sample Dialog!";
     }
 
     public string Title
@@ -25,13 +29,24 @@ public class DialogViewModel : BindableBase, IDialogAware
         set => SetProperty(ref _title, value);
     }
 
+    /// <summary>Gets or sets the optional parent window of this Dialog pop-up.</summary>
+    public Window? ParentWindow
+    {
+        get => _parentWindow;
+        set => SetProperty(ref _parentWindow, value);
+    }
+
     public DelegateCommand CmdModalDialog => new(() =>
     {
         var title = "MessageBox Title Here";
-        var message = "Hello, I am a simple MessageBox modal window with an OK button.\n\n" +
-                      "When too much text is added, a scrollbar will appear.";
-        _dialogService.ShowDialog(nameof(MessageBoxView), new DialogParameters($"title={title}&message={message}"), r => { });
+        var message = "Hello, I am a modal MessageBox window.\n\n" +
+                      $"I {(ParentWindow == null ? "dont" : "do")} have a parent.";
 
+        _dialogService.ShowDialog(
+            ParentWindow,
+            nameof(MessageBoxView),
+            new DialogParameters($"title={title}&message={message}"),
+            r => { });
     });
 
     public DelegateCommand<string> CmdResult => new DelegateCommand<string>((param) =>
@@ -58,7 +73,7 @@ public class DialogViewModel : BindableBase, IDialogAware
         set => SetProperty(ref _customMessage, value);
     }
 
-    public event Action<IDialogResult> RequestClose;
+    public event Action<IDialogResult>? RequestClose;
 
     public virtual bool CanCloseDialog()
     {
@@ -68,7 +83,7 @@ public class DialogViewModel : BindableBase, IDialogAware
 
     public virtual void OnDialogClosed()
     {
-        // Detatch custom eventhandlers here, etc.
+        System.Diagnostics.Debug.WriteLine("Detach custom event handlers here, etc.");
     }
 
     public void OnDialogOpened(IDialogParameters parameters)
