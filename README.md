@@ -15,7 +15,7 @@ Choose the NuGet package version that matches your Avalonia version.
 
 | Avalonia Version | NuGet Package |
 |-|-|
-| 0.10.x          | 8.1.97.2
+| 0.10.x          | 8.1.97.1021
 | 11.0 Preview 4  | 8.1.97.3-preview.11.4
 | 11.0 Preview 5  | 8.1.97.4-preview.11.5
 | 11.0 Preview 8  | 8.1.97.11-preview.11.8
@@ -27,9 +27,9 @@ Be sure to check out the [ChangeLog.md](ChangeLog.md) and [Upgrading-to-Avalonia
 Add the Prism.Avalonia and its DryIoc packages to your project:
 
 ```powershell
-# Avalonia v0.10.18
-Install-Package Prism.Avalonia -Version 8.1.97.2
-Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.2
+# Avalonia v0.10.1021
+Install-Package Prism.Avalonia -Version 8.1.97.1021
+Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.1021
 
 # Avalonia v11-preview8
 Install-Package Prism.Avalonia -Version 8.1.97.11-preview.11.8

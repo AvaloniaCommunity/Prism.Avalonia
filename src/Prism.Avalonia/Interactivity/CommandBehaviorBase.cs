@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Input;
 using Avalonia.Controls;
 
@@ -92,7 +92,6 @@ namespace Prism.Interactivity
                 return _targetObject.Target as T;
             }
         }
-
 
         /// <summary>
         /// Updates the target object's IsEnabled property based on the commands ability to execute.
