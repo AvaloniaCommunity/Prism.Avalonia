@@ -45,8 +45,7 @@ public class DialogViewModel : BindableBase, IDialogAware
         _dialogService.ShowDialog(
             ParentWindow,
             nameof(MessageBoxView),
-            new DialogParameters($"title={title}&message={message}"),
-            r => { });
+            new DialogParameters($"title={title}&message={message}"));
     });
 
     public DelegateCommand<string> CmdResult => new DelegateCommand<string>((param) =>

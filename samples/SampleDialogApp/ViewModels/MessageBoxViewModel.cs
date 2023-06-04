@@ -29,23 +29,11 @@ public class MessageBoxViewModel : BindableBase, IDialogAware
 
     public event Action<IDialogResult>? RequestClose;
 
-    public string Title
-    {
-        get => _title;
-        set => SetProperty(ref _title, value);
-    }
+    public string Title { get => _title; set => SetProperty(ref _title, value); }
 
-    public int MaxHeight
-    {
-        get => _maxHeight;
-        set => SetProperty(ref _maxHeight, value);
-    }
+    public int MaxHeight { get => _maxHeight; set => SetProperty(ref _maxHeight, value); }
 
-    public int MaxWidth
-    {
-        get => _maxWidth;
-        set => SetProperty(ref _maxWidth, value);
-    }
+    public int MaxWidth { get => _maxWidth; set => SetProperty(ref _maxWidth, value); }
 
     public DelegateCommand<string> CmdResult => new DelegateCommand<string>((param) =>
     {
@@ -65,11 +53,7 @@ public class MessageBoxViewModel : BindableBase, IDialogAware
         RaiseRequestClose(new DialogResult(result));
     });
 
-    public string CustomMessage
-    {
-        get => _customMessage;
-        set => SetProperty(ref _customMessage, value);
-    }
+    public string CustomMessage { get => _customMessage; set => SetProperty(ref _customMessage, value); }
 
     public virtual bool CanCloseDialog()
     {

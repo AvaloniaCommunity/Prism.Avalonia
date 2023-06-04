@@ -33,7 +33,7 @@ namespace Prism.Services.Dialogs
         /// <param name="name">The name of the dialog to show.</param>
         /// <param name="parameters">The parameters to pass to the dialog.</param>
         /// <param name="callback">The action to perform when the dialog is closed.</param>
-        public void Show(string name, IDialogParameters parameters, Action<IDialogResult> callback)
+        public void Show(string name, IDialogParameters parameters, Action<IDialogResult> callback = null)
         {
             ShowDialogInternal(name, parameters, callback, false);
         }
@@ -57,7 +57,7 @@ namespace Prism.Services.Dialogs
         /// <param name="parameters">The parameters to pass to the dialog.</param>
         /// <param name="callback">The action to perform when the dialog is closed.</param>
         //// public void ShowDialog(Window owner, string name, IDialogParameters parameters, Action<IDialogResult> callback)
-        public void ShowDialog(string name, IDialogParameters parameters, Action<IDialogResult> callback)
+        public void ShowDialog(string name, IDialogParameters parameters, Action<IDialogResult> callback = null)
         {
             ShowDialogInternal(name, parameters, callback, true);
         }
@@ -76,12 +76,12 @@ namespace Prism.Services.Dialogs
         }
 
         /// <inheritdoc/>
-        public void ShowDialog(Window owner, string name, IDialogParameters parameters, Action<IDialogResult> callback)
+        public void ShowDialog(Window owner, string name, IDialogParameters parameters, Action<IDialogResult> callback = null)
         {
             ShowDialogInternal(name, parameters, callback, true, parentWindow: owner);
         }
 
-        private void ShowDialogInternal(string name, IDialogParameters parameters, Action<IDialogResult> callback, bool isModal, string windowName = null, Window parentWindow = null)
+        private void ShowDialogInternal(string name, IDialogParameters parameters, Action<IDialogResult>? callback, bool isModal, string windowName = null, Window parentWindow = null)
         {
             if (parameters == null)
                 parameters = new DialogParameters();
@@ -160,7 +160,7 @@ namespace Prism.Services.Dialogs
         /// </summary>
         /// <param name="dialogWindow">The hosting window.</param>
         /// <param name="callback">The action to perform when the dialog is closed.</param>
-        protected virtual void ConfigureDialogWindowEvents(IDialogWindow dialogWindow, Action<IDialogResult>? callback)
+        protected virtual void ConfigureDialogWindowEvents(IDialogWindow dialogWindow, Action<IDialogResult>? callback = null)
         {
             Action<IDialogResult> requestCloseHandler = null;
             requestCloseHandler = (o) =>
