@@ -1,6 +1,6 @@
 # Prism.Avalonia
 
-[Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can navigate and perform dependency injection easier than before.  You will need both packages installed to get started.
+[Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can **navigate**, create **dialog windows**, provide **dependency injection** and internal **messaging services** easier than before!  You will need both packages installed to get started.
 
 With Prism.Avalonia's logic and development approach being **similar** to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/), you can get started right away! Keep in mind, they are **similar** and not 1-to-1.
 
@@ -15,10 +15,10 @@ Choose the NuGet package version that matches your Avalonia version. Just like P
 
 | Avalonia Version | NuGet Package |
 |-|-|
-| 0.10.x          | 8.1.97.1021 [Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.1021) [DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.1021)
+| 0.10.x          | 8.1.97.1021 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.1021)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.1021))
 | 11.0 Preview 4  | 8.1.97.3-preview.11.4
 | 11.0 Preview 5  | 8.1.97.4-preview.11.5
-| 11.0 Preview 8  | 8.1.97.11-preview.11.8 [Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.11000-rc1.1) [DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.11000-rc1.1)
+| 11.0 Preview 8  | 8.1.97.11-preview.11.8 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.11000-rc1.1)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.11000-rc1.1))
 
 Be sure to check out the [ChangeLog.md](ChangeLog.md) and [Upgrading-to-Avalonia-11.md](Upgrading-to-Avalonia-11.md) when upgrading your NuGet packages
 
