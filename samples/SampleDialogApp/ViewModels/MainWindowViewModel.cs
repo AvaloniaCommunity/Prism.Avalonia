@@ -21,6 +21,7 @@ public class MainWindowViewModel : ViewModelBase
         var title = "MessageBox Title Here";
         var message = "Hello, I am a simple MessageBox modal window with an OK button.\n\n" +
                       "When too much text is added, a scrollbar will appear.";
+
         _dialogService.ShowDialog(nameof(MessageBoxView), new DialogParameters($"title={title}&message={message}"), r => { });
     });
 
@@ -73,9 +74,5 @@ public class MainWindowViewModel : ViewModelBase
         });
     });
 
-    public string ReturnedResult
-    {
-        get => _returnedResult;
-        set => SetProperty(ref _returnedResult, value);
-    }
+    public string ReturnedResult { get => _returnedResult; set => SetProperty(ref _returnedResult, value); }
 }

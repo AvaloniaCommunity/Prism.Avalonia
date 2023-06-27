@@ -23,18 +23,10 @@ public class DialogViewModel : BindableBase, IDialogAware
         Title = "I'm a Sample Dialog!";
     }
 
-    public string Title
-    {
-        get => _title;
-        set => SetProperty(ref _title, value);
-    }
+    public string Title { get => _title; set => SetProperty(ref _title, value); }
 
     /// <summary>Gets or sets the optional parent window of this Dialog pop-up.</summary>
-    public Window? ParentWindow
-    {
-        get => _parentWindow;
-        set => SetProperty(ref _parentWindow, value);
-    }
+    public Window? ParentWindow { get => _parentWindow; set => SetProperty(ref _parentWindow, value); }
 
     public DelegateCommand CmdModalDialog => new(() =>
     {
@@ -45,8 +37,7 @@ public class DialogViewModel : BindableBase, IDialogAware
         _dialogService.ShowDialog(
             ParentWindow,
             nameof(MessageBoxView),
-            new DialogParameters($"title={title}&message={message}"),
-            r => { });
+            new DialogParameters($"title={title}&message={message}"));
     });
 
     public DelegateCommand<string> CmdResult => new DelegateCommand<string>((param) =>
@@ -67,11 +58,7 @@ public class DialogViewModel : BindableBase, IDialogAware
         RaiseRequestClose(new DialogResult(result));
     });
 
-    public string CustomMessage
-    {
-        get => _customMessage;
-        set => SetProperty(ref _customMessage, value);
-    }
+    public string CustomMessage { get => _customMessage; set => SetProperty(ref _customMessage, value); }
 
     public event Action<IDialogResult>? RequestClose;
 
