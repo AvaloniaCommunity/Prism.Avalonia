@@ -13,5 +13,6 @@
     <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.0-rc1.1" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-rc1.1" />
     <ProjectReference Include="$(MSBuildThisFileDirectory)..\src\Prism.DryIoc.Avalonia\Prism.DryIoc.Avalonia.csproj" />
+    <ProjectReference Include="$(MSBuildThisFileDirectory)..\src\Prism.Avalonia.Toolkit\Prism.Avalonia.Toolkit.csproj" />
   </ItemGroup>
 </Project>
