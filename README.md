@@ -17,13 +17,14 @@ Choose the NuGet package version that matches your Avalonia version. Just like P
 
 | Avalonia Version | NuGet Package |
 |-|-|
-| **0.10.21**      | 8.1.97.1021 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.1021)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.1021))
-| 11.0 Preview 4  | 8.1.97.3-preview.11.4
-| 11.0 Preview 5  | 8.1.97.4-preview.11.5
-| 11.0 Preview 8  | 8.1.97.11-preview.11.8
+| **11.0**        | 8.1.97.11000 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.11000)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.11000))
+| **0.10.21**     | 8.1.97.1021 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.1021)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.1021))
 | **11.0 RC-1.1** | 8.1.97.11000-rc1.1 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.11000-rc1.1)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.11000-rc1.1))
+| 11.0 Preview 8  | 8.1.97.11-preview.11.8
+| 11.0 Preview 5  | 8.1.97.4-preview.11.5
+| 11.0 Preview 4  | 8.1.97.3-preview.11.4
 
-Be sure to check out the [ChangeLog.md](ChangeLog.md) and [Upgrading-to-Avalonia-11.md](Upgrading-to-Avalonia-11.md) when upgrading your NuGet packages
+Be sure to check out the [ChangeLog.md](ChangeLog.md) and [Upgrading-to-Avalonia-11.md](Upgrading-to-Avalonia-11.md) when upgrading your NuGet packages. Also, view the official [Avalonia Upgrading from v0.10](https://docs.avaloniaui.net/docs/next/stay-up-to-date/upgrade-from-0.10).
 
 ## Install
 
@@ -35,8 +36,8 @@ Install-Package Prism.Avalonia -Version 8.1.97.1021
 Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.1021
 
 # Avalonia v11-preview8
-Install-Package Prism.Avalonia -Version 8.1.97.11000-rc1.1
-Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.11000-rc1.1
+Install-Package Prism.Avalonia -Version 8.1.97.11000
+Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.11000
 ```
 
 ## How to use
@@ -117,7 +118,7 @@ public static class Program
                 EnableMultiTouch = true,
                 UseDBusMenu = true
             })
-            .With(new Win32PlatformOptions { AllowEglInitialization = true })
+            .With(new Win32PlatformOptions())
             .UseSkia()
             .UseReactiveUI()
             .UseManagedSystemDialogs();
@@ -171,6 +172,7 @@ Below is a basic branching hierarchy and strategy.
 | `master`    | All releases are tagged published using the `master` branch
 | `develop`   | The **default** & active development branch. When a feature set is completed and ready for public release, the `develop` branch will be merged into `master` and a new NuGet package will be published.
 | `feature/*` | New feature branch. Once completed, it is merged into `develop` and the branch must be deleted.
+| `stable/*`  | Stable release base build which shares cherry-picked merges from `develop`. This branch **must not** be deleted.
 
 ## Contributing
 

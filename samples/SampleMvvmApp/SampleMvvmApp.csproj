@@ -7,4 +7,5 @@
   </PropertyGroup>
 
   <Import Project="../../build/SampleApp.props" />
+
 </Project>

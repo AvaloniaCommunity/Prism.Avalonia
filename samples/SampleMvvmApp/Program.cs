@@ -14,8 +14,8 @@ public class Program
             .With(new X11PlatformOptions { EnableMultiTouch = true, UseDBusMenu = true, })
             .With(new Win32PlatformOptions
             {
-                //// EnableMultitouch = true, // In Avalonia v11 this is always enabled
-                AllowEglInitialization = true,
+                // EnableMultitouch = true,       // In Avalonia v11 this is always enabled
+                // AllowEglInitialization = true, // Removed in Avalonia v11.0.0
             })
             .UseSkia();
             // .UseReactiveUI();
