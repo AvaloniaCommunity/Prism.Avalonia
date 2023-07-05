@@ -29,11 +29,7 @@ namespace ModulesSample
                     EnableMultiTouch = true,
                     UseDBusMenu = true,
                 })
-                .With(new Win32PlatformOptions
-                {
-                    //// EnableMultitouch = true,  // Not supported in Avalonia v11.0.0-preview4
-                    AllowEglInitialization = true,
-                })
+                .With(new Win32PlatformOptions())
                 .UseSkia()
                 .UseManagedSystemDialogs();
 

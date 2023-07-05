@@ -14,7 +14,7 @@
 Prism.Avalonia helps you more easily design and build rich, flexible, and easy to maintain cross-platform Avalonia desktop applications. This library provides user interface composition as well as modularity support.</Description>
     <PackageTags>prism;mvvm;xaml;avalonia;navigation;dialog;prismavalonia;</PackageTags>
     <Copyright>Copyright (c) 2023 Avalonia Community</Copyright>
-    <Authors>Damian Suess, Omid Mafakher, various contributors</Authors>
+    <Authors>Damian Suess, various contributors</Authors>
     <Title>Prism.Avalonia</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>Prism.Avalonia.png</PackageIcon>

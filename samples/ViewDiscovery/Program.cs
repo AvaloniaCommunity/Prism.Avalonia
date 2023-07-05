@@ -15,7 +15,7 @@ public class Program
             .With(new Win32PlatformOptions
             {
                 //// EnableMultitouch = true, // In Avalonia v11 this is always enabled
-                AllowEglInitialization = true,
+                //// AllowEglInitialization = true, // Removed in Avalonia v11.0.0
             })
             .UseSkia();
 #if DEBUG

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Avalonia;
 
 namespace SampleDialogApp
@@ -18,8 +18,8 @@ namespace SampleDialogApp
                       .With(new X11PlatformOptions { EnableMultiTouch = true, UseDBusMenu = true, })
                       .With(new Win32PlatformOptions
                       {
-                          // EnableMultitouch = true,  // Not supported in Avalonia v11.0.0-preview4
-                          AllowEglInitialization = true,
+                          // EnableMultitouch = true,       // Not supported in Avalonia v11.0.0-preview4
+                          // AllowEglInitialization = true, // Removed in Avalonia v11.0.0
                       })
                       .UseSkia()
                       .LogToTrace();
