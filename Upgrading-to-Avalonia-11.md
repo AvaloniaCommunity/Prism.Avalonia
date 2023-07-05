@@ -77,7 +77,6 @@ public partial class DashboardView : UserControl
 
 ### Known Issues
 
-
 * Themes in sample are showing up cloudy
 * Selected ListView item still appears after clearing the List
   * **STATUS:** _Needs reported_
