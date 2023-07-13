@@ -177,3 +177,6 @@ Below is a basic branching hierarchy and strategy.
 ## Contributing
 
 Prism.Avalonia is an open-source project under the MIT license. We encourage community members like yourself to contribute.
+
+
+**Sponsored by:** [Suess Labs](https://suesslabs.com)
