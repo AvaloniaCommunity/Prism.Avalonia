@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Copyright></Copyright>
+    <Version>0.1</Version>
+    <InformationalVersion>0.1</InformationalVersion>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+
+    <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+</Project>
