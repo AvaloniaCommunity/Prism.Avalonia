@@ -6,6 +6,8 @@
 
 With Prism.Avalonia's logic and development approach being **similar** to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/), you can get started right away! Keep in mind, they are **similar** and not 1-to-1. Check out our [Wiki](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki) and [Avalonia Outlookish](https://github.com/DamianSuess/Learn.PrismAvaloniaOutlookish) app for tips and tricks.
 
+Just like Prism.WPF or Prism.Maui, your project must reference both the Prism.Avalonia (_Core_) and Prism.DryIoc.Avalonia (_IoC container_) packages to work.
+
 | Package | Stable | Preview
 |-|-|-|
 | Prism.Avalonia | [![Prism.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.Avalonia?dWidth=70&includePreReleases=false)](https://www.nuget.org/packages/Prism.Avalonia/) | [![Prism.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.Avalonia?dWidth=70&includePreReleases=true)](https://www.nuget.org/packages/Prism.Avalonia/)
@@ -13,7 +15,10 @@ With Prism.Avalonia's logic and development approach being **similar** to that o
 
 ## Version Notice
 
-Choose the NuGet package version that matches your Avalonia version. Just like Prism.WPF or Prism.Maui, your project must reference both the Prism.Avalonia (_Core_) and Prism.DryIoc.Avalonia (_IoC container_) packages to work.
+Choose the NuGet package version that matches your Avalonia version.
+
+The Avalonia version of this package uses [SemVer](https://semver.org/) format: `MAJOR.MINOR.PATCH.REVISION`. The `REVISION` segment indicates
+the Avalonia version support. For instance `v8.1.97.11000` of this library supports, Avalonia v11.0.0.
 
 | Avalonia Version | NuGet Package |
 |-|-|
