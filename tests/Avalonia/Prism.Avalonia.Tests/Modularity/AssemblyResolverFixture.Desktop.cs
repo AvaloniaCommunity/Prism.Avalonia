@@ -1,4 +1,4 @@
-using Prism.Modularity;
+﻿using Prism.Modularity;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Modularity
@@ -21,43 +21,43 @@ namespace Prism.Avalonia.Tests.Modularity
         public void ShouldThrowOnInvalidAssemblyFilePath()
         {
             bool exceptionThrown = false;
-            using (var resolver = new AssemblyResolver())
+
+            using var resolver = new AssemblyResolver();
+
+            try
             {
-                try
-                {
-                    resolver.LoadAssemblyFrom(null);
-                }
-                catch (ArgumentException)
-                {
-                    exceptionThrown = true;
-                }
-
-                Assert.True(exceptionThrown);
-
-                try
-                {
-                    resolver.LoadAssemblyFrom("file://InexistentFile.dll");
-                    exceptionThrown = false;
-                }
-                catch (FileNotFoundException)
-                {
-                    exceptionThrown = true;
-                }
-
-                Assert.True(exceptionThrown);
-
-                try
-                {
-                    resolver.LoadAssemblyFrom("InvalidUri.dll");
-                    exceptionThrown = false;
-                }
-                catch (ArgumentException)
-                {
-                    exceptionThrown = true;
-                }
-
-                Assert.True(exceptionThrown);
+                resolver.LoadAssemblyFrom(null);
             }
+            catch (ArgumentException)
+            {
+                exceptionThrown = true;
+            }
+
+            Assert.True(exceptionThrown);
+
+            try
+            {
+                resolver.LoadAssemblyFrom("file://InexistentFile.dll");
+                exceptionThrown = false;
+            }
+            catch (FileNotFoundException)
+            {
+                exceptionThrown = true;
+            }
+
+            Assert.True(exceptionThrown);
+
+            try
+            {
+                resolver.LoadAssemblyFrom("InvalidUri.dll");
+                exceptionThrown = false;
+            }
+            catch (ArgumentException)
+            {
+                exceptionThrown = true;
+            }
+
+            Assert.True(exceptionThrown);
         }
 
         [Fact]
@@ -71,20 +71,20 @@ namespace Prism.Avalonia.Tests.Modularity
                 Path = Path.GetFullPath(assemblyPath)
             };
             var assemblyUri = uriBuilder.Uri;
-            using (var resolver = new AssemblyResolver())
-            {
-                Type resolvedType =
-                    Type.GetType(
-                        "TestModules.ModuleInLoadedFromContext1Class, ModuleInLoadedFromContext1, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
-                Assert.Null(resolvedType);
 
-                resolver.LoadAssemblyFrom(assemblyUri.ToString());
+            using var resolver = new AssemblyResolver();
 
-                resolvedType =
-                    Type.GetType(
-                        "TestModules.ModuleInLoadedFromContext1Class, ModuleInLoadedFromContext1, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
-                Assert.NotNull(resolvedType);
-            }
+            Type resolvedType =
+                Type.GetType(
+                    "TestModules.ModuleInLoadedFromContext1Class, ModuleInLoadedFromContext1, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
+            Assert.Null(resolvedType);
+
+            resolver.LoadAssemblyFrom(assemblyUri.ToString());
+
+            resolvedType =
+                Type.GetType(
+                    "TestModules.ModuleInLoadedFromContext1Class, ModuleInLoadedFromContext1, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
+            Assert.NotNull(resolvedType);
         }
 
         [Fact]
@@ -98,25 +98,25 @@ namespace Prism.Avalonia.Tests.Modularity
                 Path = Path.GetFullPath(assemblyPath)
             };
             var assemblyUri = uriBuilder.Uri;
-            using (var resolver = new AssemblyResolver())
-            {
-                resolver.LoadAssemblyFrom(assemblyUri.ToString());
 
-                Type resolvedType =
-                    Type.GetType("TestModules.ModuleInLoadedFromContext2Class, ModuleInLoadedFromContext2");
+            using var resolver = new AssemblyResolver();
 
-                Assert.NotNull(resolvedType);
+            resolver.LoadAssemblyFrom(assemblyUri.ToString());
 
-                resolvedType =
-                    Type.GetType("TestModules.ModuleInLoadedFromContext2Class, ModuleInLoadedFromContext2, Version=0.0.0.0");
+            Type resolvedType =
+                Type.GetType("TestModules.ModuleInLoadedFromContext2Class, ModuleInLoadedFromContext2");
 
-                Assert.NotNull(resolvedType);
+            Assert.NotNull(resolvedType);
 
-                resolvedType =
-                    Type.GetType("TestModules.ModuleInLoadedFromContext2Class, ModuleInLoadedFromContext2, Version=0.0.0.0, Culture=neutral");
+            resolvedType =
+                Type.GetType("TestModules.ModuleInLoadedFromContext2Class, ModuleInLoadedFromContext2, Version=0.0.0.0");
 
-                Assert.NotNull(resolvedType);
-            }
+            Assert.NotNull(resolvedType);
+
+            resolvedType =
+                Type.GetType("TestModules.ModuleInLoadedFromContext2Class, ModuleInLoadedFromContext2, Version=0.0.0.0, Culture=neutral");
+
+            Assert.NotNull(resolvedType);
         }
 
         public void Dispose()
