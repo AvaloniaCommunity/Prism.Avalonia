@@ -53,19 +53,18 @@ namespace Prism.Avalonia.Tests
             CSharpCodeProvider codeProvider = new CSharpCodeProvider();
             CompilerParameters cp = new CompilerParameters(referencedAssemblies.ToArray(), output);
 
-            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(input))
-            {
-                if (stream == null)
-                {
-                    throw new ArgumentException("input");
-                }
+            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(input);
 
-                StreamReader reader = new StreamReader(stream);
-                string source = reader.ReadToEnd();
-                CompilerResults results = codeProvider.CompileAssemblyFromSource(cp, source);
-                ThrowIfCompilerError(results);
-                return results;
+            if (stream == null)
+            {
+                throw new ArgumentException("input");
             }
+
+            StreamReader reader = new StreamReader(stream);
+            string source = reader.ReadToEnd();
+            CompilerResults results = codeProvider.CompileAssemblyFromSource(cp, source);
+            ThrowIfCompilerError(results);
+            return results;
         }
 
         public static void CreateOutput(string output)
