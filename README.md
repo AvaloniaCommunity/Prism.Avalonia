@@ -2,6 +2,12 @@
 
 [Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can **Navigate**, create **Dialog Windows** and **Notifications**, provide **Dependency Injection** and internal **Messaging** easier than before!  You will need both packages installed to get started.
 
+**For more samples outside of this repo, check out:**
+
+* [Avalonia Outlookish](https://github.com/DamianSuess/Learn.PrismAvaloniaOutlookish)
+* [Learn PrismLibrary](https://github.com/DamianSuess/Learn.PrismLibrary)
+* _If you have samples, let us know and we'll feature it!_
+
 ![Sample Outlookish](logo/Sample-Outlookish.png)
 
 With Prism.Avalonia's logic and development approach being **similar** to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/), you can get started right away! Keep in mind, they are **similar** and not 1-to-1. Check out our [Wiki](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki) and [Avalonia Outlookish](https://github.com/DamianSuess/Learn.PrismAvaloniaOutlookish) app for tips and tricks.
