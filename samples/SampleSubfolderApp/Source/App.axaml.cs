@@ -1,10 +1,8 @@
-using System;
+﻿using System;
 using Avalonia;
 using Avalonia.Markup.Xaml;
 using Prism.DryIoc;
 using Prism.Ioc;
-using SampleDialogApp.ViewModels;
-using SampleDialogApp.Views;
 
 namespace SampleDialogApp;
 
@@ -25,7 +23,5 @@ public partial class App : PrismApplication
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
         containerRegistry.Register<MainWindow>();
-        containerRegistry.RegisterDialog<MessageBoxView, MessageBoxViewModel>();
-        containerRegistry.RegisterDialog<DialogView, DialogViewModel>();
     }
 }

@@ -7,9 +7,10 @@
     <TrimMode>copyused</TrimMode>
     <Authors>Damian Suess</Authors>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <BaseOutputPath>..\output</BaseOutputPath>
   </PropertyGroup>
 
-  <Import Project="../../build/SampleApp.props" />
+  <Import Project="../../../build/SampleApp.props" />
   
   <ItemGroup>
     <None Remove=".gitignore" />
