@@ -69,6 +69,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleAppBinFolder", "SampleAppBinFolder", "{AB41D174-D152-4C2D-98F8-7300725D1E78}"
+	ProjectSection(SolutionItems) = preProject
+		samples\SampleSubfolderApp\build.ps1 = samples\SampleSubfolderApp\build.ps1
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppPatcher", "samples\SampleSubfolderApp\AppPatcher\AppPatcher.csproj", "{337D973C-C501-4DE6-95B4-20F1087643AA}"
 EndProject

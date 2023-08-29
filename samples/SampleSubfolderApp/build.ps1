@@ -14,7 +14,14 @@ $netframework_tfm = 'net48'
 $net_tfm = 'net6.0-windows'
 $configuration = 'Debug'
 $net_baseoutput = "output\$configuration\net6.0"
-$apphostpatcher_dir = "AppPatcher"
+$appPatcherDir = "AppPatcher"
+
+# Get MSBuild path
+$VCToolsInstallDir = . "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -Latest -requires Microsoft.Component.MSBuild -property InstallationPath
+Write-Host "VCToolsInstallDir: $VCToolsInstallDir"
+
+$msBuildPath = "$VCToolsInstallDir\MSBuild\Current\Bin\msbuild.exe"
+Write-Host "MSBuildPath: $msBuildPath"
 
 function Build-Net
 {
@@ -35,7 +42,7 @@ function Build-Net
 	}
 	else
   {
-		msbuild -v:m -m -restore -t:Publish -p:Configuration=$configuration -p:TargetFramework=$net_tfm -p:RuntimeIdentifier=$rid -p:SelfContained=True
+		& $msBuildPath -v:m -m -restore -t:Publish -p:Configuration=$configuration -p:TargetFramework=$net_tfm -p:RuntimeIdentifier=$rid -p:SelfContained=True
 		if ($LASTEXITCODE) { exit $LASTEXITCODE }
 	}
 
@@ -49,13 +56,13 @@ function Build-Net
 	foreach ($exe in $appName, "${appName}.Console.exe")
   {
 		Move-Item $publishDir\bin\$exe $publishDir
-		& $apphostpatcher_dir\bin\$configuration\$netframework_tfm\AppHostPatcher.exe $publishDir\$exe -d bin
+		# & $appPatcherDir\bin\$configuration\$netframework_tfm\AppPatcher.exe $publishDir\$exe -d bin
+    & output\bin\$configuration\$netframework_tfm\AppPatcher.exe $publishDir\$exe -d bin
 		if ($LASTEXITCODE) { exit $LASTEXITCODE }
 	}
 }
 
-
-$buildNet	 = $buildtfm -eq 'all' -or $buildtfm -eq 'netframework'
+# $buildNet	 = $buildtfm -eq 'all' -or $buildtfm -eq 'netframework'
 $buildNetX86 = $buildtfm -eq 'all' -or $buildtfm -eq 'net-x86'
 $buildNetX64 = $buildtfm -eq 'all' -or $buildtfm -eq 'net-x64'
 
@@ -63,13 +70,19 @@ if ($buildNetX86 -or $buildNetX64)
 {
 	if ($NoMsbuild)
   {
-		dotnet build -v:m -c $configuration -f $netframework_tfm $apphostpatcher_dir\AppHostPatcher.csproj
-		if ($LASTEXITCODE) { exit $LASTEXITCODE }
+		dotnet build -v:m -c $configuration -f $netframework_tfm $appPatcherDir\AppPatcher.csproj
+		if ($LASTEXITCODE)
+    {
+      exit $LASTEXITCODE
+    }
 	}
 	else
   {
-		msbuild -v:m -m -restore -t:Build -p:Configuration=$configuration -p:TargetFramework=$netframework_tfm $apphostpatcher_dir\AppHostPatcher.csproj
-		if ($LASTEXITCODE) { exit $LASTEXITCODE }
+		& $msBuildPath -v:m -m -restore -t:Build -p:Configuration=$configuration -p:TargetFramework=$netframework_tfm $appPatcherDir\AppPatcher.csproj
+		if ($LASTEXITCODE)
+    {
+      exit $LASTEXITCODE
+    }
 	}
 }
 
