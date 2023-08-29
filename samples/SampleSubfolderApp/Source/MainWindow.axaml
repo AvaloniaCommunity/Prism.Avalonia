@@ -1,0 +1,15 @@
+﻿<Window x:Class="SampleDialogApp.MainWindow"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="{Binding Title}"
+        Height="150" Width="350"
+        d:DesignHeight="150" d:DesignWidth="350"
+        mc:Ignorable="d">
+  <Panel>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="5">
+      <Label Content="Sample Prism.Avalonia app with the DLLs in a subfolder" />
+    </StackPanel>
+  </Panel>
+</Window>

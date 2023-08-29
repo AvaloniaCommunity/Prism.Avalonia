@@ -4,11 +4,13 @@
     <Copyright></Copyright>
     <Version>0.1</Version>
     <InformationalVersion>0.1</InformationalVersion>
+    <TargetFramework>net6.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
 
     <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
     <OutputType>Exe</OutputType>
+    <BaseOutputPath>..\output</BaseOutputPath>
   </PropertyGroup>
 
 </Project>
