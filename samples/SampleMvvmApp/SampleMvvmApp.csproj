@@ -8,4 +8,10 @@
 
   <Import Project="../../build/SampleApp.props" />
 
+  <ItemGroup>
+    <Compile Update="Views\SettingsSubView.axaml.cs">
+      <DependentUpon>SettingsSubView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

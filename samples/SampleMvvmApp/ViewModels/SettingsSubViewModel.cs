@@ -10,14 +10,14 @@ using Prism.Regions;
 
 namespace SampleMvvmApp.ViewModels
 {
-    public class SubSettingsViewModel : ViewModelBase
+    public class SettingsSubViewModel : ViewModelBase
     {
         private readonly IRegionManager _regionManager;
         private IRegionNavigationJournal? _journal;
         private string _messageText = string.Empty;
         private string _messageNumber = string.Empty;
 
-        public SubSettingsViewModel(IRegionManager regionManager)
+        public SettingsSubViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
 

@@ -54,7 +54,7 @@ public class App : PrismApplication
         // Views - Region Navigation
         containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
         containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
-        containerRegistry.RegisterForNavigation<SubSettingsView, SubSettingsViewModel>();
+        containerRegistry.RegisterForNavigation<SettingsSubView, SettingsSubViewModel>();
     }
 
     /// <summary>Register optional modules in the catalog.</summary>

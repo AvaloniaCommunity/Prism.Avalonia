@@ -22,7 +22,7 @@ namespace SampleMvvmApp.ViewModels
 
             _regionManager.RequestNavigate(
                 RegionNames.ContentRegion,
-                nameof(SubSettingsView),
+                nameof(SettingsSubView),
                 navParams);
         });
 
