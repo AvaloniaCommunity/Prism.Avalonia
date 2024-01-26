@@ -2,9 +2,20 @@
 
 [Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can **Navigate**, create **Dialog Windows** and **Notifications**, provide **Dependency Injection** and internal **Messaging** easier than before!  You will need both packages installed to get started.
 
+> ### **Announcement:**
+> _Prism.Avalonia v9.0 beta coming soon!_
+
+**For more samples outside of this repo, check out:**
+
+* [Avalonia Outlookish](https://github.com/DamianSuess/Learn.PrismAvaloniaOutlookish)
+* [Learn PrismLibrary](https://github.com/DamianSuess/Learn.PrismLibrary)
+* _If you have samples, let us know and we'll feature them!_
+
 ![Sample Outlookish](logo/Sample-Outlookish.png)
 
-With Prism.Avalonia's logic and development approach being **similar** to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/), you can get started right away! Keep in mind, they are **similar** and not 1-to-1. Check out our [Wiki](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki) and [Avalonia Outlookish](https://github.com/DamianSuess/Learn.PrismAvaloniaOutlookish) app for tips and tricks.
+With Prism.Avalonia's logic and development approach being **similar** to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/), so you can get started right away! Keep in mind, they are **similar** and not 1-to-1. Check out our [Wiki](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki) and [Avalonia Outlookish](https://github.com/DamianSuess/Learn.PrismAvaloniaOutlookish) app for tips and tricks.
+
+Just like Prism.WPF or Prism.Maui, your project must reference both the Prism.Avalonia (_Core_) and Prism.DryIoc.Avalonia (_IoC container_) packages to work.
 
 | Package | Stable | Preview
 |-|-|-|
@@ -13,7 +24,10 @@ With Prism.Avalonia's logic and development approach being **similar** to that o
 
 ## Version Notice
 
-Choose the NuGet package version that matches your Avalonia version. Just like Prism.WPF or Prism.Maui, your project must reference both the Prism.Avalonia (_Core_) and Prism.DryIoc.Avalonia (_IoC container_) packages to work.
+Choose the NuGet package version that matches your Avalonia version.
+
+The Avalonia version of this package uses [SemVer](https://semver.org/) format: `MAJOR.MINOR.PATCH.REVISION`. The `REVISION` segment indicates
+the Avalonia version support. For instance `v8.1.97.11000` of this library supports, Avalonia v11.0.0.
 
 | Avalonia Version | NuGet Package |
 |-|-|
@@ -31,13 +45,13 @@ Be sure to check out the [ChangeLog.md](ChangeLog.md) and [Upgrading-to-Avalonia
 Add the Prism.Avalonia and its DryIoc packages to your project:
 
 ```powershell
+# Avalonia v11
+Install-Package Prism.Avalonia -Version 8.1.97.11000
+Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.11000
+
 # Avalonia v0.10.1021
 Install-Package Prism.Avalonia -Version 8.1.97.1021
 Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.1021
-
-# Avalonia v11-preview8
-Install-Package Prism.Avalonia -Version 8.1.97.11000
-Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.11000
 ```
 
 ## How to use
@@ -105,7 +119,7 @@ public class App : PrismApplication
 
 ### Program.cs
 
-Your default Avalonia `Program.cs` file does not need modified. Below is provided as a sample.
+Your default Avalonia `Program.cs` file does not need to be modified. Below is provided as a sample.
 
 ```csharp
 public static class Program
@@ -178,5 +192,8 @@ Below is a basic branching hierarchy and strategy.
 
 Prism.Avalonia is an open-source project under the MIT license. We encourage community members like yourself to contribute.
 
+You can contribute today by creating a **feature request**, **issue**, or **discussion** on the forum. From there we can have a brief discussion as to where this fits into the backlog priority. If this is something that fits within the Prism architecture, we'll kindly ask you to create a **Pull Request**. Any PR made without first having an issue/discussion may be closed.
 
-**Sponsored by:** [Suess Labs](https://suesslabs.com)
+
+
+**Sponsored by:** [Suess Labs](https://suesslabs.com) a subsidary of Xeno Innovations, Inc.
