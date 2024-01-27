@@ -44,7 +44,6 @@ Prism.Avalonia helps you more easily design and build rich, flexible, and easy t
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
 
