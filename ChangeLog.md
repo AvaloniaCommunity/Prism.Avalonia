@@ -2,9 +2,11 @@
 
 Change log history for Prism.Avalonia
 
-## v8.1.97.11001 (2024-01-27)
+## v8.1.97.11072 (2024-01-27)
 
 * Added support for .NET 8
+* Upgraded Avalonia NuGet packages to 11.0.7
+* Removed unused CommonServiceLocator
 
 ## v8.1.97.11000 (2023-07-05)
 
