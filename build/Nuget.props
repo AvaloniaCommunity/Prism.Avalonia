@@ -5,7 +5,11 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>* Upgraded to support Avalonia v11.0.0</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      * Added .NET 8 support
+      * Upgraded to support Avalonia v11.0.7
+      * Removed unused CommonServiceLocator
+    </PackageReleaseNotes>
   </PropertyGroup>
   
 </Project>
