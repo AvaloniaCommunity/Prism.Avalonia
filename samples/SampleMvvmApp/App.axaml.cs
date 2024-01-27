@@ -1,5 +1,6 @@
 ﻿using System;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Prism.Avalonia.Toolkit;
 using Prism.DryIoc;
@@ -84,7 +85,17 @@ public class App : PrismApplication
         regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(DashboardView));
         regionManager.RegisterViewWithRegion(RegionNames.SidebarRegion, typeof(SidebarView));
 
+        regionManager.RegisterViewWithRegion(RegionNames.DynamicSettingsListRegion, typeof(Setting1View));
+        regionManager.RegisterViewWithRegion(RegionNames.DynamicSettingsListRegion, typeof(Setting2View));
+
         ////var logService = Container.Resolve<ILogService>();
         ////logService.Configure("swlog.config");
+    }
+
+    protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
+    {
+        regionAdapterMappings.RegisterMapping<ItemsControl,
+            SampleMvvmApp.RegionAdapters.ItemsControlRegionAdapter>();
+        regionAdapterMappings.RegisterMapping<ContentControl, ContentControlRegionAdapter>();
     }
 }

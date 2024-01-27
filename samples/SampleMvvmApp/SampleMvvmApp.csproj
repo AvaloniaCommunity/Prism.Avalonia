@@ -1,10 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <Authors>Damian Suess</Authors>
     <Title>Sample MVVM App</Title>
   </PropertyGroup>
 
   <Import Project="../../build/SampleApp.props" />
+
+  <ItemGroup>
+    <Compile Update="Views\Setting1View.axaml.cs">
+      <DependentUpon>Setting1View.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>
