@@ -1,9 +1,7 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Diagnostics;
 using Avalonia.Markup.Xaml;
-using CommonServiceLocator;
 using DryIoc;
 ////using Serilog;
 using Prism.DryIoc;
