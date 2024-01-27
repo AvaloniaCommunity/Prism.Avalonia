@@ -2,6 +2,10 @@
 
 Change log history for Prism.Avalonia
 
+## v8.1.97.11001 (2024-01-27)
+
+* Added support for .NET 8
+
 ## v8.1.97.11000 (2023-07-05)
 
 * Added support for Avalonia v11.0.0 GA Release
