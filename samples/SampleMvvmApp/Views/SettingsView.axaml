@@ -1,9 +1,9 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:core="clr-namespace:SampleMvvmApp;assembly=SampleMvvmApp"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
-             xmlns:core="clr-namespace:SampleMvvmApp;assembly=SampleMvvmApp"
              x:Class="SampleMvvmApp.Views.SettingsView"
              d:DesignHeight="350"
              d:DesignWidth="500"
@@ -28,9 +28,10 @@
     <ScrollViewer Margin="5">
       <StackPanel>
 
-        <Label Content="Some content here for SettingsView" FontSize="18" />
-        <ItemsControl prism:RegionManager.RegionName="{x:Static core:RegionNames.DynamicSettingsListRegion}" />
         <Button Content="Navigate using Journaling" Command="{Binding CmdNavigateToChild}" />
+
+        <Label Content="Sample ItemsControl Region Adapter:" FontSize="18" />
+        <ItemsControl prism:RegionManager.RegionName="{x:Static core:RegionNames.DynamicSettingsListRegion}" />
       </StackPanel>
     </ScrollViewer>
   </DockPanel>
