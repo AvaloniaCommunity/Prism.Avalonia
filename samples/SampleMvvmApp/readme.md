@@ -7,6 +7,7 @@ This demonstrates the following Prism.Avalonia features:
 * Prism Navigation with and without passing parameters.
 * Prism Journling backwards
 * Prism Regions for placing views
+* Prism Region with multiple views - registering multiple views and displaying them in a single ItemsControl using a custom ItemsControlRegionAdapter
 * Prism.DryIoc for Dependency Injection of Services
 * Avalonia Glyphs
 * Avalonia Styles (_Fluent Theme Light_)
