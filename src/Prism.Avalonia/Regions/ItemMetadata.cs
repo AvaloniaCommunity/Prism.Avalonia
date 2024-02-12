@@ -1,4 +1,5 @@
-using Avalonia;
+﻿using Avalonia;
+using Prism.Extensions;
 using System;
 
 namespace Prism.Regions

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Threading;
 using Prism.Common;
 using Prism.Events;
+using Prism.Extensions;
 using Prism.Ioc;
 using Prism.Properties;
 using Prism.Regions.Behaviors;
