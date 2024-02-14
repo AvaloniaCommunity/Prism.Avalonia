@@ -3,7 +3,7 @@ using Prism.Common;
 
 namespace Prism.Extensions
 {
-    internal static class ObservableExtensions
+    public static class ObservableExtensions
     {
         /// <summary>
         /// Subscribes an element handler to an observable sequence.
