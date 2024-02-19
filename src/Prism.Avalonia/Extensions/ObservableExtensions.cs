@@ -1,9 +1,10 @@
 ﻿using System;
+using Avalonia.Reactive;
 using Prism.Common;
 
 namespace Prism.Extensions
 {
-    public static class ObservableExtensions
+    internal static class ObservableExtensions
     {
         /// <summary>
         /// Subscribes an element handler to an observable sequence.

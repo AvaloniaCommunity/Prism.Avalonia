@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Avalonia.Metadata;
 
@@ -18,3 +19,5 @@ using Avalonia.Metadata;
 [assembly: XmlnsDefinition("http://prismlibrary.com/", "Prism.Interactivity")]
 [assembly: XmlnsDefinition("http://prismlibrary.com/", "Prism.Services.Dialogs")]
 [assembly: XmlnsDefinition("http://prismlibrary.com/", "Prism.Ioc")]
+
+[assembly: InternalsVisibleTo("Prism.Avalonia.Tests")]
