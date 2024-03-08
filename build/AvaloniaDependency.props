@@ -4,7 +4,6 @@
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.0.7" />
     <PackageReference Include="Avalonia.Markup.Xaml.Loader" Version="11.0.7" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.7" />
   </ItemGroup>
 
 </Project>
