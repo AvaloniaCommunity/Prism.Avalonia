@@ -1,5 +1,4 @@
-using Avalonia.Controls;
-using Avalonia.Data;
+﻿using Avalonia.Controls;
 using Prism.Properties;
 using System;
 using System.Collections.Specialized;
