@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../build/Library.props" />
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.0-rc1.1" />
+    <PackageReference Include="Avalonia.Markup.Xaml.Loader" Version="11.0.0-rc1.1" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-rc1.1" />
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Description>This extension is used to build Prism.Avalonia applications based on DryIoc. Users must install the Prism.Avalonia NuGet package as well.</Description>
+    <Authors>Damian Suess</Authors>
+    <Copyright>Copyright (c) 2023 Avalonia Community</Copyright>
+    <Title>Prism.Avalonia.Toolkit</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>prism;mvvm;xaml;toolkit;avalonia;dryioc;dependencyinjection;navigation;dialog;prismavalonia;</PackageTags>
+    <PackageIcon>Prism.Avalonia.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\logo\Prism.Avalonia.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
