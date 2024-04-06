@@ -14,21 +14,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{70B9D4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{5F8D330E-F611-4E17-8217-F2D6CDB8E1F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BootstrapperShellSample", "samples\BootstrapperShellSample\BootstrapperShellSample.csproj", "{ABBB169C-A49A-46C7-A920-3F0780CBCA04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BootstrapperShellSample", "e2e\BootstrapperShellSample\BootstrapperShellSample.csproj", "{ABBB169C-A49A-46C7-A920-3F0780CBCA04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewDiscovery", "samples\ViewDiscovery\ViewDiscovery.csproj", "{5D9978C6-2D59-4040-BCF5-56A49AB586E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewDiscovery", "e2e\ViewDiscovery\ViewDiscovery.csproj", "{5D9978C6-2D59-4040-BCF5-56A49AB586E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DummyModules", "DummyModules", "{E03DB670-BFA9-4E7B-A69C-D1E6B8E1691F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModulesSampleApp", "samples\ModulesSample\ModulesSampleApp.csproj", "{DCC68F88-29C9-44EF-90E3-685666AFD6AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModulesSampleApp", "e2e\ModulesSample\ModulesSampleApp.csproj", "{DCC68F88-29C9-44EF-90E3-685666AFD6AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyModule1", "samples\DummyModule1\DummyModule1.csproj", "{2B315287-FDAE-4092-9A80-7DA07D934BF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyModule1", "e2e\DummyModule1\DummyModule1.csproj", "{2B315287-FDAE-4092-9A80-7DA07D934BF1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyModule2", "samples\DummyModule2\DummyModule2.csproj", "{CC39B117-CA19-4151-8B2E-419514AEAE90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyModule2", "e2e\DummyModule2\DummyModule2.csproj", "{CC39B117-CA19-4151-8B2E-419514AEAE90}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ModulesSample", "ModulesSample", "{47BC0E69-AF2D-4C4F-886E-31B61E05C57A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModulesSample.Infrastructure", "samples\ModulesSample.Infrastructure\ModulesSample.Infrastructure.csproj", "{B7112DF9-D7A1-48B8-8821-CF81D52F793E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModulesSample.Infrastructure", "e2e\ModulesSample.Infrastructure\ModulesSample.Infrastructure.csproj", "{B7112DF9-D7A1-48B8-8821-CF81D52F793E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{A1A058C5-0059-44D1-94EE-C90FD3E36E4F}"
 	ProjectSection(SolutionItems) = preProject
@@ -48,7 +48,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containers", "Containers", 
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.DryIoc.Shared", "src\Containers\Prism.DryIoc.Shared\Prism.DryIoc.Shared.shproj", "{6E7EC81D-DA39-4C4F-A898-0148558C34F4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleMvvmApp", "samples\SampleMvvmApp\SampleMvvmApp.csproj", "{7AF14280-214B-4A96-AFE8-CF063E2B6CA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleMvvmApp", "e2e\SampleMvvmApp\SampleMvvmApp.csproj", "{7AF14280-214B-4A96-AFE8-CF063E2B6CA4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{966DDDE9-D31A-404B-9F24-5378DE8A12C8}"
 EndProject
@@ -56,7 +56,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.Container.Avalonia.Sh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Avalonia.Tests", "tests\Avalonia\Prism.Avalonia.Tests\Prism.Avalonia.Tests.csproj", "{DAFC499B-E379-4453-BDCE-2EC30E1290C8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleDialogApp", "Samples\SampleDialogApp\SampleDialogApp.csproj", "{97F8C6D3-308C-40BD-B181-5CDFCF101CBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleDialogApp", "e2e\SampleDialogApp\SampleDialogApp.csproj", "{97F8C6D3-308C-40BD-B181-5CDFCF101CBF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{39083B0B-55F9-47D5-9683-ACAB6D5D1358}"
 	ProjectSection(SolutionItems) = preProject
