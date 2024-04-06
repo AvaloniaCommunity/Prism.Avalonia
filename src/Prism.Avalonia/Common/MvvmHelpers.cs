@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Avalonia.Controls;
 using Prism.Mvvm;
 
@@ -18,6 +19,7 @@ namespace Prism.Common
         /// the AutoWireViewModel property of the view is null.
         /// </remarks>
         /// <param name="viewOrViewModel">The View or ViewModel.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal static void AutowireViewModel(object viewOrViewModel)
         {
             if (viewOrViewModel is Control view &&
