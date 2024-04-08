@@ -12,7 +12,6 @@
     <PackageReference Include="Avalonia.LinuxFramebuffer" Version="11.0.7" />
     <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.7" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.7" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.7" />
     <ProjectReference Include="$(MSBuildThisFileDirectory)..\src\Prism.DryIoc.Avalonia\Prism.DryIoc.Avalonia.csproj" />
   </ItemGroup>
 </Project>
