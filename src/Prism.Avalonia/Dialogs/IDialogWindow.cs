@@ -11,30 +11,22 @@ namespace Prism.Dialogs
     /// </summary>
     public interface IDialogWindow
     {
-        /// <summary>
-        /// Dialog content.
-        /// </summary>
+        /// <summary>Dialog content.</summary>
         object Content { get; set; }
 
-        /// <summary>
-        /// Close the window.
-        /// </summary>
+        /// <summary>Close the window.</summary>
         void Close();
 
         /// <summary>The window's owner.</summary>
         /// <remarks>Avalonia's WindowBase.Owner's property access is { get; protected set; }.</remarks>
         WindowBase Owner { get; }
 
-        /// <summary>
-        /// Show a non-modal dialog.
-        /// </summary>
+        /// <summary>Show a non-modal dialog.</summary>
         void Show();
 
-        /// <summary>
-        /// Show a modal dialog.
-        /// </summary>
+        /// <summary>Show a modal dialog.</summary>
         /// <returns></returns>
-        Task ShowDialog(Window owner);
+        bool? ShowDialog(Window owner);
 
         /// <summary>
         /// The data context of the window.
@@ -70,9 +62,7 @@ namespace Prism.Dialogs
         /// </summary>
         IDialogResult Result { get; set; }
 
-        /// <summary>
-        /// The window style.
-        /// </summary>
+        /// <summary>The window style.</summary>
         // WPF: Window > ContentControl > FrameworkElement
         // Ava: Window > WindowBase > TopLevel > ContentControl > TemplatedControl > Control
         //Style Style { get; set; }

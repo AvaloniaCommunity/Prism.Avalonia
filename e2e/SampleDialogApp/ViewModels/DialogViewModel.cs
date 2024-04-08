@@ -23,6 +23,8 @@ public class DialogViewModel : BindableBase, IDialogAware
         Title = "I'm a Sample Dialog!";
     }
 
+    public DialogCloseListener RequestClose { get; }
+
     public string Title { get => _title; set => SetProperty(ref _title, value); }
 
     /// <summary>Gets or sets the optional parent window of this Dialog pop-up.</summary>

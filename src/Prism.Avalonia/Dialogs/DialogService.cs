@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -146,11 +145,10 @@ namespace Prism.Dialogs
             {
                 // WPF: dialogWindow.Loaded -= loadedHandler;
                 dialogWindow.Opened -= loadedHandler;
-                dialogWindow.GetDialogViewModel().RequestClose += requestCloseHandler;
+                DialogUtilities.InitializeListener(dialogWindow.GetDialogViewModel(), requestCloseHandler);
             };
 
             dialogWindow.Opened += loadedHandler;
-            //// WPF: dialogWindow.Loaded += loadedHandler;
 
             EventHandler<WindowClosingEventArgs> closingHandler = null;
             closingHandler = (o, e) =>
@@ -166,7 +164,6 @@ namespace Prism.Dialogs
             {
                 dialogWindow.Closed -= closedHandler;
                 dialogWindow.Closing -= closingHandler;
-                dialogWindow.GetDialogViewModel().RequestClose -= requestCloseHandler;
 
                 dialogWindow.GetDialogViewModel().OnDialogClosed();
 
@@ -194,17 +191,16 @@ namespace Prism.Dialogs
             // WPF: Window > ContentControl > FrameworkElement
             // Ava: Window > WindowBase > TopLevel > Control > InputElement > Interactive > Layoutable > Visual > StyledElement.Styles (collection)
 
-            window.Content = dialogContent;
-            window.DataContext = viewModel;
-
-            // WPF
+            // WPF:
             //// var windowStyle = Dialog.GetWindowStyle(dialogContent);
             //// if (windowStyle != null)
             ////     window.Style = windowStyle;
-            ////
-            //// window.Content = dialogContent;
-            //// window.DataContext = viewModel; //we want the host window and the dialog to share the same data context
-            ////
+
+            // Make the host window and the dialog window to share the same context
+            window.Content = dialogContent;
+            window.DataContext = viewModel;
+
+            // WPF:
             //// if (window.Owner == null)
             ////     window.Owner = Application.Current?.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
         }
