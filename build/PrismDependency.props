@@ -3,9 +3,8 @@
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <ItemGroup>
-    <PackageReference Include="Prism.Core" Version="9.0.271-pre" />
+    <PackageReference Include="Prism.Core" />
     <PackageReference Include="Prism.Container.DryIoc" />
-    <!--<PackageReference Include="Prism.Container.DryIoc" Version="9.0.80-pre" />-->
   </ItemGroup>
   
 </Project>
