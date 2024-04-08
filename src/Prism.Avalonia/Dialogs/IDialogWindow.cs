@@ -26,7 +26,7 @@ namespace Prism.Dialogs
 
         /// <summary>Show a modal dialog.</summary>
         /// <returns></returns>
-        bool? ShowDialog(Window owner);
+        Task ShowDialog(Window owner);
 
         /// <summary>
         /// The data context of the window.

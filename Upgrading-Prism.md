@@ -63,6 +63,7 @@ Each of the following will be tagged and merged into the branch `Prism-9x` befor
 **Not Implemented:**
 
 * `IDialogWindow.Style` - Custom window styles are not implemented at this time.
+* `DialogWindow.axaml.cs` - Does not implement `this.AttachDevTools();` at this time - _would be helpful during debugging_
 
 **Avalonia vs WPF:**
 
@@ -429,7 +430,7 @@ As we all know, not everything is straight forward between these two XAML techno
 | `System.Windows.DependencyPropertyChangedEventArgs` | `Avalonia.AvaloniaPropertyChangedEventArgs`
 | `System.ComponentModel.DesignerProperties.GetIsInDesignMode(DependencyObject element);` | `Avalonia.Controls.Design.IsDesignMode;`
 | `System.Windows.Controls.Primitives.Selector` | ?? | _used by `SelectorRegionAdapter.cs` and `PrismInitializationExtensions.cs`_
-| `RoutedEventHandler`                      | _Not Implemented_
+| `RoutedEventHandler`                      | `EventHandler`
 
 ### AvaloniaProperty vs DependencyProperty
 
