@@ -4,6 +4,7 @@
 
   <ItemGroup>
     <PackageReference Include="Prism.Core" Version="9.0.271-pre" />
+    <PackageReference Include="Prism.Container.DryIoc" />
     <!--<PackageReference Include="Prism.Container.DryIoc" Version="9.0.80-pre" />-->
   </ItemGroup>
   
