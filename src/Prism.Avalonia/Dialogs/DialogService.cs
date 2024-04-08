@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -8,12 +7,8 @@ using Prism.Ioc;
 
 namespace Prism.Dialogs
 {
-    /// <summary>
-    /// Implements <see cref="IDialogService"/> to show modal and non-modal dialogs.
-    /// </summary>
-    /// <remarks>
-    /// The dialog's ViewModel must implement IDialogAware.
-    /// </remarks>
+    /// <summary>Implements <see cref="IDialogService"/> to show modal and non-modal dialogs.</summary>
+    /// <remarks>The dialog's ViewModel must implement IDialogAware.</remarks>
     public class DialogService : IDialogService
     {
         private readonly IContainerExtension _containerExtension;
@@ -25,47 +20,20 @@ namespace Prism.Dialogs
             _containerExtension = containerExtension;
         }
 
-        /// <summary>Shows a non-modal dialog.</summary>
-        /// <param name="name">The name of the dialog to show.</param>
-        /// <param name="parameters">The parameters to pass to the dialog.</param>
-        /// <param name="callback">The action to perform when the dialog is closed.</param>
-        /// <param name="windowName">The name of the hosting window registered with the IContainerRegistry.</param>
-        public void Show(string name, IDialogParameters parameters, Action<IDialogResult> callback = null, string windowName = null)
+        public void ShowDialog(string name, IDialogParameters parameters, DialogCallback callback)
         {
-            ShowDialogInternal(name, parameters, callback, false, windowName);
-        }
-
-        /// <summary>Shows a modal dialog.</summary>
-        /// <param name="name">The name of the dialog to show.</param>
-        /// <param name="parameters">The parameters to pass to the dialog.</param>
-        /// <param name="callback">The action to perform when the dialog is closed.</param>
-        /// <param name="windowName">The name of the hosting window registered with the IContainerRegistry.</param>
-        public void ShowDialog(string name, IDialogParameters parameters, Action<IDialogResult> callback = null, string windowName = null)
-        {
-            ShowDialogInternal(name, parameters, callback, true, windowName);
-        }
-
-        /// <inheritdoc/>
-        public void ShowDialog(Window owner, string name, IDialogParameters parameters, Action<IDialogResult> callback = null, string windowName = null)
-        {
-            ShowDialogInternal(name, parameters, callback, true, parentWindow: owner, windowName: windowName);
-        }
-
-        private void ShowDialogInternal(string name, IDialogParameters parameters, Action<IDialogResult>? callback, bool isModal, string windowName = null, Window parentWindow = null)
-        {
-            if (parameters == null)
-                parameters = new DialogParameters();
+            parameters ??= new DialogParameters();
+            var isModal = parameters.TryGetValue<bool>(KnownDialogParameters.ShowNonModal, out var show) ? !show : true;
+            var windowName = parameters.TryGetValue<string>(KnownDialogParameters.WindowName, out var wName) ? wName : null;
 
             IDialogWindow dialogWindow = CreateDialogWindow(windowName);
             ConfigureDialogWindowEvents(dialogWindow, callback);
             ConfigureDialogWindowContent(name, dialogWindow, parameters);
 
-            ShowDialogWindow(dialogWindow, isModal, parentWindow);
+            ShowDialogWindow(dialogWindow, isModal);
         }
 
-        /// <summary>
-        /// Shows the dialog window.
-        /// </summary>
+        /// <summary>Shows the dialog window.</summary>
         /// <param name="dialogWindow">The dialog window to show.</param>
         /// <param name="isModal">If true; dialog is shown as a modal</param>
         /// <param name="owner">Optional host window of the dialog.</param>
@@ -75,7 +43,7 @@ namespace Prism.Dialogs
                 Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime deskLifetime)
             {
                 // Ref:
-                //  - https://docs.avaloniaui.net/docs/controls/window#show-a-window-as-a-dialog
+                //  - https://docs.avaloniaui.net/docs/reference/controls/window#show-a-window-as-a-dialog
                 //  - https://github.com/AvaloniaUI/Avalonia/discussions/7924
                 // (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
 
@@ -130,27 +98,24 @@ namespace Prism.Dialogs
         /// </summary>
         /// <param name="dialogWindow">The hosting window.</param>
         /// <param name="callback">The action to perform when the dialog is closed.</param>
-        protected virtual void ConfigureDialogWindowEvents(IDialogWindow dialogWindow, Action<IDialogResult>? callback = null)
+        protected virtual void ConfigureDialogWindowEvents(IDialogWindow dialogWindow, DialogCallback callback)
         {
-            Action<IDialogResult> requestCloseHandler = null;
-            requestCloseHandler = (o) =>
+            Action<IDialogResult> requestCloseHandler = (result) =>
             {
-                dialogWindow.Result = o;
+                dialogWindow.Result = result;
                 dialogWindow.Close();
             };
 
-            // WPF: RoutedEventHandler loadedHandler = null;
             EventHandler loadedHandler = null;
 
             loadedHandler = (o, e) =>
             {
                 // WPF: dialogWindow.Loaded -= loadedHandler;
                 dialogWindow.Opened -= loadedHandler;
-                dialogWindow.GetDialogViewModel().RequestClose += requestCloseHandler;
+                DialogUtilities.InitializeListener(dialogWindow.GetDialogViewModel(), requestCloseHandler);
             };
 
             dialogWindow.Opened += loadedHandler;
-            //// WPF: dialogWindow.Loaded += loadedHandler;
 
             EventHandler<WindowClosingEventArgs> closingHandler = null;
             closingHandler = (o, e) =>
@@ -162,18 +127,17 @@ namespace Prism.Dialogs
             dialogWindow.Closing += closingHandler;
 
             EventHandler closedHandler = null;
-            closedHandler = (o, e) =>
+            closedHandler = async (o, e) =>
             {
                 dialogWindow.Closed -= closedHandler;
                 dialogWindow.Closing -= closingHandler;
-                dialogWindow.GetDialogViewModel().RequestClose -= requestCloseHandler;
 
                 dialogWindow.GetDialogViewModel().OnDialogClosed();
 
                 if (dialogWindow.Result == null)
                     dialogWindow.Result = new DialogResult();
 
-                callback?.Invoke(dialogWindow.Result);
+                await callback.Invoke(dialogWindow.Result); 
 
                 dialogWindow.DataContext = null;
                 dialogWindow.Content = null;
@@ -194,17 +158,16 @@ namespace Prism.Dialogs
             // WPF: Window > ContentControl > FrameworkElement
             // Ava: Window > WindowBase > TopLevel > Control > InputElement > Interactive > Layoutable > Visual > StyledElement.Styles (collection)
 
-            window.Content = dialogContent;
-            window.DataContext = viewModel;
-
-            // WPF
+            // WPF:
             //// var windowStyle = Dialog.GetWindowStyle(dialogContent);
             //// if (windowStyle != null)
             ////     window.Style = windowStyle;
-            ////
-            //// window.Content = dialogContent;
-            //// window.DataContext = viewModel; //we want the host window and the dialog to share the same data context
-            ////
+
+            // Make the host window and the dialog window to share the same context
+            window.Content = dialogContent;
+            window.DataContext = viewModel;
+
+            // WPF:
             //// if (window.Owner == null)
             ////     window.Owner = Application.Current?.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
         }

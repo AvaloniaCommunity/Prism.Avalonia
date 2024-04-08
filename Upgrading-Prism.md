@@ -42,6 +42,9 @@ Each of the following will be tagged and merged into the branch `Prism-9x` befor
 * `IDialogAware` property, `RequestClose`
   * Refactored from `event` to `property` (`event Action<IDialogResult> RequestClose;` -> `DialogCloseListener RequestClose { get; }`)
   * Property is now read-only
+* `IDialogService` moved to Prism.Core
+  * Deprecated `void Show(...)`
+  * Deprecated `void ShowDialog(Window owner, ...`
 
 **Removed Files:**
 
@@ -52,6 +55,22 @@ Each of the following will be tagged and merged into the branch `Prism-9x` befor
 | `DialogResult.cs`       | :x:     | Absorbed into `Prism.Core`
 | `IDialogParameters.cs`  | :x:     | Absorbed into `Prism.Core`
 | `IDialogResult.cs`      | :x:     | Absorbed into `Prism.Core`
+| `IDialogService.cs`     | :white_square_button: :x:     | Absorbed into `Prism.Core`
+| `IDialogServiceExtensions.cs` | :x: | Absorbed into `Prism.Core`
+| `IDialogServiceCompatExtensions` | :new:
+| `KnownDialogParameters` | :new:
+
+**Not Implemented:**
+
+* `IDialogWindow.Style` - Custom window styles are not implemented at this time.
+* `DialogWindow.axaml.cs` - Does not implement `this.AttachDevTools();` at this time - _would be helpful during debugging_
+
+**Avalonia vs WPF:**
+
+| Avalonia | WPF | Reference |
+|-|-|-|
+| `dialogWindow.Opened` | `dialogWindow.Loaded`
+| `EventHandler<WindowClosingEventArgs>? Closing;` | `event CancelEventHandler Closing;` | `IDialogWindow.cs`
 
 #### Generic
 
@@ -411,7 +430,7 @@ As we all know, not everything is straight forward between these two XAML techno
 | `System.Windows.DependencyPropertyChangedEventArgs` | `Avalonia.AvaloniaPropertyChangedEventArgs`
 | `System.ComponentModel.DesignerProperties.GetIsInDesignMode(DependencyObject element);` | `Avalonia.Controls.Design.IsDesignMode;`
 | `System.Windows.Controls.Primitives.Selector` | ?? | _used by `SelectorRegionAdapter.cs` and `PrismInitializationExtensions.cs`_
-| `RoutedEventHandler`                      | _Not Implemented_
+| `RoutedEventHandler`                      | `EventHandler`
 
 ### AvaloniaProperty vs DependencyProperty
 
