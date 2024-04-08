@@ -15,6 +15,8 @@
 
 With Prism.Avalonia's logic and development approach being **similar** to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/), so you can get started right away! Keep in mind, they are **similar** and not 1-to-1. Check out our [Wiki](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki) and [Avalonia Outlookish](https://github.com/DamianSuess/Learn.PrismAvaloniaOutlookish) app for tips and tricks.
 
+## Package Releases
+
 Just like Prism.WPF or Prism.Maui, your project must reference both the Prism.Avalonia (_Core_) and Prism.DryIoc.Avalonia (_IoC container_) packages to work.
 
 | Package | Stable | Preview
@@ -22,7 +24,7 @@ Just like Prism.WPF or Prism.Maui, your project must reference both the Prism.Av
 | Prism.Avalonia | [![Prism.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.Avalonia?dWidth=70&includePreReleases=false)](https://www.nuget.org/packages/Prism.Avalonia/) | [![Prism.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.Avalonia?dWidth=70&includePreReleases=true)](https://www.nuget.org/packages/Prism.Avalonia/)
 | Prism.DryIoc.Avalonia | [![Prism.DryIoc.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.DryIoc.Avalonia?dWidth=70&includePreReleases=false)](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/) | [![Prism.DryIoc.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.DryIoc.Avalonia?dWidth=70&includePreReleases=true)](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/)
 
-## Version Notice
+### Version Notice
 
 Choose the NuGet package version that matches your Avalonia version.
 
@@ -39,6 +41,14 @@ the Avalonia version support. For instance `v8.1.97.11000` of this library suppo
 | 11.0 Preview 4  | 8.1.97.3-preview.11.4
 
 Be sure to check out the [ChangeLog.md](ChangeLog.md) and [Upgrading-to-Avalonia-11.md](Upgrading-to-Avalonia-11.md) when upgrading your NuGet packages. Also, view the official [Avalonia Upgrading from v0.10](https://docs.avaloniaui.net/docs/next/stay-up-to-date/upgrade-from-0.10).
+
+## Contributing
+
+Prism.Avalonia is an open-source project under the MIT license. We encourage community members like yourself to contribute.
+
+You can contribute today by creating a **feature request**, **issue**, or **discussion** on the forum. From there we can have a brief discussion as to where this fits into the backlog priority. If this is something that fits within the Prism architecture, we'll kindly ask you to create a **Pull Request**. Any PR made without first having an issue/discussion may be closed.
+
+Issues posted without a description may be closed immediately. Use the discussion boards if you have a question, not Issues.
 
 ## Install
 
@@ -187,13 +197,5 @@ Below is a basic branching hierarchy and strategy.
 | `develop`   | The **default** & active development branch. When a feature set is completed and ready for public release, the `develop` branch will be merged into `master` and a new NuGet package will be published.
 | `feature/*` | New feature branch. Once completed, it is merged into `develop` and the branch must be deleted.
 | `stable/*`  | Stable release base build which shares cherry-picked merges from `develop`. This branch **must not** be deleted.
-
-## Contributing
-
-Prism.Avalonia is an open-source project under the MIT license. We encourage community members like yourself to contribute.
-
-You can contribute today by creating a **feature request**, **issue**, or **discussion** on the forum. From there we can have a brief discussion as to where this fits into the backlog priority. If this is something that fits within the Prism architecture, we'll kindly ask you to create a **Pull Request**. Any PR made without first having an issue/discussion may be closed.
-
-
 
 **Sponsored by:** [Suess Labs](https://suesslabs.com) a subsidary of Xeno Innovations, Inc.
