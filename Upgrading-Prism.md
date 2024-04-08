@@ -76,6 +76,29 @@ Each of the following will be tagged and merged into the branch `Prism-9x` befor
 
 | File                                | Status  |  Notes |
 |-------------------------------------|---------|--------|
+| DryIocContainerExtension
+| MockHostAwareRegionBehavior.cs
+| MockPresentationRegion.cs
+| MockRegion.cs
+| MockRegionAdapter.cs
+| MockRegionBehavior.cs
+| MockRegionBehaviorCollection.cs
+| MockRegionManager.cs
+| MockRegionmanagerAccessor.cs
+| MockSortableViews.cs
+| MockViewsCollection.cs
+| PrismApplicationBaseFixture.cs
+| PrismBootstrapperBaseFixture.cs
+| AutoPopulateRegionBehaviorFixture.cs
+| RegionActiveAwareBehaviorFixture.cs
+| RegionManagerRegistrationBehaviorFixture.cs
+| RegionMemberlifetimeBehaviorFixture.cs
+| ContentControlRegionAdapterFixture.cs
+| RegionAdapterBaseFixture.cs
+| RegionBehaviorFixture.cs
+| RegionFixture.cs
+| RegionManagerRequestNavigateFixture.cs
+| RegionViewRegistryFixture.cs
 
 ## Upgrading from Prism 7.2 to 8.1
 
