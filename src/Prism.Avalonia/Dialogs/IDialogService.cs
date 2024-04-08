@@ -1,7 +1,7 @@
 ﻿using System;
 using Avalonia.Controls;
 
-namespace Prism.Services.Dialogs
+namespace Prism.Dialogs
 {
     /// <summary>Interface to show modal and non-modal dialogs.</summary>
     public interface IDialogService

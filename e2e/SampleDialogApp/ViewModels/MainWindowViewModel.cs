@@ -1,5 +1,5 @@
 ﻿using Prism.Commands;
-using Prism.Services.Dialogs;
+using Prism.Dialogs;
 using SampleDialogApp.Views;
 
 namespace SampleDialogApp.ViewModels;

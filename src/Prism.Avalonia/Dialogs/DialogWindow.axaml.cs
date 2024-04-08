@@ -3,7 +3,7 @@ using System.ComponentModel;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace Prism.Services.Dialogs
+namespace Prism.Dialogs
 {
     /// <summary>Prism's default dialog host.</summary>
     public partial class DialogWindow : Window, IDialogWindow

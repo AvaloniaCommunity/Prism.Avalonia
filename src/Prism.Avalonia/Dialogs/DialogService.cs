@@ -6,7 +6,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Prism.Common;
 using Prism.Ioc;
 
-namespace Prism.Services.Dialogs
+namespace Prism.Dialogs
 {
     /// <summary>
     /// Implements <see cref="IDialogService"/> to show modal and non-modal dialogs.

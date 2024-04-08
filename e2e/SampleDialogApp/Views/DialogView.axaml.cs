@@ -1,8 +1,8 @@
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Prism.Ioc;
-using Prism.Services.Dialogs;
+using Prism.Dialogs;
 using SampleDialogApp.ViewModels;
 
 namespace SampleDialogApp.Views;

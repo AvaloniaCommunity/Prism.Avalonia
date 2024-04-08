@@ -1,6 +1,7 @@
-﻿using System;
+﻿/*
+using System;
 
-namespace Prism.Services.Dialogs
+namespace Prism.Dialogs
 {
     /// <summary>
     /// Interface that provides dialog functions and events to ViewModels.
@@ -35,3 +36,4 @@ namespace Prism.Services.Dialogs
         event Action<IDialogResult> RequestClose;
     }
 }
+*/

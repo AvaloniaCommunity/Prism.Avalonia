@@ -1,4 +1,6 @@
-# Upgrading from Prism 7.2 to 8.1
+# Upgrading Prism.Avalonia
+
+This file documents the upgrade path of the Prism releases, noting files removed :x: , added :new:, and notes on breaking changes.
 
 | Icon | Text | Description |
 |------|------|-------------|
@@ -10,9 +12,57 @@
 | 💔 | `:broken_heart:` | Never implemented in this platform
 
 * [Icon Reference](https://github.com/markdown-templates/markdown-emojis)
+
+## Overview Prism 8.1.97 to 9.0.x
+
+This file documents the upgrade path from Prism v8.1.97 to v9.0-pre support. Soon we will be moving this repo to be apart of the main Prism Library `:)`
+
+Each of the following will be tagged and merged into the branch `Prism-9x` before being merged with `develop` and `master` branches.
+
+### Progress
+
+* [/] 9.0.271-pre - Will be tagged and released
+* [ ] 9.0.401-pre - Will be tagged and released
+
+### Release Comparison
+
+* [DNF - 9.0.264-pre](https://github.com/PrismLibrary/Prism/compare/DNF...9.0.264-pre) - (_DNF = Dot Net Foundation_)
+* [9.0.264-pre - 9.0.274-pre](https://github.com/PrismLibrary/Prism/compare/9.0.264-pre...9.0.271-pre)
+* [9.0.274-pre - 9.0.401-pre](https://github.com/PrismLibrary/Prism/compare/9.0.271-pre...9.0.401-pre)
+
+### Changes
+
+* `Samples` folder renamed to `e2e`
+
+#### Dialogs
+
+**Breaking Changes:**
+
+* Namespace changed from `Prism.Services.Dialogs` to `Prism.Dialogs`.
+* `IDialogAware` property, `RequestClose`
+  * Refactored from `event` to `property` (`event Action<IDialogResult> RequestClose;` -> `DialogCloseListener RequestClose { get; }`)
+  * Property is now read-only
+
+**Removed Files:**
+
+| File                    | Status  |  Notes |
+|-------------------------|---------|--------|
+| `ButtonResult.cs`       | :x:     | Absorbed into `Prism.Core`
+| `DialogParameters.cs`   | :x:     | Absorbed into `Prism.Core`
+| `DialogResult.cs`       | :x:     | Absorbed into `Prism.Core`
+| `IDialogParameters.cs`  | :x:     | Absorbed into `Prism.Core`
+| `IDialogResult.cs`      | :x:     | Absorbed into `Prism.Core`
+
+#### Generic
+
+| File                                | Status  |  Notes |
+|-------------------------------------|---------|--------|
+
+## Upgrading from Prism 7.2 to 8.1
+
 * Basis of comparison: [Prism Library v7.2.0.1422...v8.1.97](https://github.com/PrismLibrary/Prism/compare/v7.2.0.1422...v8.1.97)
 
-## Action Items
+### Action Items
 
 * [X] Upgrade Prism.Avalonia
 * [X] Upgrade Prism.DryIoc
@@ -28,14 +78,14 @@
   * This requires Avalonia v0.11 and [PR #8277](https://github.com/AvaloniaUI/Avalonia/pull/8277) as per [Issue 7908](https://github.com/AvaloniaUI/Avalonia/issues/7908).
 * Restructure folders to match PrismLibrary
 
-## Upgrade Progress
+### Upgrade Progress
 
 | File                  | Status  |  Notes |
 |-----------------------|---------|--------|
 | Readme.md             | :warning: | Needs updated to match 8.1.x NuGet package version
 | src\Readme.md         | :new:     | Added from PrismLibrary v8.1.x
 
-### Prism.Avalonia
+#### Prism.Avalonia
 
 | File                                | Status  |  Notes |
 |-------------------------------------|---------|--------|
@@ -178,7 +228,7 @@
 | Services\Dialogs\IDialogWindow.cs             | :new: :heavy_check_mark:
 | Services\Dialogs\IDialogWindowExtensions.cs   | :new: :heavy_check_mark:
 
-### Containers
+#### Containers
 
 Containers is a :new: Folder
 
@@ -193,7 +243,7 @@ Containers is a :new: Folder
 | Containers\Prism.Unity.Shared\PrismIocExntensions.cs          | :new:
 | Containers\Prism.Unity.Shared\UnityContainerExtension.cs      | :new:
 
-### Prism.DryIoc.Avalonia
+#### Prism.DryIoc.Avalonia
 
 | File                                | Status  |  Notes |
 |-------------------------------------|---------|--------|
@@ -210,7 +260,7 @@ Containers is a :new: Folder
 | Properties\Resources.Designer.resx  | :white_square_button:
 | Properties\Resources.resx           | :white_square_button:
 
-### Prism.Unity.Avalonia
+#### Prism.Unity.Avalonia
 
 | File                                | Status  |  Notes |
 |-------------------------------------|---------|--------|
@@ -218,7 +268,7 @@ Containers is a :new: Folder
 | PrismBootstrapper.cs                | :heavy_check_mark:
 | GlobalSuppressions.cs               | :heavy_check_mark:
 
-### Tests - Prism.Avalonia.Tests
+#### Tests - Prism.Avalonia.Tests
 
 Test writted to [Prism.WPF specs](https://github.com/PrismLibrary/Prism/tree/master/tests/Wpf/Prism.Wpf.Tests).
 
@@ -319,14 +369,14 @@ Test writted to [Prism.WPF specs](https://github.com/PrismLibrary/Prism/tree/mas
 | Regions\Behaviors\SelectorItemsSourceSyncRegionBehaviorFixture.cs         | :white_square_button: :warning:
 | Regions\Behaviors\SyncRegionContextWithHostBehaviorFixture.cs             | :heavy_check_mark:
 
-### Tests - Prism.Container.Avalonia.Shared
+#### Tests - Prism.Container.Avalonia.Shared
 
 | File                                          | Status  |  Notes |
 |-----------------------------------------------|---------|--------|
 | Fixtures\ContainerExtensionCollection.cs      | :heavy_check_mark: |
 | Mocks\NullModuleCatalogBootstrapper.cs        | :heavy_check_mark: |
 
-### Tests - Prism.DryIoc.Avalonia.Tests
+#### Tests - Prism.DryIoc.Avalonia.Tests
 
 **_TBD_**
 
@@ -341,7 +391,7 @@ As we all know, not everything is straight forward between these two XAML techno
 * [Prism v7.2.0.1422 to v8.1.97](https://github.com/PrismLibrary/Prism/compare/v7.2.0.1422...v8.1.97)
 * [Prism v8.0.0.1909 to v8.1.97](https://github.com/PrismLibrary/Prism/compare/v8.0.0.1909...v8.1.97)
 
-## Conversion Helpers
+### Conversion Helpers
 
 [https://docs.avaloniaui.net/misc/wpf/Control-frameworkelement-and-control]
 
