@@ -3,7 +3,6 @@ using System.Collections.Specialized;
 using System.Linq;
 using Moq;
 using Prism.Ioc;
-using Prism.Regions;
 using Prism.Avalonia.Tests.Mocks;
 using Xunit;
 

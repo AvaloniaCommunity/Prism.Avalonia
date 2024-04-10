@@ -1,5 +1,4 @@
 using System;
-using Prism.Regions;
 using Prism.Avalonia.Tests.Mocks;
 using Xunit;
 

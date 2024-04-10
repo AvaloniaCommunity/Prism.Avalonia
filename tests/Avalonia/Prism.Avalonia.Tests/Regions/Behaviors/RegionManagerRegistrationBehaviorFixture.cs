@@ -1,7 +1,6 @@
 using System.Collections;
 using Avalonia.Controls;
 using Prism.Avalonia.Tests.Mocks;
-using Prism.Regions;
 using Prism.Regions.Behaviors;
 using Xunit;
 

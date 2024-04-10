@@ -1,5 +1,5 @@
 using System;
-using Prism.Regions;
+using Prism.Navigation.Regions;
 
 namespace Prism.Common
 {
