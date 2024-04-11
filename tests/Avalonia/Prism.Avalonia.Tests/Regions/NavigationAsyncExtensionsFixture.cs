@@ -1,5 +1,4 @@
-﻿using System;
-using Moq;
+﻿using Moq;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
@@ -40,7 +39,8 @@ namespace Prism.Avalonia.Tests.Regions
                 .Setup(nv =>
                     nv.RequestNavigate(
                         It.Is<Uri>(u => !u.IsAbsoluteUri && u.OriginalString == "relative"),
-                        It.Is<Action<NavigationResult>>(c => c != null)))
+                        It.Is<Action<NavigationResult>>(c => c != null),
+                        It.IsAny<INavigationParameters>()))
                 .Verifiable();
 
             string target = "relative";
@@ -58,7 +58,8 @@ namespace Prism.Avalonia.Tests.Regions
                 .Setup(nv =>
                     nv.RequestNavigate(
                         It.Is<Uri>(u => u.IsAbsoluteUri && u.Host == "test" && u.AbsolutePath == "/path"),
-                        It.Is<Action<NavigationResult>>(c => c != null)))
+                        It.Is<Action<NavigationResult>>(c => c != null),
+                        It.IsAny<INavigationParameters>()))
                 .Verifiable();
 
             string target = "http://test/path";
@@ -91,7 +92,8 @@ namespace Prism.Avalonia.Tests.Regions
                 .Setup(nv =>
                     nv.RequestNavigate(
                         target,
-                        It.Is<Action<NavigationResult>>(c => c != null)))
+                        It.Is<Action<NavigationResult>>(c => c != null),
+                        It.IsAny<INavigationParameters>()))
                 .Verifiable();
 
             navigateMock.Object.RequestNavigate(target);

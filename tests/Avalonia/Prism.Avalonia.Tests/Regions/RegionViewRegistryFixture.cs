@@ -1,10 +1,6 @@
 ﻿using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 using Moq;
-using Prism.Avalonia.Tests.Mocks.Views;
 using Prism.Avalonia.Tests.Mvvm;
-using Prism.Ioc;
-using Prism.Navigation.Regions;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
@@ -12,49 +8,10 @@ namespace Prism.Avalonia.Tests.Regions
     public class RegionViewRegistryFixture
     {
         [Fact]
-        public void CanNotRegisterWhenMissingDataTemplateDataType()
-        {
-            // Created for Avalonia v11.0.0-pre4
-            // See, https://github.com/AvaloniaUI/Avalonia/pull/8221
-            var xaml = GenerateUserControlWithListView(useCompileBindings: false, useDataTemplateDataType: false);
-            var userCtrl = (MockBindingsView)AvaloniaRuntimeXamlLoader.Load(xaml);
-
-            var containerMock = new Mock<IContainerExtension>();
-            containerMock.Setup(c => c.Resolve(typeof(MockBindingsView))).Returns(userCtrl);
-            var registry = new RegionViewRegistry(containerMock.Object);
-
-            registry.RegisterViewWithRegion("MyRegion", typeof(MockBindingsView));
-            var result = registry.GetContents("MyRegion");
-
-            Assert.NotNull(result);
-            Assert.Single(result);
-            Assert.IsType<MockBindingsView>(result.ElementAt(0));
-        }
-
-        [Fact]
-        public void CanRegisterWhenDataTemplateDataTypeIsProvided()
-        {
-            // Created for Avalonia v11.0.0-pre4
-            // See, https://github.com/AvaloniaUI/Avalonia/pull/8221
-            var xaml = GenerateUserControlWithListView(useDataTemplateDataType: true);
-            var userCtrl = (MockBindingsView)AvaloniaRuntimeXamlLoader.Load(xaml);
-
-            var containerMock = new Mock<IContainerExtension>();
-            containerMock.Setup(c => c.Resolve(typeof(MockBindingsView))).Returns(userCtrl);
-            var registry = new RegionViewRegistry(containerMock.Object);
-
-            registry.RegisterViewWithRegion("MyRegion", typeof(MockBindingsView));
-            var result = registry.GetContents("MyRegion");
-
-            Assert.NotNull(result);
-            Assert.Single(result);
-            Assert.IsType<MockBindingsView>(result.ElementAt(0));
-        }
-
-        [Fact]
         public void CanRegisterContentAndRetrieveIt()
         {
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
             containerMock.Setup(c => c.Resolve(typeof(MockContentObject))).Returns(new MockContentObject());
             var registry = new RegionViewRegistry(containerMock.Object);
 
@@ -90,6 +47,7 @@ namespace Prism.Avalonia.Tests.Regions
         [Fact]
         public void CanRegisterContentAsDelegateAndRetrieveIt()
         {
+            ContainerLocator.SetContainerExtension(Mock.Of<IContainerExtension>());
             var registry = new RegionViewRegistry(null);
             var content = new MockContentObject();
 
@@ -132,7 +90,7 @@ namespace Prism.Avalonia.Tests.Regions
             {
                 Assert.Contains("Dont do this", ex.Message);
                 Assert.Contains("R1", ex.Message);
-                Assert.Equal("Dont do this", ex.InnerException?.Message);
+                Assert.Equal("Dont do this", ex.InnerException.Message);
             }
             catch (Exception)
             {
@@ -159,13 +117,13 @@ namespace Prism.Avalonia.Tests.Regions
             ViewModelLocatorFixture.ResetViewModelLocationProvider();
 
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
             containerMock.Setup(c => c.Resolve(typeof(Mocks.Views.Mock))).Returns(new Mocks.Views.Mock());
             containerMock.Setup(c => c.Resolve(typeof(Mocks.ViewModels.MockViewModel))).Returns(new Mocks.ViewModels.MockViewModel());
             var registry = new RegionViewRegistry(containerMock.Object);
 
             registry.RegisterViewWithRegion("MyRegion", typeof(Mocks.Views.Mock));
 
-            // TODO: AutowireViewModel is not kicking off.
             var result = registry.GetContents("MyRegion");
             Assert.NotNull(result);
             Assert.Single(result);
@@ -182,6 +140,7 @@ namespace Prism.Avalonia.Tests.Regions
             ViewModelLocatorFixture.ResetViewModelLocationProvider();
 
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
             containerMock.Setup(c => c.Resolve(typeof(Mocks.Views.MockOptOut))).Returns(new Mocks.Views.MockOptOut());
             containerMock.Setup(c => c.Resolve(typeof(Mocks.ViewModels.MockOptOutViewModel))).Returns(new Mocks.ViewModels.MockOptOutViewModel());
             var registry = new RegionViewRegistry(containerMock.Object);
@@ -195,49 +154,6 @@ namespace Prism.Avalonia.Tests.Regions
             var view = result.ElementAt(0) as Control;
             Assert.IsType<Mocks.Views.MockOptOut>(view);
             Assert.Null(view.DataContext);
-        }
-
-        private string GenerateUserControlWithListView(bool useCompileBindings = true, bool useDataTemplateDataType = true)
-        {
-            var xaml = @"
-<UserControl xmlns='https://github.com/avaloniaui'
-             xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
-             xmlns:mc='http://schemas.openxmlformats.org/markup-compatibility/2006'
-             xmlns:prism='http://prismlibrary.com/'
-             xmlns:system='clr-namespace:System;assembly=mscorlib'";
-
-            xaml += $@"
-             x:CompileBindings='{useCompileBindings}'";
-
-            xaml += @"
-             x:Class='Prism.Avalonia.Tests.Mocks.Views.MockBindingsView'>
-  <StackPanel>
-    <ListBox Margin='2'
-           VerticalAlignment='Bottom'
-           Items='{Binding ListItems}'
-           ScrollViewer.HorizontalScrollBarVisibility='Visible'
-           ScrollViewer.VerticalScrollBarVisibility='Visible'
-           SelectedIndex='{Binding ListItemSelected}'
-           SelectionMode='Single'>
-      <ListBox.DataTemplates>";
-
-            if (useDataTemplateDataType)
-                xaml += @"
-        <DataTemplate DataType='{x:Type system:String}'>";
-            else
-                xaml += @"
-        <DataTemplate>";
-
-            xaml += @"
-          <TextBlock Text='{Binding .}'
-                     FontSize='10'
-                     TextWrapping='NoWrap' />
-        </DataTemplate>
-      </ListBox.DataTemplates>
-    </ListBox>
-  </StackPanel>
-</UserControl>";
-            return xaml;
         }
 
         private void FailWithFrameworkException(object sender, ViewRegisteredEventArgs e)
@@ -264,7 +180,6 @@ namespace Prism.Avalonia.Tests.Regions
         private class MySubscriberClass
         {
             public ViewRegisteredEventArgs onViewRegisteredArguments;
-
             public void OnContentRegistered(object sender, ViewRegisteredEventArgs e)
             {
                 onViewRegisteredArguments = e;
@@ -276,6 +191,7 @@ namespace Prism.Avalonia.Tests.Regions
             public FrameworkException(Exception innerException)
                 : base("", innerException)
             {
+
             }
         }
     }

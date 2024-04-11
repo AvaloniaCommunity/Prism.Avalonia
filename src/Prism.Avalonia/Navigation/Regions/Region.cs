@@ -207,7 +207,7 @@ namespace Prism.Navigation.Regions
         /// <overloads>Adds a new view to the region.</overloads>
         /// <summary>Adds a new view to the region.</summary>
         /// <param name="viewName">The view to add.</param>
-        /// <returns>The <see cref="IRegionManager"/> that is set on the view if it is a <see cref="DependencyObject"/>. It will be the current region manager when using this overload.</returns>
+        /// <returns>The <see cref="IRegionManager"/> that is set on the view if it is a <see cref="AvaloniaObject"/>. It will be the current region manager when using this overload.</returns>
         public IRegionManager Add(string viewName)
         {
             var view = ContainerLocator.Container.Resolve<object>(viewName);
