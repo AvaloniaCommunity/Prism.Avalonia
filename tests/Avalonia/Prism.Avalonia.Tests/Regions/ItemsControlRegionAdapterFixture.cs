@@ -36,6 +36,7 @@ namespace Prism.Avalonia.Tests.Regions
         [StaFact]
         public void AdapterAssignsARegionThatHasAllViewsActive()
         {
+            ContainerLocator.SetContainerExtension(Mock.Of<IContainerExtension>());
             var control = new ItemsControl();
             IRegionAdapter adapter = new ItemsControlRegionAdapter(null);
 

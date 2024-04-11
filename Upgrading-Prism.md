@@ -112,6 +112,13 @@ As we all know, not everything is straight forward between these two XAML techno
 | RegionManagerRequestNavigateFixture.cs
 | RegionViewRegistryFixture.cs
 
+### Future Feature Work To Add
+
+| Project | Class |
+|-|-|
+| Prism.Avalonia.Tests | ItemsControlRegionAdapterFixture
+| Prism.Avalonia.Tests | SelectorRegionAdapterFixture
+
 ## Upgrading from Prism 7.2 to 8.1
 
 * Basis of comparison: [Prism Library v7.2.0.1422...v8.1.97](https://github.com/PrismLibrary/Prism/compare/v7.2.0.1422...v8.1.97)

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using Moq;
@@ -70,6 +70,7 @@ namespace Prism.Avalonia.Tests.Regions
             {
                 Name = "region"
             };
+
             regionManager.Regions.Add(region);
 
             Assert.Same(regionManager, region.RegionManager);
@@ -93,8 +94,8 @@ namespace Prism.Avalonia.Tests.Regions
             {
                 Name = "TestRegion"
             };
-            regionManager.Regions.Add(region);
 
+            regionManager.Regions.Add(region);
             regionManager.Regions.Remove("TestRegion");
 
             Assert.False(regionManager.Regions.ContainsRegionWithName("TestRegion"));
@@ -108,8 +109,8 @@ namespace Prism.Avalonia.Tests.Regions
             {
                 Name = "TestRegion"
             };
-            regionManager.Regions.Add(region);
 
+            regionManager.Regions.Add(region);
             regionManager.Regions.Remove("TestRegion");
 
             Assert.Null(region.RegionManager);
@@ -155,7 +156,6 @@ namespace Prism.Avalonia.Tests.Regions
             var region = new MockPresentationRegion();
             var view = new MockDependencyObject();
 
-            // NOTE: AvaloniaObject performs `Dispatcher.UIThread.VerifyAccess()`, if it's FALSE the InheritanceParent returns NULL.
             var observableObject = RegionContext.GetObservableContext(view);
 
             bool propertyChangedCalled = false;
@@ -232,6 +232,7 @@ namespace Prism.Avalonia.Tests.Regions
         [Fact]
         public void WhenAddingRegions_ThenRegionsCollectionNotifiesUpdate()
         {
+            ContainerLocator.SetContainerExtension(Mock.Of<IContainerExtension>());
             var regionManager = new RegionManager();
 
             var region1 = new Region { Name = "region1" };
@@ -260,6 +261,7 @@ namespace Prism.Avalonia.Tests.Regions
         [Fact]
         public void WhenRemovingRegions_ThenRegionsCollectionNotifiesUpdate()
         {
+            ContainerLocator.SetContainerExtension(Mock.Of<IContainerExtension>());
             var regionManager = new RegionManager();
 
             var region1 = new Region { Name = "region1" };
@@ -291,6 +293,7 @@ namespace Prism.Avalonia.Tests.Regions
         [Fact]
         public void WhenRemovingNonExistingRegion_ThenRegionsCollectionDoesNotNotifyUpdate()
         {
+            ContainerLocator.SetContainerExtension(Mock.Of<IContainerExtension>());
             var regionManager = new RegionManager();
 
             var region1 = new Region { Name = "region1" };
@@ -316,6 +319,7 @@ namespace Prism.Avalonia.Tests.Regions
             {
                 Name = "RegionName"
             };
+
             regionManager.Regions.Add(region);
 
             regionManager.AddToRegion("RegionName", view1);
@@ -341,9 +345,10 @@ namespace Prism.Avalonia.Tests.Regions
                     viewType = type;
                     return null;
                 };
+
                 var containerMock = new Mock<IContainerExtension>();
                 containerMock.Setup(c => c.Resolve(typeof(IRegionViewRegistry))).Returns(mockRegionContentRegistry);
-                ContainerLocator.SetContainerExtension(() => containerMock.Object);
+                ContainerLocator.SetContainerExtension(containerMock.Object);
 
                 var regionManager = new RegionManager();
 
@@ -378,7 +383,7 @@ namespace Prism.Avalonia.Tests.Regions
                 var containerMock = new Mock<IContainerExtension>();
                 containerMock.Setup(c => c.Resolve(typeof(IRegionViewRegistry))).Returns(mockRegionContentRegistry);
                 ContainerLocator.ResetContainer();
-                ContainerLocator.SetContainerExtension(() => containerMock.Object);
+                ContainerLocator.SetContainerExtension(containerMock.Object);
 
                 var regionManager = new RegionManager();
 
@@ -402,18 +407,19 @@ namespace Prism.Avalonia.Tests.Regions
                 var mockRegionContentRegistry = new MockRegionContentRegistry();
 
                 string regionName = null;
-                Func<object> contentDelegate = null;
+                Func<IContainerProvider, object> contentDelegate = null;
+                Func<IContainerProvider, object> expectedDelegate = _ => true;
 
-                Func<object> expectedDelegate = () => true;
                 mockRegionContentRegistry.RegisterContentWithDelegate = (name, usedDelegate) =>
                 {
                     regionName = name;
                     contentDelegate = usedDelegate;
                     return null;
                 };
+
                 var containerMock = new Mock<IContainerExtension>();
                 containerMock.Setup(c => c.Resolve(typeof(IRegionViewRegistry))).Returns(mockRegionContentRegistry);
-                ContainerLocator.SetContainerExtension(() => containerMock.Object);
+                ContainerLocator.SetContainerExtension(containerMock.Object);
 
                 var regionManager = new RegionManager();
 
@@ -461,18 +467,22 @@ namespace Prism.Avalonia.Tests.Regions
         public FrameworkException(Exception inner)
             : base(string.Empty, inner)
         {
-
         }
     }
 
     internal class MockRegionContentRegistry : IRegionViewRegistry
     {
         public Func<string, Type, object> RegisterContentWithViewType;
-        public Func<string, Func<object>, object> RegisterContentWithDelegate;
+        public Func<string, Func<IContainerProvider, object>, object> RegisterContentWithDelegate;
         public event EventHandler<ViewRegisteredEventArgs> ContentRegistered;
-        public IEnumerable<object> GetContents(string regionName)
+        public IEnumerable<object> GetContents(string regionName, IContainerProvider container)
         {
             return null;
+        }
+
+        public void RegisterViewWithRegion(string regionName, string targetName)
+        {
+            throw new NotImplementedException();
         }
 
         void IRegionViewRegistry.RegisterViewWithRegion(string regionName, Type viewType)
@@ -480,7 +490,7 @@ namespace Prism.Avalonia.Tests.Regions
             RegisterContentWithViewType?.Invoke(regionName, viewType);
         }
 
-        void IRegionViewRegistry.RegisterViewWithRegion(string regionName, Func<object> getContentDelegate)
+        void IRegionViewRegistry.RegisterViewWithRegion(string regionName, Func<IContainerProvider, object> getContentDelegate)
         {
             RegisterContentWithDelegate?.Invoke(regionName, getContentDelegate);
 
