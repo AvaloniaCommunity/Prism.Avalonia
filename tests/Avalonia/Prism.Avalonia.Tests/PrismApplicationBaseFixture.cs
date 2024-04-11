@@ -166,7 +166,7 @@ namespace Prism.Avalonia.Tests
         }
 
         [Fact]
-        public void ConfigureDefaultRegionBehaviorsShouldBindRegionContextToDependencyObjectBehavior()
+        public void ConfigureDefaultRegionBehaviorsShouldBindRegionContextToAvaloniaObjectBehavior()
         {
             Assert.True(application.DefaultRegionBehaviorTypes.ContainsKey(BindRegionContextToAvaloniaObjectBehavior.BehaviorKey));
         }

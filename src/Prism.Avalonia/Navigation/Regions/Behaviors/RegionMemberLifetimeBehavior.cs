@@ -42,7 +42,7 @@ namespace Prism.Navigation.Regions.Behaviors
         /// </summary>
         protected override void OnAttach()
         {
-            Region.ActiveViews.CollectionChanged += sOnActiveViewsChanged;
+            Region.ActiveViews.CollectionChanged += OnActiveViewsChanged;
         }
 
         private void OnActiveViewsChanged(object sender, NotifyCollectionChangedEventArgs e)

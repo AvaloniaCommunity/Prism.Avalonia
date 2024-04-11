@@ -1,4 +1,4 @@
-// This feature is currently disabled
+﻿// This feature is currently disabled
 // See, Prism.Avalonia.Regions.Behaviors.SelectorItemsSourceSyncBehavior.cs for more info.
 /*
 using System;
@@ -7,8 +7,8 @@ using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
-using Prism.Regions;
-using Prism.Regions.Behaviors;
+using Prism.Navigation.Regions;
+using Prism.Navigation.Regions.Behaviors;
 using Prism.Avalonia.Tests.Mocks;
 using Xunit;
 

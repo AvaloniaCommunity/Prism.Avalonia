@@ -4,7 +4,7 @@ using Moq;
 using Prism.Avalonia.Tests.Mocks.Views;
 using Prism.Avalonia.Tests.Mvvm;
 using Prism.Ioc;
-using Prism.Regions;
+using Prism.Navigation.Regions;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
@@ -82,7 +82,7 @@ namespace Prism.Avalonia.Tests.Regions
             Assert.NotNull(listener.onViewRegisteredArguments);
             Assert.NotNull(listener.onViewRegisteredArguments.GetView);
 
-            var result = listener.onViewRegisteredArguments.GetView();
+            var result = listener.onViewRegisteredArguments.GetView(containerMock.Object);
             Assert.NotNull(result);
             Assert.IsType<MockContentObject>(result);
         }

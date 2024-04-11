@@ -1,7 +1,6 @@
-using Moq;
+﻿using Moq;
 using Prism.Avalonia.Tests.Mocks;
 using Prism.Navigation.Regions.Behaviors;
-using Prism.Regions;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions.Behaviors
@@ -18,10 +17,10 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
 
         protected virtual void Arrange()
         {
-            this.Region = new Region();
-            this.Behavior = new RegionMemberLifetimeBehavior();
-            this.Behavior.Region = this.Region;
-            this.Behavior.Attach();
+            Region = new Region();
+            Behavior = new RegionMemberLifetimeBehavior();
+            Behavior.Region = Region;
+            Behavior.Attach();
         }
 
         [Fact]
@@ -244,20 +243,17 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         public class RegionMemberKeptAlive
         {
         }
-
-
     }
-
 
     public class RegionMemberLifetimeBehaviorAgainstSingleActiveRegionFixture
                 : RegionMemberLifetimeBehaviorFixture
     {
         protected override void Arrange()
         {
-            this.Region = new SingleActiveRegion();
-            this.Behavior = new RegionMemberLifetimeBehavior();
-            this.Behavior.Region = this.Region;
-            this.Behavior.Attach();
+            Region = new SingleActiveRegion();
+            Behavior = new RegionMemberLifetimeBehavior();
+            Behavior.Region = Region;
+            Behavior.Attach();
         }
     }
 }

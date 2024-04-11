@@ -1,7 +1,4 @@
-using System;
-using System.Linq;
-using Moq;
-using Prism.Regions;
+﻿using Moq;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions

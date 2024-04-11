@@ -1,4 +1,4 @@
-// TODO: 2022-07-12
+﻿// TODO: 2022-07-12
 // REF: https://github.com/AvaloniaUI/Avalonia/issues/7553
 // Cannot perform the following. Check out, ContentControlRegionAdapterFixture.cs
 // However, ItemsControl.Items is `IEnumerable` and doesn't play nicely.
@@ -10,7 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Prism.Regions;
+using Prism.Navigation.Regions;
 using Prism.Avalonia.Tests.Mocks;
 using Avalonia.Controls;
 using Avalonia.Data;
