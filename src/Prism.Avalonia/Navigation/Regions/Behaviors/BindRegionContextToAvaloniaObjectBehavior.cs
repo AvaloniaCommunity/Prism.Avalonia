@@ -10,9 +10,10 @@ namespace Prism.Navigation.Regions.Behaviors
     /// Defines a behavior that forwards the <see cref="RegionManager.RegionContextProperty"/>
     /// to the views in the region.
     /// </summary>
-    public class BindRegionContextToDependencyObjectBehavior : IRegionBehavior
-{
+    public class BindRegionContextToAvaloniaObjectBehavior : IRegionBehavior
+    {
     /// <summary>The key of this behavior.</summary>
+    /// <remarks>This SHOULD be ''ContextToAvaloniaObject'.</remarks>
     public const string BehaviorKey = "ContextToDependencyObject";
 
     /// <summary>Behavior's attached region.</summary>

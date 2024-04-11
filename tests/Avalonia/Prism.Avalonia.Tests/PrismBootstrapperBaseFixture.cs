@@ -161,7 +161,7 @@ namespace Prism
         }
 
         [Fact]
-        public void ConfigureDefaultRegionBehaviorsShouldBindRegionContextToDependencyObjectBehavior()
+        public void ConfigureDefaultRegionBehaviorsShouldBindRegionContextToAvaloniaObjectBehavior()
         {
             Assert.True(bootstrapper.DefaultRegionBehaviorTypes.ContainsKey(BindRegionContextToAvaloniaObjectBehavior.BehaviorKey));
         }
