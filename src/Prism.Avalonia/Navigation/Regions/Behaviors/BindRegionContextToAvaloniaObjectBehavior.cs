@@ -13,7 +13,7 @@ namespace Prism.Navigation.Regions.Behaviors
     public class BindRegionContextToAvaloniaObjectBehavior : IRegionBehavior
     {
     /// <summary>The key of this behavior.</summary>
-    /// <remarks>This SHOULD be ''ContextToAvaloniaObject'.</remarks>
+    /// <remarks>TODO (DS 2024-04-11): This SHOULD be ''ContextToAvaloniaObject'.</remarks>
     public const string BehaviorKey = "ContextToDependencyObject";
 
     /// <summary>Behavior's attached region.</summary>
