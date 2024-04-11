@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Prism.Navigation.Regions;
+using Prism.Ioc;
 
 namespace Prism.Navigation.Regions.Behaviors
 {
@@ -93,7 +93,7 @@ namespace Prism.Navigation.Regions.Behaviors
 
             if (e.RegionName == Region.Name)
             {
-                AddViewIntoRegion(e.GetView());
+                AddViewIntoRegion(e.GetView(ContainerLocator.Container));
             }
         }
     }
