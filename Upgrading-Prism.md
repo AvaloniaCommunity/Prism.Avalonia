@@ -91,35 +91,36 @@ As we all know, not everything is straight forward between these two XAML techno
 
 | File                                | Status  |  Notes |
 |-------------------------------------|---------|--------|
-| MockHostAwareRegionBehavior.cs
-| MockPresentationRegion.cs
-| MockRegion.cs
-| MockRegionAdapter.cs
-| MockRegionBehavior.cs
-| MockRegionBehaviorCollection.cs
-| MockRegionManager.cs
-| MockRegionmanagerAccessor.cs
-| MockSortableViews.cs
-| MockViewsCollection.cs
-| PrismApplicationBaseFixture.cs
-| PrismBootstrapperBaseFixture.cs
-| AutoPopulateRegionBehaviorFixture.cs
-| RegionActiveAwareBehaviorFixture.cs
-| RegionManagerRegistrationBehaviorFixture.cs
-| RegionMemberlifetimeBehaviorFixture.cs
-| ContentControlRegionAdapterFixture.cs
-| RegionAdapterBaseFixture.cs
-| RegionBehaviorFixture.cs
-| RegionFixture.cs
-| RegionManagerRequestNavigateFixture.cs
-| RegionViewRegistryFixture.cs
+| MockHostAwareRegionBehavior.cs | :heavy_check_mark:
+| MockPresentationRegion.cs | :heavy_check_mark:
+| MockRegion.cs | :heavy_check_mark:
+| MockRegionAdapter.cs | :heavy_check_mark:
+| MockRegionBehavior.cs | :heavy_check_mark:
+| MockRegionBehaviorCollection.cs | :heavy_check_mark:
+| MockRegionManager.cs | :heavy_check_mark:
+| MockRegionmanagerAccessor.cs | :heavy_check_mark:
+| MockSortableViews.cs | :heavy_check_mark:
+| MockViewsCollection.cs | :heavy_check_mark:
+| PrismApplicationBaseFixture.cs | :heavy_check_mark:
+| PrismBootstrapperBaseFixture.cs | :heavy_check_mark:
+| AutoPopulateRegionBehaviorFixture.cs | :heavy_check_mark:
+| RegionActiveAwareBehaviorFixture.cs | :heavy_check_mark:
+| RegionManagerRegistrationBehaviorFixture.cs | :heavy_check_mark:
+| RegionMemberlifetimeBehaviorFixture.cs | :heavy_check_mark:
+| ContentControlRegionAdapterFixture.cs | :heavy_check_mark:
+| RegionAdapterBaseFixture.cs | :heavy_check_mark:
+| RegionBehaviorFixture.cs | :heavy_check_mark:
+| RegionFixture.cs | :heavy_check_mark:
+| RegionManagerRequestNavigateFixture.cs | :heavy_check_mark:
+| RegionViewRegistryFixture.cs | :heavy_check_mark:
 
 ### Future Feature Work To Add
 
 | Project | Class |
 |-|-|
-| Prism.Avalonia.Tests | ItemsControlRegionAdapterFixture
-| Prism.Avalonia.Tests | SelectorRegionAdapterFixture
+| Prism.Avalonia       | `Interactivity/InvokeCommandAction`
+| Prism.Avalonia.Tests | `Regions/ItemsControlRegionAdapterFixture`
+| Prism.Avalonia.Tests | `Regions/SelectorRegionAdapterFixture`
 
 ## Upgrading from Prism 7.2 to 8.1
 
