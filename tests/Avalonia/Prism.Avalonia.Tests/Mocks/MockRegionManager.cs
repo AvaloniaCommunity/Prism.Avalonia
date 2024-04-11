@@ -92,11 +92,6 @@ namespace Prism.Avalonia.Tests.Mocks
         {
             throw new NotImplementedException();
         }
-
-        public IRegionManager RegisterViewWithRegion(string regionName, Func<IContainerProvider, object> getContentDelegate)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     internal class MockRegionCollection : List<IRegion>, IRegionCollection
