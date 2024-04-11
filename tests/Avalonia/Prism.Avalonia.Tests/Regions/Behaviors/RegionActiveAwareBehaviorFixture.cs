@@ -1,8 +1,8 @@
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Input;
 using Moq;
 using Prism.Avalonia.Tests.Mocks;
-using Prism.Regions.Behaviors;
+using Prism.Navigation.Regions.Behaviors;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions.Behaviors

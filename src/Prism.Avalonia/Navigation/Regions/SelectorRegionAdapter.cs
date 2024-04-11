@@ -1,6 +1,6 @@
 ﻿// TODO: Feature currently disabled
 /*
-using Prism.Regions.Behaviors;
+using Prism.Navigation.Regions.Behaviors;
 using System;
 using Avalonia.Controls.Primitives;
 using Avalonia.Styling;

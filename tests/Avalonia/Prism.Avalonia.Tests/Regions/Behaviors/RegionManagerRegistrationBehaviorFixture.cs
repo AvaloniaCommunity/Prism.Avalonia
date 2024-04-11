@@ -1,7 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using Avalonia.Controls;
 using Prism.Avalonia.Tests.Mocks;
-using Prism.Regions.Behaviors;
+using Prism.Navigation.Regions.Behaviors;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions.Behaviors

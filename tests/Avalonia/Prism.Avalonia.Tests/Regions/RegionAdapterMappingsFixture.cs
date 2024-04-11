@@ -1,4 +1,4 @@
-using Prism.Regions;
+﻿using Prism.Navigation.Regions;
 using Prism.Avalonia.Tests.Mocks;
 using Avalonia.Controls;
 using Moq;
@@ -49,7 +49,7 @@ namespace Prism.Avalonia.Tests.Regions
                 containerMock.Setup(c => c.Resolve(typeof(MockRegionAdapter)))
                              .Returns(regionAdapter);
                 ContainerLocator.ResetContainer();
-                ContainerLocator.SetContainerExtension(() => containerMock.Object);
+                ContainerLocator.SetContainerExtension(containerMock.Object);
 
                 regionAdapterMappings.RegisterMapping<ItemsControl, MockRegionAdapter>();
 

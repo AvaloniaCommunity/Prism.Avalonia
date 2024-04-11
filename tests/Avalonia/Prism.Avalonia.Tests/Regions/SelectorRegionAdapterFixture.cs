@@ -1,10 +1,10 @@
-// TODO: 2022-07-13
+﻿// TODO: 2022-07-13
 // Feature, SelectorRegionAdapter, is currently disabled.
 /*
 using System;
 using Avalonia.Controls;
-using Prism.Regions;
-using Prism.Regions.Behaviors;
+using Prism.Navigation.Regions;
+using Prism.Navigation.Regions.Behaviors;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
