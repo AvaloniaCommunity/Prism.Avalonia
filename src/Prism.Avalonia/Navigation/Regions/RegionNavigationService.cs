@@ -9,9 +9,7 @@ using Prism.Properties;
 
 namespace Prism.Navigation.Regions
 {
-    /// <summary>
-    /// Provides navigation for regions.
-    /// </summary>
+    /// <summary>Provides navigation for regions.</summary>
     public class RegionNavigationService : IRegionNavigationService
     {
         private readonly IContainerProvider _container;
@@ -32,21 +30,15 @@ namespace Prism.Navigation.Regions
             Journal.NavigationTarget = this;
         }
 
-        /// <summary>
-        /// Gets or sets the region.
-        /// </summary>
+        /// <summary>Gets or sets the region.</summary>
         /// <value>The region.</value>
         public IRegion Region { get; set; }
 
-        /// <summary>
-        /// Gets the journal.
-        /// </summary>
+        /// <summary>Gets the journal.</summary>
         /// <value>The journal.</value>
         public IRegionNavigationJournal Journal { get; private set; }
 
-        /// <summary>
-        /// Raised when the region is about to be navigated to content.
-        /// </summary>
+        /// <summary>Raised when the region is about to be navigated to content.</summary>
         public event EventHandler<RegionNavigationEventArgs> Navigating;
 
         private void RaiseNavigating(NavigationContext navigationContext)
@@ -54,9 +46,7 @@ namespace Prism.Navigation.Regions
             Navigating?.Invoke(this, new RegionNavigationEventArgs(navigationContext));
         }
 
-        /// <summary>
-        /// Raised when the region is navigated to content.
-        /// </summary>
+        /// <summary>Raised when the region is navigated to content.</summary>
         public event EventHandler<RegionNavigationEventArgs> Navigated;
 
         private void RaiseNavigated(NavigationContext navigationContext)
@@ -64,9 +54,7 @@ namespace Prism.Navigation.Regions
             Navigated?.Invoke(this, new RegionNavigationEventArgs(navigationContext));
         }
 
-        /// <summary>
-        /// Raised when a navigation request fails.
-        /// </summary>
+        /// <summary>Raised when a navigation request fails.</summary>
         public event EventHandler<RegionNavigationFailedEventArgs> NavigationFailed;
 
         private void RaiseNavigationFailed(NavigationContext navigationContext, Exception error)
@@ -74,9 +62,7 @@ namespace Prism.Navigation.Regions
             NavigationFailed?.Invoke(this, new RegionNavigationFailedEventArgs(navigationContext, error));
         }
 
-        /// <summary>
-        /// Initiates navigation to the specified target.
-        /// </summary>
+        /// <summary>Initiates navigation to the specified target.</summary>
         /// <param name="target">The target.</param>
         /// <param name="navigationCallback">A callback to execute when the navigation request is completed.</param>
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Exception is marshalled to callback")]
@@ -85,13 +71,11 @@ namespace Prism.Navigation.Regions
             RequestNavigate(target, navigationCallback, null);
         }
 
-        /// <summary>
-        /// Initiates navigation to the specified target.
-        /// </summary>
+        /// <summary>Initiates navigation to the specified target.</summary>
         /// <param name="target">The target.</param>
         /// <param name="navigationCallback">A callback to execute when the navigation request is completed.</param>
         /// <param name="navigationParameters">The navigation parameters specific to the navigation request.</param>
-        public void RequestNavigate(Uri target, Action<NavigationResult> navigationCallback, NavigationParameters navigationParameters)
+        public void RequestNavigate(Uri target, Action<NavigationResult> navigationCallback, INavigationParameters navigationParameters)
         {
             if (navigationCallback == null)
                 throw new ArgumentNullException(nameof(navigationCallback));
@@ -106,7 +90,7 @@ namespace Prism.Navigation.Regions
             }
         }
 
-        private void DoNavigate(Uri source, Action<NavigationResult> navigationCallback, NavigationParameters navigationParameters)
+        private void DoNavigate(Uri source, Action<NavigationResult> navigationCallback, INavigationParameters navigationParameters)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
@@ -234,7 +218,7 @@ namespace Prism.Navigation.Regions
                 Journal.RecordNavigation(journalEntry, persistInHistory);
 
                 // The view can be informed of navigation
-                Action<INavigationAware> action = (n) => n.OnNavigatedTo(navigationContext);
+                Action<IRegionAware> action = (n) => n.OnNavigatedTo(navigationContext);
                 MvvmHelpers.ViewAndViewModelAction(view, action);
 
                 navigationCallback(new NavigationResult(navigationContext, true));
@@ -269,7 +253,7 @@ namespace Prism.Navigation.Regions
             InvokeOnNavigationAwareElements(activeViews, (n) => n.OnNavigatedFrom(navigationContext));
         }
 
-        private static void InvokeOnNavigationAwareElements(IEnumerable<object> items, Action<INavigationAware> invocation)
+        private static void InvokeOnNavigationAwareElements(IEnumerable<object> items, Action<IRegionAware> invocation)
         {
             foreach (var item in items)
             {

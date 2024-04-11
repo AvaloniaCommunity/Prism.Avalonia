@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -56,7 +56,7 @@ namespace Prism.Navigation.Regions
                 candidates.Where(
                     v =>
                     {
-                        if (v is INavigationAware navigationAware && !navigationAware.IsNavigationTarget(navigationContext))
+                        if (v is IRegionAware navigationAware && !navigationAware.IsNavigationTarget(navigationContext))
                         {
                             return false;
                         }
@@ -66,7 +66,7 @@ namespace Prism.Navigation.Regions
                             return true;
                         }
 
-                        navigationAware = control.DataContext as INavigationAware;
+                        navigationAware = control.DataContext as IRegionAware;
                         return navigationAware == null || navigationAware.IsNavigationTarget(navigationContext);
                     });
 
@@ -169,7 +169,7 @@ namespace Prism.Navigation.Regions
 
         private IEnumerable<object> GetCandidatesFromRegionViews(IRegion region, string candidateNavigationContract)
         {
-            return region.Views.Where(v => ViewIsMatch(v.GetType(), candidateNavigationContract));
+            return region.Views.Where(v => v is not null && ViewIsMatch(v.GetType(), candidateNavigationContract));
         }
 
         private static bool ViewIsMatch(Type viewType, string navigationSegment)

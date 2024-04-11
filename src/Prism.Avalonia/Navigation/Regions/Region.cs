@@ -199,13 +199,19 @@ namespace Prism.Navigation.Regions
         {
             get
             {
-                if (_itemMetadataCollection == null)
-                {
-                    _itemMetadataCollection = new ObservableCollection<ItemMetadata>();
-                }
-
+                _itemMetadataCollection ??= new ObservableCollection<ItemMetadata>();
                 return _itemMetadataCollection;
             }
+        }
+
+        /// <overloads>Adds a new view to the region.</overloads>
+        /// <summary>Adds a new view to the region.</summary>
+        /// <param name="viewName">The view to add.</param>
+        /// <returns>The <see cref="IRegionManager"/> that is set on the view if it is a <see cref="DependencyObject"/>. It will be the current region manager when using this overload.</returns>
+        public IRegionManager Add(string viewName)
+        {
+            var view = ContainerLocator.Container.Resolve<object>(viewName);
+            return Add(view, viewName, false);
         }
 
         /// <overloads>Adds a new view to the region.</overloads>
@@ -219,9 +225,7 @@ namespace Prism.Navigation.Regions
             return Add(view, null, false);
         }
 
-        /// <summary>
-        /// Adds a new view to the region.
-        /// </summary>
+        /// <summary>Adds a new view to the region.</summary>
         /// <param name="view">The view to add.</param>
         /// <param name="viewName">The name of the view. This can be used to retrieve it later by calling <see cref="IRegion.GetView"/>.</param>
         /// <returns>The <see cref="IRegionManager"/> that is set on the view if it is a <see cref="AvaloniaObject"/>. It will be the current region manager when using this overload.</returns>
@@ -235,9 +239,7 @@ namespace Prism.Navigation.Regions
             return Add(view, viewName, false);
         }
 
-        /// <summary>
-        /// Adds a new view to the region.
-        /// </summary>
+        /// <summary>Adds a new view to the region.</summary>
         /// <param name="view">The view to add.</param>
         /// <param name="viewName">The name of the view. This can be used to retrieve it later by calling <see cref="IRegion.GetView"/>.</param>
         /// <param name="createRegionManagerScope">When <see langword="true"/>, the added view will receive a new instance of <see cref="IRegionManager"/>, otherwise it will use the current region manager for this region.</param>
@@ -249,9 +251,7 @@ namespace Prism.Navigation.Regions
             return manager;
         }
 
-        /// <summary>
-        /// Removes the specified view from the region.
-        /// </summary>
+        /// <summary>Removes the specified view from the region.</summary>
         /// <param name="view">The view to remove.</param>
         public virtual void Remove(object view)
         {
@@ -265,9 +265,7 @@ namespace Prism.Navigation.Regions
             }
         }
 
-        /// <summary>
-        /// Removes all views from the region.
-        /// </summary>
+        /// <summary>Removes all views from the region.</summary>
         public void RemoveAll()
         {
             foreach (var view in Views)
@@ -276,9 +274,7 @@ namespace Prism.Navigation.Regions
             }
         }
 
-        /// <summary>
-        /// Marks the specified view as active.
-        /// </summary>
+        /// <summary>Marks the specified view as active.</summary>
         /// <param name="view">The view to activate.</param>
         public virtual void Activate(object view)
         {
@@ -290,9 +286,7 @@ namespace Prism.Navigation.Regions
             }
         }
 
-        /// <summary>
-        /// Marks the specified view as inactive.
-        /// </summary>
+        /// <summary>Marks the specified view as inactive.</summary>
         /// <param name="view">The view to deactivate.</param>
         public virtual void Deactivate(object view)
         {
@@ -304,9 +298,7 @@ namespace Prism.Navigation.Regions
             }
         }
 
-        /// <summary>
-        /// Returns the view instance that was added to the region using a specific name.
-        /// </summary>
+        /// <summary>Returns the view instance that was added to the region using a specific name.</summary>
         /// <param name="viewName">The name used when adding the view to the region.</param>
         /// <returns>Returns the named view or <see langword="null"/> if the view with <paramref name="viewName"/> does not exist in the current region.</returns>
         public virtual object GetView(string viewName)
@@ -326,9 +318,7 @@ namespace Prism.Navigation.Regions
             return null;
         }
 
-        /// <summary>
-        /// Initiates navigation to the specified target.
-        /// </summary>
+        /// <summary>Initiates navigation to the specified target.</summary>
         /// <param name="target">The target.</param>
         /// <param name="navigationCallback">A callback to execute when the navigation request is completed.</param>
         public void RequestNavigate(Uri target, Action<NavigationResult> navigationCallback)
@@ -336,13 +326,11 @@ namespace Prism.Navigation.Regions
             RequestNavigate(target, navigationCallback, null);
         }
 
-        /// <summary>
-        /// Initiates navigation to the specified target.
-        /// </summary>
+        /// <summary>Initiates navigation to the specified target.</summary>
         /// <param name="target">The target.</param>
         /// <param name="navigationCallback">A callback to execute when the navigation request is completed.</param>
         /// <param name="navigationParameters">The navigation parameters specific to the navigation request.</param>
-        public void RequestNavigate(Uri target, Action<NavigationResult> navigationCallback, NavigationParameters navigationParameters)
+        public void RequestNavigate(Uri target, Action<NavigationResult> navigationCallback, INavigationParameters navigationParameters)
         {
             NavigationService.RequestNavigate(target, navigationCallback, navigationParameters);
         }
@@ -354,7 +342,7 @@ namespace Prism.Navigation.Regions
                 throw new InvalidOperationException(Resources.RegionViewExistsException);
             }
 
-            ItemMetadata itemMetadata = new ItemMetadata(view);
+            var itemMetadata = new ItemMetadata(view);
             if (!string.IsNullOrEmpty(viewName))
             {
                 if (ItemMetadataCollection.FirstOrDefault(x => x.Name == viewName) != null)
@@ -388,7 +376,7 @@ namespace Prism.Navigation.Regions
 
         private void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
         }
 
         /// <summary>
