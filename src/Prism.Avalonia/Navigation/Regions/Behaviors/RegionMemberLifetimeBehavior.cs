@@ -4,7 +4,6 @@ using System.Collections.Specialized;
 using System.Linq;
 using Avalonia.Controls;
 using Prism.Common;
-using Prism.Navigation.Regions;
 
 namespace Prism.Navigation.Regions.Behaviors
 {
@@ -20,7 +19,7 @@ namespace Prism.Navigation.Regions.Behaviors
     /// or the <see cref="RegionMemberLifetimeAttribute"/> (in that order) to determine if it should be kept
     /// alive on removal.
     /// <p/>
-    /// If the item in the collection is a <see cref="System.Windows.Control"/>, it will
+    /// If the item in the collection is a <see cref="Control"/>, it will
     /// also check it's DataContext for <see cref="IRegionMemberLifetime"/> or the <see cref="RegionMemberLifetimeAttribute"/>.
     /// <p/>
     /// The order of checks are:
@@ -43,7 +42,7 @@ namespace Prism.Navigation.Regions.Behaviors
         /// </summary>
         protected override void OnAttach()
         {
-            Region.ActiveViews.CollectionChanged += OnActiveViewsChanged;
+            Region.ActiveViews.CollectionChanged += sOnActiveViewsChanged;
         }
 
         private void OnActiveViewsChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -90,10 +89,10 @@ namespace Prism.Navigation.Regions.Behaviors
                 return lifetimeAttribute;
             }
 
-            var Control = inactiveView as Control;
-            if (Control != null && Control.DataContext != null)
+            var control = inactiveView as Control;
+            if (control != null && control.DataContext != null)
             {
-                var dataContext = Control.DataContext;
+                var dataContext = control.DataContext;
                 var contextLifetimeAttribute =
                     GetCustomAttributes<RegionMemberLifetimeAttribute>(dataContext.GetType()).FirstOrDefault();
                 return contextLifetimeAttribute;

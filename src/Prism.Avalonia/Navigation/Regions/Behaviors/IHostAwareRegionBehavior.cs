@@ -1,5 +1,4 @@
-using Avalonia;
-using Prism.Navigation.Regions;
+﻿using Avalonia;
 
 namespace Prism.Navigation.Regions.Behaviors
 {

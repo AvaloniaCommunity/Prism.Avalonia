@@ -1,4 +1,4 @@
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Prism.Navigation.Regions;
 using System;
@@ -27,7 +27,7 @@ namespace Prism.Navigation.Regions.Behaviors
             AvaloniaProperty.RegisterAttached<Control, bool>("ClearChildViews", typeof(ClearChildViewsRegionBehavior));
 
         /// <summary>
-        /// Gets the ClearChildViews attached property from an <seealso cref="AvaloniaObject"/>.
+        /// Gets the ClearChildViews attached property from a <see cref="AvaloniaObject"/>.
         /// </summary>
         /// <param name="target">The object from which to get the value.</param>
         /// <returns>The value of the ClearChildViews attached property in the target specified.</returns>
@@ -36,11 +36,11 @@ namespace Prism.Navigation.Regions.Behaviors
             if (target == null)
                 throw new ArgumentNullException(nameof(target));
 
-            return (bool)target.GetValue(ClearChildViewsProperty);
+            return (bool)target.GetValue(ClearChildViewsRegionBehavior.ClearChildViewsProperty);
         }
 
         /// <summary>
-        /// Sets the ClearChildViews attached property in a <seealso cref="DependencyObject"/>.
+        /// Sets the ClearChildViews attached property in a <see cref="AvaloniaObject"/>.
         /// </summary>
         /// <param name="target">The object in which to set the value.</param>
         /// <param name="value">The value of to set in the target object's ClearChildViews attached property.</param>
@@ -49,11 +49,11 @@ namespace Prism.Navigation.Regions.Behaviors
             if (target == null)
                 throw new ArgumentNullException(nameof(target));
 
-            target.SetValue(ClearChildViewsProperty, value);
+            target.SetValue(ClearChildViewsRegionBehavior.ClearChildViewsProperty, value);
         }
 
         /// <summary>
-        /// Subscribes to the <see cref="Region"/>'s PropertyChanged method to monitor its RegionManager property.
+        /// Subscribes to the <see cref="Region"/>'s PropertyChanged method to monitor its <see cref="RegionManager"> property.
         /// </summary>
         protected override void OnAttach()
         {

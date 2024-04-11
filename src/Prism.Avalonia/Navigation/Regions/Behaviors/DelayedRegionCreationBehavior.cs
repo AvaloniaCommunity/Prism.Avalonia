@@ -5,7 +5,6 @@ using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Threading;
-using Prism.Navigation.Regions;
 using Prism.Properties;
 
 namespace Prism.Navigation.Regions.Behaviors

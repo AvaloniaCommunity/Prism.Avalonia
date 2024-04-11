@@ -4,14 +4,13 @@ using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Prism.Common;
-using Prism.Navigation.Regions;
 
 namespace Prism.Navigation.Regions.Behaviors
 {
     /// <summary>
-    /// Behavior that monitors a <see cref="IRegion"/> object and 
+    /// Behavior that monitors a <see cref="IRegion"/> object and
     /// changes the value for the <see cref="IActiveAware.IsActive"/> property when
-    /// an object that implements <see cref="IActiveAware"/> gets added or removed 
+    /// an object that implements <see cref="IActiveAware"/> gets added or removed
     /// from the collection.
     /// </summary>
     /// <remarks>
@@ -82,13 +81,13 @@ namespace Prism.Navigation.Regions.Behaviors
 
         private void InvokeOnSynchronizedActiveAwareChildren(object item, Action<IActiveAware> invocation)
         {
-            var dependencyObjectView = item as AvaloniaObject;
+            var avaloniaObjectView = item as AvaloniaObject;
 
-            if (dependencyObjectView != null)
+            if (avaloniaObjectView != null)
             {
-                // We are assuming that any scoped region managers are attached directly to the 
+                // We are assuming that any scoped region managers are attached directly to the
                 // view.
-                var regionManager = RegionManager.GetRegionManager(dependencyObjectView);
+                var regionManager = RegionManager.GetRegionManager(avaloniaObjectView);
 
                 // If the view's RegionManager attached property is different from the region's RegionManager,
                 // then the view's region manager is a scoped region manager.
