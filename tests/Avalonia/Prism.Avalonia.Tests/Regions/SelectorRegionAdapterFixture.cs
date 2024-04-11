@@ -3,6 +3,7 @@
 /*
 using System;
 using Avalonia.Controls;
+using Moq;
 using Prism.Navigation.Regions;
 using Prism.Navigation.Regions.Behaviors;
 using Xunit;
@@ -14,6 +15,7 @@ namespace Prism.Avalonia.Tests.Regions
         [StaFact]
         public void AdapterAddsSelectorItemsSourceSyncBehavior()
         {
+            ContainerLocator.SetContainerExtension(Mock.Of<IContainerExtension>());
             var control = new ListBox();
             IRegionAdapter adapter = new TestableSelectorRegionAdapter();
 
@@ -26,6 +28,7 @@ namespace Prism.Avalonia.Tests.Regions
         [StaFact]
         public async Task AdapterDoesNotPreventRegionFromBeingGarbageCollected()
         {
+            ContainerLocator.SetContainerExtension(Mock.Of<IContainerExtension>());
             var selector = new ListBox();
             object model = new object();
             IRegionAdapter adapter = new SelectorRegionAdapter(null);
@@ -33,14 +36,14 @@ namespace Prism.Avalonia.Tests.Regions
             var region = adapter.Initialize(selector, "Region1");
             region.Add(model);
 
-            WeakReference regionWeakReference = new WeakReference(region);
-            WeakReference controlWeakReference = new WeakReference(selector);
+            var regionWeakReference = new WeakReference(region);
+            var controlWeakReference = new WeakReference(selector);
             Assert.True(regionWeakReference.IsAlive);
             Assert.True(controlWeakReference.IsAlive);
 
             region = null;
             selector = null;
-            await Task.delay(50);
+            await Task.Delay(50);
             GC.Collect();
             GC.Collect();
 
@@ -51,6 +54,7 @@ namespace Prism.Avalonia.Tests.Regions
         [StaFact]
         public void ActivatingTheViewShouldUpdateTheSelectedItem()
         {
+            ContainerLocator.SetContainerExtension(Mock.Of<IContainerExtension>());
             var selector = new ListBox();
             var view1 = new object();
             var view2 = new object();
@@ -75,6 +79,7 @@ namespace Prism.Avalonia.Tests.Regions
         [StaFact]
         public void DeactivatingTheSelectedViewShouldUpdateTheSelectedItem()
         {
+            ContainerLocator.SetContainerExtension(Mock.Of<IContainerExtension>());
             var selector = new ListBox();
             var view1 = new object();
             IRegionAdapter adapter = new SelectorRegionAdapter(null);
@@ -96,6 +101,7 @@ namespace Prism.Avalonia.Tests.Regions
                 : base(null)
             {
             }
+
 
             protected override IRegion CreateRegion()
             {

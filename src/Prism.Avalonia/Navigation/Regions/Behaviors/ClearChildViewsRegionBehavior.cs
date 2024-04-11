@@ -64,12 +64,12 @@ namespace Prism.Navigation.Regions.Behaviors
         {
             foreach (var view in region.Views)
             {
-                AvaloniaObject dependencyObject = view as AvaloniaObject;
-                if (dependencyObject != null)
+                AvaloniaObject avaloniaObject = view as AvaloniaObject;
+                if (avaloniaObject != null)
                 {
-                    if (GetClearChildViews(dependencyObject))
+                    if (GetClearChildViews(avaloniaObject))
                     {
-                        dependencyObject.ClearValue(RegionManager.RegionManagerProperty);
+                        avaloniaObject.ClearValue(RegionManager.RegionManagerProperty);
                     }
                 }
             }

@@ -126,16 +126,16 @@ namespace Prism.Navigation.Regions.Behaviors
             TryRegisterRegion();
         }
 
-        private IRegionManager FindRegionManager(AvaloniaObject dependencyObject)
+        private IRegionManager FindRegionManager(AvaloniaObject avaloniaObject)
         {
-            var regionmanager = RegionManagerAccessor.GetRegionManager(dependencyObject);
+            var regionmanager = RegionManagerAccessor.GetRegionManager(avaloniaObject);
             if (regionmanager != null)
             {
                 return regionmanager;
             }
 
             //TODO: this is should be ok in Avalonia. I have to test it
-            AvaloniaObject parent = ((dependencyObject as Visual)?.GetVisualParent() ?? null) as AvaloniaObject;
+            AvaloniaObject parent = ((avaloniaObject as Visual)?.GetVisualParent() ?? null) as AvaloniaObject;
             if (parent != null)
             {
                 return FindRegionManager(parent);
