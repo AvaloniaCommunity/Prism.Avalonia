@@ -1,7 +1,6 @@
-using System;
+﻿using System;
 using Avalonia;
 using Prism.Common;
-using Prism.Navigation.Regions;
 using Prism.Properties;
 
 namespace Prism.Navigation.Regions.Behaviors
@@ -11,7 +10,7 @@ namespace Prism.Navigation.Regions.Behaviors
     /// the control that hosts the Region. It does this by setting the <see cref="RegionManager.RegionContextProperty"/>
     /// Dependency Property on the host control.
     ///
-    /// This behavior allows the usage of two way databinding of the RegionContext from XAML.
+    /// This behavior allows the usage of two way data binding of the RegionContext from XAML.
     /// </summary>
     public class SyncRegionContextWithHostBehavior : RegionBehavior, IHostAwareRegionBehavior
     {

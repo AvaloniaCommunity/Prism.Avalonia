@@ -1,10 +1,9 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using Prism.Properties;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.VisualTree;
-using Prism.Navigation.Regions;
 
 namespace Prism.Navigation.Regions.Behaviors
 {
@@ -54,7 +53,6 @@ namespace Prism.Navigation.Regions.Behaviors
                 {
                     throw new InvalidOperationException(Resources.HostControlCannotBeSetAfterAttach);
                 }
-
                 hostControl = value;
             }
         }
