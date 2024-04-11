@@ -32,12 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Mocks\Views\MockBindingsView.axaml.cs">
-      <DependentUpon>MockBindingsView.axaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Modularity\ModuleCatalogXaml\InvalidDependencyModuleCatalog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
