@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -14,7 +13,6 @@ using Prism.Properties;
 using Prism.Ioc.Internals;
 using Avalonia;
 using Avalonia.Controls;
-using Prism.Navigation.Regions;
 using Prism.Navigation.Regions.Behaviors;
 
 namespace Prism.Navigation.Regions

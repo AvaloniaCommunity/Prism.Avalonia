@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Prism.Properties;
 
 namespace Prism.Navigation.Regions

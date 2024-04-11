@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Avalonia.Controls;
 using Prism.Properties;
 
@@ -32,8 +32,9 @@ namespace Prism.Navigation.Regions
             if (regionTarget == null)
                 throw new ArgumentNullException(nameof(regionTarget));
 
-            // In Avalonia, Items will never be null
+            // NOTE: In Avalonia, Items will never be null
             bool itemsSourceIsSet = regionTarget.ItemCount > 0;
+            itemsSourceIsSet = itemsSourceIsSet || regionTarget.HasBinding(ItemsControl.ItemsSourceProperty);
 
             if (itemsSourceIsSet)
             {
@@ -47,6 +48,9 @@ namespace Prism.Navigation.Regions
                 {
                     region.Add(childItem);
                 }
+
+                // Control must be empty before setting ItemsSource
+                regionTarget.Items.Clear();
             }
 
             // Avalonia v11-Preview5 needs IRegion implement IList. Enforcing it to return AvaloniaList<object> fixes this.
