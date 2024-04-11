@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,9 +23,7 @@ namespace Prism.Navigation.Regions
         private Comparison<object> sort;
         private List<object> filteredItems = new List<object>();
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ViewsCollection"/> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ViewsCollection"/> class.</summary>
         /// <param name="list">The list to wrap and filter.</param>
         /// <param name="filter">A predicate to filter the <paramref name="list"/> collection.</param>
         public ViewsCollection(ObservableCollection<ItemMetadata> list, Predicate<ItemMetadata> filter)
@@ -37,14 +35,10 @@ namespace Prism.Navigation.Regions
             UpdateFilteredItemsList();
         }
 
-        /// <summary>
-        /// Occurs when the collection changes.
-        /// </summary>
+        /// <summary>Occurs when the collection changes.</summary>
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
-        /// <summary>
-        /// Gets or sets the comparison used to sort the views.
-        /// </summary>
+        /// <summary>Gets or sets the comparison used to sort the views.</summary>
         /// <value>The comparison to use.</value>
         public Comparison<object> SortComparison
         {
@@ -60,9 +54,7 @@ namespace Prism.Navigation.Regions
             }
         }
 
-        /// <summary>
-        /// Determines whether the collection contains a specific value.
-        /// </summary>
+        /// <summary>Determines whether the collection contains a specific value.</summary>
         /// <param name="value">The object to locate in the collection.</param>
         /// <returns><see langword="true" /> if <paramref name="value"/> is found in the collection; otherwise, <see langword="false" />.</returns>
         public bool Contains(object value)
@@ -70,9 +62,7 @@ namespace Prism.Navigation.Regions
             return filteredItems.Contains(value);
         }
 
-        ///<summary>
-        ///Returns an enumerator that iterates through the collection.
-        ///</summary>
+        ///<summary>Returns an enumerator that iterates through the collection.summary>
         ///<returns>
         ///A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.
         ///</returns>
@@ -81,9 +71,7 @@ namespace Prism.Navigation.Regions
             return filteredItems.GetEnumerator();
         }
 
-        ///<summary>
-        ///Returns an enumerator that iterates through a collection.
-        ///</summary>
+        ///<summary>Returns an enumerator that iterates through a collection.summary>
         ///<returns>
         ///An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
         ///</returns>
@@ -92,14 +80,11 @@ namespace Prism.Navigation.Regions
             return GetEnumerator();
         }
 
-        /// <summary>
-        /// Used to invoked the <see cref="CollectionChanged"/> event.
-        /// </summary>
+        /// <summary>Used to invoked the <see cref="CollectionChanged"/> event.</summary>
         /// <param name="e"></param>
         private void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
-            NotifyCollectionChangedEventHandler handler = CollectionChanged;
-            if (handler != null) handler(this, e);
+            CollectionChanged?.Invoke(this, e);
         }
 
         private void NotifyReset()
@@ -107,18 +92,14 @@ namespace Prism.Navigation.Regions
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
-        /// <summary>
-        /// Removes all monitoring of underlying MetadataItems and re-adds them.
-        /// </summary>
+        /// <summary>Removes all monitoring of underlying MetadataItems and re-adds them.</summary>
         private void ResetAllMonitors()
         {
             RemoveAllMetadataMonitors();
             MonitorAllMetadataItems();
         }
 
-        /// <summary>
-        /// Adds all underlying MetadataItems to the list from the subjectCollection
-        /// </summary>
+        /// <summary>Adds all underlying MetadataItems to the list from the subjectCollection</summary>
         private void MonitorAllMetadataItems()
         {
             foreach (var item in subjectCollection)
@@ -127,9 +108,7 @@ namespace Prism.Navigation.Regions
             }
         }
 
-        /// <summary>
-        /// Removes all monitored items from our monitoring list.
-        /// </summary>
+        /// <summary>Removes all monitored items from our monitoring list.</summary>
         private void RemoveAllMetadataMonitors()
         {
             foreach (var item in monitoredItems)
@@ -140,9 +119,7 @@ namespace Prism.Navigation.Regions
             monitoredItems.Clear();
         }
 
-        /// <summary>
-        /// Adds handler to monitor the MetadataItem and adds it to our monitoring list.
-        /// </summary>
+        /// <summary>Adds handler to monitor the MetadataItem and adds it to our monitoring list.</summary>
         /// <param name="itemMetadata"></param>
         /// <param name="isInList"></param>
         private void AddMetadataMonitor(ItemMetadata itemMetadata, bool isInList)
@@ -156,9 +133,7 @@ namespace Prism.Navigation.Regions
                 });
         }
 
-        /// <summary>
-        /// Unhooks from the MetadataItem change event and removes from our monitoring list.
-        /// </summary>
+        /// <summary>Unhooks from the MetadataItem change event and removes from our monitoring list.</summary>
         /// <param name="itemMetadata"></param>
         private void RemoveMetadataMonitor(ItemMetadata itemMetadata)
         {
@@ -166,9 +141,7 @@ namespace Prism.Navigation.Regions
             monitoredItems.Remove(itemMetadata);
         }
 
-        /// <summary>
-        /// Invoked when any of the underlying ItemMetadata items we're monitoring changes.
-        /// </summary>
+        /// <summary>Invoked when any of the underlying ItemMetadata items we're monitoring changes.</summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnItemMetadataChanged(object sender, EventArgs e)
@@ -272,7 +245,7 @@ namespace Prism.Navigation.Regions
         private void UpdateFilteredItemsList()
         {
             filteredItems = subjectCollection.Where(i => filter(i)).Select(i => i.Item)
-                .OrderBy(o => o, new RegionItemComparer(SortComparison)).ToList();
+                .OrderBy<object, object>(o => o, new RegionItemComparer(SortComparison)).ToList();
         }
 
         private class MonitorInfo

@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 
 namespace Prism.Navigation.Regions
 {
@@ -21,6 +21,7 @@ namespace Prism.Navigation.Regions
             {
                 base.Deactivate(currentActiveView);
             }
+
             base.Activate(view);
         }
     }

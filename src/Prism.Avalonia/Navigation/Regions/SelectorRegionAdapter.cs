@@ -1,11 +1,11 @@
-// TODO: Feature currently disabled
+﻿// TODO: Feature currently disabled
 /*
 using Prism.Regions.Behaviors;
 using System;
 using Avalonia.Controls.Primitives;
-using System.Windows.Controls.Primitives;
+using Avalonia.Styling;
 
-namespace Prism.Regions
+namespace Prism.Navigation.Regions
 {
     /// <summary>
     /// Adapter that creates a new <see cref="Region"/> and binds all
@@ -50,6 +50,7 @@ namespace Prism.Regions
             // Add the behavior that syncs the items source items with the rest of the items
             region.Behaviors.Add(SelectorItemsSourceSyncBehavior.BehaviorKey, new SelectorItemsSourceSyncBehavior()
             {
+                /////HostControl = regionTarget
                 HostControl = regionTarget.SelectedItem as Avalonia.AvaloniaObject // TODO: Verify '.SelectedItem ...'
             });
 
