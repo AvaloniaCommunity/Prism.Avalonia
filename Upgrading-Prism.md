@@ -38,7 +38,9 @@ As we all know, not everything is straight forward between these two XAML techno
 ### Changes
 
 * `Samples` folder renamed to `e2e`
-* Prism.Dialogs - _See section for more info_
+* Prism.Dialogs
+  * _Various updates, see section before for more info_
+* `NavigationResult` returns the property `Success` instead of `Result`
 
 #### Dialogs
 
