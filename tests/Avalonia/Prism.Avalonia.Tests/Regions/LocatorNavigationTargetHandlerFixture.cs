@@ -1,7 +1,6 @@
 using Avalonia.Controls;
 using Moq;
 using Prism.Ioc;
-using Prism.Regions;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions

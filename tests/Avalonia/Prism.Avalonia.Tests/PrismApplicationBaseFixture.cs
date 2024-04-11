@@ -9,10 +9,9 @@ using Moq;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Regions;
-using Prism.Regions.Behaviors;
 using Prism.Dialogs;
 using Xunit;
+using Prism.Navigation.Regions.Behaviors;
 
 namespace Prism.Avalonia.Tests
 {

@@ -4,7 +4,6 @@ using System.Collections.Specialized;
 using Moq;
 using Prism.Avalonia.Tests.Mocks;
 using Prism.Ioc;
-using Prism.Regions;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions

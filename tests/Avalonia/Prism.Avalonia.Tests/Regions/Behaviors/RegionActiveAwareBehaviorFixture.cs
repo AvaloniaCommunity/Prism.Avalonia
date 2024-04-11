@@ -2,7 +2,6 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Moq;
 using Prism.Avalonia.Tests.Mocks;
-using Prism.Regions;
 using Prism.Regions.Behaviors;
 using Xunit;
 
