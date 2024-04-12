@@ -70,6 +70,7 @@ namespace SampleMvvmApp.RegionAdapters
                 {
                     items.Add(enumerator.Current);
                 }
+
                 regionTarget.ItemsSource = items;
             };
         }
