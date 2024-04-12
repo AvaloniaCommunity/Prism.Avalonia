@@ -27,19 +27,24 @@ public class DialogViewModel : BindableBase, IDialogAware
 
     public string Title { get => _title; set => SetProperty(ref _title, value); }
 
-    /// <summary>Gets or sets the optional parent window of this Dialog pop-up.</summary>
-    public Window? ParentWindow { get => _parentWindow; set => SetProperty(ref _parentWindow, value); }
+    /////// <summary>Gets or sets the optional parent window of this Dialog pop-up.</summary>
+    ////public Window? ParentWindow { get => _parentWindow; set => SetProperty(ref _parentWindow, value); }
 
     public DelegateCommand CmdModalDialog => new(() =>
     {
         var title = "MessageBox Title Here";
-        var message = "Hello, I am a modal MessageBox window.\n\n" +
-                      $"I {(ParentWindow == null ? "dont" : "do")} have a parent.";
+        var message = "Hello, I am a modal MessageBox window.";
 
+        // v9.0.271
         _dialogService.ShowDialog(
-            ParentWindow,
             nameof(MessageBoxView),
             new DialogParameters($"title={title}&message={message}"));
+
+        // 8.1.97
+        ////_dialogService.ShowDialog(
+        ////    ParentWindow,
+        ////    nameof(MessageBoxView),
+        ////    new DialogParameters($"title={title}&message={message}"));
     });
 
     public DelegateCommand<string> CmdResult => new DelegateCommand<string>((param) =>
@@ -57,12 +62,14 @@ public class DialogViewModel : BindableBase, IDialogAware
         if (int.TryParse(param, out int intResult))
             result = (ButtonResult)intResult;
 
-        RaiseRequestClose(new DialogResult(result));
+        // NEW
+        RequestClose.Invoke(result);
+
+        // OLD
+        ////RaiseRequestClose(new DialogResult(result));
     });
 
     public string CustomMessage { get => _customMessage; set => SetProperty(ref _customMessage, value); }
-
-    public event Action<IDialogResult>? RequestClose;
 
     public virtual bool CanCloseDialog()
     {
@@ -80,8 +87,8 @@ public class DialogViewModel : BindableBase, IDialogAware
         CustomMessage = parameters.GetValue<string>("message");
     }
 
-    public virtual void RaiseRequestClose(IDialogResult dialogResult)
-    {
-        RequestClose?.Invoke(dialogResult);
-    }
+    ////public virtual void RaiseRequestClose(IDialogResult dialogResult)
+    ////{
+    ////    RequestClose?.Invoke(dialogResult);
+    ////}
 }

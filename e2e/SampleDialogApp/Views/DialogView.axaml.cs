@@ -18,14 +18,15 @@ public partial class DialogView : UserControl
     {
         base.OnInitialized();
 
-        // Pass the parent window to the ViewModel
-        // given that the ViewModel has been binded to this view
-        DialogViewModel? viewModel = this.DataContext as DialogViewModel;
-        if (this.Parent is Window parent &&
-            viewModel is not null)
-        {
-            viewModel.ParentWindow = parent;
-        }
+        // v8.1.97
+        ////// Pass the parent window to the ViewModel
+        ////// given that the ViewModel has been binded to this view
+        ////DialogViewModel? viewModel = this.DataContext as DialogViewModel;
+        ////if (this.Parent is Window parent &&
+        ////    viewModel is not null)
+        ////{
+        ////    viewModel.ParentWindow = parent;
+        ////}
     }
 
     private void InitializeComponent()
@@ -42,9 +43,15 @@ public partial class DialogView : UserControl
                       "I've been called by the `.axaml.cs` UserControl.";
 
         dialogSvc.ShowDialog(
-            this.Parent as Window,
             nameof(MessageBoxView),
             new DialogParameters($"title={title}&message={message}"),
             r => { });
+
+        // v8.1.97
+        ////dialogSvc.ShowDialog(
+        ////    this.Parent as Window,
+        ////    nameof(MessageBoxView),
+        ////    new DialogParameters($"title={title}&message={message}"),
+        ////    r => { });
     }
 }
