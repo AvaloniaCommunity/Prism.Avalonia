@@ -1,8 +1,5 @@
-using System;
-using System.Linq;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Data;
-using Prism.Regions;
 using Prism.Avalonia.Tests.Mocks;
 using Xunit;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Services.Dialogs;
+using Prism.Dialogs;
 
 namespace SampleDialogApp.ViewModels;
 
@@ -27,7 +27,11 @@ public class MessageBoxViewModel : BindableBase, IDialogAware
         MaxWidth = 600;
     }
 
-    public event Action<IDialogResult>? RequestClose;
+    // v9.0.271-pre
+    public DialogCloseListener RequestClose { get; }
+
+    // v8.1.97
+    // public event Action<IDialogResult>? RequestClose;
 
     public string Title { get => _title; set => SetProperty(ref _title, value); }
 
@@ -37,29 +41,23 @@ public class MessageBoxViewModel : BindableBase, IDialogAware
 
     public DelegateCommand<string> CmdResult => new DelegateCommand<string>((param) =>
     {
-        // None = 0
-        // OK = 1
-        // Cancel = 2
-        // Abort = 3
-        // Retry = 4
-        // Ignore = 5
-        // Yes = 6
-        // No = 7
+        // None = 0, OK = 1, Cancel = 2, Abort = 3, Retry = 4, Ignore = 5, Yes = 6, No = 7
         ButtonResult result = ButtonResult.None;
 
         if (int.TryParse(param, out int intResult))
             result = (ButtonResult)intResult;
 
-        RaiseRequestClose(new DialogResult(result));
+        // v9.0.271-pre
+        RequestClose.Invoke(result);
+
+        // v8.1.97
+        // RaiseRequestClose(new DialogResult(result));
     });
 
     public string CustomMessage { get => _customMessage; set => SetProperty(ref _customMessage, value); }
 
-    public virtual bool CanCloseDialog()
-    {
-        // Allow the dialog to close
-        return true;
-    }
+    /// <summary>Allow the dialog to close</summary>
+    public virtual bool CanCloseDialog() => true;
 
     public virtual void OnDialogClosed()
     {
@@ -75,8 +73,9 @@ public class MessageBoxViewModel : BindableBase, IDialogAware
         CustomMessage = parameters.GetValue<string>("message");
     }
 
-    public virtual void RaiseRequestClose(IDialogResult dialogResult)
-    {
-        RequestClose?.Invoke(dialogResult);
-    }
+    // v8.1.97
+    ////public virtual void RaiseRequestClose(IDialogResult dialogResult)
+    ////{
+    ////    RequestClose?.Invoke(dialogResult);
+    ////}
 }

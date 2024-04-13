@@ -1,5 +1,4 @@
-using Moq;
-using Prism.Regions;
+﻿using Moq;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
@@ -130,13 +129,13 @@ namespace Prism.Avalonia.Tests.Regions
 
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri1, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri2, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri3, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
 
             // Act
             target.GoBack();
@@ -175,13 +174,13 @@ namespace Prism.Avalonia.Tests.Regions
 
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri1, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri2, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, false)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, false)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri3, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
 
             // Act
             target.GoBack();
@@ -220,13 +219,13 @@ namespace Prism.Avalonia.Tests.Regions
 
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri1, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri2, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri3, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
 
             // Act
             target.GoBack();
@@ -266,13 +265,13 @@ namespace Prism.Avalonia.Tests.Regions
 
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri1, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri2, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri3, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
 
             target.GoBack();
             target.GoBack();
@@ -314,13 +313,13 @@ namespace Prism.Avalonia.Tests.Regions
 
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri1, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri2, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri3, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, false)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, false)));
 
             target.GoBack();
 
@@ -361,13 +360,13 @@ namespace Prism.Avalonia.Tests.Regions
 
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri1, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri2, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri3, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
 
             target.GoBack();
             target.GoBack();
@@ -412,13 +411,13 @@ namespace Prism.Avalonia.Tests.Regions
 
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri1, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri2, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri3, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
 
             target.GoBack();
 
@@ -460,16 +459,16 @@ namespace Prism.Avalonia.Tests.Regions
 
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri1, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri2, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri3, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
             mockNavigationTarget
                 .Setup(x => x.RequestNavigate(uri4, It.IsAny<Action<NavigationResult>>(), null))
-                .Callback<Uri, Action<NavigationResult>, NavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
+                .Callback<Uri, Action<NavigationResult>, INavigationParameters>((u, c, n) => c(new NavigationResult(null, true)));
 
             Assert.Equal(entry4, target.CurrentEntry);
 

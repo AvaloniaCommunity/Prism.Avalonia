@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Regions;
+using Prism.Navigation.Regions;
 
 namespace SampleMvvmApp.ViewModels
 {

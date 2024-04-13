@@ -1,6 +1,6 @@
 ﻿using SampleMvvmApp.Views;
 using Prism.Commands;
-using Prism.Regions;
+using Prism.Navigation.Regions;
 
 namespace SampleMvvmApp.ViewModels
 {

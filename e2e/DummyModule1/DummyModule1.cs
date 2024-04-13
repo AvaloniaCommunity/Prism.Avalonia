@@ -9,7 +9,7 @@ using Prism.Events;
 using Prism.Ioc;
 ////using Prism.Logging;
 using Prism.Modularity;
-using Prism.Regions;
+using Prism.Navigation.Regions;
 
 namespace DummyModule
 {

@@ -1,8 +1,8 @@
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Moq;
 using Prism.Ioc;
-using Prism.Regions;
 using Xunit;
+using static Prism.Avalonia.Tests.Regions.LocatorNavigationTargetHandlerFixture;
 
 namespace Prism.Avalonia.Tests.Regions
 {
@@ -13,6 +13,7 @@ namespace Prism.Avalonia.Tests.Regions
         {
             // Arrange
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
 
             var region = new Region();
 
@@ -35,23 +36,21 @@ namespace Prism.Avalonia.Tests.Regions
         public void WhenRegionHasMultipleViews_ThenViewsWithMatchingTypeNameAreConsidered()
         {
             // Arrange
+
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
 
             var region = new Region();
 
             var view1 = new TestView();
-            var view2 = "view";
+            var view2 = new Test2View();
 
             region.Add(view1);
             region.Add(view2);
-
             var navigationContext = new NavigationContext(null, new Uri(view2.GetType().Name, UriKind.Relative));
-
             var navigationTargetHandler = new TestRegionNavigationContentLoader(containerMock.Object);
-
             // Act
             var returnedView = navigationTargetHandler.LoadContent(region, navigationContext);
-
             // Assert
             Assert.Same(view2, returnedView);
         }
@@ -61,11 +60,12 @@ namespace Prism.Avalonia.Tests.Regions
         {
             // Arrange
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
 
             var region = new Region();
 
             var view1 = new TestView();
-            var view2 = "view";
+            var view2 = new Test2View();
 
             region.Add(view1);
             region.Add(view2);
@@ -86,6 +86,7 @@ namespace Prism.Avalonia.Tests.Regions
         {
             // Arrange
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
 
             var region = new Region();
 
@@ -114,6 +115,7 @@ namespace Prism.Avalonia.Tests.Regions
         {
             // Arrange
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
 
             var region = new Region();
 
@@ -144,6 +146,7 @@ namespace Prism.Avalonia.Tests.Regions
         {
             // Arrange
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
 
             var region = new Region();
 
@@ -168,6 +171,7 @@ namespace Prism.Avalonia.Tests.Regions
         {
             // Arrange
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
 
             var region = new Region();
 
@@ -201,6 +205,7 @@ namespace Prism.Avalonia.Tests.Regions
         {
             // Arrange
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
 
             var region = new Region();
 
@@ -236,6 +241,8 @@ namespace Prism.Avalonia.Tests.Regions
         public void WhenViewCannotBeCreated_ThenThrowsAnException()
         {
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
+
             containerMock.Setup(sl => sl.Resolve(typeof(object), typeof(TestView).Name)).Throws<ActivationException>();
 
             var region = new Region();
@@ -258,6 +265,7 @@ namespace Prism.Avalonia.Tests.Regions
         {
             // Arrange
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
 
             var region = new Region();
 
@@ -300,6 +308,7 @@ namespace Prism.Avalonia.Tests.Regions
         public void WhenRequestingContentForNullContext_ThenThrows()
         {
             var containerMock = new Mock<IContainerExtension>();
+            ContainerLocator.SetContainerExtension(containerMock.Object);
 
             var region = new Region();
 
@@ -321,6 +330,8 @@ namespace Prism.Avalonia.Tests.Regions
         }
 
         public class TestView { }
+
+        public class Test2View { }
     }
 
     public class ActivationException : Exception

@@ -1,5 +1,4 @@
 ﻿using Moq;
-using Prism.Regions;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
@@ -53,33 +52,33 @@ namespace Prism.Avalonia.Tests.Regions
 
             result = null;
             regionManager.RequestNavigate(nonExistentRegion, source, (r) => result = r, parameters);
-            Assert.Equal(false, result.Result);
+            Assert.False(result.Success);
 
             result = null;
             regionManager.RequestNavigate(nonExistentRegion, source, (r) => result = r);
-            Assert.Equal(false, result.Result);
+            Assert.False(result.Success);
 
             result = null;
             regionManager.RequestNavigate(nonExistentRegion, sourceUri, (r) => result = r, parameters);
-            Assert.Equal(false, result.Result);
+            Assert.False(result.Success);
 
             result = null;
             regionManager.RequestNavigate(nonExistentRegion, sourceUri, (r) => result = r);
-            Assert.Equal(false, result.Result);
+            Assert.False(result.Success);
         }
 
         [Fact]
         public void DelegatesCallToRegion_RegionSource()
         {
             regionManager.RequestNavigate(region, source);
-            mockRegion.Verify((r) => r.RequestNavigate(sourceUri, It.IsAny<Action<NavigationResult>>()));
+            mockRegion.Verify((r) => r.RequestNavigate(sourceUri, It.IsAny<Action<NavigationResult>>(), It.IsAny<INavigationParameters>()));
         }
 
         [Fact]
         public void DelegatesCallToRegion_RegionTarget()
         {
             regionManager.RequestNavigate(region, sourceUri);
-            mockRegion.Verify((r) => r.RequestNavigate(sourceUri, It.IsAny<Action<NavigationResult>>()));
+            mockRegion.Verify((r) => r.RequestNavigate(sourceUri, It.IsAny<Action<NavigationResult>>(), It.IsAny<INavigationParameters>()));
         }
 
         [Fact]
@@ -100,14 +99,14 @@ namespace Prism.Avalonia.Tests.Regions
         public void DelegatesCallToRegion_RegionSourceCallback()
         {
             regionManager.RequestNavigate(region, source, callback);
-            mockRegion.Verify((r) => r.RequestNavigate(sourceUri, callback));
+            mockRegion.Verify((r) => r.RequestNavigate(sourceUri, callback, It.IsAny<INavigationParameters>()));
         }
 
         [Fact]
         public void DelegatesCallToRegion_RegionTargetCallback()
         {
             regionManager.RequestNavigate(region, sourceUri, callback);
-            mockRegion.Verify((r) => r.RequestNavigate(sourceUri, callback));
+            mockRegion.Verify((r) => r.RequestNavigate(sourceUri, callback, It.IsAny<INavigationParameters>()));
         }
 
         [Fact]
