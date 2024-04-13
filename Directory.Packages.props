@@ -2,10 +2,11 @@
 
   <!-- Prism -->
   <ItemGroup>
+    <PackageVersion Include="PolySharp" Version="1.14.1" />
     <PackageVersion Include="Prism.Core" Version="9.0.271-pre" />
-    <PackageVersion Include="Prism.Container.Abstractions" Version="9.0.61-pre" />
-    <PackageVersion Include="Prism.Container.DryIoc" Version="9.0.61-pre" />
-    <PackageVersion Include="Prism.Container.Unity" Version="9.0.61-pre" />
+    <PackageVersion Include="Prism.Container.Abstractions" Version="9.0.84-pre" />
+    <PackageVersion Include="Prism.Container.DryIoc" Version="9.0.84-pre" />
+    <PackageVersion Include="Prism.Container.Unity" Version="9.0.84-pre" />
   </ItemGroup>
 
   <!-- Avalonia -->
@@ -22,7 +23,7 @@
 
   <!-- 3rd-Party -->
   <ItemGroup>
-    <PackageVersion Include="DryIoc.dll" Version="5.4.1" />
+    <PackageVersion Include="DryIoc.dll" Version="5.4.3" />
     <PackageVersion Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
     <PackageVersion Include="System.Reactive" Version="6.0.0" />
     <PackageVersion Include="System.ValueTuple" Version="4.5.0" />
@@ -34,11 +35,11 @@
   <!-- Tests -->
   <ItemGroup>
     <PackageVersion Include="coverlet.collector" Version="6.0.0" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
-    <PackageVersion Include="Moq" Version="4.20.69" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageVersion Include="Moq" Version="4.20.70" />
     <PackageVersion Include="System.CodeDom" Version="6.0.0" />
-    <PackageVersion Include="xunit" Version="2.5.1" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.1"/>
+    <PackageVersion Include="xunit" Version="2.6.6" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.6"/>
     <PackageVersion Include="Xunit.StaFact" Version="1.1.11" />
   </ItemGroup>
 </Project>
