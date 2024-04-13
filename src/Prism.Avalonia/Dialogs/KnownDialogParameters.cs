@@ -8,4 +8,7 @@ public static class KnownDialogParameters
 
     /// <summary>Flag to show the Dialog Modally or Non-Modally.</summary>
     public const string ShowNonModal = "nonModal";
+
+    /// <summary>Host Window; when different from default.</summary>
+    public const string ParentWindow = "parentWindow";
 }
