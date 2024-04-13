@@ -22,7 +22,7 @@ public class MainWindowViewModel : ViewModelBase
         var message = "Hello, I am a simple MessageBox modal window with an OK button.\n\n" +
                       "When too much text is added, a scrollbar will appear.";
 
-        _dialogService.ShowDialog(nameof(MessageBoxView), new DialogParameters($"title={title}&message={message}"), r => { });
+        _dialogService.ShowDialog(nameof(MessageBoxView), new DialogParameters($"title={title}&message={message}"));
     });
 
     public DelegateCommand CmdShowDialog => new DelegateCommand(() =>
