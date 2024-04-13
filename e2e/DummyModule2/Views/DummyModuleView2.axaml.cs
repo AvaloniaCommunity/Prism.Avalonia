@@ -3,7 +3,7 @@ using Avalonia.Threading;
 using ModulesSample.Infrastructure;
 using Prism.Avalonia.Infrastructure.Events;
 using Prism.Events;
-using Prism.Regions;
+using Prism.Navigation.Regions;
 
 namespace DummyModule2.View
 {

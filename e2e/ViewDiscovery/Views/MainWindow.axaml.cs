@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Threading;
-using Prism.Regions;
+using Prism.Navigation.Regions;
 
 namespace ViewDiscovery.Views
 {

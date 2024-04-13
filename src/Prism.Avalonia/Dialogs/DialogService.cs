@@ -25,18 +25,19 @@ namespace Prism.Dialogs
             parameters ??= new DialogParameters();
             var isModal = parameters.TryGetValue<bool>(KnownDialogParameters.ShowNonModal, out var show) ? !show : true;
             var windowName = parameters.TryGetValue<string>(KnownDialogParameters.WindowName, out var wName) ? wName : null;
+            var owner = parameters.TryGetValue<Window>(KnownDialogParameters.ParentWindow, out var hWnd) ? hWnd : null;
 
             IDialogWindow dialogWindow = CreateDialogWindow(windowName);
             ConfigureDialogWindowEvents(dialogWindow, callback);
             ConfigureDialogWindowContent(name, dialogWindow, parameters);
 
-            ShowDialogWindow(dialogWindow, isModal);
+            ShowDialogWindow(dialogWindow, isModal, owner);
         }
 
         /// <summary>Shows the dialog window.</summary>
         /// <param name="dialogWindow">The dialog window to show.</param>
         /// <param name="isModal">If true; dialog is shown as a modal</param>
-        /// <param name="owner">Optional host window of the dialog.</param>
+        /// <param name="owner">Optional host window of the dialog. Use-case, Dialog calling a dialog.</param>
         protected virtual void ShowDialogWindow(IDialogWindow dialogWindow, bool isModal, Window owner = null)
         {
             if (isModal &&

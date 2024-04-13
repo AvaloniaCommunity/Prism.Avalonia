@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Avalonia;
 using Avalonia.Markup.Xaml;
 using Prism.DryIoc;
@@ -27,5 +27,6 @@ public partial class App : PrismApplication
         containerRegistry.Register<MainWindow>();
         containerRegistry.RegisterDialog<MessageBoxView, MessageBoxViewModel>();
         containerRegistry.RegisterDialog<DialogView, DialogViewModel>();
+        containerRegistry.RegisterDialogWindow<CustomDialogWindow>(nameof(CustomDialogWindow));
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Avalonia.Controls;
-using Prism.Regions;
+using Prism.Navigation.Regions;
 
 namespace SampleMvvmApp.RegionAdapters
 {
@@ -70,6 +70,7 @@ namespace SampleMvvmApp.RegionAdapters
                 {
                     items.Add(enumerator.Current);
                 }
+
                 regionTarget.ItemsSource = items;
             };
         }

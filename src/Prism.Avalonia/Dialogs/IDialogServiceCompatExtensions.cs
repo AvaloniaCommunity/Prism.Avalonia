@@ -1,4 +1,5 @@
 ﻿using System;
+using Avalonia.Controls;
 
 namespace Prism.Dialogs
 {

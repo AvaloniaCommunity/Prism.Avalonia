@@ -2,7 +2,7 @@
 using ModulesSample.Infrastructure;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Regions;
+using Prism.Navigation.Regions;
 
 namespace DummyModule2
 {
