@@ -56,6 +56,27 @@ public class DialogViewModel : BindableBase, IDialogAware
         ////    new DialogParameters($"title={title}&message={message}"));
     });
 
+    public DelegateCommand CmdCustomDialogWindow => new(() =>
+    {
+        // This passes the "title" to the Custom window's Title
+        // that is based off of it's inner 'MessageBoxView' UserControl.
+        var title = "Custom Title";
+        var message = "Hello, I custom dialog window running inside of Prism.Avalonia!";
+
+        // NOTE:
+        //  When setting, 'KnownDialogParameters.WindowName' the DialogService
+        //  uses SampleDialogApp's CustomDialogWindow instead of
+        //  Prism.Avalonia's default DialogWindow.
+        _dialogService.ShowDialog(
+            name: nameof(MessageBoxView),
+            new DialogParameters
+            {
+                { "title", title },
+                { "message", message },
+                { KnownDialogParameters.WindowName, nameof(CustomDialogWindow) }
+            });
+    });
+
     public DelegateCommand<string> CmdResult => new DelegateCommand<string>((param) =>
     {
         // None = 0, OK = 1, Cancel = 2, Abort = 3, Retry = 4, Ignore = 5, Yes = 6, No = 7

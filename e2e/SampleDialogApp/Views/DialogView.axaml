@@ -1,4 +1,4 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -14,6 +14,10 @@
     <StackPanel Orientation="Horizontal" Spacing="5">
       <Button Content="Modal from .AXAML.CS" Click="BtnShowModal_Click" />
       <Button Content="Modal from MVVM" Command="{Binding CmdModalDialog}" />
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Spacing="5">
+      <Button Content="Custom Dialog Window" Command="{Binding CmdCustomDialogWindow}" />
     </StackPanel>
 
     <StackPanel Orientation="Horizontal">
