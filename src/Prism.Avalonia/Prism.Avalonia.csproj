@@ -45,10 +45,6 @@ Prism.Avalonia helps you more easily design and build rich, flexible, and easy t
 
   <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" />
-    <PackageReference Include="PolySharp">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
