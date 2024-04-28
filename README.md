@@ -3,7 +3,10 @@
 [Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can **Navigate**, create **Dialog Windows** and **Notifications**, provide **Dependency Injection** and internal **Messaging** easier than before!  You will need both packages installed to get started.
 
 > **Announcement!**
+>
 > * _Prism.Avalonia v9.0.401-pre just arrived!_
+> * _Prism.Avalonia v9.0.271-pre just arrived!_
+> * Follow the [Upgrading to Prism v9.0.x-pre](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Upgrading-to-Prism-v9.0) guide for breaking changes
 
 **For more samples outside of this repo, check out:**
 
