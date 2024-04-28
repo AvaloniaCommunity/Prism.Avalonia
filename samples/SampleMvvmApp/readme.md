@@ -2,10 +2,10 @@
 
 This demonstrates the following Prism.Avalonia features:
 
-* .NET 6 - Cross-platform
+* .NET 6, 7, 8 - Cross-platform
 * MVVM Pattern - _Model View ViewModel_
 * Prism Navigation with and without passing parameters.
-* Prism Journling backwards
+* Prism Journaling backwards
 * Prism Regions for placing views
 * Prism Region with multiple views - registering multiple views and displaying them in a single ItemsControl using a custom ItemsControlRegionAdapter
 * Prism.DryIoc for Dependency Injection of Services

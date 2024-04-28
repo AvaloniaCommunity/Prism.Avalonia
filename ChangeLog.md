@@ -2,6 +2,10 @@
 
 Change log history for Prism.Avalonia
 
+## v8.1.97.11073 (2024-04-28)
+
+* Removed dependency on Avalonia.ReactiveUI
+
 ## v8.1.97.11072 (2024-01-27)
 
 * Added support for .NET 8
