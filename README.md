@@ -15,7 +15,7 @@
 * _If you have samples, let us know and we'll feature them!_
 
 <!-- ![Sample Outlookish](logo/Sample-Outlookish.png) -->
-![Sample Outlookish](https://raw.githubusercontent.com/AvaloniaCommunity/Prism.Avalonia/v9.0.401.11000-pre/images/Sample-Outlookish.png)
+![Sample Outlookish](https://raw.githubusercontent.com/AvaloniaCommunity/Prism.Avalonia/stable/v8.1.97.11xx/logo/Sample-Outlookish.png)
 
 With Prism.Avalonia's logic and development approach being **similar** to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/), so you can get started right away! Keep in mind, they are **similar** and not 1-to-1. Check out our [Wiki](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki) and [Avalonia Outlookish](https://github.com/DamianSuess/Learn.PrismAvaloniaOutlookish) app for tips and tricks.
 
@@ -38,7 +38,7 @@ Our [versioning schema](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki
 |-|-|-
 | v9.0.401-pre  | **11.0.7**    | v9.0.401.11000-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.401.11000-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.401.11000-pre))
 | v9.0.271-pre  | **11.0.7**    | v9.0.271.11000-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.271.11000-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.271.11000-pre))
-| v8.1.97       | **11.0.7**  | v8.1.97.11000 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.11000)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.11000))
+| v8.1.97       | **11.0.7**  | v8.1.97.11073 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.11073)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.11073))
 | v8.1.97       | **0.10.21** | v8.1.97.1021 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.1021)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.1021))
 
 Be sure to check out the [ChangeLog.md](ChangeLog.md) and guides when upgrading your NuGet packages:
@@ -61,8 +61,8 @@ Add the Prism.Avalonia and its DryIoc packages to your project:
 
 ```powershell
 # Avalonia v11
-Install-Package Prism.Avalonia -Version 8.1.97.11072
-Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.11072
+Install-Package Prism.Avalonia -Version 8.1.97.11073
+Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.11073
 
 # Avalonia v0.10.1021
 Install-Package Prism.Avalonia -Version 8.1.97.1021
