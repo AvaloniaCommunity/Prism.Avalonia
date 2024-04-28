@@ -2,7 +2,6 @@
   "solution": {
     "path": "Prism.Avalonia.sln",
     "projects": [
-      "src\\Containers\\Prism.DryIoc.Shared\\Prism.DryIoc.Shared.shproj",
       "src\\Prism.Avalonia\\Prism.Avalonia.csproj",
       "src\\Prism.DryIoc.Avalonia\\Prism.DryIoc.Avalonia.csproj",
       "tests\\Avalonia\\Prism.Avalonia.Tests\\Prism.Avalonia.Tests.csproj",
