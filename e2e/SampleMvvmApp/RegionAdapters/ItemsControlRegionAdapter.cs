@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Avalonia.Controls;
 using Prism.Navigation.Regions;
 
@@ -14,8 +11,6 @@ namespace SampleMvvmApp.RegionAdapters
     /// </summary>
     public class ItemsControlRegionAdapter : RegionAdapterBase<ItemsControl>
     {
-        #region Public Constructors
-
         /// <summary>
         /// Initializes a new instance of <see cref="ItemsControlRegionAdapter"/>.
         /// </summary>
@@ -26,10 +21,6 @@ namespace SampleMvvmApp.RegionAdapters
             : base(regionBehaviorFactory)
         {
         }
-
-        #endregion Public Constructors
-
-        #region Protected Methods
 
         /// <summary>
         /// Adapts an <see cref="ItemsControl"/> to an <see cref="IRegion"/>.
@@ -83,7 +74,5 @@ namespace SampleMvvmApp.RegionAdapters
         {
             return new AllActiveRegion();
         }
-
-        #endregion Protected Methods
     }
 }

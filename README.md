@@ -28,8 +28,10 @@ Just like Prism.WPF or Prism.Maui, your project must reference both the Prism.Av
 
 Choose the NuGet package version that matches your Avalonia version.
 
-The Avalonia version of this package uses [SemVer](https://semver.org/) format: `MAJOR.MINOR.PATCH.REVISION`. The `REVISION` segment indicates
-the Avalonia version support. For instance `v8.1.97.11000` of this library supports, Avalonia v11.0.0.
+The Avalonia version of this package uses [SemVer](https://semver.org/) format: `MAJOR.MINOR.PATCH.REVISION`. The `REVISION` segment indicates the Avalonia version support. For instance `v8.1.97.11000` of this library supports, Avalonia v11.0.0.
+
+> major[.minor[.build[.revision]]]
+> Assembly Version Attribute is limited to a `ushort` (65535) - [Ref](https://stackoverflow.com/a/73631971/249492).
 
 | Avalonia Version | NuGet Package |
 |-|-|

@@ -2,6 +2,19 @@
 
 Change log history for Prism.Avalonia
 
+## v9.0.401-pre (20204-04-13)
+
+* Fixed typos
+* DynamicallyAccessedMembers Attribute for linker hints
+* Upgraded NuGet DryIoc to 5.4.3
+
+## v9.0.271-pre (2024-04-12)
+
+* Upgraded Prism.Core to v9.0.271-pre
+* Breaking Changes:
+  * `Prism.Dialog`
+  * `Prism.Region` -> `Prism.Navigation.Region`
+
 ## v8.1.97.11072 (2024-01-27)
 
 * Added support for .NET 8
