@@ -7,7 +7,7 @@
 
   <PropertyGroup>
     <RootNamespace>Prism.DryIoc</RootNamespace>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <Description>This extension is used to build Prism.Avalonia applications based on DryIoc. Users must install the Prism.Avalonia NuGet package as well.</Description>
     <Authors>Damian Suess, various contributors</Authors>
     <Copyright>Copyright (c) 2024 Xeno Innovations, Inc.</Copyright>
