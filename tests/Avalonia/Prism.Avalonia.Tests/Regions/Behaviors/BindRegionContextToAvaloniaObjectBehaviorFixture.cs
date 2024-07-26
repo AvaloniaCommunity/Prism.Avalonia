@@ -57,7 +57,7 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
             Assert.Null(context.Value);
         }
 
-        [StaFact(Skip = "System.ArgumentNullException : Value cannot be null. (Parameter 'view')")]
+        [StaFact(Skip = "Avalonia doesn't auto-create ObservableObject in RegionContext")]
         public void ShouldSetRegionContextOnContextChange()
         {
             var behavior = new BindRegionContextToAvaloniaObjectBehavior();
