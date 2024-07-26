@@ -2,8 +2,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using DryIoc;
-////using Serilog;
 using Prism.DryIoc;
 using System.Threading;
 using Prism.Ioc;
