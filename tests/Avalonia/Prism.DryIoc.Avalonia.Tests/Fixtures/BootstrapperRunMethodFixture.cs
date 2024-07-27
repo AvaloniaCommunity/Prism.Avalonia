@@ -1,12 +1,16 @@
-﻿using Moq;
-using Prism.Container.Wpf.Mocks;
+﻿using System;
+using DryIoc;
+using Moq;
+using Prism.Container.DryIoc;
+using Prism.Container.Avalonia.Mocks;
+using Prism.DryIoc;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Navigation.Regions;
 using Xunit;
 
-namespace Prism.DryIoc.Avalonia.Tests.Fixtures
+namespace Prism.Container.Avalonia.Tests.Bootstrapper
 {
     public partial class BootstrapperRunMethodFixture
     {

@@ -68,6 +68,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.DryIoc.Avalonia.Tests", "tests\Avalonia\Prism.DryIoc.Avalonia.Tests\Prism.DryIoc.Avalonia.Tests.csproj", "{2063F822-F705-4B34-8BA2-658E6BD78001}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Core.Tests", "tests\Prism.Core.Tests\Prism.Core.Tests.csproj", "{A42F38AA-9CFB-4B34-8396-1D8C0A7744FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.IocContainer.Avalonia.Tests.Support", "tests\Avalonia\Prism.IocContainer.Avalonia.Tests.Support\Prism.IocContainer.Avalonia.Tests.Support.csproj", "{4F7E8EC6-D5E5-4DD9-8DC0-F03ADDD508CF}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.Container.Avalonia.Shared", "tests\Avalonia\Prism.Container.Avalonia.Shared\Prism.Container.Avalonia.Shared.shproj", "{BD42A7D6-A84D-4D27-9C28-7F6A2EC477F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -122,6 +128,14 @@ Global
 		{2063F822-F705-4B34-8BA2-658E6BD78001}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2063F822-F705-4B34-8BA2-658E6BD78001}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2063F822-F705-4B34-8BA2-658E6BD78001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A42F38AA-9CFB-4B34-8396-1D8C0A7744FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A42F38AA-9CFB-4B34-8396-1D8C0A7744FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A42F38AA-9CFB-4B34-8396-1D8C0A7744FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A42F38AA-9CFB-4B34-8396-1D8C0A7744FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F7E8EC6-D5E5-4DD9-8DC0-F03ADDD508CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F7E8EC6-D5E5-4DD9-8DC0-F03ADDD508CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F7E8EC6-D5E5-4DD9-8DC0-F03ADDD508CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F7E8EC6-D5E5-4DD9-8DC0-F03ADDD508CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,8 +156,14 @@ Global
 		{DAFC499B-E379-4453-BDCE-2EC30E1290C8} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
 		{97F8C6D3-308C-40BD-B181-5CDFCF101CBF} = {5F8D330E-F611-4E17-8217-F2D6CDB8E1F7}
 		{2063F822-F705-4B34-8BA2-658E6BD78001} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
+		{A42F38AA-9CFB-4B34-8396-1D8C0A7744FA} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
+		{4F7E8EC6-D5E5-4DD9-8DC0-F03ADDD508CF} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
+		{BD42A7D6-A84D-4D27-9C28-7F6A2EC477F1} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D260344D-8648-441D-B85B-9D280005F098}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		tests\Avalonia\Prism.Container.Avalonia.Shared\Prism.Container.Avalonia.Shared.projitems*{2063f822-f705-4b34-8ba2-658e6bd78001}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
