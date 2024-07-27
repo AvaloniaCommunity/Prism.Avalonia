@@ -1,0 +1,12 @@
+{
+  "default": true,
+  "no-hard-tabs": true,
+  "MD007": { "indent": 2 },
+  "MD013": false,
+  "MD024": { "siblings_only": true, "allow_different_nesting": true },
+  "MD033": {
+    "allowed_elements": [ "br", "hr" ]
+  },
+  "MD055": false,
+  "MD056": false
+}

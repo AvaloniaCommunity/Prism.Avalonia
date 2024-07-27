@@ -1,7 +1,6 @@
-using Moq;
+﻿using Moq;
 using Prism.Avalonia.Tests.Mocks;
-using Prism.Regions;
-using Prism.Regions.Behaviors;
+using Prism.Navigation.Regions.Behaviors;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions.Behaviors
@@ -18,10 +17,10 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
 
         protected virtual void Arrange()
         {
-            this.Region = new Region();
-            this.Behavior = new RegionMemberLifetimeBehavior();
-            this.Behavior.Region = this.Region;
-            this.Behavior.Attach();
+            Region = new Region();
+            Behavior = new RegionMemberLifetimeBehavior();
+            Behavior.Region = Region;
+            Behavior.Attach();
         }
 
         [Fact]
@@ -162,11 +161,11 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         public virtual void RemovesOnlyDeactivatedItemsInRegionBasedOnDataContextKeepAlive()
         {
             // Arrange
-            var retionItemDataContextToKeepAlive = new Mock<IRegionMemberLifetime>();
-            retionItemDataContextToKeepAlive.Setup(i => i.KeepAlive).Returns(true);
+            var regionItemDataContextToKeepAlive = new Mock<IRegionMemberLifetime>();
+            regionItemDataContextToKeepAlive.Setup(i => i.KeepAlive).Returns(true);
 
             var regionItemToKeepAlive = new MockFrameworkElement();
-            regionItemToKeepAlive.DataContext = retionItemDataContextToKeepAlive.Object;
+            regionItemToKeepAlive.DataContext = regionItemDataContextToKeepAlive.Object;
             Region.Add(regionItemToKeepAlive);
             Region.Activate(regionItemToKeepAlive);
 
@@ -244,20 +243,17 @@ namespace Prism.Avalonia.Tests.Regions.Behaviors
         public class RegionMemberKeptAlive
         {
         }
-
-
     }
-
 
     public class RegionMemberLifetimeBehaviorAgainstSingleActiveRegionFixture
                 : RegionMemberLifetimeBehaviorFixture
     {
         protected override void Arrange()
         {
-            this.Region = new SingleActiveRegion();
-            this.Behavior = new RegionMemberLifetimeBehavior();
-            this.Behavior.Region = this.Region;
-            this.Behavior.Attach();
+            Region = new SingleActiveRegion();
+            Behavior = new RegionMemberLifetimeBehavior();
+            Behavior.Region = Region;
+            Behavior.Attach();
         }
     }
 }

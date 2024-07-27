@@ -4,7 +4,7 @@ using Avalonia.Controls;
 using Prism.Common;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Regions;
+using Prism.Navigation.Regions;
 
 namespace Prism
 {
@@ -54,12 +54,11 @@ namespace Prism
         /// </summary>
         protected virtual void Initialize()
         {
-            ContainerLocator.SetContainerExtension(CreateContainerExtension);
+            ContainerLocator.SetContainerExtension(CreateContainerExtension());
             _containerExtension = ContainerLocator.Current;
             _moduleCatalog = CreateModuleCatalog();
             RegisterRequiredTypes(_containerExtension);
             RegisterTypes(_containerExtension);
-            _containerExtension.FinalizeExtension();
 
             ConfigureModuleCatalog(_moduleCatalog);
 

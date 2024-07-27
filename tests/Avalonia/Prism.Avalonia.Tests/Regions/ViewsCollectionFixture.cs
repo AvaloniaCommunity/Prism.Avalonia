@@ -1,12 +1,13 @@
-// NOTE:
+﻿// NOTE:
 //  Avalonia.Data.CollectionViewSource control does not exist in Avalonia.
 //  This feature was apart of a legacy build:
 //  https://github.com/grokys/Avalonia/blob/master/Avalonia/Data/CollectionViewSource.cs
+//  Avalonia PR #14729 in draft as of 2024-04-11
+//  https://github.com/AvaloniaUI/Avalonia/pull/14729
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Prism.Avalonia.Tests.Mocks;
-using Prism.Regions;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
@@ -115,7 +116,7 @@ namespace Prism.Avalonia.Tests.Regions
             originalCollection.Remove(filteredInObject);
 
             Assert.NotNull(oldItemsPassed);
-            Assert.Equal(1, oldItemsPassed.Count);
+            Assert.Single(oldItemsPassed);
             Assert.Same(filteredInObject.Item, oldItemsPassed[0]);
         }
 
@@ -131,7 +132,7 @@ namespace Prism.Avalonia.Tests.Regions
             originalCollection.Add(filteredInObject);
 
             Assert.NotNull(newItemsPassed);
-            Assert.Equal(1, newItemsPassed.Count);
+            Assert.Single(newItemsPassed);
             Assert.Same(filteredInObject.Item, newItemsPassed[0]);
         }
 
@@ -269,6 +270,7 @@ namespace Prism.Avalonia.Tests.Regions
             Assert.Equal(1, removeEvent.OldStartingIndex);
         }
 
+        //// NOTE:  Avalonia.Data.CollectionViewSource control does not exist in Avalonia.
         ////[Fact]
         ////public void RemovingFromFilteredCollectionDoesNotThrow()
         ////{

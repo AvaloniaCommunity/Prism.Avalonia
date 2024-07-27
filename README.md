@@ -32,7 +32,7 @@ Just like Prism.WPF or Prism.Maui, your project must reference both the Prism.Av
 
 Choose the NuGet package version that matches your Avalonia version.
 
-Our [versioning schema](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Versioning-Schema) is based on the [SemVer](https://semver.org/) using the format  `MAJOR.MINOR.PATCH.REVISION`. The `REVISION` segment indicates the Avalonia version support. For instance `v8.1.97.11000` of this library supports, Prism `v8.1.97` and Avalonia `v11.0.x`.
+Our [versioning schema](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Versioning-Schema) is based on the [SemVer](https://semver.org/) using the format  `MAJOR.MINOR.PATCH.REVISION`. The `REVISION` segment indicates the Avalonia version support. For instance `v8.1.97.11073` equates to, Prism `v8.1.97`, Avalonia `v11.0.7`, _revision_ `3`.
 
 | Prism Version | Avalonia Version | NuGet Package
 |-|-|-

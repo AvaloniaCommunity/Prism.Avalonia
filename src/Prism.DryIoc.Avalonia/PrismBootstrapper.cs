@@ -1,27 +1,22 @@
 ﻿using System;
 using DryIoc;
+using Prism.Container.DryIoc;
 using Prism.Ioc;
 
 namespace Prism.DryIoc
 {
-    /// <summary>
-    /// Base bootstrapper class that uses <see cref="DryIocContainerExtension"/> as it's container.
-    /// </summary>
+    /// <summary>Base bootstrapper class that uses <see cref="DryIocContainerExtension"/> as it's container.</summary>
     public abstract class PrismBootstrapper : PrismBootstrapperBase
     {
-        /// <summary>
-        /// Create <see cref="Rules" /> to alter behavior of <see cref="IContainer" />
-        /// </summary>
+        /// <summary>Create <see cref="Rules" /> to alter behavior of <see cref="IContainer" /></summary>
         /// <returns>An instance of <see cref="Rules" /></returns>
         protected virtual Rules CreateContainerRules() => DryIocContainerExtension.DefaultRules;
 
-        /// <summary>
-        /// Create a new <see cref="DryIocContainerExtension"/> used by Prism.
-        /// </summary>
+        /// <summary>Create a new <see cref="DryIocContainerExtension"/> used by Prism.</summary>
         /// <returns>A new <see cref="DryIocContainerExtension"/>.</returns>
         protected override IContainerExtension CreateContainerExtension()
         {
-            return new DryIocContainerExtension(new Container(CreateContainerRules()));
+            return new DryIocContainerExtension(CreateContainerRules());
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-using Prism.Regions;
+﻿using Moq;
+using Prism.Ioc;
 using Xunit;
 
 namespace Prism.Avalonia.Tests.Regions
@@ -8,6 +9,7 @@ namespace Prism.Avalonia.Tests.Regions
         [Fact]
         public void ActivatingNewViewDeactivatesCurrent()
         {
+            ContainerLocator.SetContainerExtension(Mock.Of<IContainerExtension>());
             IRegion region = new SingleActiveRegion();
             var view = new object();
             region.Add(view);

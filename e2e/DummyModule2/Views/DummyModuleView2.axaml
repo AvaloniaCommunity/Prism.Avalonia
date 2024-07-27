@@ -1,0 +1,13 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="clr-namespace:Prism.Navigation.Regions.Behaviors;assembly=Prism.Avalonia"
+             xmlns:prismRegions="clr-namespace:Prism.Navigation.Regions;assembly=Prism.Avalonia"
+             x:Class="DummyModule2.View.DummyModuleView2">
+  <Grid>
+    <TextBox Name="RegionViewTextBox"
+             Text="DummyModule2 Region View"
+             IsReadOnly="True" />
+    
+    <ItemsControl prismRegions:RegionManager.RegionName="ListRegion"></ItemsControl>
+  </Grid>
+</UserControl>

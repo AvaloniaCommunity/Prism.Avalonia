@@ -1,3 +1,6 @@
+﻿
+
+
 namespace Prism.IocContainer.Avalonia.Tests.Support.Mocks
 {
     public class DependantB : IDependantB

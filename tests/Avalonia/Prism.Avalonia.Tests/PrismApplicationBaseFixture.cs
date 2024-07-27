@@ -9,10 +9,9 @@ using Moq;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Regions;
-using Prism.Regions.Behaviors;
-using Prism.Services.Dialogs;
+using Prism.Dialogs;
 using Xunit;
+using Prism.Navigation.Regions.Behaviors;
 
 namespace Prism.Avalonia.Tests
 {
@@ -167,7 +166,7 @@ namespace Prism.Avalonia.Tests
         }
 
         [Fact]
-        public void ConfigureDefaultRegionBehaviorsShouldBindRegionContextToDependencyObjectBehavior()
+        public void ConfigureDefaultRegionBehaviorsShouldBindRegionContextToAvaloniaObjectBehavior()
         {
             Assert.True(application.DefaultRegionBehaviorTypes.ContainsKey(BindRegionContextToAvaloniaObjectBehavior.BehaviorKey));
         }
