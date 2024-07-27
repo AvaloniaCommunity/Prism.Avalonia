@@ -165,5 +165,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		tests\Avalonia\Prism.Container.Avalonia.Shared\Prism.Container.Avalonia.Shared.projitems*{2063f822-f705-4b34-8ba2-658e6bd78001}*SharedItemsImports = 5
+		tests\Avalonia\Prism.Container.Avalonia.Shared\Prism.Container.Avalonia.Shared.projitems*{bd42a7d6-a84d-4d27-9c28-7f6a2ec477f1}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
