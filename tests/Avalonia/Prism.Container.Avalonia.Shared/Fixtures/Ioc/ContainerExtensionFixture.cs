@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Prism.Ioc;
-using Prism.IocContainer.Wpf.Tests.Support.Mocks;
+using Prism.IocContainer.Avalonia.Tests.Support.Mocks;
 using Xunit;
-using static Prism.Container.Wpf.Tests.ContainerHelper;
+using static Prism.Container.Avalonia.Tests.ContainerHelper;
 
-namespace Prism.Container.Wpf.Tests.Ioc
+namespace Prism.Container.Avalonia.Tests.Ioc
 {
     public class ContainerExtensionFixture
     {

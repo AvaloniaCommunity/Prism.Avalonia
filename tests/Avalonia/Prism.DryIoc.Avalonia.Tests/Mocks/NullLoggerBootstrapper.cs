@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Avalonia;
 using Prism.DryIoc;
 using Prism.Ioc;
 
@@ -11,7 +12,7 @@ namespace Prism.Container.Avalonia.Mocks
             throw new System.NotImplementedException();
         }
 
-        protected override DependencyObject CreateShell()
+        protected override AvaloniaObject CreateShell()
         {
             throw new System.NotImplementedException();
         }

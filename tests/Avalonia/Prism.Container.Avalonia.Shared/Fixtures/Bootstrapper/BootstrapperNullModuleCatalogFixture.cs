@@ -1,9 +1,9 @@
 ﻿using System;
-using Prism.Container.Wpf.Mocks;
-using Prism.IocContainer.Wpf.Tests.Support;
+using Prism.Container.Avalonia.Mocks;
+using Prism.IocContainer.Avalonia.Tests.Support;
 using Xunit;
 
-namespace Prism.Container.Wpf.Tests.Bootstrapper
+namespace Prism.Container.Avalonia.Tests.Bootstrapper
 {
     public class BootstrapperNullModuleCatalogFixture : BootstrapperFixtureBase
     {

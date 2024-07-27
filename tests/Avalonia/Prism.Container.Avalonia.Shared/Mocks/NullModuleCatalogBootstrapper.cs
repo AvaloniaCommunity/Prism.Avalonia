@@ -1,8 +1,8 @@
-﻿using System.Windows;
+﻿using Avalonia;
 using Prism.Ioc;
 using Prism.Modularity;
 
-namespace Prism.Container.Wpf.Mocks
+namespace Prism.Container.Avalonia.Mocks
 {
     internal partial class NullModuleCatalogBootstrapper
     {
@@ -11,7 +11,7 @@ namespace Prism.Container.Wpf.Mocks
             return null;
         }
 
-        protected override DependencyObject CreateShell()
+        protected override AvaloniaObject CreateShell()
         {
             return null;
         }

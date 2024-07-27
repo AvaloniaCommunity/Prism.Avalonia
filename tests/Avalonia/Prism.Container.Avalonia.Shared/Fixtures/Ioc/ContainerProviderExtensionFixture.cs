@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Xaml;
+using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 using Prism.Ioc;
-using Prism.IocContainer.Wpf.Tests.Support.Mocks;
+using Prism.IocContainer.Avalonia.Tests.Support.Mocks;
 using Xunit;
 
-namespace Prism.Container.Wpf.Tests.Ioc
+namespace Prism.Container.Avalonia.Tests.Ioc
 {
     public class ContainerProviderExtensionFixture : IDisposable
     {
@@ -108,7 +104,7 @@ namespace Prism.Container.Wpf.Tests.Ioc
   xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
   xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
   xmlns:prism='http://prismlibrary.com/'
-  xmlns:mocks='clr-namespace:Prism.IocContainer.Wpf.Tests.Support.Mocks;assembly=Prism.IocContainer.Wpf.Tests.Support'
+  xmlns:mocks='clr-namespace:Prism.IocContainer.Avalonia.Tests.Support.Mocks;assembly=Prism.IocContainer.Avalonia.Tests.Support'
   DataContext='{prism:ContainerProvider mocks:IService}' />";
 
         private const string _xamlWithXmlElement =
@@ -116,7 +112,7 @@ namespace Prism.Container.Wpf.Tests.Ioc
   xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
   xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
   xmlns:prism='http://prismlibrary.com/'
-  xmlns:mocks='clr-namespace:Prism.IocContainer.Wpf.Tests.Support.Mocks;assembly=Prism.IocContainer.Wpf.Tests.Support'>
+  xmlns:mocks='clr-namespace:Prism.IocContainer.Avalonia.Tests.Support.Mocks;assembly=Prism.IocContainer.Avalonia.Tests.Support'>
   <Window.DataContext>
     <prism:ContainerProvider Type='mocks:IService' />
   </Window.DataContext>
@@ -134,11 +130,15 @@ namespace Prism.Container.Wpf.Tests.Ioc
             object dataContext = null;
             var thread = new Thread(() =>
             {
-                using (var reader = new StringReader(xaml))
-                {
-                    var window = XamlServices.Load(reader) as Window;
-                    dataContext = window.DataContext;
-                }
+                ////using (var reader = new StringReader(xaml))
+                ////{
+                ////    var window = XamlServices.Load(reader) as Window;
+                ////    dataContext = window.DataContext;
+                ////}
+
+                var window = AvaloniaRuntimeXamlLoader.Load(xaml) as Window;
+                dataContext = window.DataContext;
+
             });
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();

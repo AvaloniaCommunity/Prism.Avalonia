@@ -155,8 +155,9 @@ namespace Prism.Container.Avalonia.Tests.Bootstrapper
             mockedContainer.As<IResolver>().Setup(c => c.Resolve(typeof(RegionAdapterMappings), It.IsAny<object>(), IfUnresolved.Throw, It.IsAny<Type>(), It.IsAny<Request>(), It.IsAny<object[]>())).Returns(
                 regionAdapterMappings);
 
-            mockedContainer.As<IResolver>().Setup(c => c.Resolve(typeof(SelectorRegionAdapter), It.IsAny<object>(), IfUnresolved.Throw, It.IsAny<Type>(), It.IsAny<Request>(), It.IsAny<object[]>())).Returns(
-                new SelectorRegionAdapter(regionBehaviorFactory));
+            // TODO: Implement SelectorRegion
+            /////mockedContainer.As<IResolver>().Setup(c => c.Resolve(typeof(SelectorRegionAdapter), It.IsAny<object>(), IfUnresolved.Throw, It.IsAny<Type>(), It.IsAny<Request>(), It.IsAny<object[]>())).Returns(
+            /////    new SelectorRegionAdapter(regionBehaviorFactory));
 
             mockedContainer.As<IResolver>().Setup(c => c.Resolve(typeof(ItemsControlRegionAdapter), It.IsAny<object>(), IfUnresolved.Throw, It.IsAny<Type>(), It.IsAny<Request>(), It.IsAny<object[]>())).Returns(
                 new ItemsControlRegionAdapter(regionBehaviorFactory));

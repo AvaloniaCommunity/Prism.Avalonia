@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using Prism.Ioc;
-using Prism.IocContainer.Wpf.Tests.Support.Mocks.Views;
+using Prism.IocContainer.Avalonia.Tests.Support.Mocks.Views;
 using Prism.Navigation.Regions;
 using Xunit;
-using static Prism.Container.Wpf.Tests.ContainerHelper;
+using static Prism.Container.Avalonia.Tests.ContainerHelper;
 
-namespace Prism.Container.Wpf.Tests.Regions
+namespace Prism.Container.Avalonia.Tests.Regions
 {
     [Collection(nameof(ContainerExtension))]
     public class RegionNavigationContentLoaderFixture

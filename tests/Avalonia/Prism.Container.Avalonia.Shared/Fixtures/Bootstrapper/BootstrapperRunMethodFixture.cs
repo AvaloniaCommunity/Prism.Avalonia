@@ -1,12 +1,12 @@
-using Moq;
-using Prism.Container.Wpf.Mocks;
+﻿using Moq;
+using Prism.Container.Avalonia.Mocks;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Navigation.Regions;
 using Xunit;
 
-namespace Prism.Container.Wpf.Tests.Bootstrapper
+namespace Prism.Container.Avalonia.Tests.Bootstrapper
 {
     [Collection(nameof(ContainerExtension))]
     public partial class BootstrapperRunMethodFixture
@@ -199,7 +199,7 @@ namespace Prism.Container.Wpf.Tests.Bootstrapper
             container.RegisterSingleton(typeof(IRegionNavigationService), typeof(RegionNavigationService));
             container.RegisterSingleton(typeof(IRegionNavigationContentLoader), typeof(RegionNavigationContentLoader));
 
-            container.RegisterInstance<SelectorRegionAdapter>(new SelectorRegionAdapter(regionBehaviorFactory));
+            // TODO: container.RegisterInstance<SelectorRegionAdapter>(new SelectorRegionAdapter(regionBehaviorFactory));
             container.RegisterInstance<ItemsControlRegionAdapter>(new ItemsControlRegionAdapter(regionBehaviorFactory));
             container.RegisterInstance<ContentControlRegionAdapter>(new ContentControlRegionAdapter(regionBehaviorFactory));
 

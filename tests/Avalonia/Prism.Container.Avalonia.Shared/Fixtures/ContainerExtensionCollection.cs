@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Prism.Container.Wpf.Tests
+namespace Prism.Container.Avalonia.Tests
 {
     public class ContainerExtension { }
 

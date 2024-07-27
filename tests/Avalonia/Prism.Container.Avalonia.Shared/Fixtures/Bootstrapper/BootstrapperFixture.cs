@@ -1,12 +1,12 @@
 ﻿using System;
-using Prism.Container.Wpf.Mocks;
+using Prism.Container.Avalonia.Mocks;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Navigation.Regions;
 using Xunit;
-using static Prism.Container.Wpf.Tests.ContainerHelper;
+using static Prism.Container.Avalonia.Tests.ContainerHelper;
 
-namespace Prism.Container.Wpf.Tests.Bootstrapper
+namespace Prism.Container.Avalonia.Tests.Bootstrapper
 {
     [Collection(nameof(ContainerExtension))]
     public class BootstrapperFixture

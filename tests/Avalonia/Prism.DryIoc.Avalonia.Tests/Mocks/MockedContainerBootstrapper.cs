@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using DryIoc;
 using Prism.Container.DryIoc;
 using Prism.DryIoc;
@@ -31,12 +31,12 @@ namespace Prism.Container.Avalonia.Mocks
             return new DryIocContainerExtension(_container);
         }
 
-        protected override DependencyObject CreateShell()
+        protected override AvaloniaObject CreateShell()
         {
             return new UserControl();
         }
 
-        protected override void InitializeShell(DependencyObject shell)
+        protected override void InitializeShell(AvaloniaObject shell)
         {
 
         }

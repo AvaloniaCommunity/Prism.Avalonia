@@ -1,12 +1,12 @@
-﻿using Prism.Container.Wpf.Mocks;
+﻿using Prism.Container.Avalonia.Mocks;
 using Prism.Ioc;
-using Prism.IocContainer.Wpf.Tests.Support.Mocks;
-using Prism.IocContainer.Wpf.Tests.Support.Mocks.ViewModels;
-using Prism.IocContainer.Wpf.Tests.Support.Mocks.Views;
+using Prism.IocContainer.Avalonia.Tests.Support.Mocks;
+using Prism.IocContainer.Avalonia.Tests.Support.Mocks.ViewModels;
+using Prism.IocContainer.Avalonia.Tests.Support.Mocks.Views;
 using Prism.Mvvm;
 using Xunit;
 
-namespace Prism.Container.Wpf.Tests.Mvvm
+namespace Prism.Container.Avalonia.Tests.Mvvm
 {
     [Collection(nameof(ContainerExtension))]
     public class ViewModelLocatorFixture

@@ -2,7 +2,7 @@
 
 namespace Prism.IocContainer.Avalonia.Tests.Support.Mocks.Views
 {
-    public class MockView : Avalonia.Controls.Control
+    public class MockView : Control
     {
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
-using System.Windows;
-using System.Windows.Controls;
+using Avalonia;
+using Avalonia.Controls;
 using DryIoc;
 using Prism.Container.DryIoc;
 using Prism.DryIoc;
@@ -29,7 +29,7 @@ namespace Prism.Container.Avalonia.Mocks
         public bool ConfigureDefaultRegionBehaviorsCalled;
         public UserControl ShellObject = new UserControl();
 
-        public DependencyObject BaseShell => base.Shell;
+        public AvaloniaObject BaseShell => base.Shell;
 
         public IContainer BaseContainer
         {
@@ -46,7 +46,7 @@ namespace Prism.Container.Avalonia.Mocks
             return ((IContainerExtension<IContainer>)containerExt).Instance;
         }
 
-        protected override DependencyObject CreateShell()
+        protected override AvaloniaObject CreateShell()
         {
             this.MethodCalls.Add(MethodBase.GetCurrentMethod().Name);
             this.CreateShellCalled = true;
@@ -100,7 +100,7 @@ namespace Prism.Container.Avalonia.Mocks
             base.ConfigureModuleCatalog(moduleCatalog);
         }
 
-        protected override void InitializeShell(DependencyObject shell)
+        protected override void InitializeShell(AvaloniaObject shell)
         {
             this.MethodCalls.Add(MethodBase.GetCurrentMethod().Name);
             this.InitializeShellCalled = true;
