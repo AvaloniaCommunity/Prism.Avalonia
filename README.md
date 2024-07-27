@@ -49,6 +49,8 @@ Be sure to check out the [ChangeLog.md](ChangeLog.md) and guides when upgrading 
 
 ## Contributing
 
+See also, [Contributing.md](.github/Contributing.md)
+
 Prism.Avalonia is an open-source project under the MIT license. We encourage community members like yourself to contribute.
 
 You can contribute today by creating a **feature request**, **issue**, or **discussion** on the forum. From there we can have a brief discussion as to where this fits into the backlog priority. If this is something that fits within the Prism architecture, we'll kindly ask you to create a **Pull Request**. Any PR made without first having an issue/discussion may be closed.
@@ -192,7 +194,9 @@ public static class Program
 }
 ```
 
-## Branching Strategy
+## House Keeping
+
+### Branching Strategy
 
 Below is a basic branching hierarchy and strategy.
 
@@ -202,5 +206,13 @@ Below is a basic branching hierarchy and strategy.
 | `develop`   | The **default** & active development branch. When a feature set is completed and ready for public release, the `develop` branch will be merged into `master` and a new NuGet package will be published.
 | `feature/*` | New feature branch. Once completed, it is merged into `develop` and the branch must be deleted.
 | `stable/*`  | Stable release base build which shares cherry-picked merges from `develop`. This branch **must not** be deleted.
+
+### Code of Conduct
+
+See, [Code of Conduct](.github/Code-of-Conduct.md)
+
+### Security
+
+See, [Security](.github/Security.md)
 
 **Sponsored by:** [Suess Labs](https://suesslabs.com) a subsidary of Xeno Innovations, Inc.
