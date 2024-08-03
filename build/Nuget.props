@@ -6,9 +6,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>
+      * Upgraded to support Avalonia v11.1.1
       * Upgraded to support Prism v9.0.401-pre
-      * Upgraded to support Avalonia v11.0.7
-      * Removed dependency on Avalonia.ReactiveUI
     </PackageReleaseNotes>
   </PropertyGroup>
   
