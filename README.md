@@ -5,7 +5,7 @@
 > **Announcement!**
 >
 > * _Prism.Avalonia v9.0.401-pre just arrived!_
-> * _Prism.Avalonia v9.0.271-pre just arrived!_
+> * _Support for Avalonia v11.1.x has arrived!_
 > * Follow the [Upgrading to Prism v9.0.x-pre](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Upgrading-to-Prism-v9.0) guide for breaking changes
 
 **For more samples outside of this repo, check out:**
@@ -21,7 +21,7 @@ With Prism.Avalonia's logic and development approach being **similar** to that o
 
 ## Package Releases
 
-Just like Prism.WPF or Prism.Maui, your project must reference both the Prism.Avalonia (_Core_) and Prism.DryIoc.Avalonia (_IoC container_) packages to work.
+Just like _Prism.WPF or Prism.Maui_, your project must reference both the **Prism.Avalonia** (_Core_) and **Prism.DryIoc.Avalonia** (_IoC container_) packages to work.
 
 | Package | Stable | Preview
 |-|-|-|
@@ -34,9 +34,10 @@ Choose the NuGet package version that matches your Avalonia version.
 
 Our [versioning schema](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Versioning-Schema) is based on the [SemVer](https://semver.org/) using the format  `MAJOR.MINOR.PATCH.REVISION`. The `REVISION` segment indicates the Avalonia version support. For instance `v8.1.97.11073` equates to, Prism `v8.1.97`, Avalonia `v11.0.7`, _revision_ `3`.
 
-| Prism Version | Avalonia Version | NuGet Package
+| Prism | Avalonia | Prism.Avalonia NuGet Package
 |-|-|-
-| v9.0.401-pre  | **11.0.7**    | v9.0.401.11000-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.401.11000-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.401.11000-pre))
+| v9.0.401-pre  | **11.1.1**    | v9.0.401.11110-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.401.11110-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.401.11110-pre))
+| v9.0.401-pre  | **11.0.7**    | v9.0.401.11074-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.401.11074-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.401.11074-pre))
 | v9.0.271-pre  | **11.0.7**    | v9.0.271.11000-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.271.11000-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.271.11000-pre))
 | v8.1.97       | **11.0.7**  | v8.1.97.11073 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.11073)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.11073))
 | v8.1.97       | **0.10.21** | v8.1.97.1021 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.1021)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.1021))
@@ -62,7 +63,11 @@ Issues posted without a description may be closed immediately. Use the discussio
 Add the Prism.Avalonia and its DryIoc packages to your project:
 
 ```powershell
-# Avalonia v11
+# Latest Preview Release
+Install-Package Prism.Avalonia -Version 9.0.401.11110-pre
+Install-Package Prism.DryIoc.Avalonia -Version 9.0.401.11110-pre
+
+# Avalonia v11 (GA)
 Install-Package Prism.Avalonia -Version 8.1.97.11073
 Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.11073
 
