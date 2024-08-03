@@ -70,6 +70,7 @@ namespace ModulesSample.Module_System_Logic
         {
             var modulesGroupedByCatalog = modules.GroupBy<IModuleInfo, IModuleCatalog>(module => this.catalogs.Single(
                catalog => catalog.Modules.Contains(module)));
+
             return modulesGroupedByCatalog.SelectMany(x => x.Key.CompleteListWithDependencies(x));
         }
 

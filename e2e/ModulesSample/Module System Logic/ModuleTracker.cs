@@ -1,6 +1,7 @@
 ﻿// Temp disabled logging:
 // - Prism.Logging has been moved and `ILoggerFacade` is deprecated.Prism.Logging.Serilog is out of date.
 // - https://github.com/augustoproiete/prism-logging-serilog/issues/3
+using System;
 using ModulesSample.Infrastructure;
 ////using Prism.Logging;
 
@@ -24,6 +25,7 @@ namespace ModulesSample.Module_System_Logic
         public void RecordModuleLoaded(string moduleName)
         {
             ////_logger.Log(string.Format(CultureInfo.CurrentCulture, "'{0}' module loaded.", moduleName), Category.Debug, Priority.Low);
+            Console.WriteLine("'{0}' module loaded.", moduleName);
         }
 
         public void RecordModuleConstructed(string moduleName)
@@ -35,6 +37,7 @@ namespace ModulesSample.Module_System_Logic
             }
 
             ////_logger.Log(string.Format(CultureInfo.CurrentCulture, "'{0}' module constructed.", moduleName), Category.Debug, Priority.Low);
+            Console.WriteLine("'{0}' module constructed.", moduleName);
         }
 
         public void RecordModuleInitialized(string moduleName)
@@ -46,6 +49,7 @@ namespace ModulesSample.Module_System_Logic
             }
 
             ////_logger.Log(string.Format(CultureInfo.CurrentCulture, "'{0}' module initialized.", moduleName), Category.Debug, Priority.Low);
+            Console.WriteLine("'{0}' module initialized.", moduleName);
         }
 
         private ModuleTrackingState GetModuleTrackingState(string moduleName)

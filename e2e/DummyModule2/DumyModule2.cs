@@ -19,7 +19,7 @@ namespace DummyModule2
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            _moduleTracker.RecordModuleInitialized(ModuleNames.ModuleDummy1);
+            _moduleTracker.RecordModuleInitialized(ModuleNames.ModuleDummy2);
             _regionManager.RegisterViewWithRegion(RegionNames.Region2, typeof(DummyModuleView2));
         }
 
