@@ -1,11 +1,10 @@
 ﻿using Avalonia;
 using Avalonia.Markup.Xaml;
-using ModulesSample.Module_System_Logic;
+using ModulesSample.ModuleSystemLogic;
 using Prism.Avalonia.Infrastructure;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;
-////using Serilog;
 using Avalonia.LinuxFramebuffer;
 using System.Linq;
 using System;
@@ -18,10 +17,9 @@ namespace ModulesSample
 {
     public class App : PrismApplication
     {
-        ////public CallbackLogger CallbackLogger { get; } = new CallbackLogger();
-
         public static AppBuilder BuildAvaloniaApp()
         {
+#pragma warning disable CA1416 // Validate platform compatibility; this is only ran on Win/Linux/Mac
             var builder = AppBuilder.Configure<App>()
                 .UsePlatformDetect()
                 .With(new X11PlatformOptions
@@ -32,6 +30,7 @@ namespace ModulesSample
                 .With(new Win32PlatformOptions())
                 .UseSkia()
                 .UseManagedSystemDialogs();
+#pragma warning restore CA1416 // Validate platform compatibility
 
 #if DEBUG
             builder.LogToTrace();
@@ -91,10 +90,6 @@ namespace ModulesSample
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // Temp disabled logging:
-            // - Prism.Logging has been moved and `ILoggerFacade` is deprecated.Prism.Logging.Serilog is out of date.
-            // - https://github.com/augustoproiete/prism-logging-serilog/issues/3
-            ////containerRegistry.RegisterInstance(CallbackLogger);
             containerRegistry.RegisterSingleton<IModuleTracker, ModuleTracker>();
         }
 

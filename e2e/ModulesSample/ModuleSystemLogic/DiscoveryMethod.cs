@@ -1,4 +1,4 @@
-﻿namespace ModulesSample.Module_System_Logic
+﻿namespace ModulesSample.ModuleSystemLogic
 {
     /// <summary>Describes how a module is discovered.</summary>
     public enum DiscoveryMethod
