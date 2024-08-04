@@ -5,6 +5,7 @@ Change log history for Prism.Avalonia
 ## v9.0.401.11110-pre (2024-08-03)
 
 * Upgraded to Avalonia v11.1.1
+* Fixed ItemsControlRegionAdapter not attaching object due to previous binding
 
 ## v9.0.401.11074-pre (2024-07-26)
 

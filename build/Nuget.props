@@ -8,6 +8,7 @@
     <PackageReleaseNotes>
       * Upgraded to support Avalonia v11.1.1
       * Upgraded to support Prism v9.0.401-pre
+      * Fixed ItemsControlRegionAdapter not attaching object due to previous binding (Avalonia v11.x)
     </PackageReleaseNotes>
   </PropertyGroup>
   
