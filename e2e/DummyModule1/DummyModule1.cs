@@ -21,10 +21,13 @@ namespace DummyModule
             _moduleTracker = moduleTracker;
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
+
+            _moduleTracker.RecordModuleConstructed(ModuleNames.ModuleDummy1);
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            _moduleTracker.RecordModuleLoaded(ModuleNames.ModuleDummy1);
         }
 
         public void OnInitialized(IContainerProvider containerProvider)

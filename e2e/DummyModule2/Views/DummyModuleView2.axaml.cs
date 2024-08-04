@@ -15,6 +15,8 @@ namespace DummyModule2.View
 
         public DummyModuleView2()
         {
+            // Placed here so Avalonia viewer doesn't freak out
+            // Since we're not using an MVVM approach here
         }
 
         public DummyModuleView2(IEventAggregator eventAggregator, IRegionManager regionManager)
@@ -25,6 +27,7 @@ namespace DummyModule2.View
 
             _regionViewTextBox = this.FindControl<Label>("RegionViewTextBox");
 
+            // Note: 'keepSubscriberReferenceAlive' is set to true to avoid the WeakReferene
             eventAggregator.GetEvent<DummyEvent>().Subscribe(() =>
             {
                 Dispatcher.UIThread.InvokeAsync(() =>
@@ -35,9 +38,10 @@ namespace DummyModule2.View
                         RegionNames.ListRegion,
                         new TextBlock { Text = $"EventAggregator DummyEvent triggered for DummyModule2: {_counter}" });
 
-                    //_regionViewTextBox.Content += "\n EventAggregator DummyEvent triggered for DummyModule2 \r\n";
+                    _regionViewTextBox.Content = $"EventAggregator DummyEvent triggered for DummyModule2: {_counter}";
                 });
-            });
+            },
+            keepSubscriberReferenceAlive: true);
         }
     }
 }

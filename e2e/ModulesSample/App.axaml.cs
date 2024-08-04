@@ -1,6 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Markup.Xaml;
-using ModulesSample.Module_System_Logic;
+using ModulesSample.ModuleSystemLogic;
 using Prism.Avalonia.Infrastructure;
 using Prism.DryIoc;
 using Prism.Ioc;
@@ -19,6 +19,7 @@ namespace ModulesSample
     {
         public static AppBuilder BuildAvaloniaApp()
         {
+#pragma warning disable CA1416 // Validate platform compatibility; this is only ran on Win/Linux/Mac
             var builder = AppBuilder.Configure<App>()
                 .UsePlatformDetect()
                 .With(new X11PlatformOptions
@@ -29,6 +30,7 @@ namespace ModulesSample
                 .With(new Win32PlatformOptions())
                 .UseSkia()
                 .UseManagedSystemDialogs();
+#pragma warning restore CA1416 // Validate platform compatibility
 
 #if DEBUG
             builder.LogToTrace();

@@ -5,7 +5,7 @@ using System;
 using ModulesSample.Infrastructure;
 ////using Prism.Logging;
 
-namespace ModulesSample.Module_System_Logic
+namespace ModulesSample.ModuleSystemLogic
 {
     class ModuleTracker : IModuleTracker
     {

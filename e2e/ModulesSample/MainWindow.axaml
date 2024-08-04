@@ -6,11 +6,11 @@
         MinWidth="500" MinHeight="300"
         prism:ViewModelLocator.AutoWireViewModel="True">
   <StackPanel Orientation="Vertical">
-    <TextBox Text="Hello World by Prism.Avalonia!"
-             HorizontalAlignment="Center"
-             VerticalAlignment="Center"
-             FontSize="17"
-             FontWeight="Heavy" />
+    <Label Content="Modules and Events using Prism.Avalonia!"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"
+           FontSize="17"
+           FontWeight="Heavy" />
 
     <TextBox Name="LogTextBox"
              MinHeight="150"

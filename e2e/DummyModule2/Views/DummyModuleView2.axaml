@@ -5,11 +5,13 @@
              xmlns:prismRegions="clr-namespace:Prism.Navigation.Regions;assembly=Prism.Avalonia"
              x:Class="DummyModule2.View.DummyModuleView2"
              prism:ViewModelLocator.AutoWireViewModel="True">
-  <Grid RowDefinitions="Auto,*">
+  <Grid RowDefinitions="Auto,150">
     <Label Content="DummyModule2 Region View"
            FontWeight="Bold"
            Name="RegionViewTextBox" />
 
-    <ItemsControl Grid.Row="1" prismRegions:RegionManager.RegionName="ListRegion" />
+    <ScrollViewer Grid.Row="1">
+      <ItemsControl prismRegions:RegionManager.RegionName="ListRegion" />
+    </ScrollViewer>
   </Grid>
 </UserControl>

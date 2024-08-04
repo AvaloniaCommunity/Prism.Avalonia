@@ -15,6 +15,8 @@ namespace DummyModule2
         {
             _moduleTracker = moduleTracker;
             _regionManager = regionManager;
+
+            _moduleTracker.RecordModuleConstructed(ModuleNames.ModuleDummy2);
         }
 
         public void OnInitialized(IContainerProvider containerProvider)
@@ -25,6 +27,7 @@ namespace DummyModule2
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            _moduleTracker.RecordModuleLoaded(ModuleNames.ModuleDummy2);
         }
     }
 }
