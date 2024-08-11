@@ -4,6 +4,7 @@
 
 > **Announcement!**
 >
+> * _[Official Prism.Avalonia Templates arrived!](https://github.com/SuessLabs/Prism.Avalonia.Templates)_
 > * _Prism.Avalonia v9.0.401-pre just arrived!_
 > * _Support for Avalonia v11.1.x has arrived!_
 > * Follow the [Upgrading to Prism v9.0.x-pre](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Upgrading-to-Prism-v9.0) guide for breaking changes
