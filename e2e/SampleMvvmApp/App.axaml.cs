@@ -94,8 +94,7 @@ public class App : PrismApplication
 
     protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
     {
-        regionAdapterMappings.RegisterMapping<ItemsControl,
-            SampleMvvmApp.RegionAdapters.ItemsControlRegionAdapter>();
+        regionAdapterMappings.RegisterMapping<ItemsControl, SampleMvvmApp.RegionAdapters.ItemsControlRegionAdapter>();
         regionAdapterMappings.RegisterMapping<ContentControl, ContentControlRegionAdapter>();
     }
 }

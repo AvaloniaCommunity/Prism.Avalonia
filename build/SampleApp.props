@@ -6,12 +6,14 @@
   <Import Project="AvaloniaDependency.props" />
 
   <ItemGroup>
-    <!--<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" />-->
-    <PackageReference Include="Avalonia.Diagnostics" />
+    <PackageReference Include="Avalonia" Version="11.1.1" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" />
     <PackageReference Include="Avalonia.Desktop" />
-    <PackageReference Include="Avalonia.LinuxFramebuffer" />
     <PackageReference Include="Avalonia.Themes.Simple" />
     <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="Avalonia.LinuxFramebuffer" />
+
     <ProjectReference Include="$(MSBuildThisFileDirectory)..\src\Prism.DryIoc.Avalonia\Prism.DryIoc.Avalonia.csproj" />
   </ItemGroup>
 </Project>
