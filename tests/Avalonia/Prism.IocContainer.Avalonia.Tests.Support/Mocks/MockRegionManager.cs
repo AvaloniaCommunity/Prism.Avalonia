@@ -1,5 +1,7 @@
-using System;
-using Prism.Regions;
+﻿using System;
+using Prism.Ioc;
+using Prism.Navigation;
+using Prism.Navigation.Regions;
 
 namespace Prism.IocContainer.Avalonia.Tests.Support.Mocks
 {
@@ -52,22 +54,22 @@ namespace Prism.IocContainer.Avalonia.Tests.Support.Mocks
             throw new NotImplementedException();
         }
 
-        public void RequestNavigate(string regionName, Uri target, Action<NavigationResult> navigationCallback, NavigationParameters navigationParameters)
+        public void RequestNavigate(string regionName, Uri target, Action<NavigationResult> navigationCallback, INavigationParameters navigationParameters)
         {
             throw new NotImplementedException();
         }
 
-        public void RequestNavigate(string regionName, string target, Action<NavigationResult> navigationCallback, NavigationParameters navigationParameters)
+        public void RequestNavigate(string regionName, string target, Action<NavigationResult> navigationCallback, INavigationParameters navigationParameters)
         {
             throw new NotImplementedException();
         }
 
-        public void RequestNavigate(string regionName, Uri target, NavigationParameters navigationParameters)
+        public void RequestNavigate(string regionName, Uri target, INavigationParameters navigationParameters)
         {
             throw new NotImplementedException();
         }
 
-        public void RequestNavigate(string regionName, string target, NavigationParameters navigationParameters)
+        public void RequestNavigate(string regionName, string target, INavigationParameters navigationParameters)
         {
             throw new NotImplementedException();
         }
@@ -75,6 +77,21 @@ namespace Prism.IocContainer.Avalonia.Tests.Support.Mocks
         #endregion
 
         public bool Navigate(Uri source)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IRegionManager AddToRegion(string regionName, string viewName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IRegionManager RegisterViewWithRegion(string regionName, string viewName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IRegionManager RegisterViewWithRegion(string regionName, Func<IContainerProvider, object> getContentDelegate)
         {
             throw new NotImplementedException();
         }

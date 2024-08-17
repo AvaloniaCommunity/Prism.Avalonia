@@ -1,0 +1,11 @@
+{
+  "solution": {
+    "path": "Prism.Avalonia.sln",
+    "projects": [
+      "src\\Prism.Avalonia\\Prism.Avalonia.csproj",
+      "src\\Prism.DryIoc.Avalonia\\Prism.DryIoc.Avalonia.csproj",
+      "tests\\Avalonia\\Prism.Avalonia.Tests\\Prism.Avalonia.Tests.csproj",
+      "tests\\Avalonia\\Prism.DryIoc.Avalonia.Tests\\Prism.DryIoc.Avalonia.Tests.csproj",
+    ]
+  }
+}

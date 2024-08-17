@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Avalonia;
+using Prism.Ioc;
+using Prism.Modularity;
 
 namespace Prism.Container.Avalonia.Mocks
 {
@@ -11,13 +11,14 @@ namespace Prism.Container.Avalonia.Mocks
             return null;
         }
 
-        protected override DependencyObject CreateShell()
+        protected override AvaloniaObject CreateShell()
         {
             return null;
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+
         }
     }
 }

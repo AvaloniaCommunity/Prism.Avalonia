@@ -1,9 +1,13 @@
 # Prism.Avalonia
 
-[Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can **Navigate**, create **Dialog Windows** and **Notifications**, provide **Dependency Injection** and internal **Messaging** easier than before!  You will need both packages installed to get started.
+[Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your cross-platform [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can **Navigate**, create **Dialog Windows** and **Notifications**, provide **Dependency Injection** and internal **Messaging** easier than before!  You will need both packages installed to get started.
 
-> ### **Announcement:**
-> _Prism.Avalonia v9.0 beta coming soon!_
+> **Announcement!**
+>
+> * **NEW:**_[Official Prism.Avalonia Templates arrived!](https://github.com/SuessLabs/Prism.Avalonia.Templates)_
+> * _Prism.Avalonia v9.0.401-pre just arrived!_
+> * _Support for Avalonia v11.1.x has arrived!_
+> * Follow the [Upgrading to Prism v9.0.x-pre](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Upgrading-to-Prism-v9.0) guide for breaking changes
 
 **For more samples outside of this repo, check out:**
 
@@ -11,13 +15,14 @@
 * [Learn PrismLibrary](https://github.com/DamianSuess/Learn.PrismLibrary)
 * _If you have samples, let us know and we'll feature them!_
 
-![Sample Outlookish](logo/Sample-Outlookish.png)
+<!-- ![Sample Outlookish](logo/Sample-Outlookish.png) -->
+![Sample Outlookish](https://raw.githubusercontent.com/AvaloniaCommunity/Prism.Avalonia/stable/v8.1.97.11xx/logo/Sample-Outlookish.png)
 
 With Prism.Avalonia's logic and development approach being **similar** to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/), so you can get started right away! Keep in mind, they are **similar** and not 1-to-1. Check out our [Wiki](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki) and [Avalonia Outlookish](https://github.com/DamianSuess/Learn.PrismAvaloniaOutlookish) app for tips and tricks.
 
 ## Package Releases
 
-Just like Prism.WPF or Prism.Maui, your project must reference both the Prism.Avalonia (_Core_) and Prism.DryIoc.Avalonia (_IoC container_) packages to work.
+Just like _Prism.WPF or Prism.Maui_, your project must reference both the **Prism.Avalonia** (_Core_) and **Prism.DryIoc.Avalonia** (_IoC container_) packages to work.
 
 | Package | Stable | Preview
 |-|-|-|
@@ -28,21 +33,25 @@ Just like Prism.WPF or Prism.Maui, your project must reference both the Prism.Av
 
 Choose the NuGet package version that matches your Avalonia version.
 
-The Avalonia version of this package uses [SemVer](https://semver.org/) format: `MAJOR.MINOR.PATCH.REVISION`. The `REVISION` segment indicates
-the Avalonia version support. For instance `v8.1.97.11000` of this library supports, Avalonia v11.0.0.
+Our [versioning schema](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Versioning-Schema) is based on the [SemVer](https://semver.org/) using the format  `MAJOR.MINOR.PATCH.REVISION`. The `REVISION` segment indicates the Avalonia version support. For instance `v8.1.97.11073` equates to, Prism `v8.1.97`, Avalonia `v11.0.7`, _revision_ `3`.
 
-| Avalonia Version | NuGet Package |
-|-|-|
-| **11.0**        | 8.1.97.11000 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.11000)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.11000))
-| **0.10.21**     | 8.1.97.1021 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.1021)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.1021))
-| **11.0 RC-1.1** | 8.1.97.11000-rc1.1 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.11000-rc1.1)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.11000-rc1.1))
-| 11.0 Preview 8  | 8.1.97.11-preview.11.8
-| 11.0 Preview 5  | 8.1.97.4-preview.11.5
-| 11.0 Preview 4  | 8.1.97.3-preview.11.4
+| Prism | Avalonia | Prism.Avalonia NuGet Package
+|-|-|-
+| v9.0.401-pre  | **11.1.1**    | v9.0.401.11110-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.401.11110-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.401.11110-pre))
+| v9.0.401-pre  | **11.0.7**    | v9.0.401.11074-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.401.11074-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.401.11074-pre))
+| v9.0.271-pre  | **11.0.7**    | v9.0.271.11000-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.271.11000-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.271.11000-pre))
+| v8.1.97       | **11.0.7**  | v8.1.97.11073 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.11073)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.11073))
+| v8.1.97       | **0.10.21** | v8.1.97.1021 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.1021)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.1021))
 
-Be sure to check out the [ChangeLog.md](ChangeLog.md) and [Upgrading-to-Avalonia-11.md](Upgrading-to-Avalonia-11.md) when upgrading your NuGet packages. Also, view the official [Avalonia Upgrading from v0.10](https://docs.avaloniaui.net/docs/next/stay-up-to-date/upgrade-from-0.10).
+Be sure to check out the [ChangeLog.md](ChangeLog.md) and guides when upgrading your NuGet packages:
+
+* [Upgrading to Prism v9.0.x-pre](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Upgrading-to-Prism-v9.0)
+* [Upgrading to Avalonia-11](Upgrading-to-Avalonia-11.md)
+* Also, the official [Avalonia Upgrading from v0.10](https://docs.avaloniaui.net/docs/next/stay-up-to-date/upgrade-from-0.10).
 
 ## Contributing
+
+See also, [Contributing.md](.github/Contributing.md)
 
 Prism.Avalonia is an open-source project under the MIT license. We encourage community members like yourself to contribute.
 
@@ -55,9 +64,13 @@ Issues posted without a description may be closed immediately. Use the discussio
 Add the Prism.Avalonia and its DryIoc packages to your project:
 
 ```powershell
-# Avalonia v11
-Install-Package Prism.Avalonia -Version 8.1.97.11000
-Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.11000
+# Latest Preview Release
+Install-Package Prism.Avalonia -Version 9.0.401.11110-pre
+Install-Package Prism.DryIoc.Avalonia -Version 9.0.401.11110-pre
+
+# Avalonia v11 (GA)
+Install-Package Prism.Avalonia -Version 8.1.97.11073
+Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.11073
 
 # Avalonia v0.10.1021
 Install-Package Prism.Avalonia -Version 8.1.97.1021
@@ -187,7 +200,9 @@ public static class Program
 }
 ```
 
-## Branching Strategy
+## House Keeping
+
+### Branching Strategy
 
 Below is a basic branching hierarchy and strategy.
 
@@ -197,5 +212,13 @@ Below is a basic branching hierarchy and strategy.
 | `develop`   | The **default** & active development branch. When a feature set is completed and ready for public release, the `develop` branch will be merged into `master` and a new NuGet package will be published.
 | `feature/*` | New feature branch. Once completed, it is merged into `develop` and the branch must be deleted.
 | `stable/*`  | Stable release base build which shares cherry-picked merges from `develop`. This branch **must not** be deleted.
+
+### Code of Conduct
+
+See, [Code of Conduct](.github/Code-of-Conduct.md)
+
+### Security
+
+See, [Security](.github/Security.md)
 
 **Sponsored by:** [Suess Labs](https://suesslabs.com) a subsidary of Xeno Innovations, Inc.

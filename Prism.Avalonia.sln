@@ -16,27 +16,30 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{70B9D4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{5F8D330E-F611-4E17-8217-F2D6CDB8E1F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BootstrapperShellSample", "samples\BootstrapperShellSample\BootstrapperShellSample.csproj", "{ABBB169C-A49A-46C7-A920-3F0780CBCA04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BootstrapperShellSample", "e2e\BootstrapperShellSample\BootstrapperShellSample.csproj", "{ABBB169C-A49A-46C7-A920-3F0780CBCA04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewDiscovery", "samples\ViewDiscovery\ViewDiscovery.csproj", "{5D9978C6-2D59-4040-BCF5-56A49AB586E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewDiscovery", "e2e\ViewDiscovery\ViewDiscovery.csproj", "{5D9978C6-2D59-4040-BCF5-56A49AB586E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DummyModules", "DummyModules", "{E03DB670-BFA9-4E7B-A69C-D1E6B8E1691F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModulesSampleApp", "samples\ModulesSample\ModulesSampleApp.csproj", "{DCC68F88-29C9-44EF-90E3-685666AFD6AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModulesSampleApp", "e2e\ModulesSample\ModulesSampleApp.csproj", "{DCC68F88-29C9-44EF-90E3-685666AFD6AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyModule1", "samples\DummyModule1\DummyModule1.csproj", "{2B315287-FDAE-4092-9A80-7DA07D934BF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyModule1", "e2e\DummyModule1\DummyModule1.csproj", "{2B315287-FDAE-4092-9A80-7DA07D934BF1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyModule2", "samples\DummyModule2\DummyModule2.csproj", "{CC39B117-CA19-4151-8B2E-419514AEAE90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyModule2", "e2e\DummyModule2\DummyModule2.csproj", "{CC39B117-CA19-4151-8B2E-419514AEAE90}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ModulesSample", "ModulesSample", "{47BC0E69-AF2D-4C4F-886E-31B61E05C57A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModulesSample.Infrastructure", "samples\ModulesSample.Infrastructure\ModulesSample.Infrastructure.csproj", "{B7112DF9-D7A1-48B8-8821-CF81D52F793E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModulesSample.Infrastructure", "e2e\ModulesSample.Infrastructure\ModulesSample.Infrastructure.csproj", "{B7112DF9-D7A1-48B8-8821-CF81D52F793E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{A1A058C5-0059-44D1-94EE-C90FD3E36E4F}"
 	ProjectSection(SolutionItems) = preProject
 		build\AvaloniaDependency.props = build\AvaloniaDependency.props
 		build\Base.props = build\Base.props
 		build\BuildTargets.props = build\BuildTargets.props
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		Directory.Packages.props = Directory.Packages.props
 		build\EmbedXaml.props = build\EmbedXaml.props
 		build\Library.props = build\Library.props
 		build\Nuget.props = build\Nuget.props
@@ -46,19 +49,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{A1A058C5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Avalonia", "Avalonia", "{9FF880E7-B56A-4E8E-9226-90A928FDE3AB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containers", "Containers", "{366415D3-E0ED-449C-99E2-A258F6A566F6}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.DryIoc.Shared", "src\Containers\Prism.DryIoc.Shared\Prism.DryIoc.Shared.shproj", "{6E7EC81D-DA39-4C4F-A898-0148558C34F4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleMvvmApp", "samples\SampleMvvmApp\SampleMvvmApp.csproj", "{7AF14280-214B-4A96-AFE8-CF063E2B6CA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleMvvmApp", "e2e\SampleMvvmApp\SampleMvvmApp.csproj", "{7AF14280-214B-4A96-AFE8-CF063E2B6CA4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{966DDDE9-D31A-404B-9F24-5378DE8A12C8}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.Container.Avalonia.Shared", "tests\Avalonia\Prism.Container.Avalonia.Shared\Prism.Container.Avalonia.Shared.shproj", "{340538B6-0781-470E-8BD1-7B7735FDC554}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Avalonia.Tests", "tests\Avalonia\Prism.Avalonia.Tests\Prism.Avalonia.Tests.csproj", "{DAFC499B-E379-4453-BDCE-2EC30E1290C8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleDialogApp", "Samples\SampleDialogApp\SampleDialogApp.csproj", "{97F8C6D3-308C-40BD-B181-5CDFCF101CBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleDialogApp", "e2e\SampleDialogApp\SampleDialogApp.csproj", "{97F8C6D3-308C-40BD-B181-5CDFCF101CBF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{39083B0B-55F9-47D5-9683-ACAB6D5D1358}"
 	ProjectSection(SolutionItems) = preProject
@@ -70,6 +67,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Settings.XamlStyler = Settings.XamlStyler
 		Upgrading-to-Avalonia-11.md = Upgrading-to-Avalonia-11.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.DryIoc.Avalonia.Tests", "tests\Avalonia\Prism.DryIoc.Avalonia.Tests\Prism.DryIoc.Avalonia.Tests.csproj", "{2063F822-F705-4B34-8BA2-658E6BD78001}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Core.Tests", "tests\Prism.Core.Tests\Prism.Core.Tests.csproj", "{A42F38AA-9CFB-4B34-8396-1D8C0A7744FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.IocContainer.Avalonia.Tests.Support", "tests\Avalonia\Prism.IocContainer.Avalonia.Tests.Support\Prism.IocContainer.Avalonia.Tests.Support.csproj", "{4F7E8EC6-D5E5-4DD9-8DC0-F03ADDD508CF}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Prism.Container.Avalonia.Shared", "tests\Avalonia\Prism.Container.Avalonia.Shared\Prism.Container.Avalonia.Shared.shproj", "{BD42A7D6-A84D-4D27-9C28-7F6A2EC477F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleBaseApp", "e2e\SampleBaseApp\SampleBaseApp.csproj", "{0C5B43D7-BCC0-4D7D-98AD-C60AE1A1FC11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,6 +132,22 @@ Global
 		{95D737A5-18AA-4397-A8A3-B2E293ACE97E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95D737A5-18AA-4397-A8A3-B2E293ACE97E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95D737A5-18AA-4397-A8A3-B2E293ACE97E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2063F822-F705-4B34-8BA2-658E6BD78001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2063F822-F705-4B34-8BA2-658E6BD78001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2063F822-F705-4B34-8BA2-658E6BD78001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2063F822-F705-4B34-8BA2-658E6BD78001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A42F38AA-9CFB-4B34-8396-1D8C0A7744FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A42F38AA-9CFB-4B34-8396-1D8C0A7744FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A42F38AA-9CFB-4B34-8396-1D8C0A7744FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A42F38AA-9CFB-4B34-8396-1D8C0A7744FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F7E8EC6-D5E5-4DD9-8DC0-F03ADDD508CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F7E8EC6-D5E5-4DD9-8DC0-F03ADDD508CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F7E8EC6-D5E5-4DD9-8DC0-F03ADDD508CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F7E8EC6-D5E5-4DD9-8DC0-F03ADDD508CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C5B43D7-BCC0-4D7D-98AD-C60AE1A1FC11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C5B43D7-BCC0-4D7D-98AD-C60AE1A1FC11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C5B43D7-BCC0-4D7D-98AD-C60AE1A1FC11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C5B43D7-BCC0-4D7D-98AD-C60AE1A1FC11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,20 +164,21 @@ Global
 		{47BC0E69-AF2D-4C4F-886E-31B61E05C57A} = {5F8D330E-F611-4E17-8217-F2D6CDB8E1F7}
 		{B7112DF9-D7A1-48B8-8821-CF81D52F793E} = {47BC0E69-AF2D-4C4F-886E-31B61E05C57A}
 		{9FF880E7-B56A-4E8E-9226-90A928FDE3AB} = {70B9D432-E8BD-4EB9-9CA8-E63E2C804F3F}
-		{366415D3-E0ED-449C-99E2-A258F6A566F6} = {70B9D432-E8BD-4EB9-9CA8-E63E2C804F3F}
-		{6E7EC81D-DA39-4C4F-A898-0148558C34F4} = {366415D3-E0ED-449C-99E2-A258F6A566F6}
 		{7AF14280-214B-4A96-AFE8-CF063E2B6CA4} = {5F8D330E-F611-4E17-8217-F2D6CDB8E1F7}
-		{340538B6-0781-470E-8BD1-7B7735FDC554} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
 		{DAFC499B-E379-4453-BDCE-2EC30E1290C8} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
 		{97F8C6D3-308C-40BD-B181-5CDFCF101CBF} = {5F8D330E-F611-4E17-8217-F2D6CDB8E1F7}
 		{95D737A5-18AA-4397-A8A3-B2E293ACE97E} = {9FF880E7-B56A-4E8E-9226-90A928FDE3AB}
+		{2063F822-F705-4B34-8BA2-658E6BD78001} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
+		{A42F38AA-9CFB-4B34-8396-1D8C0A7744FA} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
+		{4F7E8EC6-D5E5-4DD9-8DC0-F03ADDD508CF} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
+		{BD42A7D6-A84D-4D27-9C28-7F6A2EC477F1} = {966DDDE9-D31A-404B-9F24-5378DE8A12C8}
+		{0C5B43D7-BCC0-4D7D-98AD-C60AE1A1FC11} = {5F8D330E-F611-4E17-8217-F2D6CDB8E1F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D260344D-8648-441D-B85B-9D280005F098}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		tests\Avalonia\Prism.Container.Avalonia.Shared\Prism.Container.Avalonia.Shared.projitems*{340538b6-0781-470e-8bd1-7b7735fdc554}*SharedItemsImports = 13
-		src\Containers\Prism.DryIoc.Shared\Prism.DryIoc.Shared.projitems*{6e7ec81d-da39-4c4f-a898-0148558c34f4}*SharedItemsImports = 13
-		src\Containers\Prism.DryIoc.Shared\Prism.DryIoc.Shared.projitems*{a379e2c8-bd9a-42a1-8218-ced3c0d75e64}*SharedItemsImports = 5
+		tests\Avalonia\Prism.Container.Avalonia.Shared\Prism.Container.Avalonia.Shared.projitems*{2063f822-f705-4b34-8ba2-658e6bd78001}*SharedItemsImports = 5
+		tests\Avalonia\Prism.Container.Avalonia.Shared\Prism.Container.Avalonia.Shared.projitems*{bd42a7d6-a84d-4d27-9c28-7f6a2ec477f1}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

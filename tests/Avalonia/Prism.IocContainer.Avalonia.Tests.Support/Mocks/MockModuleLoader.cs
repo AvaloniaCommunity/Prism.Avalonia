@@ -1,4 +1,4 @@
-using Prism.Modularity;
+﻿using Prism.Modularity;
 
 namespace Prism.IocContainer.Avalonia.Tests.Support.Mocks
 {
@@ -10,6 +10,5 @@ namespace Prism.IocContainer.Avalonia.Tests.Support.Mocks
         {
             LoadCalled = true;
         }
-
     }
 }

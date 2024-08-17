@@ -1,5 +1,4 @@
-using System.ComponentModel;
-using Prism.Regions;
+﻿using System.ComponentModel;
 
 namespace Prism.Avalonia.Tests.Mocks
 {
@@ -12,6 +11,9 @@ namespace Prism.Avalonia.Tests.Mocks
         {
             Behaviors = new MockRegionBehaviorCollection();
         }
+
+        public IRegionManager Add(string viewName) => throw new NotImplementedException();
+
         public IRegionManager Add(object view)
         {
             MockViews.Items.Add(view);
@@ -75,7 +77,7 @@ namespace Prism.Avalonia.Tests.Mocks
             }
         }
 
-        public NavigationParameters NavigationParameters
+        public INavigationParameters NavigationParameters
         {
             get { throw new System.NotImplementedException(); }
             set { throw new System.NotImplementedException(); }
@@ -84,11 +86,11 @@ namespace Prism.Avalonia.Tests.Mocks
         private string name;
         public string Name
         {
-            get { return this.name; }
+            get { return name; }
             set
             {
-                this.name = value;
-                this.OnPropertyChange("Name");
+                name = value;
+                OnPropertyChange("Name");
             }
         }
 
@@ -96,10 +98,7 @@ namespace Prism.Avalonia.Tests.Mocks
 
         public void OnPropertyChange(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public bool Navigate(Uri source)
@@ -112,7 +111,7 @@ namespace Prism.Avalonia.Tests.Mocks
             throw new NotImplementedException();
         }
 
-        public void RequestNavigate(Uri target, Action<NavigationResult> navigationCallback, NavigationParameters navigationParameters)
+        public void RequestNavigate(Uri target, Action<NavigationResult> navigationCallback, INavigationParameters navigationParameters)
         {
             throw new NotImplementedException();
         }
@@ -127,7 +126,6 @@ namespace Prism.Avalonia.Tests.Mocks
             get { throw new NotImplementedException(); }
             set { throw new System.NotImplementedException(); }
         }
-
 
         public Comparison<object> SortComparison
         {

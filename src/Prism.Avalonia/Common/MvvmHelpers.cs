@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Avalonia.Controls;
 using Prism.Mvvm;
 
@@ -18,6 +19,7 @@ namespace Prism.Common
         /// the AutoWireViewModel property of the view is null.
         /// </remarks>
         /// <param name="viewOrViewModel">The View or ViewModel.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal static void AutowireViewModel(object viewOrViewModel)
         {
             if (viewOrViewModel is Control view &&
@@ -31,10 +33,10 @@ namespace Prism.Common
         ////#endif
 
         /// <summary>
-        /// Perform an <see cref="Action{T}"/> on a view and viewmodel.
+        /// Perform an <see cref="Action{T}"/> on a view and ViewModel.
         /// </summary>
         /// <remarks>
-        /// The action will be performed on the view and its viewmodel if they implement <typeparamref name="T"/>.
+        /// The action will be performed on the view and its ViewModel if they implement <typeparamref name="T"/>.
         /// </remarks>
         /// <typeparam name="T">The <see cref="Action{T}"/> parameter type.</typeparam>
         /// <param name="view">The view to perform the <see cref="Action{T}"/> on.</param>
@@ -51,7 +53,7 @@ namespace Prism.Common
         }
 
         /// <summary>
-        /// Get an implementer from a view or viewmodel.
+        /// Get an implementer from a view or ViewModel.
         /// </summary>
         /// <remarks>
         /// If the view implements <typeparamref name="T"/> it will be returned.
@@ -59,7 +61,7 @@ namespace Prism.Common
         /// </remarks>
         /// <typeparam name="T">The implementer type to get.</typeparam>
         /// <param name="view">The view to get <typeparamref name="T"/> from.</param>
-        /// <returns>view or viewmodel as <typeparamref name="T"/>.</returns>
+        /// <returns>view or ViewModel as <typeparamref name="T"/>.</returns>
         public static T GetImplementerFromViewOrViewModel<T>(object view) where T : class
         {
             if (view is T viewAsT)

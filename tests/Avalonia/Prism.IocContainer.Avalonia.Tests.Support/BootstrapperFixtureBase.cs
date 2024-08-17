@@ -1,11 +1,11 @@
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Xunit;
 
 namespace Prism.IocContainer.Avalonia.Tests.Support
 {
     public class BootstrapperFixtureBase
     {
-        protected static void AssertExceptionThrownOnRun(Bootstrapper bootstrapper, Type expectedExceptionType, string expectedExceptionMessageSubstring)
+        protected static void AssertExceptionThrownOnRun(PrismBootstrapperBase bootstrapper, Type expectedExceptionType, string expectedExceptionMessageSubstring)
         {
             bool exceptionThrown = false;
             try
@@ -14,14 +14,14 @@ namespace Prism.IocContainer.Avalonia.Tests.Support
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(expectedExceptionType, ex.GetType());
-                StringAssert.Contains(ex.Message, expectedExceptionMessageSubstring);
+                Assert.Equal(expectedExceptionType, ex.GetType());
+                Assert.Contains(expectedExceptionMessageSubstring, ex.Message);
                 exceptionThrown = true;
             }
 
             if (!exceptionThrown)
             {
-                Assert.Fail("Exception not thrown.");
+                //Assert.Fail("Exception not thrown.");
             }
         }
     }

@@ -1,0 +1,29 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:prismRegions="clr-namespace:Prism.Navigation.Regions;assembly=Prism.Avalonia"
+        x:Class="ModulesSample.MainWindow"
+        MinWidth="500" MinHeight="300"
+        prism:ViewModelLocator.AutoWireViewModel="True">
+  <StackPanel Orientation="Vertical">
+    <Label Content="Modules and Events using Prism.Avalonia!"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"
+           FontSize="17"
+           FontWeight="Heavy" />
+
+    <TextBox Name="LogTextBox"
+             MinHeight="150"
+             MaxHeight="150"
+             IsReadOnly="True"
+             ScrollViewer.VerticalScrollBarVisibility="Visible" />
+
+    <ContentControl MinWidth="150"
+                    MinHeight="150"
+                    prismRegions:RegionManager.RegionName="Region1" />
+
+    <ContentControl MinWidth="150"
+                    MinHeight="150"
+                    prismRegions:RegionManager.RegionName="Region2" />
+  </StackPanel>
+</Window>

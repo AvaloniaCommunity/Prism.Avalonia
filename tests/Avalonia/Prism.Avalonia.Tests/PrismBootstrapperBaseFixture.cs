@@ -1,13 +1,12 @@
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Moq;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Regions;
-using Prism.Regions.Behaviors;
-using Prism.Services.Dialogs;
+using Prism.Dialogs;
 using Xunit;
+using Prism.Navigation.Regions.Behaviors;
 
 namespace Prism
 {
@@ -34,6 +33,8 @@ namespace Prism
         }
     }
 
+    /// <summary>Bootstrapping base fixture</summary>
+    /// <remarks>This passes when running by itself; fails when ran as a whole.</remarks>
     public class PrismBootstapperBaseFixture : IClassFixture<PrismBootstapperSetup>
     {
         PrismBootstrapper bootstrapper = null;
@@ -162,7 +163,7 @@ namespace Prism
         }
 
         [Fact]
-        public void ConfigureDefaultRegionBehaviorsShouldBindRegionContextToDependencyObjectBehavior()
+        public void ConfigureDefaultRegionBehaviorsShouldBindRegionContextToAvaloniaObjectBehavior()
         {
             Assert.True(bootstrapper.DefaultRegionBehaviorTypes.ContainsKey(BindRegionContextToAvaloniaObjectBehavior.BehaviorKey));
         }
