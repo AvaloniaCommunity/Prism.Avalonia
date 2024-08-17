@@ -1,6 +1,9 @@
 <Project>
   <!-- Prism -->
   <ItemGroup>
+    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.11.0" />
     <PackageVersion Include="Prism.Core" Version="9.0.401-pre" />
     <PackageVersion Include="Prism.Container.Abstractions" Version="9.0.84-pre" />
     <PackageVersion Include="Prism.Container.DryIoc" Version="9.0.88" />

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>false</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Description>
+      Prism.Avalonia.Generators is source code generator so you can quickly and easily design and build rich, flexible, and easy to maintain cross-platform Avalonia desktop applications with less code.
+    </Description>
+    <PackageTags>prism;mvvm;xaml;avalonia;navigation;dialog;prismavalonia;generator;</PackageTags>
+    <Copyright>Copyright (c) 2024 Xeno Innovations, Inc.</Copyright>
+    <Authors>Damian Suess</Authors>
+    <Title>Prism.Avalonia</Title>
+    <PackageIcon>Prism.Avalonia.png</PackageIcon>
+    <AppDesignerFolder>Reactive</AppDesignerFolder>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
+  </ItemGroup>
+
+</Project>
