@@ -21,7 +21,7 @@ public class NotificationService : INotificationService
         var notificationManager = new WindowNotificationManager(hostWindow)
         {
             Position = NotificationPosition.BottomRight,
-            MaxItems = 4,
+            MaxItems = MaxItems,
             Margin = new Thickness(0, 0, 15, 40)
         };
 
@@ -31,7 +31,7 @@ public class NotificationService : INotificationService
     /// <inheritdoc/>
     public void Show(string title,
                      string message,
-                     NotificationType type = NotificationType.Information,
+                     NotificationType notificationType = NotificationType.Information,
                      Action? onClick = null,
                      Action? onClose = null)
     {
@@ -39,12 +39,12 @@ public class NotificationService : INotificationService
         {
             nm.Show(
                 new Notification(
-                    title,
-                    message,
-                    type,
-                    TimeSpan.FromSeconds(_notificationTimeout),
-                    onClick,
-                    onClose));
+                title,
+                message,
+                notificationType,
+                TimeSpan.FromSeconds(_notificationTimeout),
+                onClick,
+                onClose));
         }
     }
 }
