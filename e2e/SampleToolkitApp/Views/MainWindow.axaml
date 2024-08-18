@@ -1,0 +1,32 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:vm="using:SampleToolkitApp.ViewModels"
+        x:Class="SampleToolkitApp.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        d:DesignHeight="350"
+        d:DesignWidth="600"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        Title="{Binding Title}"
+        Icon="/Assets/prism-avalonia-logo.ico"
+        mc:Ignorable="d">
+
+  <!--
+    Vanilla Avalonia requires you to use the following to set the DataContext for the previewer in an IDE.
+
+      <Design.DataContext>
+        <vm:MainWindowViewModel />
+      </Design.DataContext>
+
+   With Prism.Avalonia use the following in `<Window ...>` to AutoWire the ViewModel in.
+
+      xmlns:prism="http://prismlibrary.com/"
+      prism:ViewModelLocator.AutoWireViewModel="True"
+  -->
+
+  <TextBlock Text="{Binding Greeting}"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Center" />
+</Window>

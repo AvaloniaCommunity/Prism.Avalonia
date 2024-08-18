@@ -4,9 +4,11 @@
   <Import Project="../../build/Library.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <ImplicitUsings>false</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+
     <Description>
       Prism.Avalonia.Generators is source code generator so you can quickly and easily design and build rich, flexible, and easy to maintain cross-platform Avalonia desktop applications with less code.
       Users must install the Prism.Avalonia NuGet package as well.
