@@ -1,8 +1,9 @@
-﻿using Avalonia;
+﻿using System;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 
-namespace Prism.Avalonia.Toolkit;
+namespace Prism.Avalonia;
 
 public class NotificationService : INotificationService
 {

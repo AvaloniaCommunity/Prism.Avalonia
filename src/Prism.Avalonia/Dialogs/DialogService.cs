@@ -81,7 +81,7 @@ namespace Prism.Dialogs
         protected virtual void ConfigureDialogWindowContent(string dialogName, IDialogWindow window, IDialogParameters parameters)
         {
             var content = _containerExtension.Resolve<object>(dialogName);
-            if (!(content is Avalonia.Controls.Control dialogContent))
+            if (!(content is global::Avalonia.Controls.Control dialogContent))
                 throw new NullReferenceException("A dialog's content must be a FrameworkElement");
 
             MvvmHelpers.AutowireViewModel(dialogContent);
@@ -153,7 +153,7 @@ namespace Prism.Dialogs
         /// <param name="window">The hosting window.</param>
         /// <param name="dialogContent">The dialog to show.</param>
         /// <param name="viewModel">The dialog's ViewModel.</param>
-        protected virtual void ConfigureDialogWindowProperties(IDialogWindow window, Avalonia.Controls.Control dialogContent, IDialogAware viewModel)
+        protected virtual void ConfigureDialogWindowProperties(IDialogWindow window, global::Avalonia.Controls.Control dialogContent, IDialogAware viewModel)
         {
             // Avalonia returns 'null' for Dialog.GetWindowStyle(dialogContent);
             // WPF: Window > ContentControl > FrameworkElement

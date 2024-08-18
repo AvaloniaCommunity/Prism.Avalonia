@@ -2,7 +2,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using Prism.Avalonia.Toolkit;
+using Prism.Avalonia;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;

@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Styling;
-using Prism.Avalonia.Toolkit;
+using Prism.Avalonia;
 using Prism.Commands;
 
 namespace SampleMvvmApp.ViewModels

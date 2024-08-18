@@ -60,7 +60,7 @@ namespace Prism.Mvvm
         /// <param name="viewModel">The object to use as the DataContext for the View</param>
         static void Bind(object view, object viewModel)
         {
-            if (view is Avalonia.Controls.Control element)
+            if (view is global::Avalonia.Controls.Control element)
                 element.DataContext = viewModel;
         }
     }

@@ -2,9 +2,9 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 
-namespace Prism.Avalonia.Toolkit;
+namespace Prism.Avalonia;
 
-/// <summary>In-app Notification Service Interface.</summary>
+/// <summary>In-application Notification Service Interface.</summary>
 public interface INotificationService
 {
     /// <summary>Defines the maximum number of notifications visible at once.</summary>
@@ -17,6 +17,7 @@ public interface INotificationService
     /// <param name="hostWindow">Parent window.</param>
     void SetHostWindow(TopLevel window);
 
+#nullable enable
     /// <summary>Display the notification.</summary>
     /// <param name="title">Title.</param>
     /// <param name="message">Message.</param>
@@ -28,4 +29,5 @@ public interface INotificationService
               NotificationType notificationType = NotificationType.Information,
               Action? onClick = null,
               Action? onClose = null);
+#nullable disable
 }
