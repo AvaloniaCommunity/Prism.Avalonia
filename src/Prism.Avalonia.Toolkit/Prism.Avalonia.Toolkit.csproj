@@ -1,13 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="../../build/AvaloniaDependency.props" />
   <Import Project="../../build/Library.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Description>This extension is used to build Prism.Avalonia applications based on DryIoc. Users must install the Prism.Avalonia NuGet package as well.</Description>
+    <Description>
+      Prism.Avalonia.Generators is source code generator so you can quickly and easily design and build rich, flexible, and easy to maintain cross-platform Avalonia desktop applications with less code.
+      Users must install the Prism.Avalonia NuGet package as well.
+    </Description>
     <Authors>Damian Suess</Authors>
     <Copyright>Copyright (c) 2024 Avalonia Community</Copyright>
     <Title>Prism.Avalonia.Toolkit</Title>
@@ -25,6 +28,15 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
   </ItemGroup>
 
 </Project>
