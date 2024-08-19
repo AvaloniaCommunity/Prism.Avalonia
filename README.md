@@ -20,6 +20,8 @@
 
 With Prism.Avalonia's logic and development approach being **similar** to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/), so you can get started right away! Keep in mind, they are **similar** and not 1-to-1. Check out our [Wiki](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki) and [Avalonia Outlookish](https://github.com/DamianSuess/Learn.PrismAvaloniaOutlookish) app for tips and tricks.
 
+This project currently supports cross-platform Desktop applications (_Windows, Linux, Mac_). Support for Android, iOS, and web apps is still under evaluation; and is not 100%. Feel free to contribute to improve this. 😃
+
 ## Package Releases
 
 Just like _Prism.WPF or Prism.Maui_, your project must reference both the **Prism.Avalonia** (_Core_) and **Prism.DryIoc.Avalonia** (_IoC container_) packages to work.
