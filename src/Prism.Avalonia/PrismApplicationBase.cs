@@ -2,6 +2,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Markup.Xaml;
 using Prism.Common;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -47,6 +48,14 @@ namespace Prism
         public override void Initialize()
         {
             base.Initialize();
+
+            try
+            {
+                AvaloniaXamlLoader.Load(this);
+            }
+            catch
+            {
+            }
 
             ConfigureViewModelLocator();
 
@@ -119,7 +128,9 @@ namespace Prism
         /// <summary>
         /// Used to register types with the container that will be used by your application.
         /// </summary>
-        protected abstract void RegisterTypes(IContainerRegistry containerRegistry);
+        protected virtual void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+        }
 
         /// <summary>
         /// Configures the <see cref="IRegionBehaviorFactory"/>.
