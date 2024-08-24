@@ -82,125 +82,105 @@ Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.1021
 
 ## How to use
 
-### App.xaml.cs
+### Program.cs
+
+The default Avalonia entrypoint `Program.cs` does not need to be modified. Below is provided as a sample.
 
 ```csharp
-public class App : PrismApplication
+using System;
+using Avalonia;
+
+namespace SampleBaseApp;
+
+internal sealed class Program
 {
-    public static bool IsSingleViewLifetime =>
-        Environment.GetCommandLineArgs()
-            .Any(a => a == "--fbdev" || a == "--drm");
+  // Initialization code. Don't use any Avalonia, third-party APIs or any
+  // SynchronizationContext-reliant code before AppMain is called
+  [STAThread]
+  public static void Main(string[] args) => BuildAvaloniaApp()
+    .StartWithClassicDesktopLifetime(args);
 
-    public static AppBuilder BuildAvaloniaApp() =>
-        AppBuilder
-            .Configure<App>()
-            .UsePlatformDetect();
+  // Avalonia configuration, don't remove; also used by visual designer.
+  public static AppBuilder BuildAvaloniaApp()
+    => AppBuilder.Configure<App>()
+        .UsePlatformDetect()
+        .WithInterFont()
+        .LogToTrace();
+}
 
-    public override void Initialize()
-    {
-        AvaloniaXamlLoader.Load(this);
-        base.Initialize();              // <-- Required
-    }
+```
 
-    protected override void RegisterTypes(IContainerRegistry containerRegistry)
-    {
-        // Register Services
-        containerRegistry.Register<IRestService, RestService>();
+### App.axaml
 
-        // Views - Generic
-        containerRegistry.Register<MainWindow>();
+```xml
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SampleBaseApp.App"
+             xmlns:local="using:SampleBaseApp"
+             RequestedThemeVariant="Default">
+  <!-- RequestedThemeVariant allows for the following types, "Default", "Dark", or "Light". -->
 
-        // Views - Region Navigation
-        containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
-        containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
-        containerRegistry.RegisterForNavigation<SidebarView, SidebarViewModel>();
-    }
+  <Application.Styles>
+    <FluentTheme />
+  </Application.Styles>
+</Application>
+```
 
-    protected override AvaloniaObject CreateShell()
-    {
-        if (IsSingleViewLifetime)
-            return Container.Resolve<MainControl>(); // For Linux Framebuffer or DRM
-        else
-            return Container.Resolve<MainWindow>();
-    }
+### App.axaml.cs
+
+> **Notice:**
+>
+> We do not need the `OnFrameworkInitializationCompleted()` method. However, you must include `base.Initialize();` in the `Initialize()` method to kick-start Prism.Avalonia.
+>
+> Also, in your `App.axaml` you no longer need to device the `<Design.DataContext>`. Prism takes care of this for you! (:
+
+```csharp
+using System;
+using Avalonia;
+using Avalonia.Markup.Xaml;
+using Prism.DryIoc;
+using Prism.Ioc;
+using SampleBaseApp.Views;
+
+namespace SampleBaseApp;
+
+public partial class App : PrismApplication
+{
+  public override void Initialize()
+  {
+    AvaloniaXamlLoader.Load(this);
+    base.Initialize();  // Required to initialize Prism.Avalonia - DO NOT REMOVE
+  }
+
+  protected override AvaloniaObject CreateShell()
+  {
+    Console.WriteLine("CreateShell()");
+
+    return Container.Resolve<MainWindow>();
+  }
+
+  protected override void RegisterTypes(IContainerRegistry containerRegistry)
+  {
+    // Add Services and ViewModel registrations here
+
+    Console.WriteLine("RegisterTypes()");
+
+    // Services
+    //// containerRegistry.RegisterSingleton<ISampleService, ISampleService>();
+
+    // Views - Region Navigation
+    //// containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
+
+    // Dialogs
+    //// containerRegistry.RegisterDialog<MessageBoxView, MessageBoxViewModel>();
+    //// containerRegistry.RegisterDialogWindow<CustomDialogWindow>(nameof(CustomDialogWindow));
+  }
 
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
     {
-        // Register modules
-        moduleCatalog.AddModule<Module1.Module>();
-        moduleCatalog.AddModule<Module2.Module>();
-        moduleCatalog.AddModule<Module3.Module>();
+      // Register modules
+      //// moduleCatalog.AddModule<DummyModule.DummyModule1>();
     }
-
-    /// <summary>Called after <seealso cref="Initialize"/>.</summary>
-    protected override void OnInitialized()
-    {
-      // Register initial Views to Region.
-      var regionManager = Container.Resolve<IRegionManager>();
-      regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(DashboardView));
-      regionManager.RegisterViewWithRegion(RegionNames.SidebarRegion, typeof(SidebarView));
-    }
-}
-```
-
-### Program.cs
-
-Your default Avalonia `Program.cs` file does not need to be modified. Below is provided as a sample.
-
-```csharp
-public static class Program
-{
-    public static AppBuilder BuildAvaloniaApp() =>
-        AppBuilder.Configure<App>()
-            .UsePlatformDetect()
-            .With(new X11PlatformOptions
-            {
-                EnableMultiTouch = true,
-                UseDBusMenu = true
-            })
-            .With(new Win32PlatformOptions())
-            .UseSkia()
-            .UseReactiveUI()
-            .UseManagedSystemDialogs();
-
-    static int Main(string[] args)
-    {
-        double GetScaling()
-        {
-            var idx = Array.IndexOf(args, "--scaling");
-            if (idx != 0 && args.Length > idx + 1 &&
-                double.TryParse(args[idx + 1], NumberStyles.Any, CultureInfo.InvariantCulture, out var scaling))
-                return scaling;
-            return 1;
-        }
-
-        var builder = BuildAvaloniaApp();
-        InitializeLogging();
-        if (args.Contains("--fbdev"))
-        {
-            SilenceConsole();
-            return builder.StartLinuxFbDev(args, scaling: GetScaling());
-        }
-        else if (args.Contains("--drm"))
-        {
-            SilenceConsole();
-            return builder.StartLinuxDrm(args, scaling: GetScaling());
-        }
-        else
-            return builder.StartWithClassicDesktopLifetime(args);
-    }
-
-    static void SilenceConsole()
-    {
-        new Thread(() =>
-        {
-            Console.CursorVisible = false;
-            while (true)
-                Console.ReadKey(true);
-        })
-        { IsBackground = true }.Start();
-    }
-}
 ```
 
 ## House Keeping
