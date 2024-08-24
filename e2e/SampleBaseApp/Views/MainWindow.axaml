@@ -5,11 +5,11 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:vm="using:SampleBaseApp.ViewModels"
         x:Class="SampleBaseApp.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
+        Title="{Binding Title}"
         d:DesignHeight="350"
         d:DesignWidth="600"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}"
+        x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         mc:Ignorable="d">
 
@@ -24,10 +24,21 @@
       xmlns:prism="http://prismlibrary.com/"
       prism:ViewModelLocator.AutoWireViewModel="True"
   -->
+  <Panel HorizontalAlignment="Center" VerticalAlignment="Center">
+    <StackPanel Spacing="5">
+      <TextBlock Text="{Binding Greeting}"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center" />
 
-  <Grid>
-    <TextBlock Text="{Binding Greeting}"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center" />
-  </Grid>
+      <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+        <Label Content="Button Clicked " />
+        <Label Content="{Binding ClickCounter}" />
+        <Label Content=" times." />
+      </StackPanel>
+
+      <Button Content="Click Me"
+              HorizontalAlignment="Center"
+              Command="{Binding CmdIncrementCounter}" />
+    </StackPanel>
+  </Panel>
 </Window>

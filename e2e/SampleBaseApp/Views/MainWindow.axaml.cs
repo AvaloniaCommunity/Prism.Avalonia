@@ -1,3 +1,4 @@
+﻿using Avalonia;
 using Avalonia.Controls;
 
 namespace SampleBaseApp.Views
@@ -7,6 +8,9 @@ namespace SampleBaseApp.Views
     public MainWindow()
     {
       InitializeComponent();
+#if DEBUG
+      this.AttachDevTools();
+#endif
     }
   }
 }

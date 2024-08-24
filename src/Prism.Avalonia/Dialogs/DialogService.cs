@@ -82,12 +82,12 @@ namespace Prism.Dialogs
         {
             var content = _containerExtension.Resolve<object>(dialogName);
             if (!(content is global::Avalonia.Controls.Control dialogContent))
-                throw new NullReferenceException("A dialog's content must be a FrameworkElement");
+                throw new NullReferenceException("A dialog's content must be an Avalonia.Controls.Control");
 
             MvvmHelpers.AutowireViewModel(dialogContent);
 
             if (!(dialogContent.DataContext is IDialogAware viewModel))
-                throw new NullReferenceException("A dialog's ViewModel must implement the IDialogAware interface");
+                throw new NullReferenceException("A dialog's ViewModel must implement the Prism.Dialogs.IDialogAware interface");
 
             ConfigureDialogWindowProperties(window, dialogContent, viewModel);
 

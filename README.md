@@ -1,14 +1,17 @@
 # Prism.Avalonia
 
-[Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your cross-platform [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can **Navigate**, create **Dialog Windows** and **Notifications**, provide **Dependency Injection** and internal **Messaging** easier than before!  You will need both packages installed to get started.
+<center>
+
+![Logo](https://raw.githubusercontent.com/AvaloniaCommunity/Prism.Avalonia/develop/images/Prism.Avalonia.png)
+</center>
+
+ [Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your cross-platform [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can **Navigate**, create **Dialog Windows** and **Notifications**, provide **Dependency Injection** and internal **Messaging** easier than before!  You will need both packages installed to get started.
 
 > **Announcement!**
 >
-> * **NEW:**_[Official Prism.Avalonia Templates arrived!](https://github.com/SuessLabs/Prism.Avalonia.Templates)_
-> * _Prism.Avalonia v9.0.401-pre - **Available!**_
-> * _Prism.Avalonia v9.0.537 - **Coming Soon!**_
-> * _Support for Avalonia v11.1.x has arrived!_
-> * Follow the [Upgrading to Prism v9.0.x-pre](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Upgrading-to-Prism-v9.0) guide for breaking changes
+> * **NEW:** _[Official Prism.Avalonia Templates arrived!](https://github.com/SuessLabs/Prism.Avalonia.Templates)_
+> * _Prism.Avalonia v9.0.537 - **Available!**_
+> * Check out the [Upgrading to Prism v9.0](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Upgrading-to-Prism-v9.0) guide to avoid breaking changes in your apps
 
 **For more samples outside of this repo, check out:**
 
@@ -17,11 +20,11 @@
 * _If you have samples, let us know and we'll feature them!_
 
 <!-- ![Sample Outlookish](logo/Sample-Outlookish.png) -->
-![Sample Outlookish](https://raw.githubusercontent.com/AvaloniaCommunity/Prism.Avalonia/stable/v8.1.97.11xx/logo/Sample-Outlookish.png)
+![Sample Outlookish](https://raw.githubusercontent.com/AvaloniaCommunity/Prism.Avalonia/master/images/Sample-Outlookish.png)
 
 With Prism.Avalonia's logic and development approach being **similar** to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/), so you can get started right away! Keep in mind, they are **similar** and not 1-to-1. Check out our [Wiki](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki) and [Avalonia Outlookish](https://github.com/DamianSuess/Learn.PrismAvaloniaOutlookish) app for tips and tricks.
 
-This project currently supports cross-platform Desktop applications (_Windows, Linux, Mac_). Support for Android, iOS, and web apps is still under evaluation; and is not 100%. Feel free to contribute to improve this. 😃
+This project currently supports cross-platform Desktop applications (_Windows, Linux, Mac_). Support for Android, iOS, and web apps is still under evaluation; and is not 100%. Feel free to contribute and help us improve. 😃
 
 ## Package Releases
 
@@ -36,10 +39,11 @@ Just like _Prism.WPF or Prism.Maui_, your project must reference both the **Pris
 
 Choose the NuGet package version that matches your Avalonia version.
 
-Our [versioning schema](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Versioning-Schema) is based on the [SemVer](https://semver.org/) using the format  `MAJOR.MINOR.PATCH.REVISION`. The `REVISION` segment indicates the Avalonia version support. For instance `v8.1.97.11073` equates to, Prism `v8.1.97`, Avalonia `v11.0.7`, _revision_ `3`.
+Our [versioning schema](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Versioning-Schema) is based on the [SemVer](https://semver.org/) using the format  `MAJOR.MINOR.PATCH.REVISION`. The `REVISION` segment indicates the Avalonia version support. For instance `v9.0.537.11234` equates to, Prism `v9.0.537`, Avalonia `v11.2.3`, _revision_ `4`.
 
 | Prism | Avalonia | Prism.Avalonia NuGet Package
 |-|-|-
+| v9.0.537  | **11.1.3**    | v9.0.537.11130 ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.537.11130)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.537.11130))
 | v9.0.401-pre  | **11.1.1**    | v9.0.401.11110-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.401.11110-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.401.11110-pre))
 | v9.0.401-pre  | **11.0.7**    | v9.0.401.11074-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.401.11074-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.401.11074-pre))
 | v9.0.271-pre  | **11.0.7**    | v9.0.271.11000-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.271.11000-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.271.11000-pre))
@@ -67,140 +71,120 @@ Issues posted without a description may be closed immediately. Use the discussio
 Add the Prism.Avalonia and its DryIoc packages to your project:
 
 ```powershell
-# Latest Preview Release
-Install-Package Prism.Avalonia -Version 9.0.401.11110-pre
-Install-Package Prism.DryIoc.Avalonia -Version 9.0.401.11110-pre
+# Avalonia v11.1 - Latest Release
+Install-Package Prism.Avalonia -Version 9.0.537.11130
+Install-Package Prism.DryIoc.Avalonia -Version 9.0.537.11130
 
-# Avalonia v11 (GA)
+# Legacy: Avalonia v11.0
 Install-Package Prism.Avalonia -Version 8.1.97.11073
 Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.11073
 
-# Avalonia v0.10.1021
+# Legacy: Avalonia v0.10.1021
 Install-Package Prism.Avalonia -Version 8.1.97.1021
 Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.1021
 ```
 
 ## How to use
 
-### App.xaml.cs
+### Program.cs
+
+The default Avalonia entrypoint `Program.cs` does not need to be modified. Below is provided as a sample.
 
 ```csharp
-public class App : PrismApplication
+using System;
+using Avalonia;
+
+namespace SampleBaseApp;
+
+internal sealed class Program
 {
-    public static bool IsSingleViewLifetime =>
-        Environment.GetCommandLineArgs()
-            .Any(a => a == "--fbdev" || a == "--drm");
+  // Initialization code. Don't use any Avalonia, third-party APIs or any
+  // SynchronizationContext-reliant code before AppMain is called
+  [STAThread]
+  public static void Main(string[] args) => BuildAvaloniaApp()
+    .StartWithClassicDesktopLifetime(args);
 
-    public static AppBuilder BuildAvaloniaApp() =>
-        AppBuilder
-            .Configure<App>()
-            .UsePlatformDetect();
+  // Avalonia configuration, don't remove; also used by visual designer.
+  public static AppBuilder BuildAvaloniaApp()
+    => AppBuilder.Configure<App>()
+        .UsePlatformDetect()
+        .WithInterFont()
+        .LogToTrace();
+}
 
-    public override void Initialize()
-    {
-        AvaloniaXamlLoader.Load(this);
-        base.Initialize();              // <-- Required
-    }
+```
 
-    protected override void RegisterTypes(IContainerRegistry containerRegistry)
-    {
-        // Register Services
-        containerRegistry.Register<IRestService, RestService>();
+### App.axaml
 
-        // Views - Generic
-        containerRegistry.Register<MainWindow>();
+```xml
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SampleBaseApp.App"
+             xmlns:local="using:SampleBaseApp"
+             RequestedThemeVariant="Default">
+  <!-- RequestedThemeVariant allows for the following types, "Default", "Dark", or "Light". -->
 
-        // Views - Region Navigation
-        containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
-        containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
-        containerRegistry.RegisterForNavigation<SidebarView, SidebarViewModel>();
-    }
+  <Application.Styles>
+    <FluentTheme />
+  </Application.Styles>
+</Application>
+```
 
-    protected override AvaloniaObject CreateShell()
-    {
-        if (IsSingleViewLifetime)
-            return Container.Resolve<MainControl>(); // For Linux Framebuffer or DRM
-        else
-            return Container.Resolve<MainWindow>();
-    }
+### App.axaml.cs
+
+> **Notice:**
+>
+> We do not need the `OnFrameworkInitializationCompleted()` method. However, you must include `base.Initialize();` in the `Initialize()` method to kick-start Prism.Avalonia.
+>
+> Also, in your `App.axaml` you no longer need to device the `<Design.DataContext>`. Prism takes care of this for you! (:
+
+```csharp
+using System;
+using Avalonia;
+using Avalonia.Markup.Xaml;
+using Prism.DryIoc;
+using Prism.Ioc;
+using SampleBaseApp.Views;
+
+namespace SampleBaseApp;
+
+public partial class App : PrismApplication
+{
+  public override void Initialize()
+  {
+    AvaloniaXamlLoader.Load(this);
+    base.Initialize();  // Required to initialize Prism.Avalonia - DO NOT REMOVE
+  }
+
+  protected override AvaloniaObject CreateShell()
+  {
+    Console.WriteLine("CreateShell()");
+
+    return Container.Resolve<MainWindow>();
+  }
+
+  protected override void RegisterTypes(IContainerRegistry containerRegistry)
+  {
+    // Add Services and ViewModel registrations here
+
+    Console.WriteLine("RegisterTypes()");
+
+    // Services
+    //// containerRegistry.RegisterSingleton<ISampleService, ISampleService>();
+
+    // Views - Region Navigation
+    //// containerRegistry.RegisterForNavigation<DashboardView, DashboardViewModel>();
+
+    // Dialogs
+    //// containerRegistry.RegisterDialog<MessageBoxView, MessageBoxViewModel>();
+    //// containerRegistry.RegisterDialogWindow<CustomDialogWindow>(nameof(CustomDialogWindow));
+  }
 
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
     {
-        // Register modules
-        moduleCatalog.AddModule<Module1.Module>();
-        moduleCatalog.AddModule<Module2.Module>();
-        moduleCatalog.AddModule<Module3.Module>();
+      // Register modules
+      //// moduleCatalog.AddModule<DummyModule.DummyModule1>();
     }
-
-    /// <summary>Called after <seealso cref="Initialize"/>.</summary>
-    protected override void OnInitialized()
-    {
-      // Register initial Views to Region.
-      var regionManager = Container.Resolve<IRegionManager>();
-      regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(DashboardView));
-      regionManager.RegisterViewWithRegion(RegionNames.SidebarRegion, typeof(SidebarView));
-    }
-}
-```
-
-### Program.cs
-
-Your default Avalonia `Program.cs` file does not need to be modified. Below is provided as a sample.
-
-```csharp
-public static class Program
-{
-    public static AppBuilder BuildAvaloniaApp() =>
-        AppBuilder.Configure<App>()
-            .UsePlatformDetect()
-            .With(new X11PlatformOptions
-            {
-                EnableMultiTouch = true,
-                UseDBusMenu = true
-            })
-            .With(new Win32PlatformOptions())
-            .UseSkia()
-            .UseReactiveUI()
-            .UseManagedSystemDialogs();
-
-    static int Main(string[] args)
-    {
-        double GetScaling()
-        {
-            var idx = Array.IndexOf(args, "--scaling");
-            if (idx != 0 && args.Length > idx + 1 &&
-                double.TryParse(args[idx + 1], NumberStyles.Any, CultureInfo.InvariantCulture, out var scaling))
-                return scaling;
-            return 1;
-        }
-
-        var builder = BuildAvaloniaApp();
-        InitializeLogging();
-        if (args.Contains("--fbdev"))
-        {
-            SilenceConsole();
-            return builder.StartLinuxFbDev(args, scaling: GetScaling());
-        }
-        else if (args.Contains("--drm"))
-        {
-            SilenceConsole();
-            return builder.StartLinuxDrm(args, scaling: GetScaling());
-        }
-        else
-            return builder.StartWithClassicDesktopLifetime(args);
-    }
-
-    static void SilenceConsole()
-    {
-        new Thread(() =>
-        {
-            Console.CursorVisible = false;
-            while (true)
-                Console.ReadKey(true);
-        })
-        { IsBackground = true }.Start();
-    }
-}
 ```
 
 ## House Keeping

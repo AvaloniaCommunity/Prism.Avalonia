@@ -13,7 +13,7 @@ public partial class App : PrismApplication
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
-        base.Initialize();
+        base.Initialize();  // Required to initialize Prism.Avalonia - DO NOT REMOVE
     }
 
     protected override AvaloniaObject CreateShell()

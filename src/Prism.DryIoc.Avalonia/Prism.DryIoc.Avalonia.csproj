@@ -2,7 +2,6 @@
 
   <Import Project="../../build/Library.props" />
   <Import Project="../../build/AvaloniaDependency.props" />
-  <Import Project="../../build/PrismDependency.props" />
 
   <PropertyGroup>
     <RootNamespace>Prism.DryIoc</RootNamespace>
@@ -28,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DryIoc.dll" />
+    <PackageReference Include="Prism.Container.DryIoc" />
   </ItemGroup>
 
   <ItemGroup>
