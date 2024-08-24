@@ -12,7 +12,9 @@ namespace BootstrapperShellSample.Views
         public MainWindow()
         {
             this.InitializeComponent();
+#if DEBUG
             this.AttachDevTools();
+#endif
         }
     }
 }

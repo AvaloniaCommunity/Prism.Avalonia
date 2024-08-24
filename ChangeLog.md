@@ -2,6 +2,13 @@
 
 Change log history for Prism.Avalonia
 
+## v9.0.537.11130 (2024-08-24)
+
+* Upgraded to Prism v9.0.537
+* Upgraded to Avalonia v11.1.3
+* More clear error message throwing
+* Updated end-to-end samples
+
 ## v9.0.401.11110-pre (2024-08-03)
 
 * Upgraded to Avalonia v11.1.1
