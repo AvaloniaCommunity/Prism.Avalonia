@@ -2,9 +2,9 @@
   <!-- Prism -->
   <ItemGroup>
     <PackageVersion Include="Prism.Core" Version="9.0.537" />
-    <PackageVersion Include="Prism.Container.Abstractions" Version="9.0.84-pre" />
     <PackageVersion Include="Prism.Container.DryIoc" Version="9.0.107" />
-    <PackageVersion Include="Prism.Container.Unity" Version="9.0.84-pre" />
+    <PackageVersion Include="Prism.Container.Abstractions" Version="9.0.107" />
+    <PackageVersion Include="Prism.Container.Unity" Version="9.0.107" />
   </ItemGroup>
   <!-- Avalonia -->
   <ItemGroup>
