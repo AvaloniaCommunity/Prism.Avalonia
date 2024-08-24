@@ -5,8 +5,7 @@
 > **Announcement!**
 >
 > * **NEW:**_[Official Prism.Avalonia Templates arrived!](https://github.com/SuessLabs/Prism.Avalonia.Templates)_
-> * _Prism.Avalonia v9.0.401-pre - **Available!**_
-> * _Prism.Avalonia v9.0.537 - **Coming Soon!**_
+> * _Prism.Avalonia v9.0.537 - **Available!**_
 > * _Support for Avalonia v11.1.x has arrived!_
 > * Follow the [Upgrading to Prism v9.0.x-pre](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Upgrading-to-Prism-v9.0) guide for breaking changes
 
@@ -21,7 +20,7 @@
 
 With Prism.Avalonia's logic and development approach being **similar** to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/), so you can get started right away! Keep in mind, they are **similar** and not 1-to-1. Check out our [Wiki](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki) and [Avalonia Outlookish](https://github.com/DamianSuess/Learn.PrismAvaloniaOutlookish) app for tips and tricks.
 
-This project currently supports cross-platform Desktop applications (_Windows, Linux, Mac_). Support for Android, iOS, and web apps is still under evaluation; and is not 100%. Feel free to contribute to improve this. 😃
+This project currently supports cross-platform Desktop applications (_Windows, Linux, Mac_). Support for Android, iOS, and web apps is still under evaluation; and is not 100%. Feel free to contribute and help us improve. 😃
 
 ## Package Releases
 
@@ -36,10 +35,11 @@ Just like _Prism.WPF or Prism.Maui_, your project must reference both the **Pris
 
 Choose the NuGet package version that matches your Avalonia version.
 
-Our [versioning schema](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Versioning-Schema) is based on the [SemVer](https://semver.org/) using the format  `MAJOR.MINOR.PATCH.REVISION`. The `REVISION` segment indicates the Avalonia version support. For instance `v8.1.97.11073` equates to, Prism `v8.1.97`, Avalonia `v11.0.7`, _revision_ `3`.
+Our [versioning schema](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki/Versioning-Schema) is based on the [SemVer](https://semver.org/) using the format  `MAJOR.MINOR.PATCH.REVISION`. The `REVISION` segment indicates the Avalonia version support. For instance `v9.0.537.11234` equates to, Prism `v9.0.537`, Avalonia `v11.2.3`, _revision_ `4`.
 
 | Prism | Avalonia | Prism.Avalonia NuGet Package
 |-|-|-
+| v9.0.537  | **11.1.3**    | v9.0.537.11130 ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.537.11130)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.537.11130))
 | v9.0.401-pre  | **11.1.1**    | v9.0.401.11110-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.401.11110-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.401.11110-pre))
 | v9.0.401-pre  | **11.0.7**    | v9.0.401.11074-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.401.11074-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.401.11074-pre))
 | v9.0.271-pre  | **11.0.7**    | v9.0.271.11000-pre ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.271.11000-pre)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.271.11000-pre))
@@ -67,15 +67,15 @@ Issues posted without a description may be closed immediately. Use the discussio
 Add the Prism.Avalonia and its DryIoc packages to your project:
 
 ```powershell
-# Latest Preview Release
-Install-Package Prism.Avalonia -Version 9.0.401.11110-pre
-Install-Package Prism.DryIoc.Avalonia -Version 9.0.401.11110-pre
+# Avalonia v11.1 - Latest Release
+Install-Package Prism.Avalonia -Version 9.0.537.11130
+Install-Package Prism.DryIoc.Avalonia -Version 9.0.537.11130
 
-# Avalonia v11 (GA)
+# Legacy: Avalonia v11.0
 Install-Package Prism.Avalonia -Version 8.1.97.11073
 Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.11073
 
-# Avalonia v0.10.1021
+# Legacy: Avalonia v0.10.1021
 Install-Package Prism.Avalonia -Version 8.1.97.1021
 Install-Package Prism.DryIoc.Avalonia -Version 8.1.97.1021
 ```
