@@ -1,11 +1,22 @@
 # Prism.Avalonia
 
+> ## Announcement
+>
+> _**Prism.Avalonia** is officially moving to  [Prism Library](https://github.com/PrismLibrary/Prism)!_
+>
+> Thank you all for helping to mature and make this project into what it is today. I look forward to continuing efforts on Prism Avalonia as part of the official package.
+>
+> _See you over there for future releases_!
+>
+> `- Damian`
+>
+
 <center>
 
 ![Logo](https://raw.githubusercontent.com/AvaloniaCommunity/Prism.Avalonia/develop/images/Prism.Avalonia.png)
 </center>
 
- [Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your cross-platform [Avalonia](https://avaloniaui.net/) apps with [Prism framework](https://github.com/PrismLibrary/Prism) support so you can **Navigate**, create **Dialog Windows** and **Notifications**, provide **Dependency Injection** and internal **Messaging** easier than before!  You will need both packages installed to get started.
+ [Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your cross-platform [Avalonia](https://avaloniaui.net/) apps with [Prism library](https://github.com/PrismLibrary/Prism) support so you can **Navigate**, create **Dialog Windows** and **Notifications**, provide **Dependency Injection** and internal **Messaging** easier than before!  You will need both packages installed to get started.
 
 > **Announcement!**
 >
