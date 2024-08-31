@@ -18,7 +18,6 @@ public class Program
                 // AllowEglInitialization = true, // Removed in Avalonia v11.0.0
             })
             .UseSkia();
-            // .UseReactiveUI();
 
 #if DEBUG
         builder.LogToTrace(LogEventLevel.Debug, LogArea.Property, LogArea.Layout, LogArea.Binding);

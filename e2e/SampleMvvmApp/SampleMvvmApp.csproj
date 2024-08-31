@@ -4,6 +4,8 @@
     <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <Authors>Damian Suess</Authors>
     <Title>Sample MVVM App</Title>
+    <Nullable>enable</Nullable>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
   </PropertyGroup>
 
   <Import Project="../../build/SampleApp.props" />

@@ -4,9 +4,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:core="clr-namespace:SampleMvvmApp;assembly=SampleMvvmApp"
         xmlns:views="using:SampleMvvmApp.Views"
+        xmlns:vm="using:SampleMvvmApp.ViewModels"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         x:Class="SampleMvvmApp.Views.MainWindow"
+        x:CompileBindings="True"
+        x:DataType="vm:MainWindowViewModel"
         Title="{Binding Title}"
         Height="500" Width="700"
         TransparencyLevelHint="AcrylicBlur"
@@ -59,7 +62,7 @@
           <TextBlock Text="PrismAvalonia!" FontStyle="Italic" />
 
           <TextBlock Text="Status:" FontWeight="Bold" />
-          <TextBlock Text="Disconnected" Foreground="{Binding HubColor}" />
+          <TextBlock Text="Disconnected" />
 
           <TextBlock Text="Connection Id: " FontWeight="Bold" />
           <TextBlock Text="0x07CC" FontStyle="Italic" />
