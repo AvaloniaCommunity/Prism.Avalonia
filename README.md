@@ -35,10 +35,19 @@ This project currently supports cross-platform Desktop applications (_Windows, L
 
 Just like _Prism.WPF or Prism.Maui_, your project must reference both the **Prism.Avalonia** (_Core_) and **Prism.DryIoc.Avalonia** (_IoC container_) packages to work.
 
+<!--
+OLD - BuildStats.info is defunct
+New - Shields.io
+* Before: https://buildstats.info/nuget/Prism.Avalonia?dWidth=70&includePreReleases=false
+After:
+* Current: https://img.shields.io/nuget/v/Prism.Avalonia
+* Preview: https://img.shields.io/nuget/vpre/Prism.Avalonia
+* Downloads: https://img.shields.io/nuget/dt/Prism.Avalonia
+-->
 | Package | Stable | Preview
 |-|-|-|
-| Prism.Avalonia | [![Prism.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.Avalonia?dWidth=70&includePreReleases=false)](https://www.nuget.org/packages/Prism.Avalonia/) | [![Prism.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.Avalonia?dWidth=70&includePreReleases=true)](https://www.nuget.org/packages/Prism.Avalonia/)
-| Prism.DryIoc.Avalonia | [![Prism.DryIoc.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.DryIoc.Avalonia?dWidth=70&includePreReleases=false)](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/) | [![Prism.DryIoc.Avalonia NuGet Badge](https://buildstats.info/nuget/Prism.DryIoc.Avalonia?dWidth=70&includePreReleases=true)](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/)
+| Prism.Avalonia | [![Prism.Avalonia NuGet Badge](https://img.shields.io/nuget/v/Prism.Avalonia)](https://www.nuget.org/packages/Prism.Avalonia/) | [![Prism.Avalonia NuGet Badge](https://img.shields.io/nuget/vpre/Prism.Avalonia)](https://www.nuget.org/packages/Prism.Avalonia/)
+| Prism.DryIoc.Avalonia | [![Prism.DryIoc.Avalonia NuGet Badge](https://img.shields.io/nuget/v/Prism.DryIoc.Avalonia)](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/) | [![Prism.DryIoc.Avalonia NuGet Badge](https://img.shields.io/nuget/vpre/Prism.DryIoc.Avalonia)](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/)
 
 ### Version Notice
 
