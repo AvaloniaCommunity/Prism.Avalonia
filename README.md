@@ -16,7 +16,7 @@
 ![Logo](https://raw.githubusercontent.com/AvaloniaCommunity/Prism.Avalonia/develop/images/Prism.Avalonia.png)
 </center>
 
- [Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your cross-platform [Avalonia](https://avaloniaui.net/) apps with [Prism library](https://github.com/PrismLibrary/Prism) support so you can **Navigate**, create **Dialog Windows** and **Notifications**, provide **Dependency Injection** and internal **Messaging** easier than before!  To help get started, check out the _[official Prism.Avalonia Templates](https://github.com/SuessLabs/Prism.Avalonia.Templates) for Visual Studio.
+ [Prism.Avalonia](https://github.com/AvaloniaCommunity/Prism.Avalonia) provides your cross-platform [Avalonia](https://avaloniaui.net/) apps with [Prism library](https://github.com/PrismLibrary/Prism) support so you can **Navigate**, create **Dialog Windows** and **Notifications**, provide **Dependency Injection** and internal **Messaging** easier than before!  To help get started, check out the _[official Prism.Avalonia Templates](https://github.com/SuessLabs/Prism.Avalonia.Templates)_ for Visual Studio.
 
 **For more samples outside of this repo, check out:**
 
