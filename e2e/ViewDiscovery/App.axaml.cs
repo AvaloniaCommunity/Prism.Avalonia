@@ -1,5 +1,4 @@
-﻿using System;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Markup.Xaml;
 using Prism.DryIoc;
 using Prism.Ioc;
@@ -17,8 +16,8 @@ public class App : PrismApplication
     public override void Initialize()
     {
         System.Diagnostics.Debug.WriteLine("Initialize()");
-        AvaloniaXamlLoader.Load(this);
-        base.Initialize();
+        AvaloniaXamlLoader.Load(this); // Only required when overriding constructor
+        base.Initialize();             // Must include when overriding
     }
 
     protected override void RegisterTypes(IContainerRegistry containerRegistry)

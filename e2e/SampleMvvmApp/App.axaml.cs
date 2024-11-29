@@ -1,7 +1,6 @@
-﻿using System;
+﻿using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 using Prism.Avalonia;
 using Prism.DryIoc;
 using Prism.Ioc;
@@ -20,10 +19,9 @@ namespace SampleMvvmApp;
 /// </summary>
 public class App : PrismApplication
 {
-    /// <summary>App entry point.</summary>
     public App()
     {
-        Console.WriteLine("Constructor()");
+        Debug.WriteLine("Constructor()");
     }
 
     // Note:
@@ -32,8 +30,10 @@ public class App : PrismApplication
     //  Therefore, we need this as a `public override void` in PrismApplicationBase.cs
     public override void Initialize()
     {
-        Console.WriteLine("Initialize()");
-        AvaloniaXamlLoader.Load(this);
+        Debug.WriteLine("Initialize()");
+
+        // Only required when a constructor is defined
+        Avalonia.Markup.Xaml.AvaloniaXamlLoader.Load(this);
 
         // Initializes Prism.Avalonia - DO NOT REMOVE
         base.Initialize();
@@ -43,7 +43,7 @@ public class App : PrismApplication
     /// <param name="containerRegistry"></param>
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
-        Console.WriteLine("RegisterTypes()");
+        Debug.WriteLine("RegisterTypes()");
 
         // Services
         containerRegistry.RegisterSingleton<INotificationService, NotificationService>();
@@ -62,6 +62,8 @@ public class App : PrismApplication
     /// <param name="moduleCatalog">Module Catalog.</param>
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
     {
+        Debug.WriteLine("ConfigureModuleCatalog()");
+
         base.ConfigureModuleCatalog(moduleCatalog);
     }
 
@@ -69,13 +71,16 @@ public class App : PrismApplication
     /// <returns>Startup View.</returns>
     protected override AvaloniaObject CreateShell()
     {
-        Console.WriteLine("CreateShell()");
+        Debug.WriteLine("CreateShell()");
+
         return Container.Resolve<MainWindow>();
     }
 
     /// <summary>Called after Initialize.</summary>
     protected override void OnInitialized()
     {
+        Debug.WriteLine("OnInitialized()");
+
         // Register Views to the Region it will appear in. Don't register them in the ViewModel.
         var regionManager = Container.Resolve<IRegionManager>();
 
@@ -94,6 +99,8 @@ public class App : PrismApplication
 
     protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
     {
+        Debug.WriteLine("ConfigureRegionAdapterMappings()");
+
         regionAdapterMappings.RegisterMapping<ItemsControl, SampleMvvmApp.RegionAdapters.ItemsControlRegionAdapter>();
         regionAdapterMappings.RegisterMapping<ContentControl, ContentControlRegionAdapter>();
     }
