@@ -8,6 +8,7 @@
     <ImplicitUsings>false</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 
     <Description>
       Prism.Avalonia.Generators is source code generator so you can quickly and easily design and build rich, flexible, and easy to maintain cross-platform Avalonia desktop applications with less code.
