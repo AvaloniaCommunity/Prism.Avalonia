@@ -2,8 +2,11 @@
 
 > ## Announcement
 >
-> _**Prism.Avalonia** is officially moving to  [Prism Library](https://github.com/PrismLibrary/Prism)!_
+> **Prism.Avalonia** is officially moving to  [Prism Library](https://github.com/PrismLibrary/Prism)!<br />
+> _Follow the [PR](https://github.com/PrismLibrary/Prism/pull/3127) for more information._
 >
+> Until full integration, keep reaching out on this site.
+> 
 > Thank you all for helping to mature and make this project into what it is today. I look forward to continuing efforts on Prism Avalonia as part of the official package.
 >
 > _See you over there for future releases_!
