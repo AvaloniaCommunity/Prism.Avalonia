@@ -2,8 +2,8 @@
 using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Styling;
+using Prism.Avalonia;
 using Prism.Commands;
-using SampleMvvmApp.Services;
 
 namespace SampleMvvmApp.ViewModels
 {

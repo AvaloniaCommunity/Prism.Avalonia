@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../build/AvaloniaDependency.props" />
+  <Import Project="../../build/Library.props" />
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <ImplicitUsings>false</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+
+    <Description>
+      Prism.Avalonia.Generators is source code generator so you can quickly and easily design and build rich, flexible, and easy to maintain cross-platform Avalonia desktop applications with less code.
+      Users must install the Prism.Avalonia NuGet package as well.
+    </Description>
+    <Authors>Damian Suess</Authors>
+    <Copyright>Copyright (c) 2024 Avalonia Community</Copyright>
+    <Title>Prism.Avalonia.Toolkit</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>prism;mvvm;xaml;toolkit;avalonia;dryioc;dependencyinjection;navigation;dialog;prismavalonia;</PackageTags>
+    <PackageIcon>Prism.Avalonia.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\images\Prism.Avalonia.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
+  </ItemGroup>
+
+</Project>

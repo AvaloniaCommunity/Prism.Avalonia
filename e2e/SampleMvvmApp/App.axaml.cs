@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
+using Prism.Avalonia;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Navigation.Regions;
-using SampleMvvmApp.Services;
 using SampleMvvmApp.ViewModels;
 using SampleMvvmApp.Views;
 
@@ -86,7 +86,7 @@ public class App : PrismApplication
 
         // WARNING: Prism v11.0.0-prev4
         // - DataTemplates MUST define a DataType or else an XAML error will be thrown
-        // - Error: DataTemplate inside of DataTemplates must have a DataType set
+        // - The View's DataTemplates.DataTemplate must have a DataType set or an error will be thrown
         regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(DashboardView));
         regionManager.RegisterViewWithRegion(RegionNames.SidebarRegion, typeof(SidebarView));
 
