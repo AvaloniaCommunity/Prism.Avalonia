@@ -1,0 +1,32 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:vm="using:SampleSplashScreen.ViewModels"
+        x:Class="SampleSplashScreen.Views.SplashWindow"
+        Title="{Binding Title}"
+        Width="800"
+        Height="600"
+        d:DesignHeight="450"
+        d:DesignWidth="800"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        x:DataType="vm:SplashWindowViewModel"
+        mc:Ignorable="d">
+  <StackPanel HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Spacing="5">
+    <StackPanel.Styles>
+      <Style Selector="Label">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+      </Style>
+    </StackPanel.Styles>
+
+    <Image Width="100"
+           Height="100"
+           Source="/Assets/avalonia-logo.ico" />
+
+    <Label Content="Loading in ..." FontWeight="Bold" />
+    <Label Content="{Binding Status}" FontSize="20" />
+  </StackPanel>
+</Window>
