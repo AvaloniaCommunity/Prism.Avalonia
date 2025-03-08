@@ -32,7 +32,6 @@ public partial class App : PrismApplication
   protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
   {
     Debug.WriteLine("3 - ConfigureRegionAdapterMappings()");
-
     base.ConfigureRegionAdapterMappings(regionAdapterMappings);
   }
 
@@ -47,37 +46,14 @@ public partial class App : PrismApplication
   protected override void InitializeModules()
   {
     Debug.WriteLine("5 - InitializeModules()");
-
-    if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
-    {
-      // Doing this method will result in, "Dispatcher Shutdown" error because
-      // the window was shutdown.
-
-      //var splash = new SplashWindow();
-      //splash.Show();
-
-      try
-      {
-        base.InitializeModules();
-        //// System.Threading.Tasks.Task.Run(() => base.InitializeModules());
-      }
-      finally
-      {
-        //splash.Close();
-      }
-    }
-    else
-    {
-      base.InitializeModules();
-    }
+    base.InitializeModules();
   }
 
   /// <summary>Called after Initialize.</summary>
   protected override void OnInitialized()
   {
-    Debug.WriteLine("6 - OnInitialized() - This shows the window set by, CreateShell() and InitializeShell()");
-
     // Executes, MainWindow?.Show();
+    Debug.WriteLine("6 - OnInitialized() - This shows the window set by, CreateShell() and InitializeShell()");
     base.OnInitialized();
   }
 
@@ -128,12 +104,14 @@ public partial class App : PrismApplication
     }
     else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
     {
-      // Needs 
+      // Needs and example created (i.e. Mobile, Web, FrameBuffer)
+      // User could just perform navigation
       singleViewLifetime.MainView = MainWindow as Control;
       base.OnFrameworkInitializationCompleted();
     }
     else
     {
+      // Possibly not supported
       base.OnFrameworkInitializationCompleted();
     }
   }
