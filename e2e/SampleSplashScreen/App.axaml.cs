@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -64,6 +65,23 @@ public partial class App : PrismApplication
 
     if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
     {
+      await TransitionMainWindowAsync<MainWindow>(async () =>
+      {
+        await OnSplashScreenAsync();
+      });
+    }
+    else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
+    {
+      // Needs and example created (i.e. Mobile, Web, FrameBuffer)
+      // User could just perform navigation
+      base.OnFrameworkInitializationCompleted();
+    }
+
+    /*
+    Debug.WriteLine("7 - OnFrameworkInitializationCompleted()");
+
+    if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
+    {
       // Grab current window (splash screen) to close it later.
       var splashInstance = this.MainWindow;
 
@@ -114,6 +132,7 @@ public partial class App : PrismApplication
       // Possibly not supported
       base.OnFrameworkInitializationCompleted();
     }
+    */
   }
 
   /// <summary>User-defined splash screen stuff.</summary>

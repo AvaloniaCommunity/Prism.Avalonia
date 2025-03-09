@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -193,6 +195,43 @@ namespace Prism
         protected virtual void InitializeModules()
         {
             PrismInitializationExtensions.RunModuleManager(Container);
+        }
+
+        /// <summary>Transition to new Main Window.</summary>
+        /// <typeparam name="T">New shell to swap with.</typeparam>
+        /// <param name="preUpdateAction"></param>
+        //// protected virtual async Task TransitionMainWindow<T>(Action preUpdateAction)
+        protected virtual async Task TransitionMainWindowAsync<T>(Func<Task> preUpdateAction)
+        {
+            // Grab current window (splash screen) to close it later.
+            var currentShell = MainWindow;
+
+            // Inform current window we're about to transition
+            await preUpdateAction();
+
+            // ---------------------------
+            // Resolve the new window to transition to
+            // Similar to `Initialize()`, below is a candidate for a Prism method
+            // to handle the switch-over on Desktop.
+            var newShell = (AvaloniaObject)Container.Resolve(typeof(T));
+
+            if (newShell is not null)
+            {
+                MvvmHelpers.AutowireViewModel(newShell);
+                RegionManager.SetRegionManager(newShell, _containerExtension.Resolve<IRegionManager>());
+                RegionManager.UpdateRegions();
+
+                // Set the new Shell window in Prism to MainWindow
+                InitializeShell(newShell);
+            }
+
+            // Show (new) main window
+            OnInitialized();
+
+            // WARNING:
+            // This MUST be performed after showing the new window.
+            // Otherwise, your program will exit.
+            (currentShell as Window)?.Close();
         }
     }
 }

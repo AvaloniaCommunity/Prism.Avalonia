@@ -5,6 +5,7 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:vm="using:SampleSplashScreen.ViewModels"
         x:Class="SampleSplashScreen.Views.SplashWindow"
+        WindowStartupLocation="CenterScreen"
         Title="{Binding Title}"
         Width="800"
         Height="600"

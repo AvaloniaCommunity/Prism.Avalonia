@@ -2,12 +2,16 @@
 
 namespace SampleSplashScreen.ViewModels;
 
+/// <summary>Splash screen View Model.</summary>
 public class SplashWindowViewModel : ViewModelBase
 {
   private string _status = string.Empty;
 
   public SplashWindowViewModel()
   {
+    // TODO:
+    //  [X] Perform loading when called from App.axaml.cs and switch to MainWindow.
+    //  [ ] Transition to new MainWindow after we're done here.
     Title = "Prism.Avalonia Splash Screen";
   }
 
@@ -15,6 +19,8 @@ public class SplashWindowViewModel : ViewModelBase
 
   public string Status { get => _status; set => SetProperty(ref _status, value); }
 
+  /// <summary>Called from App.axaml.cs to perform loading mechanism.</summary>
+  /// <returns></returns>
   public async Task CustomInitializationAsync()
   {
     Status = "3";
