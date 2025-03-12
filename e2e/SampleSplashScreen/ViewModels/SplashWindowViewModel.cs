@@ -1,4 +1,6 @@
 ﻿using System.Threading.Tasks;
+using Prism.DryIoc;
+using SampleSplashScreen.Views;
 
 namespace SampleSplashScreen.ViewModels;
 
@@ -6,6 +8,7 @@ namespace SampleSplashScreen.ViewModels;
 public class SplashWindowViewModel : ViewModelBase
 {
   private string _status = string.Empty;
+  private PrismApplication _application;
 
   public SplashWindowViewModel()
   {
@@ -21,7 +24,23 @@ public class SplashWindowViewModel : ViewModelBase
 
   /// <summary>Called from App.axaml.cs to perform loading mechanism.</summary>
   /// <returns></returns>
-  public async Task CustomInitializationAsync()
+  public async Task InitializationFromLocalAsync()
+  {
+    Status = "3";
+    await Task.Delay(1000);
+
+    Status = "2";
+    await Task.Delay(1000);
+
+    Status = "1";
+    await Task.Delay(1000);
+
+    (PrismApplication.Current as PrismApplication)?.TransitionWindowAsync<MainWindow>();
+  }
+
+  /// <summary>Called from App.axaml.cs to perform loading mechanism.</summary>
+  /// <returns></returns>
+  public async Task InitializeFromAppAxamlAsync()
   {
     Status = "3";
     await Task.Delay(1000);

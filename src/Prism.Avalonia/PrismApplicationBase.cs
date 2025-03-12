@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -23,7 +22,6 @@ namespace Prism
         private IContainerExtension _containerExtension;
         private IModuleCatalog _moduleCatalog;
 
-        // FROM Prism.Avalonia7.1.2
         public AvaloniaObject MainWindow { get; private set; }
 
         /// <summary>

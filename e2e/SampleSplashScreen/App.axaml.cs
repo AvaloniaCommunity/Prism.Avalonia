@@ -28,6 +28,8 @@ public partial class App : PrismApplication
   protected override void RegisterTypes(IContainerRegistry containerRegistry)
   {
     Debug.WriteLine("2 - RegisterTypes()");
+    ////containerRegistry.RegisterInstance<SplashWindow>(new SplashWindow());
+    ////containerRegistry.RegisterInstance<MainWindow>(new MainWindow());
   }
 
   protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
@@ -65,10 +67,12 @@ public partial class App : PrismApplication
 
     if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
     {
-      await TransitionMainWindowAsync<MainWindow>(async () =>
-      {
-        await OnSplashScreenAsync();
-      });
+      ////await TransitionMainWindowAsync<MainWindow>(async () =>
+      ////{
+      ////  await OnSplashScreenAsync();
+      ////});
+
+      base.OnFrameworkInitializationCompleted();
     }
     else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
     {
@@ -148,6 +152,6 @@ public partial class App : PrismApplication
     }
 
     // Perform user's custom loading
-    await vm.CustomInitializationAsync();
+    await vm.InitializeFromAppAxamlAsync();
   }
 }
