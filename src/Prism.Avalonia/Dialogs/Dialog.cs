@@ -21,7 +21,10 @@ namespace Prism.Dialogs
             AvaloniaProperty.RegisterAttached<AvaloniaObject, WindowStartupLocation>(
                 name: "WindowStartupLocation",
                 ownerType: typeof(Dialog));
-
+        static Dialog()
+        {
+            WindowStyleProperty.Changed.AddClassHandler<AvaloniaObject>((o, e) => OnWindowStyleChanged(e?.Sender, (Style)e?.NewValue, (Style)e?.OldValue));
+        }
         public Dialog()
         {
             WindowStartupLocationProperty.Changed.Subscribe(args => OnWindowStartupLocationChanged(args?.Sender, args));
@@ -46,7 +49,16 @@ namespace Prism.Dialogs
         {
             obj.SetValue(WindowStyleProperty, value);
         }
-
+        private static void OnWindowStyleChanged(AvaloniaObject sender, Style newStyle, Style oldStyle)
+        {
+            //获取sender顶级元素
+            if (sender == null) return;
+            //如果sender不是Window类型，则返回
+            if (sender is not Window window) return; 
+            //设置Window的样式 
+            if (oldStyle != null) window.Styles.Remove(oldStyle);
+            if (newStyle != null) window.Styles.Add(newStyle);
+        }
         /// <summary>
         /// Gets the value for the <see cref="WindowStartupLocationProperty"/> attached property.
         /// </summary>
