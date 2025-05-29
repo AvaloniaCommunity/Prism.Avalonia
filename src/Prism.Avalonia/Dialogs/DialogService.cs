@@ -41,6 +41,7 @@ namespace Prism.Dialogs
         /// <param name="owner">Optional host window of the dialog. Use-case, Dialog calling a dialog.</param>
         protected virtual void ShowDialogWindow(IDialogWindow dialogWindow, bool isModal, Window owner = null)
         {
+            
             if (isModal &&
                 Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime deskLifetime)
             {
@@ -172,6 +173,13 @@ namespace Prism.Dialogs
             var windowStyle = Dialog.GetWindowStyle(dialogContent);
             if (window is Window root&& windowStyle!=null)
             {
+                var windowStartupLocation = Dialog.GetWindowStartupLocation(dialogContent);
+                root.Bind(Dialog.WindowStartupLocationProperty, new Binding
+                {
+                    Source = windowStartupLocation,
+                    Mode = BindingMode.TwoWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                });
                 root.Bind(Dialog.WindowStyleProperty, new Binding
                 {
                     Source = windowStyle,

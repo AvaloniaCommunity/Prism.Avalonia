@@ -10,16 +10,6 @@
              d:DesignWidth="400"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d">
-    <prism:Dialog.WindowStyle>
-        <Style Selector="Window">
-            <Setter Property="Background" Value="#00A5F2" />
-            <Setter Property="BorderBrush" Value="#FFFFFF" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="WindowStartupLocation" Value="CenterOwner" />
-            <Setter Property="Title" Value="{Binding Title}" />
-            <Setter Property="SizeToContent" Value="WidthAndHeight" />
-        </Style>
-    </prism:Dialog.WindowStyle>
     <StackPanel HorizontalAlignment="Center" Spacing=" 5">
         <!--<Label Content="{Binding Title}" FontWeight="Bold" />-->
 
@@ -31,6 +21,7 @@
 
         <StackPanel Orientation="Horizontal" Spacing="5">
             <Button Content="Custom Dialog Window" Command="{Binding CmdCustomDialogWindow}" />
+            <Button Content="Custom Modal TestDialog" Command="{Binding CmdShowTestDialog}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
