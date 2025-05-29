@@ -2,6 +2,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Data;
 using Prism.Common;
 using Prism.Ioc;
 
@@ -138,7 +139,7 @@ namespace Prism.Dialogs
                 if (dialogWindow.Result == null)
                     dialogWindow.Result = new DialogResult();
 
-                await callback.Invoke(dialogWindow.Result); 
+                await callback.Invoke(dialogWindow.Result);
 
                 dialogWindow.DataContext = null;
                 dialogWindow.Content = null;
@@ -165,6 +166,22 @@ namespace Prism.Dialogs
             ////     window.Style = windowStyle;
 
             // Make the host window and the dialog window to share the same context
+
+            if (window == null) return; // If the window is null, we cannot proceed.
+            #region Avalonia Set WindowStyle
+            var windowStyle = Dialog.GetWindowStyle(dialogContent);
+            if (window is Window root&& windowStyle!=null)
+            {
+                root.Bind(Dialog.WindowStyleProperty, new Binding
+                {
+                    Source = windowStyle,
+                    Mode = BindingMode.TwoWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                });
+            }
+
+            #endregion
+
             window.Content = dialogContent;
             window.DataContext = viewModel;
 

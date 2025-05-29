@@ -26,30 +26,6 @@ namespace Prism.Dialogs
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
-        }
-        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
-        {
-            base.OnPropertyChanged(change);
-            if (change.Property == ContentProperty)
-            {
-                //当WindowStyleProperty属性改变时，重新设置样式
-                var obj = change.NewValue as AvaloniaObject;
-                if (obj != null)
-                {
-                    //将obj的附加属性WindowStyle绑定到DialogWindow的附加属性WindowStyle上
-                    var style = Dialog.GetWindowStyle(obj);
-                    if (style != null)
-                    {
-                        this.Bind(Dialog.WindowStyleProperty, new Binding
-                        {
-                            Source = style,
-                            Mode = BindingMode.TwoWay,
-                            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-                        });
-                    }
-
-                }
-            }
-        }
+        } 
     }
 }
