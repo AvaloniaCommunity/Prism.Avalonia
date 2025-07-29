@@ -56,5 +56,12 @@
             Grid.ColumnSpan="2"
             Grid.Row="2"
             HorizontalAlignment="Right"/>
+    <!--
+      <Button Content="1" Command="{Binding CmdLedState}">
+        <Button.CommandParameter>
+          <sys:Int32>1</sys:Int32>
+        </Button.CommandParameter>
+      </Button>    
+    -->
   </Grid>
 </UserControl>

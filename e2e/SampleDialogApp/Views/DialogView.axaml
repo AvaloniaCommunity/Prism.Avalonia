@@ -43,6 +43,14 @@
 
       <Button Grid.Row="2" Grid.Column="0" Content="Yes" Command="{Binding CmdResult}" CommandParameter="6" />
       <Button Grid.Row="2" Grid.Column="1" Content="No" Command="{Binding CmdResult}" CommandParameter="7" />
+      
+      <!-- Too much typing:
+      <Button Content="1" Command="{Binding CmdLedState}">
+        <Button.CommandParameter>
+          <sys:Int32>1</sys:Int32>
+        </Button.CommandParameter>
+      </Button>    
+      -->
     </Grid>
   </StackPanel>
 </UserControl>
