@@ -62,6 +62,7 @@ Our [versioning schema](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki
 
 | Prism | Avalonia | Prism.Avalonia NuGet Package
 |-|-|-
+| v9.0.537      | **11.1.3**  | v9.0.537.11130 ([Core](https://www.nuget.org/packages/Prism.Avalonia/9.0.537.11130)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/9.0.537.11130))
 | v8.1.97       | **11.0.7**  | v8.1.97.11073 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.11073)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.11073))
 | v8.1.97       | **0.10.21** | v8.1.97.1021 ([Core](https://www.nuget.org/packages/Prism.Avalonia/8.1.97.1021)) ([DryIoc](https://www.nuget.org/packages/Prism.DryIoc.Avalonia/8.1.97.1021))
 
