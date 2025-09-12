@@ -34,7 +34,17 @@
 
 Prism.Avalonia's logic and development approach is **similar** to that of [Prism for WPF](https://github.com/PrismLibrary/Prism/) so can get started right away! Keep in mind, they are _similar_ and not 1-to-1. Check out our [Wiki](https://github.com/AvaloniaCommunity/Prism.Avalonia/wiki) and [Avalonia Outlookish](https://github.com/DamianSuess/Learn.PrismAvaloniaOutlookish) app for tips and tricks.
 
-This project currently supports cross-platform Desktop applications (_Windows, Linux, Mac_). Support for Android, iOS, and web apps is still under evaluation; and is not 100%. Feel free to contribute and help us improve. 😃
+## Supported Features
+
+The following outlines the supported Avalonia features. Feel free to contribute and help us improve. 😃
+
+| | Status |
+|-|-|
+| Classic Desktop | 100% Supported (_Windows, Linux, Mac_). |
+| Mobile | In-testing (_Android, iOS_) |
+| WebAssembly | In-testing (_it is not 100%_) |
+
+Both mobile and WebAssembly utilize the `ISingleViewApplicationLifetime`. Though it does work for simple applications, it is still not 100% and could use communitity assistance.
 
 ## Package Releases
 
