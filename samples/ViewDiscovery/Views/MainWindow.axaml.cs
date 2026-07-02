@@ -21,7 +21,7 @@ namespace ViewDiscovery.Views
         public MainWindow(IRegionManager regionManager)
         {
             this.InitializeComponent();
-            this.AttachDevTools();
+            //this.AttachDevTools();
 
             _regionManager = regionManager;
             regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewA));

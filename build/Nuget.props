@@ -6,9 +6,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>
-      * Added .NET 8 support
-      * Upgraded to support Avalonia v11.0.7
-      * Removed unused CommonServiceLocator
+      * Dropped support for .NET Framework and .NET Standard. Only .NET 8 and later are supported
+      * Upgraded to support Avalonia v12.0.1
     </PackageReleaseNotes>
   </PropertyGroup>
   

@@ -9,7 +9,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 #if DEBUG
-        this.AttachDevTools();
+        //this.AttachDevTools();
 #endif
 
         // Avalonia v11-Preview 5 Breaking Change:

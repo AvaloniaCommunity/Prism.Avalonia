@@ -24,7 +24,7 @@ namespace ModulesSample
         ////public MainWindow(CallbackLogger logger, IEventAggregator eventAggregator)
         {
             InitializeComponent();
-            this.AttachDevTools();
+            //this.AttachDevTools();
 
             _logTextBox = this.FindControl<TextBox>("LogTextBox");
             _itemsControl = this.FindControl<ListBox>("ItemsControl1");
