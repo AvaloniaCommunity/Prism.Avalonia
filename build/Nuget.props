@@ -6,9 +6,10 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>
-* Upgraded to Avalonia v11.3.0
-* .NET 9 supported
-* Deprecation Notice: .NET Framework 4.x
+* Upgraded to Avalonia v12.1.0
+* Only .NET 8 is supported
+* .NET 9 and 10 cause compile problems, so they are not included yet
+* Deprecation Notice: net6.0, net7.0, netstandard because their support was removed in Avalonia 12.*
     </PackageReleaseNotes>
   </PropertyGroup>
   

@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <UseAppHost>true</UseAppHost>
     <Nullable>enable</Nullable>
     <!--
       Avalonia doesen't support TrimMode=link currently, but we are working on that
@@ -10,6 +11,7 @@
     <TrimMode>copyused</TrimMode>
     <Authors>Damian Suess</Authors>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
   </PropertyGroup>
 
   <Import Project="../../build/SampleApp.props" />
