@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Data;
 using Avalonia.Markup.Xaml;
 
 namespace Prism.Dialogs
@@ -24,6 +26,6 @@ namespace Prism.Dialogs
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
-        }
+        } 
     }
 }
