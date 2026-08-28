@@ -8,14 +8,14 @@
   </ItemGroup>
   <!-- Avalonia -->
   <ItemGroup>
-    <PackageVersion Include="Avalonia" Version="11.3.0" />
-    <PackageVersion Include="Avalonia.Desktop" Version="11.3.0" />
+    <PackageVersion Include="Avalonia" Version="12.1.0" />
+    <PackageVersion Include="Avalonia.Desktop" Version="12.1.0" />
     <PackageVersion Include="Avalonia.Diagnostics" Version="11.3.0" />
-    <PackageVersion Include="Avalonia.LinuxFramebuffer" Version="11.3.0" />
-    <PackageVersion Include="Avalonia.Markup.Xaml.Loader" Version="11.3.0" />
-    <PackageVersion Include="Avalonia.Themes.Simple" Version="11.3.0" />
-    <PackageVersion Include="Avalonia.Themes.Fluent" Version="11.3.0" />
-    <PackageVersion Include="Avalonia.Fonts.Inter" Version="11.3.0" />
+    <PackageVersion Include="Avalonia.LinuxFramebuffer" Version="12.1.0" />
+    <PackageVersion Include="Avalonia.Markup.Xaml.Loader" Version="12.1.0" />
+    <PackageVersion Include="Avalonia.Themes.Simple" Version="12.1.0" />
+    <PackageVersion Include="Avalonia.Themes.Fluent" Version="12.1.0" />
+    <PackageVersion Include="Avalonia.Fonts.Inter" Version="12.1.0" />
   </ItemGroup>
   <!-- 3rd-Party -->
   <ItemGroup>
