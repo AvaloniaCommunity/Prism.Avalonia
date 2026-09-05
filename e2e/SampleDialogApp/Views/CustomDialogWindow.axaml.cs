@@ -11,9 +11,6 @@ public partial class CustomDialogWindow : Window, IDialogWindow
     public CustomDialogWindow()
     {
         InitializeComponent();
-#if DEBUG
-        this.AttachDevTools();
-#endif
     }
 
     /// <summary>The <see cref="IDialogResult"/> of the dialog.</summary>

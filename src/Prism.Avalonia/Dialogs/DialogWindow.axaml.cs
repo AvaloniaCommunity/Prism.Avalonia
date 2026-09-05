@@ -15,10 +15,6 @@ namespace Prism.Dialogs
         public DialogWindow()
         {
             InitializeComponent();
-
-#if DEBUG
-            //// this.AttachDevTools();
-#endif
         }
 
         private void InitializeComponent()

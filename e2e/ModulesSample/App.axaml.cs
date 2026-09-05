@@ -46,6 +46,17 @@ namespace ModulesSample
         {
             AvaloniaXamlLoader.Load(this);
             base.Initialize();
+
+#if DEBUG
+            // Replaces the old this.AttachDevTools();
+            // NOTE: This requires connection to, http://127.0.0.1:29414/ and some IT firewalls may block it.
+            // Reference: https://docs.avaloniaui.net/tools/developer-tools/attaching-to-the-remote-tool
+            this.AttachDeveloperTools();
+            ////{
+            ////    // Change the initialization key gesture (Default is F12)
+            ////    options.Gesture = Avalonia.Input.KeyGesture.Parse("F11");
+            ////});
+#endif
         }
 
         static int Main(string[] args)

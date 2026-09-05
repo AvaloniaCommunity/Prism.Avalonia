@@ -6,9 +6,9 @@
   <Import Project="AvaloniaDependency.props" />
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" />
-    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" />
+    <!-- Avalonia.Diagnostics is now known as, AvaloniaUI.DiagnosticsSupport. -->
+    <!-- Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration. -->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="AvaloniaUI.DiagnosticsSupport" />
     <PackageReference Include="Avalonia.Desktop" />
     <PackageReference Include="Avalonia.Themes.Simple" />
     <PackageReference Include="Avalonia.Themes.Fluent" />

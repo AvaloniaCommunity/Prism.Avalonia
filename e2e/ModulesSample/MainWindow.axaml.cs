@@ -21,9 +21,6 @@ namespace ModulesSample
         public MainWindow(IEventAggregator eventAggregator)
         {
             InitializeComponent();
-#if DEBUG
-            this.AttachDevTools();
-#endif
 
             _logTextBox = this.FindControl<TextBox>("LogTextBox");
             _itemsControl = this.FindControl<ListBox>("ItemsControl1");

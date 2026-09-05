@@ -8,9 +8,6 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-#if DEBUG
-        this.AttachDevTools();
-#endif
 
         // Avalonia v11-Preview 5 Breaking Change:
         //  This code has moved to 'DashboardView.axaml.cs
