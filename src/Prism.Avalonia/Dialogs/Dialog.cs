@@ -21,10 +21,15 @@ namespace Prism.Dialogs
             AvaloniaProperty.RegisterAttached<AvaloniaObject, WindowStartupLocation>(
                 name: "WindowStartupLocation",
                 ownerType: typeof(Dialog));
-
+        static Dialog()
+        {
+            WindowStartupLocationProperty.Changed.AddClassHandler<AvaloniaObject>((o, e) => OnWindowStartupLocationChanged(e?.Sender, e));
+            WindowStyleProperty.Changed.AddClassHandler<AvaloniaObject>((o, e) => OnWindowStyleChanged(e?.Sender, (Style)e?.NewValue, (Style)e?.OldValue));
+        }
         public Dialog()
         {
-            WindowStartupLocationProperty.Changed.Subscribe(args => OnWindowStartupLocationChanged(args?.Sender, args));
+            // Delete the ineffective WindowStartupLocation Subscribe method and change it to AddClassHandler for notification
+            //WindowStartupLocationProperty.Changed.Subscribe(args => OnWindowStartupLocationChanged(args?.Sender, args));
         }
 
         /// <summary>
@@ -46,7 +51,15 @@ namespace Prism.Dialogs
         {
             obj.SetValue(WindowStyleProperty, value);
         }
-
+        private static void OnWindowStyleChanged(AvaloniaObject sender, Style newStyle, Style oldStyle)
+        { 
+            if (sender == null) return;
+            //If sender is not of type Window, then return
+            if (sender is not Window window) return; 
+            //Set Window Styles 
+            if (oldStyle != null) window.Styles.Remove(oldStyle);
+            if (newStyle != null) window.Styles.Add(newStyle);
+        }
         /// <summary>
         /// Gets the value for the <see cref="WindowStartupLocationProperty"/> attached property.
         /// </summary>
@@ -65,8 +78,7 @@ namespace Prism.Dialogs
         public static void SetWindowStartupLocation(AvaloniaObject obj, WindowStartupLocation value)
         {
             obj.SetValue(WindowStartupLocationProperty, value);
-        }
-
+        } 
         private static void OnWindowStartupLocationChanged(AvaloniaObject sender, AvaloniaPropertyChangedEventArgs e)
         {
             if (sender is Window window)

@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Dialogs;
 using SampleDialogApp.Views;
+using Tmds.DBus.Protocol;
 
 namespace SampleDialogApp.ViewModels;
 
@@ -50,7 +51,6 @@ public class MainWindowViewModel : ViewModelBase
                 Title = "I Don't know what you did!?";
         });
     });
-
     public DelegateCommand CmdShowRegular => new DelegateCommand(() =>
     {
         _dialogService.Show(nameof(DialogView), r =>

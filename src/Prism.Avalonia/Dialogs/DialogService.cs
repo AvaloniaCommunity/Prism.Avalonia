@@ -2,6 +2,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Data;
 using Prism.Common;
 using Prism.Ioc;
 
@@ -40,6 +41,7 @@ namespace Prism.Dialogs
         /// <param name="owner">Optional host window of the dialog. Use-case, Dialog calling a dialog.</param>
         protected virtual void ShowDialogWindow(IDialogWindow dialogWindow, bool isModal, Window owner = null)
         {
+            
             if (isModal &&
                 Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime deskLifetime)
             {
@@ -138,7 +140,7 @@ namespace Prism.Dialogs
                 if (dialogWindow.Result == null)
                     dialogWindow.Result = new DialogResult();
 
-                await callback.Invoke(dialogWindow.Result); 
+                await callback.Invoke(dialogWindow.Result);
 
                 dialogWindow.DataContext = null;
                 dialogWindow.Content = null;
@@ -165,6 +167,29 @@ namespace Prism.Dialogs
             ////     window.Style = windowStyle;
 
             // Make the host window and the dialog window to share the same context
+
+            if (window == null) return; // If the window is null, we cannot proceed.
+            #region Avalonia Set WindowStyle
+            var windowStyle = Dialog.GetWindowStyle(dialogContent);
+            if (window is Window root&& windowStyle!=null)
+            {
+                var windowStartupLocation = Dialog.GetWindowStartupLocation(dialogContent);
+                root.Bind(Dialog.WindowStartupLocationProperty, new Binding
+                {
+                    Source = windowStartupLocation,
+                    Mode = BindingMode.TwoWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                });
+                root.Bind(Dialog.WindowStyleProperty, new Binding
+                {
+                    Source = windowStyle,
+                    Mode = BindingMode.TwoWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                });
+            }
+
+            #endregion
+
             window.Content = dialogContent;
             window.DataContext = viewModel;
 

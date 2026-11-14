@@ -4,6 +4,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Dialogs;
 using SampleDialogApp.Views;
+using Tmds.DBus.Protocol;
 
 namespace SampleDialogApp.ViewModels;
 
@@ -56,6 +57,24 @@ public class DialogViewModel : BindableBase, IDialogAware
         ////    new DialogParameters($"title={title}&message={message}"));
     });
 
+    private DelegateCommand _CmdShowTestDialog;
+    public DelegateCommand CmdShowTestDialog =>
+        _CmdShowTestDialog ?? (_CmdShowTestDialog = new DelegateCommand(ExecuteCmdShowTestDialog));
+
+    void ExecuteCmdShowTestDialog()
+    {
+        var title = "Custom Title";
+        var message = "Hello, I custom dialog window running inside of Prism.Avalonia!";
+        _dialogService.ShowDialog(
+            name: nameof(MessageBoxView),
+            new DialogParameters
+            {
+                { "title", title },
+                { "message", message },
+                { KnownDialogParameters.ParentWindow , ParentWindow },
+                { KnownDialogParameters.WindowName, nameof(TestDialog) }
+            });
+    }
     public DelegateCommand CmdCustomDialogWindow => new(() =>
     {
         // This passes the "title" to the Custom window's Title

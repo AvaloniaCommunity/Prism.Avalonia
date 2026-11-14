@@ -29,5 +29,6 @@ public partial class App : PrismApplication
         containerRegistry.RegisterDialog<MessageBoxView, MessageBoxViewModel>();
         containerRegistry.RegisterDialog<DialogView, DialogViewModel>();
         containerRegistry.RegisterDialogWindow<CustomDialogWindow>(nameof(CustomDialogWindow));
+        containerRegistry.RegisterDialogWindow<TestDialog>(nameof(TestDialog));
     }
 }
