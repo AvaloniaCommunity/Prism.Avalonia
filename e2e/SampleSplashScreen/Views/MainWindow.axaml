@@ -1,0 +1,46 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:vm="using:SampleSplashScreen.ViewModels"
+        x:Class="SampleSplashScreen.Views.MainWindow"
+        Title="{Binding Title}"
+        Width="800"
+        Height="600"
+        d:DesignHeight="350"
+        d:DesignWidth="600"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        mc:Ignorable="d">
+
+  <!--
+    Vanilla Avalonia requires you to use the following to set the DataContext for the previewer in an IDE.
+      <Design.DataContext>
+        <vm:MainWindowViewModel />
+      </Design.DataContext>
+
+   With Prism.Avalonia use the following in `<Window ...>` to AutoWire the ViewModel
+   As of Avalonia v11.1, the design-time previewer requires AutoWireViewModel. At compile-time, it still defaults to TRUE
+      xmlns:prism="http://prismlibrary.com/"
+      prism:ViewModelLocator.AutoWireViewModel="True"
+  -->
+  <Panel HorizontalAlignment="Center" VerticalAlignment="Center">
+    <StackPanel Spacing="5">
+      <TextBlock Text="{Binding Greeting}"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center" />
+
+      <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+        <Label Content="Button Clicked " />
+        <Label Content="{Binding ClickCounter}" />
+        <Label Content=" times." />
+      </StackPanel>
+
+      <Button Content="Click Me"
+              HorizontalAlignment="Center"
+              Command="{Binding CmdIncrementCounter}" />
+    </StackPanel>
+  </Panel>
+</Window>
