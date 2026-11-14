@@ -20,14 +20,14 @@ Prism.Avalonia helps you more easily design and build rich, flexible, and easy t
     <PackageIcon>Prism.Avalonia.png</PackageIcon>
   </PropertyGroup>
 
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
+  <ItemGroup Condition="'$(TargetFramework)' != '' And $([MSBuild]::GetTargetFrameworkIdentifier('$(TargetFramework)')) == '.NETFramework'">
     <Compile Remove="**\*.netcore.cs" />
     <None Include="**\*.netcore.cs" />
     <Reference Include="System.Configuration" />
+    <Reference Include="PresentationFramework" />
   </ItemGroup>
 
-  <!--<ItemGroup Condition=" $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' ">-->
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('netcore')) OR $(TargetFramework.StartsWith('net6')) OR $(TargetFramework.StartsWith('net7')) OR $(TargetFramework.StartsWith('net8')) OR $(TargetFramework.StartsWith('net9'))">
+  <ItemGroup Condition="'$(TargetFramework)' != '' And $([MSBuild]::GetTargetFrameworkIdentifier('$(TargetFramework)')) == '.NETCoreApp'">
     <Compile Remove="**\*.net45.cs" />
     <None Include="**\*.net45.cs" />
   </ItemGroup>
@@ -45,10 +45,6 @@ Prism.Avalonia helps you more easily design and build rich, flexible, and easy t
 
   <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="PresentationFramework" />
   </ItemGroup>
 
 </Project>
