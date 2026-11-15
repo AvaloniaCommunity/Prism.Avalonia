@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Prism.Mvvm;
 using Prism.Avalonia.Tests.Mocks.ViewModels;
 using Prism.Avalonia.Tests.Mocks.Views;
@@ -7,12 +6,11 @@ using Xunit;
 
 namespace Prism.Avalonia.Tests.Mvvm
 {
-    public class ViewModelLocatorFixture
+    public class ViewModelLocatorFixture : IDisposable
     {
-        [StaFact(DisplayName = "Flaky test, runs alone but not in a group")]
+        [StaFact]
         public void ShouldLocateViewModelWithDefaultSettings()
         {
-            // Warning: flaky test. This runs by itself but not as a whole.
             ResetViewModelLocationProvider();
 
             Mock view = new Mock();
@@ -83,12 +81,9 @@ namespace Prism.Avalonia.Tests.Mvvm
             ReferenceEquals(view.DataContext, viewModel);
         }
 
-        internal static void ResetViewModelLocationProvider()
-        {
-            Type staticType = typeof(ViewModelLocationProvider);
-            ConstructorInfo ci = staticType.TypeInitializer;
-            object[] parameters = new object[0];
-            ci.Invoke(null, parameters);
-        }
+        public void Dispose() => ResetViewModelLocationProvider();
+
+        internal static void ResetViewModelLocationProvider() =>
+            ViewModelLocationProvider.Reset();
     }
 }
